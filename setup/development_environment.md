@@ -20,6 +20,11 @@
     - Docker
         - Only from [docker.com](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and using `apt` repository
         - Must be accompanied by [composer](https://docs.docker.com/compose/install/)
+    - .NET Core SDK (this can be skipped and be used inside docker containers)
+        - Only [3.1](https://dotnet.microsoft.com/download/dotnet/3.1) using [docs](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
+            - MAKE SURE YOU REPLACE THE SDK VERSION.
+            - Ask a senior in case you're in doubt.
+            - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
     `mkdir /nefcanto`.   
