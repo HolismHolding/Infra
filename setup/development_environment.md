@@ -14,8 +14,9 @@
             - `git config core.fileMode false`
 
     - VS Code (any version above 1.56.2)
-        - Must install [Grammarly Unofficial Extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly&ssr=false#overview)
-        - Must install [Docker extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
+        - Must install [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly&ssr=false#overview) extension
+        - Must install [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) extension
+        - Must install [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension
     - Docker
         - Only from [docker.com](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and using `apt` repository
         - Must be accompanied by [composer](https://docs.docker.com/compose/install/)
