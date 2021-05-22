@@ -10,6 +10,8 @@
     - Git
         - Only 2.31.1
         - Only from https://git-scm.com/downloads
+        - Setup to not detect `chmod` commands
+            - `git config core.fileMode false`
 
     - VS Code (any version above 1.56.2)
         - Must install [Grammarly Unofficial Extension](https://marketplace.visualstudio.com/items?itemName=znck.grammarly&ssr=false#overview)
