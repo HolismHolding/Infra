@@ -20,6 +20,9 @@
     - Docker
         - Only from [docker.com](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and using `apt` repository
         - Must be accompanied by [composer](https://docs.docker.com/compose/install/)
+        - Must add your user to docker group
+            - `sudo usermod -aG docker **your_user_name**`
+            - Get your user name using `whoami` command
     - .NET Core SDK (this can be skipped and be used inside docker containers)
         - Only [3.1](https://dotnet.microsoft.com/download/dotnet/3.1) using [docs](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
             - MAKE SURE YOU REPLACE THE SDK VERSION.
