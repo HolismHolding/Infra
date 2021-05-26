@@ -28,6 +28,8 @@
             - MAKE SURE YOU REPLACE THE SDK VERSION.
             - Ask a senior in case you're in doubt.
             - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
+    - Notepad++
+        - `sudo snap install notepad-plus-plus`
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
     `mkdir /nefcanto`.   
