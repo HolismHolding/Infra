@@ -28,8 +28,9 @@
             - MAKE SURE YOU REPLACE THE SDK VERSION.
             - Ask a senior in case you're in doubt.
             - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
-    - Notepad++
-        - `sudo snap install notepad-plus-plus`
+    - Advanded-fine for gedit
+        - Download from [here](https://code.google.com/archive/p/advanced-find/downloads?page=1)
+        - Use this [installation guide](https://help.gnome.org/users/gedit/stable/gedit-plugins-install.html.en)
     - FSearch
         - From [FSearch GitHub repo](https://github.com/cboxdoerfer/fsearch)
 - Development
