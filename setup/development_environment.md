@@ -28,10 +28,9 @@
             - MAKE SURE YOU REPLACE THE SDK VERSION.
             - Ask a senior in case you're in doubt.
             - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
-    - Advanded-fine for gedit
-        - Download from [here](https://code.google.com/archive/p/advanced-find/downloads?page=1)
-        - Use this [installation guide](https://help.gnome.org/users/gedit/stable/gedit-plugins-install.html.en)
-    - FSearch
+    - Catfish (for searching in files)
+        - `sudo apt install catfish`
+    - FSearch (for finding files)
         - From [FSearch GitHub repo](https://github.com/cboxdoerfer/fsearch)
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
