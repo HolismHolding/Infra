@@ -32,6 +32,10 @@
         - `sudo apt install catfish`
     - FSearch (for finding files)
         - From [FSearch GitHub repo](https://github.com/cboxdoerfer/fsearch)
+    - Fiddler Everywhere
+        - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
+        - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
+            - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
     `mkdir /nefcanto`.   
