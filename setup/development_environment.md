@@ -28,6 +28,8 @@
             - MAKE SURE YOU REPLACE THE SDK VERSION.
             - Ask a senior in case you're in doubt.
             - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
+        - Then install `dotnet-format`
+        - Then install `dotnet-script`
     - Catfish (for searching in files)
         - `sudo apt install catfish`
     - FSearch (for finding files)
