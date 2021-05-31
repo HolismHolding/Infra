@@ -29,7 +29,9 @@
             - Ask a senior in case you're in doubt.
             - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
         - Then install `dotnet-format`
+            - `dotnet tool install -g dotnet-format`
         - Then install `dotnet-script`
+            - `dotnet tool install -g dotnet-script`
     - Catfish (for searching in files)
         - `sudo apt install catfish`
     - FSearch (for finding files)
