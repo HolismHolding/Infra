@@ -57,6 +57,7 @@
             - export y_projects_root=/y
         - Save, and readonly again
         - Restart
+    - Download the "company-wide" git bash file, to pull and push all repositories of a company in one step (without messages)
 
 <hr />
 
