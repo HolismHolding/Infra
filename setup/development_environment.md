@@ -40,6 +40,7 @@
         - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
         - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
             - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
+
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
     `mkdir /nefcanto`.   
@@ -47,6 +48,15 @@
         - Use [snake-casing](https://en.wikipedia.org/wiki/Snake_case) for naming
     - Give that folder full permission so that all applications would work without bothering your development with `sudo` stuff:   
     `sudo chmod -R 777 /nefcanto`
+    - Add environment variable for each **x_projects_root**
+        - Give write access to `/etc/profile` file.
+        - Open it in an editor
+        - At the end add the environment variables
+            - export nefcanto_projects_root=/nefcanto
+            - export x_projects_root=/x
+            - export y_projects_root=/y
+        - Save, and readonly again
+        - Restart
 
 <hr />
 
