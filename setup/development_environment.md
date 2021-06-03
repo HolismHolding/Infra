@@ -5,6 +5,7 @@
         - Only 20.04 LTS
         - Only from ubunto.com
         - Only English (US) as default
+        - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
 - Software
     - Git
