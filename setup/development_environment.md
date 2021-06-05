@@ -61,6 +61,7 @@
         - Save, and readonly again
         - Restart
     - Download the "company-wide" git bash file, to pull and push all repositories of a company in one step (without messages)
+    - Only [use SSH to connect to GitHub](https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/).
 
 <hr />
 
