@@ -43,6 +43,10 @@
             - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
     - Azure Data Studio
         - If not connecting, [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
+    - SQL Server
+        - Follow [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15)
+            - Use `--no-check-certificate` after `wget`
+            - Check [this link](https://askubuntu.com/questions/1109982/e-could-not-get-lock-var-lib-dpkg-lock-frontend-open-11-resource-temporari) for lock error
 
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
