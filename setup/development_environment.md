@@ -41,6 +41,8 @@
         - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
         - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
             - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
+    - Azure Data Studio
+        - If not connecting, [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
 
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
