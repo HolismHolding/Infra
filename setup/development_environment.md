@@ -47,6 +47,8 @@
         - Follow [docs](https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-ubuntu?view=sql-server-ver15)
             - Use `--no-check-certificate` after `wget`
             - Check [this link](https://askubuntu.com/questions/1109982/e-could-not-get-lock-var-lib-dpkg-lock-frontend-open-11-resource-temporari) for lock error
+    - node.js
+        - Disable `strict-ssl` using `sudo nano /usr/local/lib/node_modules/npm/npmrc` and adding this line: `strict-ssl=false`
 
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
