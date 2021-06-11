@@ -1,0 +1,5 @@
+I need to create these images:
+
+holism_api
+holism_db
+holism_web
