@@ -9,5 +9,9 @@
 
 # find files, grep and rename
 
-`find ./ -name "*" | grep search | rename 's/old/new'`
+`find . | grep search | rename 's/old/new'`
+
+You can use use `-n` to only see the changes, without applying them, to ensure the regex is correct.
+
+`find . | grep search | rename -n 's/old/new'`
 
