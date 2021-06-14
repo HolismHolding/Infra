@@ -15,3 +15,11 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 `find . | grep search | rename -n 's/old/new'`
 
+# git submodules
+
+`git submodules init`
+`git submodules update`
+`git submodules foreach 'git add . || :'`
+`git submodules foreach 'git commit -m "message" || :'`
+`git submodules foreach 'git push || :'`
+
