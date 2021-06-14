@@ -7,7 +7,7 @@
 `docker rm -vf $(docker ps -a -q)`
 `docker rmi -f $(docker images -a -q)`
 
-# find files
+# find files, grep and rename
 
-find . -name *pattern*
+`find ./ -name "*" | grep search | rename 's/old/new'`
 
