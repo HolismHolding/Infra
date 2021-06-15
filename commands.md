@@ -2,8 +2,10 @@
 
 `grep -rl matchstring somedir/ | xargs sed -i 's/string1/string2/g'`
 
-# delete all docker images
+# delete all docker container and images
 
+`docker stop $(docker ps -aq)`
+`docker container prune --force`
 `docker rm -vf $(docker ps -a -q)`
 `docker rmi -f $(docker images -a -q)`
 
