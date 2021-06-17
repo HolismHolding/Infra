@@ -4,10 +4,10 @@
 
 # delete all docker container and images
 
-`docker stop $(docker ps -aq)`
-`docker container prune --force`
-`docker rm -vf $(docker ps -a -q)`
-`docker rmi -f $(docker images -a -q)`
+`docker stop $(docker ps -aq)`   
+`docker container prune --force`   
+`docker rm -vf $(docker ps -a -q)`   
+`docker rmi -f $(docker images -a -q)`   
 
 # find files, grep and rename
 
@@ -19,11 +19,11 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # git submodules
 
-`git submodules init`
-`git submodules update`
-`git submodules foreach 'git add . || :'`
-`git submodules foreach 'git commit -m "message" || :'`
-`git submodules foreach 'git push || :'`
+`git submodules init`    
+`git submodules update`   
+`git submodules foreach 'git add . || :'`   
+`git submodules foreach 'git commit -m "message" || :'`   
+`git submodules foreach 'git push || :'`   
 
 # kill processes on port
 
