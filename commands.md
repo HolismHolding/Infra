@@ -25,3 +25,8 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `git submodules foreach 'git commit -m "message" || :'`
 `git submodules foreach 'git push || :'`
 
+# kill processes on port
+
+`sudo lsof -t -i:3000 | xargs sudo kill`
+
+
