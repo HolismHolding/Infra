@@ -29,4 +29,8 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 `sudo lsof -t -i:3000 | xargs sudo kill`
 
-
+# delete git submodule
+`git submodule status` => to show `path/to/submodule`   
+`git submodule deinit -f path/to/submodule`   
+`rm -rf .git/modules/path/to/submodule`   
+`git rm -f path/to/submodule`   
