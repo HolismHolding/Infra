@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
+
 echo "running setup from /nefcanto/infra"
 echo "directory is: " $PWD
 
