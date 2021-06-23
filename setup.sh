@@ -14,7 +14,7 @@ sudo mkdir /setup
 
 if [ -f "App.js" ]; then
     echo "React, panel"
-    sudo wget -0 /setup/docker-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/panel-compose.yml
+    sudo wget -O /setup/docker-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/panel-compose.yml
     docker-compose -f /setup/docker-compose.yml up
 elif [ -f "Routes.js" ]; then
     echo "React, reusable|package|module"
