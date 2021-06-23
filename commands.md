@@ -34,3 +34,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `git submodule deinit -f path/to/submodule`   
 `rm -rf .git/modules/path/to/submodule`   
 `git rm -f path/to/submodule`   
+
+# see the size of a directory
+`du -sh directory_name`
