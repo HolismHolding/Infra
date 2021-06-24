@@ -47,6 +47,8 @@
         - Disable `strict-ssl` using `sudo nano /usr/local/lib/node_modules/npm/npmrc` and adding this line: `strict-ssl=false`
     - rename
         - `sudo apt install rename`
+    - baobab
+        - `sudo apt-get install -y baobab`
 
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
