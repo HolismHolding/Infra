@@ -5,6 +5,7 @@
 echo "running nefcanto setup"
 echo "directory is: " $PWD
 export Package="$(basename $PWD)"
+export PackagePath=$PWD
 
 # package & app = module & host = reusable & runnable
 
@@ -14,12 +15,13 @@ sudo mkdir /setup
 
 if [ -f "App.js" ]; then
     echo "React, panel"
-    sudo wget -O /setup/docker-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/panel-compose.yml
-    docker-compose -f /setup/docker-compose.yml up
+    sudo wget -O /setup/react-panel-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/panel-compose.yml
+    docker-compose -f /setup/react-panel-compose.yml up
+# elif => $PWD ends with App => it's an app|runnable|host
 elif [ -f "Resources.js" ]; then
     echo "React, reusable|package|module"
-    sudo wget -O /setup/docker-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
-    docker-compose -f /setup/docker-compose.yml up
+    sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
+    docker-compose -f /setup/react-reusable-compose.yml up
 elif [ -f "composer.json" ]; then
     echo "Laravel, reusable|package|module"
 elif [ -f ".env" ]; then
