@@ -15,6 +15,8 @@ sudo rm -rf /setup
 
 sudo mkdir /setup
 
+git pull -C /Nefcanto/Infra
+
 if [ -f "App.js" ]; then
     echo "React, panel"
     sudo wget -O /setup/ReactDevPanel.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/React/Dev/Panel
@@ -29,6 +31,10 @@ elif [ -f "Resources.js" ]; then
         sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
         docker-compose -f /setup/react-reusable-compose.yml up
     fi
+elif [ -f "${Reusable}.sln" ]; then
+    echo ".NET runnable|host|app"
+    sudo wget -O /setup/DotNetDevRunnable.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/DotNet/Dev/Runnable
+    docker-compose -f /setup/DotNetDevRunnable.yml up
 elif [ -f "composer.json" ]; then
     echo "Laravel, reusable|package|module"
 elif [ -f ".env" ]; then
