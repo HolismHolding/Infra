@@ -4,8 +4,10 @@
 
 echo "running nefcanto setup"
 echo "directory is: " $PWD
-export Package="$(basename $PWD)"
-export PackagePath=$PWD
+export Reusable="$(basename $PWD)"
+export Runnable="$(basename $PWD)"
+export ReusablePath=$PWD
+export RunnablePath=$PWD
 
 # package & app = module & host = reusable & runnable
 
@@ -19,9 +21,14 @@ if [ -f "App.js" ]; then
     docker-compose -f /setup/react-panel-compose.yml up
 # elif => $PWD ends with App => it's an app|runnable|host
 elif [ -f "Resources.js" ]; then
-    echo "React, reusable|package|module"
-    sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
-    docker-compose -f /setup/react-reusable-compose.yml up
+    if [ -f ".env" ]; then
+        echo "React, runnable|host|app"
+        docker-compose -f /nefcanto/react-dev-runnable-docker-compose.yml up
+    else
+        echo "React, reusable|package|module"
+        sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
+        docker-compose -f /setup/react-reusable-compose.yml up
+    fi
 elif [ -f "composer.json" ]; then
     echo "Laravel, reusable|package|module"
 elif [ -f ".env" ]; then
@@ -34,4 +41,4 @@ fi
 
 # register it globally
 # sudo chmod u+rw /etc/bash.bashrc
-# sudo echo "alias setup='/nefcanto/infra/setup.sh .'" >> /etc/bash.bashrc
+# sudo echo "alias setup='/nefcanto/infra/Setup.sh .'" >> /etc/bash.bashrc
