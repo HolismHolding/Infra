@@ -17,8 +17,8 @@ sudo mkdir /setup
 
 if [ -f "App.js" ]; then
     echo "React, panel"
-    sudo wget -O /setup/react-panel-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/panel-compose.yml
-    docker-compose -f /setup/react-panel-compose.yml up
+    sudo wget -O /setup/ReactDevPanel.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/React/Dev/Panel
+    docker-compose -f /setup/ReactDevPanel.yml up
 # elif => $PWD ends with App => it's an app|runnable|host
 elif [ -f "Resources.js" ]; then
     if [ -f ".env" ]; then
