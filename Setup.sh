@@ -25,7 +25,7 @@ elif [ -f "Resources.js" ]; then
         echo "React, runnable|host|app"
         docker-compose -f /nefcanto/react-dev-runnable-docker-compose.yml up
     else
-        echo "React, reusable|package|module"
+        echo "React, reusable|module|package"
         sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
         docker-compose -f /setup/react-reusable-compose.yml up
     fi
@@ -41,4 +41,4 @@ fi
 
 # register it globally
 # sudo chmod u+rw /etc/bash.bashrc
-# sudo echo "alias setup='/nefcanto/infra/Setup.sh .'" >> /etc/bash.bashrc
+# sudo echo "alias setup='/Nefcanto/Infra/Setup.sh .'" >> /etc/bash.bashrc
