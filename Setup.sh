@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /Nefcanto/Infra/React/Setup.sh
+
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 
 echo "running nefcanto setup"
@@ -11,26 +13,16 @@ export RunnablePath=$PWD
 
 # package & app = module & host = reusable & runnable
 
-sudo rm -rf /setup
+function GetHoldingInfra(){
+    infraPath=/Nefcanto/Infra
+    echo "Pulling $infraPath"
+    git -C $infraPath pull
+}
 
-sudo mkdir /setup
+GetHoldingInfra
 
-git pull -C /Nefcanto/Infra
-
-if [ -f "App.js" ]; then
-    echo "React, panel"
-    sudo wget -O /setup/ReactDevPanel.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/React/Dev/Panel
-    docker-compose -f /setup/ReactDevPanel.yml up
-# elif => $PWD ends with App => it's an app|runnable|host
-elif [ -f "Resources.js" ]; then
-    if [ -f ".env" ]; then
-        echo "React, runnable|host|app"
-        docker-compose -f /nefcanto/react-dev-runnable-docker-compose.yml up
-    else
-        echo "React, reusable|module|package"
-        sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
-        docker-compose -f /setup/react-reusable-compose.yml up
-    fi
+if [ IsReact ]; then
+    SetupReact
 elif [ -f "${Reusable}.sln" ]; then
     echo ".NET runnable|host|app"
     sudo wget -O /setup/DotNetDevRunnable.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/DotNet/Dev/Runnable
