@@ -4,12 +4,12 @@ services:
         image: nefcanto/dotnet-dev:latest
         #restart: always
         container_name: ${Runnable}DotNetApi
-        working_dir: /Api
+        working_dir: /${Runnable}
         environment: 
             - HolismProjectsRoot=/HolismDotNet
         volumes: 
             - /HolismDotNet/Framework:/HolismDotNet/Framework
-            - .:/Api
+            - ${RunnablePath}:/${Runnable}
         ports: 
             - "5000:5000"
         command: >
@@ -26,17 +26,18 @@ services:
         user: root
         container_name: ${Runnable}MsSqlDatabase
         volumes:
+            - /Nefcanto/Infra/DotNet/Dev/Database:/temp
             - ./Database:/Database
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=lksU2o412f7tBj58t07B
             - MSSQL_PID=Express
-            - Runnable=Geo
+            - Runnable=${Runnable}
         ports:
             - 1433:1433
         command: >
             sh -c
             "
-            /Database/CreateDatabase.sh &
+            /temp/CreateDatabase.sh &
             /opt/mssql/bin/sqlservr
             "
