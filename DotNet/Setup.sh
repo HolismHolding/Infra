@@ -3,9 +3,9 @@
 function IsDotNet() {
     sln=$(find "$PWD" -name *.sln|head -n1)
     if [ ! -z "$sln" ]; then
-        return 1;
-    else 
         return 0;
+    else 
+        return 1;
     fi
 }
 
@@ -16,7 +16,7 @@ function GetDotNetInfra() {
         git -C $infraPath pull
     else 
         echo "Cloning $infraPath"
-        git -C $infraPath clone git@github.com:HolismDotNet/Infra
+        git -C /HolismDotNet clone git@github.com:HolismDotNet/Infra
     fi
     infraPath=/HolismDotNet/Framework
     if [ -d "$infraPath" ]; then
@@ -24,7 +24,7 @@ function GetDotNetInfra() {
         git -C $infraPath pull
     else 
         echo "Cloning $infraPath"
-        git -C $infraPath clone git@github.com:HolismDotNet/Framework
+        git -C /HolismDotNet clone git@github.com:HolismDotNet/Framework
     fi
 }
 
@@ -35,7 +35,7 @@ function GetDotNetAccounts() {
         git -C $accountsPath pull
     else 
         echo "Cloning $accountsPath"
-        git -C $accountsPath clone git@github.com:HolismDotNet/Accounts
+        git -C /HolismDotNet clone git@github.com:HolismDotNet/Accounts
     fi
 }
 
@@ -44,5 +44,5 @@ function SetupDotNet() {
     GetDotNetInfra
     GetDotNetAccounts
     echo "DotNet, runnable|host|app"
-    docker-compose -f Nefcanto/Infra/DotNet/Dev/Runnable up
+    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable up
 }

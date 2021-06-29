@@ -19,12 +19,12 @@ services:
             && dotnet Api/bin/Holism.${Runnable}.Api.dll
             "
         depends_on: 
-            - "sql"
-    sql:
+            - "database"
+    database:
         image: mcr.microsoft.com/mssql/server
         #restart: always
         user: root
-        container_name: ${Runnable}Sql
+        container_name: ${Runnable}MsSqlDatabase
         volumes:
             - ./Database:/Database
         environment: 

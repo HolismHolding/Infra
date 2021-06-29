@@ -2,9 +2,9 @@
 
 function IsReact() {
     if [ -f "App.js" ] || [ -f "Resources.js" ]; then
-        return 1;
-    else 
         return 0;
+    else 
+        return 1;
     fi
 }
 

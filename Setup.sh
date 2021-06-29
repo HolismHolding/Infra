@@ -1,7 +1,7 @@
 #!/bin/bash
 
 . /Nefcanto/Infra/React/Setup.sh
-. /Nefcatno/Infra/DotNet/Setup.sh
+. /Nefcanto/Infra/DotNet/Setup.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 
@@ -22,10 +22,10 @@ function GetHoldingInfra(){
 
 GetHoldingInfra
 
-if [ IsReact ]; then
+if IsReact $1; then
     echo "React"
     #SetupReact
-elif [ IsDotNet ]; then
+elif IsDotNet $1; then
     echo ".NET"
     SetupDotNet
 elif [ -f "composer.json" ]; then
