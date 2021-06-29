@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . /Nefcanto/Infra/React/Setup.sh
+. /Nefcatno/Infra/DotNet/Setup.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 
@@ -22,11 +23,11 @@ function GetHoldingInfra(){
 GetHoldingInfra
 
 if [ IsReact ]; then
-    SetupReact
-elif [ -f "${Reusable}.sln" ]; then
-    echo ".NET runnable|host|app"
-    sudo wget -O /setup/DotNetDevRunnable.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/DotNet/Dev/Runnable
-    docker-compose -f /setup/DotNetDevRunnable.yml up
+    echo "React"
+    #SetupReact
+elif [ IsDotNet ]; then
+    echo ".NET"
+    SetupDotNet
 elif [ -f "composer.json" ]; then
     echo "Laravel, reusable|package|module"
 elif [ -f ".env" ]; then
