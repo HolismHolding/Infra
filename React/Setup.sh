@@ -8,23 +8,54 @@ function IsReact() {
     fi
 }
 
+function GetReactInfra() {
+    infraPath=/HolismReact/Infra
+    if [ -d "$infraPath" ]; then
+        echo "Pulling $infraPath"
+        git -C $infraPath pull
+    else 
+        echo "Cloning $infraPath"
+        git -C $infraPath clone git@github.com:HolismReact/Infra
+    fi
+}
+
+function GetReactPanel() {
+    panelPath=/HolismReact/Panel
+    if [ -d "$panelPath" ]; then
+        echo "Pulling $panelPath"
+        git -C $panelPath pull
+    else 
+        echo "Cloning $panelPath"
+        git -C $panelPath clone git@github.com:HolismReact/Panel
+    fi
+}
+
+function GetReactAccounts() {
+    accountsPath=/HolismReact/Accounts
+    if [ -d "$accountsPath" ]; then
+        echo "Pulling $accountsPath"
+        git -C $accountsPath pull
+    else 
+        echo "Cloning $accountsPath"
+        git -C $accountsPath clone git@github.com:HolismReact/Accounts
+    fi
+}
+
 function SetupReact() {
+    echo "React"
+    GetReactInfra
+    GetReactPanel
+    GetReactAccounts
     if [ -f "App.js" ]; then
         echo "React, panel"
-        git -C /HolismReact/Infra pull
-        git -C /HolismReact/Panel pull
-        git -C /HolismReact/Auth pull
-        sudo wget -O /setup/ReactDevPanel.yml https://raw.githubusercontent.com/Nefcanto/Infra/main/React/Dev/Panel
-        docker-compose -f /setup/ReactDevPanel.yml up
-    # elif => $PWD ends with App => it's an app|runnable|host
+        docker-compose -f Nefcanto/Infra/React/Dev/Panel up
     else
         if [ -f ".env" ]; then
             echo "React, runnable|host|app"
-            docker-compose -f /nefcanto/react-dev-runnable-docker-compose.yml up
+            docker-compose -f Nefcanto/Infra/React/Dev/Runnable up
         else
             echo "React, reusable|module|package"
-            sudo wget -O /setup/react-reusable-compose.yml https://raw.githubusercontent.com/HolismReact/Infra/main/docker-compose.yml
-            docker-compose -f /setup/react-reusable-compose.yml up
+            docker-compose -f Nefcanto/Infra/React/Dev/Reusable up
         fi
     fi
 }

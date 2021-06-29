@@ -4,8 +4,8 @@
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 
-echo "running nefcanto setup"
-echo "directory is: " $PWD
+echo "Nefcanto setup"
+echo "directory: " $PWD
 export Reusable="$(basename $PWD)"
 export Runnable="$(basename $PWD)"
 export ReusablePath=$PWD
