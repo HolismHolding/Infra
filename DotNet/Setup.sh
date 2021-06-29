@@ -40,7 +40,7 @@ function GetDotNetAccounts() {
 }
 
 function SetupDotNet() {
-    echo "DotNet"
+    echo ".NET"
     GetDotNetInfra
     GetDotNetAccounts
     echo "DotNet, runnable|host|app"

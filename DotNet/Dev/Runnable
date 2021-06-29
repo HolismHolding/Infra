@@ -2,7 +2,7 @@ version: "3.9"
 services: 
     api:
         image: nefcanto/dotnet-dev:latest
-        restart: always
+        #restart: always
         container_name: ${Runnable}DotNetApi
         working_dir: /Api
         environment: 

@@ -23,10 +23,8 @@ function GetHoldingInfra(){
 GetHoldingInfra
 
 if IsReact $1; then
-    echo "React"
-    #SetupReact
+    SetupReact
 elif IsDotNet $1; then
-    echo ".NET"
     SetupDotNet
 elif [ -f "composer.json" ]; then
     echo "Laravel, reusable|package|module"
