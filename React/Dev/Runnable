@@ -20,7 +20,7 @@ services:
             sh -c
             "
             cd /${Runnable}
-            && ln -s /react/Infra/node_modules /${Runnable}
+            && if [ ! -d /${Runnable}/node_modules ]; then ln -s /react/Infra/node_modules /${Runnable}; fi
             && cp -a /temp/infra/. .
             && cp -a /temp/app/. ./src
             && npm start
