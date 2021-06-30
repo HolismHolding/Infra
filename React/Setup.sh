@@ -53,8 +53,9 @@ function GetDependencies() {
     if [ ! -f "$PWD/Dependencies" ]; then
         return;
     fi
+    volumes=""
     export IFS='/'
-    { cat "$PWD/Dependencies"; echo; } | while read Organization Repository; do  
+    while read Organization Repository; do  
         echo $Organization $Repository
         if [ ! -d "/$Organization" ]; then
             sudo mkdir "/$Organization"
@@ -67,7 +68,9 @@ function GetDependencies() {
             echo "Pulling /$Organization/$Repository"
             git -C /$Organization/$Repository pull
         fi
-    done
+        volumes="$volumes\n            - /$Organization/$Repository:/\${Runnable}/src/$Repository"
+    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+    echo -e $volumes
 }
 
 function SetupReact() {
