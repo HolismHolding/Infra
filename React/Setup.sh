@@ -8,6 +8,14 @@ function IsReact() {
     fi
 }
 
+function CreateHolismReactDirectory() {
+    if [ ! -d "/HolismReact" ]; then
+        echo "Creating /HolismReact directory"
+        sudo mkdir /HolismReact
+        sudo chmod -R 777 /HolismReact
+    fi
+}
+
 function GetReactInfra() {
     infraPath=/HolismReact/Infra
     if [ -d "$infraPath" ]; then
@@ -15,7 +23,7 @@ function GetReactInfra() {
         git -C $infraPath pull
     else 
         echo "Cloning $infraPath"
-        git -C $infraPath clone git@github.com:HolismReact/Infra
+        git -C /HolismReact clone git@github.com:HolismReact/Infra
     fi
 }
 
@@ -26,7 +34,7 @@ function GetReactPanel() {
         git -C $panelPath pull
     else 
         echo "Cloning $panelPath"
-        git -C $panelPath clone git@github.com:HolismReact/Panel
+        git -C /HolismReact clone git@github.com:HolismReact/Panel
     fi
 }
 
@@ -37,24 +45,26 @@ function GetReactAccounts() {
         git -C $accountsPath pull
     else 
         echo "Cloning $accountsPath"
-        git -C $accountsPath clone git@github.com:HolismReact/Accounts
+        git -C /HolismReact clone git@github.com:HolismReact/Accounts
     fi
 }
 
 function SetupReact() {
-    echo "React"
+    echo "Seting up React"
+    CreateHolismReactDirectory
     GetReactInfra
     GetReactPanel
     GetReactAccounts
+    return;
     if [ -f "App.js" ]; then
-        echo "React, panel"
+        echo "Setting up React, panel"
         docker-compose -f Nefcanto/Infra/React/Dev/Panel up
     else
         if [ -f ".env" ]; then
-            echo "React, runnable|host|app"
+            echo "Setting up React, runnable|host|app"
             docker-compose -f Nefcanto/Infra/React/Dev/Runnable up
         else
-            echo "React, reusable|module|package"
+            echo "Setting up React, reusable|module|package"
             docker-compose -f Nefcanto/Infra/React/Dev/Reusable up
         fi
     fi
