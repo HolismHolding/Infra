@@ -49,22 +49,31 @@ function GetReactAccounts() {
     fi
 }
 
+function GetDependencies() {
+    if [ -f "$PWD/Dependencies" ]; then
+        cat "$PWD/Dependencies";
+    fi
+}
+
 function SetupReact() {
     echo "Seting up React"
     CreateHolismReactDirectory
     GetReactInfra
     GetReactPanel
     GetReactAccounts
+    #GetDependencies
+    composeFile=Panel
     if [ -f "App.js" ]; then
         echo "Setting up React, panel"
-        docker-compose -f /Nefcanto/Infra/React/Dev/Panel up --remove-orphans 
+        composeFile=Panel
     else
         if [ -f ".env" ]; then
             echo "Setting up React, runnable|host|app"
-            docker-compose -f /Nefcanto/Infra/React/Dev/Runnable up --remove-orphans 
+            composeFile=Runnable
         else
             echo "Setting up React, reusable|module|package"
-            docker-compose -f /Nefcanto/Infra/React/Dev/Reusable up --remove-orphans 
+            composeFile=Reusable
         fi
     fi
+    docker-compose -f /Nefcanto/Infra/React/Dev/$composeFile up --remove-orphans
 }

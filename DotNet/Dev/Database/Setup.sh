@@ -1,3 +1,5 @@
+echo "alias login='/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P lksU2o412f7tBj58t07B -d master'" >> /etc/bash.bashrc
+
 echo "creating database for $Runnable"
 
 rm -rf /temp/Script.sql

@@ -4,6 +4,9 @@
 . /Nefcanto/Infra/DotNet/Setup.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
+# sudo chmod u+rw /etc/hosts
+# sudo echo "127.0.0.1 domain.local" >> /etc/hosts
+# if folder contains "Sites" then we can use it, otherwise we can create domains by convention, for example api.geo.local
 
 echo "Nefcanto setup"
 echo "directory: " $PWD

@@ -24,21 +24,16 @@
         - Must add your user to docker group
             - `sudo usermod -aG docker **your_user_name**`
             - Get your user name using `whoami` command
-    - .NET Core SDK (this can be skipped and be used inside docker containers)
-        - Only [3.1](https://dotnet.microsoft.com/download/dotnet/3.1) using [docs](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#2004-)
-            - MAKE SURE YOU REPLACE THE SDK VERSION.
-            - Ask a senior in case you're in doubt.
-            - In case of error, [troubleshoot](https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu#apt-troubleshooting)
-        - Then install `dotnet-format`
-            - `dotnet tool install -g dotnet-format`
-        - Then install `dotnet-script`
-            - `dotnet tool install -g dotnet-script`
     - Fiddler Everywhere
         - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
         - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
             - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
     - Azure Data Studio
         - If not connecting, [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
+    - Nginx
+        - `sudo apt-get update`
+        - `sudo apt-get install nginx`
+        - verify the installation => `sudo nginx -v`
     - rename
         - `sudo apt install rename`
     - baobab

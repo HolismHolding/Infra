@@ -44,5 +44,5 @@ function SetupDotNet() {
     GetDotNetInfra
     GetDotNetAccounts
     echo "DotNet, runnable|host|app"
-    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable up
+    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable up --remove-orphans
 }

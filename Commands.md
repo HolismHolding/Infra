@@ -37,3 +37,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # see the size of a directory
 `du -sh directory_name`
+
+# check status of
+`sudo systemctl status nginx`

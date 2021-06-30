@@ -38,6 +38,6 @@ services:
         command: >
             sh -c
             "
-            /temp/CreateDatabase.sh &
+            /temp/Setup.sh &
             /opt/mssql/bin/sqlservr
             "

@@ -10,8 +10,7 @@ services:
             - /HolismReact/Infra:/temp/infra
             - /HolismReact/Panel:/${Runnable}/src/Panel
             - /HolismReact/Accounts:/${Runnable}/src/Accounts
-            - ${RunnablePath}/src/.:/temp/app
-            - ${RunnablePath}/logo.png:/${Runnable}/src/logo.png
+            - ${RunnablePath}/Logo.png:/${Runnable}/src/logo.png
             - ${RunnablePath}/.env:/${Runnable}/.env
             - ${RunnablePath}/.env.test:/${Runnable}/.env.test
             - ${RunnablePath}/.env.production:/${Runnable}/.env.production
@@ -22,6 +21,5 @@ services:
             cd /${Runnable}
             && if [ ! -d /${Runnable}/node_modules ]; then ln -s /react/Infra/node_modules /${Runnable}; fi
             && cp -a /temp/infra/. .
-            && cp -a /temp/app/. ./src
             && npm start
             "
