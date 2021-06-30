@@ -14,7 +14,7 @@ services:
             - ${RunnablePath}/.env:/${Runnable}/.env
             - ${RunnablePath}/.env.test:/${Runnable}/.env.test
             - ${RunnablePath}/.env.production:/${Runnable}/.env.production
-            - ${RunnablePath}/Resources.js:/${Runnable}/src/Resources.js
+            - ${RunnablePath}/Resources.js:/${Runnable}/src/Resources.jsVolumeMappingPlaceHolder
         command: >
             sh -c
             "

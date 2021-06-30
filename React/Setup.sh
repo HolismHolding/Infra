@@ -50,10 +50,10 @@ function GetReactAccounts() {
 }
 
 function GetDependencies() {
+    echo "Getting dependencies";
     if [ ! -f "$PWD/Dependencies" ]; then
         return;
     fi
-    volumes=""
     export IFS='/'
     while read Organization Repository; do  
         echo $Organization $Repository
@@ -68,19 +68,19 @@ function GetDependencies() {
             echo "Pulling /$Organization/$Repository"
             git -C /$Organization/$Repository pull
         fi
-        volumes="$volumes\n            - /$Organization/$Repository:/\${Runnable}/src/$Repository"
+        volumes="$volumes\n            - *$Organization*$Repository:*\${Runnable}*src*$Repository"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
-    echo -e $volumes
 }
 
 function SetupReact() {
     echo "Seting up React"
-    #CreateHolismReactDirectory
-    #GetReactInfra
-    #GetReactPanel
-    #GetReactAccounts
-    GetDependencies
-    return;
+    CreateHolismReactDirectory
+    GetReactInfra
+    GetReactPanel
+    GetReactAccounts
+    volumes=""
+    GetDependencies volumes
+    echo -e $volumes
     composeFile=Panel
     if [ -f "App.js" ]; then
         echo "Setting up React, panel"
@@ -94,5 +94,8 @@ function SetupReact() {
             composeFile=Reusable
         fi
     fi
-    docker-compose -f /Nefcanto/Infra/React/Dev/$composeFile up --remove-orphans
+    cp /Nefcanto/Infra/React/Dev/$composeFile /temp/ReactDev$composeFile
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /temp/ReactDev$composeFile
+    sed -i "s/*/\//g" /temp/ReactDev$composeFile
+    docker-compose -f /temp/ReactDev$composeFile up --remove-orphans
 }
