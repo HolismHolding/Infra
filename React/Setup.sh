@@ -50,18 +50,34 @@ function GetReactAccounts() {
 }
 
 function GetDependencies() {
-    if [ -f "$PWD/Dependencies" ]; then
-        cat "$PWD/Dependencies";
+    if [ ! -f "$PWD/Dependencies" ]; then
+        return;
     fi
+    export IFS='/'
+    { cat "$PWD/Dependencies"; echo; } | while read Organization Repository; do  
+        echo $Organization $Repository
+        if [ ! -d "/$Organization" ]; then
+            sudo mkdir "/$Organization"
+            sudo chmod -R 777 "/$Organization"
+        fi
+        if [ ! -d "/$Organization/$Repository" ]; then 
+            echo "Cloning /$Organization/$Repository"
+            git -C /$Organization clone git@github.com:$Organization/$Repository
+        else 
+            echo "Pulling /$Organization/$Repository"
+            git -C /$Organization/$Repository pull
+        fi
+    done
 }
 
 function SetupReact() {
     echo "Seting up React"
-    CreateHolismReactDirectory
-    GetReactInfra
-    GetReactPanel
-    GetReactAccounts
-    #GetDependencies
+    #CreateHolismReactDirectory
+    #GetReactInfra
+    #GetReactPanel
+    #GetReactAccounts
+    GetDependencies
+    return;
     composeFile=Panel
     if [ -f "App.js" ]; then
         echo "Setting up React, panel"
