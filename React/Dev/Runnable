@@ -1,0 +1,27 @@
+version: "3.9"
+services: 
+    react:
+        image: nefcanto/react-dev:latest
+        container_name: ${Runnable}ReactDev
+        ports:
+            - "4000:3000"
+        working_dir: /${Runnable}
+        volumes: 
+            - /HolismReact/Infra:/temp/infra
+            - /HolismReact/Panel:/${Runnable}/src/Panel
+            - /HolismReact/Accounts:/${Runnable}/src/Accounts
+            - ${RunnablePath}/src/.:/temp/app
+            - ${RunnablePath}/logo.png:/${Runnable}/src/logo.png
+            - ${RunnablePath}/.env:/${Runnable}/.env
+            - ${RunnablePath}/.env.test:/${Runnable}/.env.test
+            - ${RunnablePath}/.env.production:/${Runnable}/.env.production
+            - ${RunnablePath}/Resources.js:/${Runnable}/src/Resources.js
+        command: >
+            sh -c
+            "
+            cd /${Runnable}
+            && ln -s /react/Infra/node_modules /${Runnable}
+            && cp -a /temp/infra/. .
+            && cp -a /temp/app/. ./src
+            && npm start
+            "

@@ -55,17 +55,16 @@ function SetupReact() {
     GetReactInfra
     GetReactPanel
     GetReactAccounts
-    return;
     if [ -f "App.js" ]; then
         echo "Setting up React, panel"
-        docker-compose -f Nefcanto/Infra/React/Dev/Panel up
+        docker-compose -f /Nefcanto/Infra/React/Dev/Panel up
     else
         if [ -f ".env" ]; then
             echo "Setting up React, runnable|host|app"
-            docker-compose -f Nefcanto/Infra/React/Dev/Runnable up
+            docker-compose -f /Nefcanto/Infra/React/Dev/Runnable up
         else
             echo "Setting up React, reusable|module|package"
-            docker-compose -f Nefcanto/Infra/React/Dev/Reusable up
+            docker-compose -f /Nefcanto/Infra/React/Dev/Reusable up
         fi
     fi
 }
