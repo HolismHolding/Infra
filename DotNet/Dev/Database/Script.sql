@@ -1,2 +1,2 @@
-create database Geo
+create database Instagram
 go

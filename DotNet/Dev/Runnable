@@ -15,8 +15,9 @@ services:
         command: >
             sh -c
             "
-            dotnet build
-            && dotnet Api/bin/Holism.${Runnable}.Api.dll
+            dotnet build &
+            dotnet Api/bin/Holism.${Runnable}.Api.dll &
+            tail -f /dev/null
             "
         depends_on: 
             - "database"

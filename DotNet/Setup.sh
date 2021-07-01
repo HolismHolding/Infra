@@ -39,10 +39,19 @@ function GetDotNetAccounts() {
     fi
 }
 
+function LinkGitIgnore() {
+    if [ -f "$PWD/.gitignore" ]; then
+        rm -rf .gitignore;
+    fi
+    ln -s /HolismDotNet/Framework/.gitignore "$PWD/.gitignore"
+    git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
+}
+
 function SetupDotNet() {
     echo ".NET"
     GetDotNetInfra
     GetDotNetAccounts
+    LinkGitIgnore
     echo "DotNet, runnable|host|app"
     docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable up --remove-orphans
 }
