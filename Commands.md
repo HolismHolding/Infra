@@ -40,3 +40,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # check status of
 `sudo systemctl status nginx`
+
+# Find all directories and delete them
+`find . -type d -name "bin" | xargs sudo rm -rf `
