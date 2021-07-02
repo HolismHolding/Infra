@@ -1,8 +1,9 @@
 FROM node:lts-alpine
-WORKDIR /HolismReact/Site
+WORKDIR /react/Infra
 RUN apk update \
     && apk add --no-cache git \
-    && cd /HolismReact \
-    && git clone https://github.com/HolismReact/Site \
-    && cd /HolismReact/Site \
+    && apk add --upgrade unzip \
+    && cd /react \
+    && git clone https://github.com/HolismReact/Infra \
+    && cd /react/Infra \
     && npm install

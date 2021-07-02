@@ -19,7 +19,7 @@ function GetReactSite() {
     fi
 }
 
-function SetupReact() {
+function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
     docker-compose -f /Nefcanto/Infra/React/Site/Dev/Runnable up --remove-orphans

@@ -15,5 +15,6 @@ services:
             sh -c
             "
             cp -a /HolismReact/Site/. .
+            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
             && npm run dev
             "
