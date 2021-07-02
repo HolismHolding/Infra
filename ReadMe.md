@@ -26,9 +26,9 @@ This means:
    - Development machines setup (development environments)
    - Project setups
    - CI/CD setup
-   - Stating machines setup
+   - Staging machines setup
    - Production machines setup
  - Same coding styles and guidelines, enforced across your companies
- - A **lean** infrastructure for almost every tech stack you use
+ - A **lean** infrastructure for almost every tech in your tech stack
  - ...
 
