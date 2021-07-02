@@ -18,26 +18,26 @@ services:
             dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
             tail -f /dev/null
             "
-#        depends_on: 
-#            - "database"
-#    database:
-#        image: mcr.microsoft.com/mssql/server
-#        #restart: always
-#        user: root
-#        container_name: ${Repository}MsSqlDatabase
-#        volumes:
-#            - /Nefcanto/Infra/DotNet/Dev/Database:/temp
-#            - ./Database:/Database
-#        environment: 
-#            - ACCEPT_EULA=Y
-#            - SA_PASSWORD=lksU2o412f7tBj58t07B
-#            - MSSQL_PID=Express
-#            - Repository=${Repository}
-#        ports:
-#            - 1433:1433
-#        command: >
-#            sh -c
-#            "
-#            /temp/Setup.sh &
-#            /opt/mssql/bin/sqlservr
-#            "
+        depends_on: 
+            - "database"
+    database:
+        image: mcr.microsoft.com/mssql/server
+        #restart: always
+        user: root
+        container_name: ${Repository}MsSqlDatabase
+        volumes:
+            - /Nefcanto/Infra/DotNet/Dev/Database:/temp
+            - ./Database:/Database
+        environment: 
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=lksU2o412f7tBj58t07B
+            - MSSQL_PID=Express
+            - Repository=${Repository}
+        ports:
+            - 1433:1433
+        command: >
+            sh -c
+            "
+            /temp/Setup.sh &
+            /opt/mssql/bin/sqlservr
+            "

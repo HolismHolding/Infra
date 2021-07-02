@@ -30,7 +30,11 @@ function GetHoldingInfra(){
 GetHoldingInfra
 
 if IsReact $1; then
-    SetupReact
+    if IsReactPanel $1; then
+        SetupReactPanel
+    else
+        SetupReactSite
+    fi
 elif IsDotNet $1; then
     SetupDotNet
 elif IsLaravel $1; then

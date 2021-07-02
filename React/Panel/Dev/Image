@@ -1,0 +1,8 @@
+FROM node:lts-alpine
+WORKDIR /HolismReact/Site
+RUN apk update \
+    && apk add --no-cache git \
+    && cd /HolismReact \
+    && git clone https://github.com/HolismReact/Site \
+    && cd /HolismReact/Site \
+    && npm install
