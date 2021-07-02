@@ -1,0 +1,19 @@
+version: "3.9"
+services: 
+    react:
+        image: nefcanto/next-dev:latest
+        container_name: ${Repository}NextDev
+        ports:
+            - "4000:3000"
+        working_dir: /${RepositoryPath}
+        volumes: 
+            - /HolismReact/Site:/HolismReact/Site
+            - ${RepositoryPath}/pages:${RepositoryPath}/pages
+            - ${RepositoryPath}/public:${RepositoryPath}/public
+            - ${RepositoryPath}/styles:${RepositoryPath}/styles
+        command: >
+            sh -c
+            "
+            cp -a /HolismReact/Site/. .
+            && npm run dev
+            "

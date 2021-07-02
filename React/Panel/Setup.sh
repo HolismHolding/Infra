@@ -1,18 +1,10 @@
 #!/bin/bash
 
-function IsReact() {
+function IsReactPanel() {
     if [ -f "App.js" ] || [ -f "Resources.js" ]; then
         return 0;
-    else 
+    else
         return 1;
-    fi
-}
-
-function CreateHolismReactDirectory() {
-    if [ ! -d "/HolismReact" ]; then
-        echo "Creating /HolismReact directory"
-        sudo mkdir /HolismReact
-        sudo chmod -R 777 /HolismReact
     fi
 }
 
@@ -72,9 +64,8 @@ function GetDependencies() {
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 }
 
-function SetupReact() {
-    echo "Seting up React"
-    CreateHolismReactDirectory
+function SetupReactPanel() {
+    echo "Setting up panel"
     GetReactInfra
     GetReactPanel
     GetReactAccounts
@@ -94,7 +85,7 @@ function SetupReact() {
             composeFile=Reusable
         fi
     fi
-    cp /Nefcanto/Infra/React/Dev/$composeFile /temp/ReactDev$composeFile
+    cp /Nefcanto/Infra/React/Panel/Dev/$composeFile /temp/ReactPanelDev$composeFile
     sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /temp/ReactDev$composeFile
     sed -i "s/*/\//g" /temp/ReactDev$composeFile
     docker-compose -f /temp/ReactDev$composeFile up --remove-orphans
