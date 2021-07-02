@@ -2,13 +2,13 @@ version: "3.9"
 services: 
     react:
         image: nefcanto/react-dev:latest
-        container_name: ${Reusable}ReactDev
+        container_name: ${Repository}ReactDev
         ports:
             - "4000:3000"
         working_dir: /react/Infra
         volumes: 
-            - /HolismReact/${Reusable}:/react/Infra/src/${Reusable}
-            - /HolismReact/${Reusable}/Resources.js:/react/Infra/src/Resources.js
+            - /HolismReact/${Repository}:/react/Infra/src/${Repository}
+            - /HolismReact/${Repository}/Resources.js:/react/Infra/src/Resources.js
         command: >
             sh -c
             "

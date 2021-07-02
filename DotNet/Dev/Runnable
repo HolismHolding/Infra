@@ -3,20 +3,18 @@ services:
     api:
         image: nefcanto/dotnet-dev:latest
         #restart: always
-        container_name: ${Runnable}DotNetApi
-        working_dir: /${Runnable}
-        environment: 
-            - HolismProjectsRoot=/HolismDotNet
+        container_name: ${Repository}DotNetApi
+        working_dir: /${Repository}
         volumes: 
             - /HolismDotNet/Framework:/HolismDotNet/Framework
-            - ${RunnablePath}:/${Runnable}
+            - ${RepositoryPath}:/${RepositoryPath}
         ports: 
             - "5000:5000"
         command: >
             sh -c
             "
             dotnet build &
-            dotnet Api/bin/Holism.${Runnable}.Api.dll &
+            dotnet Api/bin/{OrganizationPrefix}.${Repository}.Api.dll &
             tail -f /dev/null
             "
         depends_on: 
@@ -25,7 +23,7 @@ services:
         image: mcr.microsoft.com/mssql/server
         #restart: always
         user: root
-        container_name: ${Runnable}MsSqlDatabase
+        container_name: ${Repository}MsSqlDatabase
         volumes:
             - /Nefcanto/Infra/DotNet/Dev/Database:/temp
             - ./Database:/Database
@@ -33,7 +31,7 @@ services:
             - ACCEPT_EULA=Y
             - SA_PASSWORD=lksU2o412f7tBj58t07B
             - MSSQL_PID=Express
-            - Runnable=${Runnable}
+            - Repository=${Repository}
         ports:
             - 1433:1433
         command: >

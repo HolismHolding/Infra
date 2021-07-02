@@ -2,24 +2,24 @@ version: "3.9"
 services: 
     react:
         image: nefcanto/react-dev:latest
-        container_name: ${Runnable}ReactDev
+        container_name: ${Repository}ReactDev
         ports:
             - "4000:3000"
-        working_dir: /${Runnable}
+        working_dir: /${Repository}
         volumes: 
             - /HolismReact/Infra:/temp/infra
-            - /HolismReact/Panel:/${Runnable}/src/Panel
-            - /HolismReact/Accounts:/${Runnable}/src/Accounts
-            - ${RunnablePath}/Logo.png:/${Runnable}/src/logo.png
-            - ${RunnablePath}/.env:/${Runnable}/.env
-            - ${RunnablePath}/.env.test:/${Runnable}/.env.test
-            - ${RunnablePath}/.env.production:/${Runnable}/.env.production
-            - ${RunnablePath}/Resources.js:/${Runnable}/src/Resources.jsVolumeMappingPlaceHolder
+            - /HolismReact/Panel:/${Repository}/src/Panel
+            - /HolismReact/Accounts:/${Repository}/src/Accounts
+            - ${RepositoryPath}/Logo.png:/${Repository}/src/logo.png
+            - ${RepositoryPath}/.env:/${Repository}/.env
+            - ${RepositoryPath}/.env.test:/${Repository}/.env.test
+            - ${RepositoryPath}/.env.production:/${Repository}/.env.production
+            - ${RepositoryPath}/Resources.js:/${Repository}/src/Resources.jsVolumeMappingPlaceHolder
         command: >
             sh -c
             "
-            cd /${Runnable}
-            && if [ ! -d /${Runnable}/node_modules ]; then ln -s /react/Infra/node_modules /${Runnable}; fi
+            cd /${Repository}
+            && if [ ! -d /${Repository}/node_modules ]; then ln -s /react/Infra/node_modules /${Repository}; fi
             && cp -a /temp/infra/. .
             && npm start
             "
