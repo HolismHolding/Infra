@@ -9,7 +9,7 @@
 # sudo echo "127.0.0.1 domain.local" >> /etc/hosts
 # if folder contains "Sites" then we can use it, otherwise we can create domains by convention, for example api.geo.local
 
-echo "Nefcanto setup"
+echo "Holding setup"
 echo "Directory: " $PWD
 export Organization="`dirname $PWD | sed 's/\///g'`"
 export OrganizationPrefix=`echo $Organization | sed 's/Holism//g' | sed 's/Company//g'`
@@ -50,7 +50,7 @@ elif IsLaravel $1; then
 # elif IsAngular $1; then
 #     SetupAngular
 else
-    echo "None"
+    echo "Project type = Unknown"
 fi
 
 # register it globally
