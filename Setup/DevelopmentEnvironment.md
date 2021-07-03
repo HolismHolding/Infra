@@ -26,6 +26,9 @@
             - Get your user name using `whoami` command
     - Fiddler Everywhere
         - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
+            - Make executable
+                - `sudo chmod +x filename.AppImage`
+            - Double click to run
         - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
             - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
     - Azure Data Studio
