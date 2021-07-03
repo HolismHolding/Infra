@@ -46,22 +46,24 @@ function GetDependencies() {
     if [ ! -f "$PWD/Dependencies" ]; then
         return;
     fi
+    OLDIFS=$IFS
     export IFS='/'
-    while read Organization Repository; do  
-        echo $Organization $Repository
-        if [ ! -d "/$Organization" ]; then
-            sudo mkdir "/$Organization"
-            sudo chmod -R 777 "/$Organization"
+    while read Org Repo; do  
+        echo $Org $Repo
+        if [ ! -d "/$Org" ]; then
+            sudo mkdir "/$Org"
+            sudo chmod -R 777 "/$Org"
         fi
-        if [ ! -d "/$Organization/$Repository" ]; then 
-            echo "Cloning /$Organization/$Repository"
-            git -C /$Organization clone git@github.com:$Organization/$Repository
+        if [ ! -d "/$Org/$Repo" ]; then 
+            echo "Cloning /$Org/$Repo"
+            git -C /$Org clone git@github.com:$Org/$Repo
         else 
-            echo "Pulling /$Organization/$Repository"
-            git -C /$Organization/$Repository pull
+            echo "Pulling /$Org/$Repo"
+            git -C /$Org/$Repo pull
         fi
-        volumes="$volumes\n            - *$Organization*$Repository:*\${Runnable}*src*$Repository"
+        volumes="$volumes\n            - *$Org*$Repo:*\${Repo}*src*$Repo"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+    IFS=$OLDIFS
 }
 
 function SetupReactPanel() {
@@ -88,5 +90,10 @@ function SetupReactPanel() {
     cp /Nefcanto/Infra/React/Panel/Dev/$composeFile.yml /Temp/ReactPanelDev$composeFile.yml
     sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/ReactPanelDev$composeFile.yml
     sed -i "s/*/\//g" /Temp/ReactPanelDev$composeFile.yml
+    echo "Using docker-compose file => /Temp/ReactPanelDev$composeFile.yml"
+    echo $Repository
+    echo $Organization
+    echo $OrganizationPrefix
+    echo $RepositoryPath
     docker-compose -f /Temp/ReactPanelDev$composeFile.yml up --remove-orphans
 }

@@ -57,7 +57,7 @@ function GetDependencies() {
             echo "Pulling /$Organization/$Repository"
             git -C /$Organization/$Repository pull
         fi
-        volumes="$volumes\n            - *$Organization*$Repository:*\${Runnable}*src*$Repository"
+        volumes="$volumes\n            - *$Organization*$Repository:*\${Repository}*src*$Repository"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 }
 
@@ -77,7 +77,7 @@ function SetupLaravel() {
     else
         if [ -f ".env" ]; then
             echo "Setting up Laravel, runnable|host|app"
-            composeFile=Runnable
+            composeFile=Repository
         else
             echo "Setting up Laravel, reusable|module|package"
             composeFile=Reusable
