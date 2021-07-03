@@ -5,17 +5,17 @@
         - Product
 
 # Naming
-- InfraHolding
-    - InfraTech
+- HolismHolding
+    - HolismTech
         - ProductX
 
-# InfraTech
-- InfraDotNet
-- InfraPython
-- InfraNode
-- InfraLaravel
-- InfraReact
-- InfraAngular
+# HolismTech
+- HolismDotNet
+- HolismPython
+- HolismNode
+- HolismLaravel
+- HolismReact
+- HolismAngular
 
 # ProductX
 - ProductMicMed
