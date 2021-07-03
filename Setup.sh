@@ -21,12 +21,20 @@ echo "Repository: " $Repository
 
 # package & app = module & host = reusable & runnable
 
+function MakeSureTempDirectoryExists() {
+    if [ ! -d "/Temp" ]; then
+        sudo mkdir /Temp
+    fi
+    sudo chmod -R 777 /Temp
+}
+
 function GetHoldingInfra(){
     infraPath=/Nefcanto/Infra
     echo "Pulling $infraPath"
     git -C $infraPath pull
 }
 
+MakeSureTempDirectoryExists
 GetHoldingInfra
 
 if IsReact $1; then

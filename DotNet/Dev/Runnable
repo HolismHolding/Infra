@@ -26,7 +26,7 @@ services:
         user: root
         container_name: ${Repository}MsSqlDatabase
         volumes:
-            - /Nefcanto/Infra/DotNet/Dev/Database:/temp
+            - /Nefcanto/Infra/DotNet/Dev/Database:/Temp
             - ./Database:/Database
         environment: 
             - ACCEPT_EULA=Y
@@ -38,6 +38,6 @@ services:
         command: >
             sh -c
             "
-            /temp/Setup.sh &
+            /Temp/Setup.sh &
             /opt/mssql/bin/sqlservr
             "

@@ -83,8 +83,8 @@ function SetupLaravel() {
             composeFile=Reusable
         fi
     fi
-    cp /Nefcanto/Infra/Laravel/Dev/$composeFile /temp/LaravelDev$composeFile
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /temp/LaravelDev$composeFile
-    sed -i "s/*/\//g" /temp/LaravelDev$composeFile
-    docker-compose -f /temp/LaravelDev$composeFile up --remove-orphans
+    cp /Nefcanto/Infra/Laravel/Dev/$composeFile /Temp/LaravelDev$composeFile
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/LaravelDev$composeFile
+    sed -i "s/*/\//g" /Temp/LaravelDev$composeFile
+    docker-compose -f /Temp/LaravelDev$composeFile up --remove-orphans
 }

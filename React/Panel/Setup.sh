@@ -85,8 +85,8 @@ function SetupReactPanel() {
             composeFile=Reusable
         fi
     fi
-    cp /Nefcanto/Infra/React/Panel/Dev/$composeFile /temp/ReactPanelDev$composeFile
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /temp/ReactDev$composeFile
-    sed -i "s/*/\//g" /temp/ReactDev$composeFile
-    docker-compose -f /temp/ReactDev$composeFile up --remove-orphans
+    cp /Nefcanto/Infra/React/Panel/Dev/$composeFile.yml /Temp/ReactPanelDev$composeFile.yml
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/ReactPanelDev$composeFile.yml
+    sed -i "s/*/\//g" /Temp/ReactPanelDev$composeFile.yml
+    docker-compose -f /Temp/ReactPanelDev$composeFile.yml up --remove-orphans
 }

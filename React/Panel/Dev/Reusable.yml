@@ -1,0 +1,21 @@
+version: "3.9"
+services: 
+    react:
+        image: nefcanto/react-dev:latest
+        container_name: ${Repository}ReactDev
+        ports:
+            - "4000:3000"
+        working_dir: /HolismReact/Infra
+        volumes: 
+            - /HolismReact/Infra:/Temp/Infra
+            - /HolismReact/Panel:/HolismReact/Infra/src/Panel
+            - /HolismReact/Accounts:/HolismReact/Infra/src/Accounts
+            - ${RepositoryPath}:/HolismReact/Infra/src/${Repository}
+            - ${RepositoryPath}/Resources.js:/HolismReact/Infra/src/Resources.js
+        command: >
+            sh -c
+            "
+            cp -a /Temp/Infra/. /HolismReact/Infra/
+            && if [ ! -d /HolismReact/Infra/node_modules ]; then ln -s /react/Infra/node_modules /HolismReact/Infra; fi
+            && npm start
+            "
