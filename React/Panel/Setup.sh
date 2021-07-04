@@ -46,10 +46,9 @@ function GetDependencies() {
     if [ ! -f "$PWD/Dependencies" ]; then
         return;
     fi
-    OLDIFS=$IFS
-    export IFS='/'
-    while read Org Repo; do  
-        echo $Org $Repo
+    while read Dependency; do  
+        Org=$(echo $Dependency | cut -d'/' -f1)
+        Repo=$(echo $Dependency | cut -d'/' -f2)
         if [ ! -d "/$Org" ]; then
             sudo mkdir "/$Org"
             sudo chmod -R 777 "/$Org"
@@ -61,16 +60,15 @@ function GetDependencies() {
             echo "Pulling /$Org/$Repo"
             git -C /$Org/$Repo pull
         fi
-        volumes="$volumes\n            - *$Org*$Repo:*\${Repo}*src*$Repo"
+        volumes="$volumes\n            - *$Org*$Repo:*\${Repository}*src*$Repo"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
-    IFS=$OLDIFS
 }
 
 function SetupReactPanel() {
     echo "Setting up panel"
-    GetReactInfra
-    GetReactPanel
-    GetReactAccounts
+    #GetReactInfra
+    #GetReactPanel
+    #GetReactAccounts
     volumes=""
     GetDependencies volumes
     echo -e $volumes
@@ -91,9 +89,5 @@ function SetupReactPanel() {
     sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/ReactPanelDev$composeFile.yml
     sed -i "s/*/\//g" /Temp/ReactPanelDev$composeFile.yml
     echo "Using docker-compose file => /Temp/ReactPanelDev$composeFile.yml"
-    echo $Repository
-    echo $Organization
-    echo $OrganizationPrefix
-    echo $RepositoryPath
     docker-compose -f /Temp/ReactPanelDev$composeFile.yml up --remove-orphans
 }
