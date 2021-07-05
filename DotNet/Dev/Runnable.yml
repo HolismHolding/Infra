@@ -13,10 +13,8 @@ services:
         command: >
             sh -c
             "
-            dotnet build &
-            echo dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
-            dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
-            tail -f /dev/null
+            dotnet build
+            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll
             "
         depends_on: 
             - "database"

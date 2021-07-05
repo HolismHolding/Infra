@@ -47,11 +47,17 @@ function LinkGitIgnore() {
     git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
 }
 
+function PullDockerImage() {
+    echo 'Pulling docker image nefcanto/dotnet-dev:latest'
+    docker pull nefcanto/dotnet-dev:latest
+}
+
 function SetupDotNet() {
     echo ".NET"
     GetDotNetInfra
     GetDotNetAccounts
     LinkGitIgnore
+    PullDockerImage
     echo "DotNet, runnable|host|app"
     docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable.yml up --remove-orphans
 }
