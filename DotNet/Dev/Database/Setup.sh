@@ -1,8 +1,5 @@
 echo "alias dblogin='/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P lksU2o412f7tBj58t07B -d master'" >> /etc/bash.bashrc
 
-echo "use master" >> /Temp/Script.sql
-echo "go" >> /Temp/Script.sql
-
 for i in {1..50};
 do
     /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P lksU2o412f7tBj58t07B -d master -i /Temp/Script.sql
