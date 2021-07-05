@@ -41,9 +41,9 @@ function GetDotNetAccounts() {
 
 function LinkGitIgnore() {
     if [ -f "$PWD/.gitignore" ]; then
-        rm -rf .gitignore;
+        sudo rm -rf "$PWD/.gitignore"
     fi
-    ln -s /HolismDotNet/Framework/.gitignore "$PWD/.gitignore"
+    ln -s /HolismHolding/Infra/DotNet/Dev/GitIgnore "$PWD/.gitignore"
     git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
 }
 
