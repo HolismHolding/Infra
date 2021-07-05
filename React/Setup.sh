@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. /Nefcanto/Infra/React/Site/Setup.sh
-. /Nefcanto/Infra/React/Panel/Setup.sh
+. /HolismHolding/Infra/React/Site/Setup.sh
+. /HolismHolding/Infra/React/Panel/Setup.sh
 
 function IsReact() {
     if IsReactSite $1 || IsReactPanel $1; then

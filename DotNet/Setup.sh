@@ -59,5 +59,5 @@ function SetupDotNet() {
     LinkGitIgnore
     PullDockerImage
     echo "DotNet, runnable|host|app"
-    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable.yml up --remove-orphans
+    docker-compose -f /HolismHolding/Infra/DotNet/Dev/Runnable.yml up --remove-orphans
 }

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-. /Nefcanto/Infra/React/Setup.sh
-. /Nefcanto/Infra/DotNet/Setup.sh
-. /Nefcanto/Infra/Laravel/Setup.sh
+. /HolismHolding/Infra/React/Setup.sh
+. /HolismHolding/Infra/DotNet/Setup.sh
+. /HolismHolding/Infra/Laravel/Setup.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 # sudo chmod u+rw /etc/hosts
@@ -34,7 +34,7 @@ function MakeSureTempDirectoryExists() {
 }
 
 function GetHoldingInfra(){
-    infraPath=/Nefcanto/Infra
+    infraPath=/HolismHolding/Infra
     echo "Pulling $infraPath"
     git -C $infraPath pull
 }
@@ -60,4 +60,4 @@ fi
 
 # register it globally
 # sudo chmod u+rw /etc/bash.bashrc
-# sudo echo "alias setup='/Nefcanto/Infra/Setup.sh .'" >> /etc/bash.bashrc
+# sudo echo "alias setup='/HolismHolding/Infra/Setup.sh .'" >> /etc/bash.bashrc

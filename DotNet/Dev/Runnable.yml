@@ -24,7 +24,7 @@ services:
         user: root
         container_name: ${Repository}MsSqlDatabase
         volumes:
-            - /Nefcanto/Infra/DotNet/Dev/Database:/Temp
+            - /HolismHolding/Infra/DotNet/Dev/Database:/Temp
             - ./Database:/Database
         environment: 
             - ACCEPT_EULA=Y

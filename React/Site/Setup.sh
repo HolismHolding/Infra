@@ -22,5 +22,5 @@ function GetReactSite() {
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
-    docker-compose -f /Nefcanto/Infra/React/Site/Dev/Runnable.yml up --remove-orphans
+    docker-compose -f /HolismHolding/Infra/React/Site/Dev/Runnable.yml up --remove-orphans
 }

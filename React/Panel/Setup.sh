@@ -85,7 +85,7 @@ function SetupReactPanel() {
             composeFile=Reusable
         fi
     fi
-    cp /Nefcanto/Infra/React/Panel/Dev/$composeFile.yml /Temp/ReactPanelDev$composeFile.yml
+    cp /HolismHolding/Infra/React/Panel/Dev/$composeFile.yml /Temp/ReactPanelDev$composeFile.yml
     sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/ReactPanelDev$composeFile.yml
     sed -i "s/*/\//g" /Temp/ReactPanelDev$composeFile.yml
     echo "Using docker-compose file => /Temp/ReactPanelDev$composeFile.yml"
