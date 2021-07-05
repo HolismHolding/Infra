@@ -14,8 +14,8 @@ services:
         command: >
             sh -c
             "
-            /HolismHolding/Infra/DotNet/Dev/Setup.sh &
             dotnet build
+            && /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath}
             && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll
             "
         depends_on: 
@@ -38,6 +38,6 @@ services:
         command: >
             sh -c
             "
-            /Temp/Setup.sh &
+            /Temp/SetupContainer.sh &
             /opt/mssql/bin/sqlservr
             "

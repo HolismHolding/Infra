@@ -1,3 +1,5 @@
+echo "Path inside container is: $PWD"
+
 for i in {1..50};
 do
     if [ $? -eq 0 ]
@@ -6,7 +8,6 @@ do
         if [ -f "/$RepositoryPath/SetupDatabase.sh" ]; then
             /$RepositoryPath/SetupDatabase.sh
         else
-            cd DataAccess
             dotnet ef migrations update --project DataAccess
         fi
         break
