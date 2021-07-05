@@ -12,7 +12,11 @@
 echo "Holding setup"
 echo "Directory: " $PWD
 export Organization="`dirname $PWD | sed 's/\///g'`"
-export OrganizationPrefix=`echo $Organization | sed 's/Holism//g' | sed 's/Company//g'`
+if [[ $Organization == *"Holism"* ]]; then
+    export OrganizationPrefix="Holism";
+else
+    export OrganizationPrefix=`echo $Organization | sed 's/Company//g'`
+fi
 export Repository="$(basename $PWD)"
 export RepositoryPath=$PWD
 echo "Organization: " $Organization
