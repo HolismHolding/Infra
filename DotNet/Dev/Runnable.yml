@@ -5,6 +5,11 @@ services:
         #restart: always
         container_name: ${Repository}DotNetApi
         working_dir: ${RepositoryPath}
+        environment:
+            - Organization=${Organization}
+            - OrganizationPrefix=${OrganizationPrefix}
+            - RepositoryPath=${RepositoryPath}
+            - Repository=${Repository}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismDotNet/Framework:/HolismDotNet/Framework
@@ -35,6 +40,8 @@ services:
             - Repository=${Repository}
         ports:
             - 1433:1433
+        logging:
+            driver: none
         command: >
             sh -c
             "

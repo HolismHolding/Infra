@@ -43,3 +43,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # Find all directories and delete them
 `find . -type d -name "bin" | xargs sudo rm -rf `
+
+# get shell name
+`echo $0`
