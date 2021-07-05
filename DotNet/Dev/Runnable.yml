@@ -6,6 +6,7 @@ services:
         container_name: ${Repository}DotNetApi
         working_dir: ${RepositoryPath}
         volumes: 
+            - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismDotNet/Framework:/HolismDotNet/Framework
             - ${RepositoryPath}:${RepositoryPath}
         ports: 
@@ -13,6 +14,7 @@ services:
         command: >
             sh -c
             "
+            /HolismHolding/Infra/DotNet/Dev/Setup.sh &
             dotnet build
             && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll
             "
