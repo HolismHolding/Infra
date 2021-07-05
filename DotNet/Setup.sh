@@ -53,5 +53,5 @@ function SetupDotNet() {
     GetDotNetAccounts
     LinkGitIgnore
     echo "DotNet, runnable|host|app"
-    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable up --remove-orphans
+    docker-compose -f /Nefcanto/Infra/DotNet/Dev/Runnable.yml up --remove-orphans
 }
