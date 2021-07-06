@@ -46,3 +46,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # get shell name
 `echo $0`
+
+# suppressing error messages
+`grep -nr something 2>&-`
