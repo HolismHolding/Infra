@@ -1,5 +1,7 @@
 # The reason file name is camelCased, is because its name is used the terminal
 
-pgrep -f "dotnet\s*Api" | xargs kill
+pgrep -f "dotnet.*Api.dll" | xargs kill
+
+dotnet build /$Organization/$Repository
 
 dotnet /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll &
