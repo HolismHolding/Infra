@@ -1,6 +1,6 @@
 version: "3.9"
 services: 
-    react:
+    site:
         image: holism/next-dev:latest
         container_name: ${Repository}NextDev
         ports:
@@ -11,6 +11,7 @@ services:
             - ${RepositoryPath}/pages:${RepositoryPath}/pages
             - ${RepositoryPath}/public:${RepositoryPath}/public
             - ${RepositoryPath}/styles:${RepositoryPath}/styles
+            - ${RepositoryPath}/.env:${RepositoryPath}/.env
         command: >
             sh -c
             "
