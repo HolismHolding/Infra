@@ -48,8 +48,8 @@ function LinkGitIgnore() {
 }
 
 function PullDockerImage() {
-    echo 'Pulling docker image nefcanto/dotnet-dev:latest'
-    docker pull nefcanto/dotnet-dev:latest
+    echo 'Pulling docker image holism/dotnet-dev:latest'
+    docker pull holism/dotnet-dev:latest
 }
 
 function SetupDotNet() {

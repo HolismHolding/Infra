@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
     react:
-        image: nefcanto/next-dev:latest
+        image: holism/next-dev:latest
         container_name: ${Repository}NextDev
         ports:
             - "4000:3000"

@@ -1,6 +1,6 @@
 version: "3.9"
 services: 
   db:
-    build: https://raw.githubusercontent.com/nefcanto/infra/main/Docker/Mariadb
+    build: https://raw.githubusercontent.com/HolismHolding/Infra/main/Docker/Mariadb
     ports:
       - "5000:5000"

@@ -44,20 +44,11 @@
 
 - Development
     - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,    
-    `mkdir /nefcanto`.   
+    `mkdir /HolismHolding`.   
         - Make sure the name maps the URL segment or the company name
         - Use [snake-casing](https://en.wikipedia.org/wiki/Snake_case) for naming
     - Give that folder full permission so that all applications would work without bothering your development with `sudo` stuff:   
-    `sudo chmod -R 777 /nefcanto`
-    - Add environment variable for each **x_projects_root**
-        - Give write access to `/etc/profile` file.
-        - Open it in an editor
-        - At the end add the environment variables
-            - export nefcanto_projects_root=/nefcanto
-            - export x_projects_root=/x
-            - export y_projects_root=/y
-        - Save, and readonly again
-        - Restart
+    `sudo chmod -R 777 /HolismHolding`
     - Download the "company-wide" git bash file, to pull and push all repositories of a company in one step (without messages)
     - Only [use SSH to connect to GitHub](https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/).
     - For each project

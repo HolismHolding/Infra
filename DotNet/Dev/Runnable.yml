@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
     api:
-        image: nefcanto/dotnet-dev:latest
+        image: holism/dotnet-dev:latest
         #restart: always
         container_name: ${Repository}DotNetApi
         working_dir: ${RepositoryPath}

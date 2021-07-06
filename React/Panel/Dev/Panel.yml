@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
     react:
-        image: nefcanto/react-dev:latest
+        image: holism/react-dev:latest
         container_name: PanelReactDev
         ports:
             - "4000:3000"
