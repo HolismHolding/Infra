@@ -78,7 +78,7 @@ RUN apk update \
 RUN dotnet tool install --global dotnet-ef --version 3.1.12
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
-ENV=$HOME/.shinit; export ENV
+ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile
 
