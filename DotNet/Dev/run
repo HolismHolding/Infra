@@ -1,3 +1,5 @@
 # The reason file name is camelCased, is because its name is used the terminal
 
-echo 'ran from Run'
+pgrep -f "dotnet\s*Api" | xargs kill
+
+dotnet /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll &

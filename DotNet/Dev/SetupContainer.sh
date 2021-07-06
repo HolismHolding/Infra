@@ -1,11 +1,5 @@
 echo "Path inside container is: $PWD"
 
-echo 'alias run="/HolismHolding/Infra/DotNet/Dev/Run.sh"' >> /etc/profile
-echo 'alias run="/HolismHolding/Infra/DotNet/Dev/Run.sh"' >> ~/.profile
-echo 'alias run="/HolismHolding/Infra/DotNet/Dev/Run.sh"' >> ~/.bashrc
-
-echo 'ENV=/HolismHolding/Infra/DotNet/Dev/Run.sh; export ENV' >> ~/.profile
-
 for i in {1..50};
 do
     if [ $? -eq 0 ]
