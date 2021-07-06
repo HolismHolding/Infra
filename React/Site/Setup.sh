@@ -19,8 +19,17 @@ function GetReactSite() {
     fi
 }
 
+function CreateBuildDirectory() {
+    if [ ! -d "/Temp$RepositoryPath/Build" ]; then
+        echo "Creadin directory: /Temp$RepositoryPath/Build";
+        sudo mkdir "/Temp$RepositoryPath/Build";
+        sudo chmod -R 777 "/Temp$RepositoryPath/Build";
+    fi
+}
+
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
+    CreateBuildDirectory
     docker-compose -f /HolismHolding/Infra/React/Site/Dev/Runnable.yml up --remove-orphans
 }

@@ -7,15 +7,18 @@ services:
             - "4000:3000"
         working_dir: /${RepositoryPath}
         volumes: 
+            - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismReact/Site:/HolismReact/Site
             - ${RepositoryPath}/pages:${RepositoryPath}/pages
             - ${RepositoryPath}/public:${RepositoryPath}/public
             - ${RepositoryPath}/styles:${RepositoryPath}/styles
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
+            - /Temp/${RepositoryPath}/Build:${RepositoryPath}/.next
         command: >
             sh -c
             "
             cp -a /HolismReact/Site/. .
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
-            && npm run dev
+            && npm run dev &
+            tail -f /dev/null
             "
