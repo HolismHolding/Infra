@@ -9,6 +9,8 @@ services:
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismReact/Site:/HolismReact/Site
+            - ${RepositoryPath}/components:${RepositoryPath}/components
+            - ${RepositoryPath}/contents:${RepositoryPath}/contents
             - ${RepositoryPath}/pages:${RepositoryPath}/pages
             - ${RepositoryPath}/public:${RepositoryPath}/public
             - ${RepositoryPath}/styles:${RepositoryPath}/styles
