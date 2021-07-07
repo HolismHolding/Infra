@@ -13,7 +13,7 @@ services:
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismDotNet/Framework:/HolismDotNet/Framework
-            - ${RepositoryPath}:${RepositoryPath}
+            - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
             - "5000:5000"
         command: >
