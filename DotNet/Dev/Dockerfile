@@ -80,6 +80,11 @@ ENV PATH="${PATH}:/root/.dotnet/tools"
 
 ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
 
+RUN cd /temp/Everything \
+    && dotnet add package Azure.Storage.Blobs -v 12.8.0 \
+    && dotnet restore  \
+    && dotnet build
+
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile
 
 # Todo: R&D about docker URL context
