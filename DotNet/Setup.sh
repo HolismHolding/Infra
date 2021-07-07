@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/CommonFunctions.sh
+
 function IsDotNet() {
     sln=$(find "$PWD" -name *.sln|head -n1)
     if [ ! -z "$sln" ]; then
@@ -56,8 +58,14 @@ function SetupDotNet() {
     echo ".NET"
     GetDotNetInfra
     GetDotNetAccounts
+    volumes=""
+    GetDependencies volumes
+    echo -e $volumes
     LinkGitIgnore
     PullDockerImage
     echo "DotNet, runnable|host|app"
-    docker-compose -f /HolismHolding/Infra/DotNet/Dev/Runnable.yml up --remove-orphans
+    cp /HolismHolding/Infra/DotNet/Dev/Runnable.yml /Temp/DotNetDevRunnable.yml
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/DotNetDevRunnable.yml
+    sed -i "s/*/\//g" /Temp/DotNetDevRunnable.yml
+    docker-compose -f /Temp/DotNetDevRunnable.yml up --remove-orphans
 }

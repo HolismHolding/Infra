@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/CommonFunctions.sh
+
 function IsReactPanel() {
     if [ -f "App.js" ] || [ -f "Resources.js" ]; then
         return 0;
@@ -41,34 +43,11 @@ function GetReactAccounts() {
     fi
 }
 
-function GetDependencies() {
-    echo "Getting dependencies";
-    if [ ! -f "$PWD/Dependencies" ]; then
-        return;
-    fi
-    while read Dependency; do  
-        Org=$(echo $Dependency | cut -d'/' -f1)
-        Repo=$(echo $Dependency | cut -d'/' -f2)
-        if [ ! -d "/$Org" ]; then
-            sudo mkdir "/$Org"
-            sudo chmod -R 777 "/$Org"
-        fi
-        if [ ! -d "/$Org/$Repo" ]; then 
-            echo "Cloning /$Org/$Repo"
-            git -C /$Org clone git@github.com:$Org/$Repo
-        else 
-            echo "Pulling /$Org/$Repo"
-            git -C /$Org/$Repo pull
-        fi
-        volumes="$volumes\n            - *$Org*$Repo:*\${Repository}*src*$Repo"
-    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
-}
-
 function SetupReactPanel() {
     echo "Setting up panel"
-    #GetReactInfra
-    #GetReactPanel
-    #GetReactAccounts
+    GetReactInfra
+    GetReactPanel
+    GetReactAccounts
     volumes=""
     GetDependencies volumes
     echo -e $volumes
