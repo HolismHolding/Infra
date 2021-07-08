@@ -1,4 +1,4 @@
-# The reason file name is camelCased, is because its name is used the terminal
+# The reason file name is camelCased, is because its name is used in the terminal
 
 pgrep -f "dotnet.*Api.dll" | xargs kill
 
