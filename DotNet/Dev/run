@@ -2,6 +2,10 @@
 
 pgrep -f "dotnet.*Api.dll" | xargs kill
 
+echo "Building /$Organization/$Repository ...";
+
 dotnet build /$Organization/$Repository
+
+echo "Running /$Organization/Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll ...";
 
 dotnet /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll &
