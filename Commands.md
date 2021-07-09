@@ -52,3 +52,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # all .git repositories on your machine
 `find / -type d -name .git 2>&-`
+
+# find and remove all <none> docker images
+`docker images | grep none | awk '{ print $3; }' | xargs docker rmi`

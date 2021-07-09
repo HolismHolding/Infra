@@ -22,7 +22,7 @@ function CopyDependencies() {
         return;
     fi
     input="$PWD/Dependencies"
-    while IFS= read -r line
+    while IFS= read -r line || [ -n "$line" ]
         do
             Org=$(echo $line | cut -d'/' -f1)
             if [ ! -d "/Temp/Build/$Org" ]; then
