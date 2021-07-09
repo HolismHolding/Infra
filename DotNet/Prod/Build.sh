@@ -1,3 +1,5 @@
+. /HolismHolding/Infra/ExtractAndExportData.sh
+
 sudo rm -rf /Temp/Build
 mkdir /Temp/Build
 
@@ -55,6 +57,13 @@ function CopyDockerFile() {
     cp /HolismHolding/Infra/DotNet/Prod/Dockerfile /Temp/Build/Dockerfile
 }
 
+function BuildImage() {
+    lowercaseOrg=$(echo $OrganizationPrefix | tr '[:upper:]' '[:lower:]')
+    lowercaseRepo=$(echo $Repository | tr '[:upper:]' '[:lower:]')
+    docker build -f /Temp/Build/Dockerfile --build-arg Path=$PWD -t $lowercaseOrg/$lowercaseRepo /Temp/Build
+}
+
+ExtractAndExportData
 CopyHoldingBase
 CopyDotNetBase
 CopyDependencies
@@ -62,3 +71,4 @@ CopyRepository
 RemoveBinsAndObjs
 RemvoeGits
 CopyDockerFile
+BuildImage

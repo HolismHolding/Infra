@@ -1,5 +1,6 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/ExtractAndExportData.sh
 . /HolismHolding/Infra/React/Setup.sh
 . /HolismHolding/Infra/DotNet/Setup.sh
 . /HolismHolding/Infra/Laravel/Setup.sh
@@ -10,19 +11,7 @@
 # if folder contains "Sites" then we can use it, otherwise we can create domains by convention, for example api.geo.local
 
 echo "Holding setup"
-echo "Directory: " $PWD
-export Organization="`dirname $PWD | sed 's/\///g'`"
-if [[ $Organization == *"Holism"* ]]; then
-    export OrganizationPrefix="Holism";
-else
-    OrganizationPrefix=`echo $Organization | sed 's/Company//g'`
-    export OrganizationPrefix=`echo $OrganizationPrefix | sed 's/Product//g'`
-fi
-export Repository="$(basename $PWD)"
-export RepositoryPath=$PWD
-echo "Organization: " $Organization
-echo "Organization Prefix: " $OrganizationPrefix
-echo "Repository: " $Repository
+ExtractAndExportData
 
 # package & app = module & host = reusable & runnable
 
