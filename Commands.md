@@ -49,3 +49,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # suppressing error messages
 `grep -nr something 2>&-`
+
+# all .git repositories on your machine
+`find / -type d -name .git 2>&-`

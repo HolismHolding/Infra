@@ -1,0 +1,11 @@
+find / -type d -name .git 2>&- | 
+while read gitFolder; do
+    parent=$(dirname $gitFolder);
+    if [[ `git -C $parent status --porcelain` ]]; then
+        echo "";
+        echo $parent;
+        git -C $parent status --porcelain
+    fi
+done 
+
+# https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
