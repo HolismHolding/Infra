@@ -37,5 +37,5 @@ function SetupReactSite() {
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
     envsubst < /HolismHolding/Infra/React/Site/Dev/Runnable.yml > $ComposeFile
-    docker-compose -f $ComposeFile up --remove-orphans
+    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
 }
