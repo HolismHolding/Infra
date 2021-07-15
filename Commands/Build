@@ -3,28 +3,23 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/TempDirectory.sh
 . /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
-. /HolismHolding/Infra/React/Setup.sh
-. /HolismHolding/Infra/DotNet/Setup.sh
-. /HolismHolding/Infra/Laravel/Setup.sh
-
-# somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
-# sudo chmod u+rw /etc/hosts
-# sudo echo "127.0.0.1 domain.local" >> /etc/hosts
-# if folder contains "Sites" then we can use it, otherwise we can create domains by convention, for example api.geo.local
+. /HolismHolding/Infra/React/Build.sh
+. /HolismHolding/Infra/DotNet/Prod/Build.sh
+. /HolismHolding/Infra/Laravel/Build.sh
 
 # package & app = module & host = reusable & runnable
 
-echo "Holding setup"
+echo "Holding build"
 ExtractAndExportData
 MakeSureTempDirectoryExists
 GetHoldingInfra
 
 if IsReact $1; then
-    SetupReact
+    BuildReact
 elif IsDotNet $1; then
-    SetupDotNet
+    BuildDotNet
 elif IsLaravel $1; then
-    SetupLaravel
+    BuildLaravel
 # elif IsPython $1; then
 #     SetupPython
 # elif IsNode $1; then
