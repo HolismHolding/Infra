@@ -22,6 +22,6 @@ services:
             cp -a /HolismReact/Site/. .
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
             && npm run dev &
-            echo -e '\033[0;31m'"http://localhost:$RandomPort"
+            echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "
