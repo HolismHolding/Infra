@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+
 function IsReactSite() {
     if [ -d "pages" ]; then
         return 0;
@@ -21,7 +23,7 @@ function GetReactSite() {
 
 function CreateBuildDirectory() {
     if [ ! -d "/Temp$RepositoryPath/Build" ]; then
-        echo "Creadin directory: /Temp$RepositoryPath/Build";
+        echo "Creating directory: /Temp$RepositoryPath/Build";
         sudo mkdir "/Temp$RepositoryPath/Build";
         sudo chmod -R 777 "/Temp$RepositoryPath/Build";
     fi
@@ -30,6 +32,10 @@ function CreateBuildDirectory() {
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
+    GetRandomPort
+    ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
+    mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
-    docker-compose -f /HolismHolding/Infra/React/Site/Dev/Runnable.yml up --remove-orphans
+    envsubst < /HolismHolding/Infra/React/Site/Dev/Runnable.yml > $ComposeFile
+    docker-compose -f $ComposeFile up --remove-orphans
 }

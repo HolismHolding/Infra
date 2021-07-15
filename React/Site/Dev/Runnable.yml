@@ -2,10 +2,10 @@ version: "3.9"
 services: 
     site:
         image: holism/next-dev:latest
-        container_name: ${Repository}NextDev
+        container_name: ${Organization}${Repository}
         ports:
-            - "0:3000"
-        working_dir: /${RepositoryPath}
+            - "${RandomPort}:3000"
+        working_dir: ${RepositoryPath}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismReact/Site:/HolismReact/Site
@@ -15,12 +15,13 @@ services:
             - ${RepositoryPath}/public:${RepositoryPath}/public
             - ${RepositoryPath}/styles:${RepositoryPath}/styles
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
-            - /Temp/${RepositoryPath}/Build:${RepositoryPath}/.next
+            - /Temp${RepositoryPath}/Build:${RepositoryPath}/.next
         command: >
             sh -c
             "
             cp -a /HolismReact/Site/. .
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
             && npm run dev &
-            tail -f /dev/null
+            echo -e '\033[0;31m'"http://localhost:$RandomPort"
+            && tail -f /dev/null
             "
