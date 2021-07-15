@@ -5,7 +5,8 @@ function GetRandomPort() {
             PORT="`shuf -i $LOWERPORT-$UPPERPORT -n 1`"
             ss -lpn | grep -q ":$PORT " || break
     done
-    echo $PORT
+    export Port=$PORT
 }
 
 GetRandomPort
+echo $Port
