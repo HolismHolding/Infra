@@ -18,8 +18,8 @@ if IsReact $1; then
     BuildReact
 elif IsDotNet $1; then
     BuildDotNet
-elif IsLaravel $1; then
-    BuildLaravel
+# elif IsLaravel $1; then
+#     BuildLaravel
 # elif IsPython $1; then
 #     SetupPython
 # elif IsNode $1; then
