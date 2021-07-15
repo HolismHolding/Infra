@@ -36,7 +36,7 @@ function SetupHost() {
     read Host < /$Organization/$Repository/Host;
     export Host;
     if ! grep -q $Host /etc/hosts; then
-        echo $Host >> /etc/hosts;
+        echo "127.0.0.1 $Host" >> /etc/hosts;
     fi
     if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
         sed -i "s/localhost:.*;/localhost:$RandomPort;/g" /etc/nginx/conf.d/$Host.conf

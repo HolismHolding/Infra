@@ -3,7 +3,7 @@ services:
     accounts:
         image: quay.io/keycloak/keycloak:14.0.0
         ports: 
-            - "8080:8080"
+            - "${RandomPort}:8080"
         environment: 
             - KEYCLOAK_USER=admin
             - KEYCLOAK_PASSWORD=admin

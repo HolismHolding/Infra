@@ -1,0 +1,23 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+
+function SetupHost() {
+    export Host="accounts.holism.local";
+    if ! grep -q $Host /etc/hosts; then
+        echo "127.0.0.1 $Host" >> /etc/hosts;
+    fi
+    if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
+        sed -i "s/localhost:.*;/localhost:$RandomPort;/g" /etc/nginx/conf.d/$Host.conf
+    else
+        envsubst < /HolismHolding/Infra/NginxReverseProxyTemplate > /etc/nginx/conf.d/$Host.conf
+    fi
+    systemctl reload nginx
+}
+
+GetRandomPort
+SetupHost
+ComposeFile=/Temp/HolismAccounts/Accounts/Runnable.yml
+mkdir -p $(dirname $ComposeFile)
+envsubst < /HolismHolding/Infra/Accounts/Runnable.yml > $ComposeFile
+docker-compose -p "Holism_Accounts" -f $ComposeFile up --remove-orphans
