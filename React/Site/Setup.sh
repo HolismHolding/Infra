@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 
 function IsReactSite() {
     if [ -d "pages" ]; then
@@ -29,28 +30,11 @@ function CreateBuildDirectory() {
     fi
 }
 
-function SetupHost() {
-    if [ ! -f "/$Organization/$Repository/Host" ]; then
-        return;
-    fi
-    read Host < /$Organization/$Repository/Host;
-    export Host;
-    if ! grep -q $Host /etc/hosts; then
-        echo "127.0.0.1 $Host" >> /etc/hosts;
-    fi
-    if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
-        sed -i "s/localhost:.*;/localhost:$RandomPort;/g" /etc/nginx/conf.d/$Host.conf
-    else
-        envsubst < /HolismHolding/Infra/NginxReverseProxyTemplate > /etc/nginx/conf.d/$Host.conf
-    fi
-    systemctl reload nginx
-}
-
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
     GetRandomPort
-    SetupHost
+    SetupNginxAndLocalDns
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
