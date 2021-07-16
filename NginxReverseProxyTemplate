@@ -8,8 +8,8 @@ server {
     listen 443 ssl;
     server_name $Host;
 
-    ssl_certificate /HolismHolding/Infra/DevelopmentCertificate/PublicKey.crt;
-    ssl_certificate_key /HolismHolding/Infra/DevelopmentCertificate/PrivateKey.key;
+    ssl_certificate /Temp/$Organization/$Repository/Certificate.pem;
+    ssl_certificate_key /Temp/$Organization/$Repository/Key.pem;
 
     location / {
         proxy_pass http://localhost:$RandomPort;

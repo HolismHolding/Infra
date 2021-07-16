@@ -1,4 +1,4 @@
-function MakeSureTempDirectoryExists() {
+function CreateTempDirectories() {
     if [ ! -d "/Temp" ]; then
         sudo mkdir /Temp
     fi
@@ -7,5 +7,12 @@ function MakeSureTempDirectoryExists() {
         echo '/Temp folder has full access'
     else 
         sudo chmod -R 777 /Temp
-    fi 
+    fi
+    if [ -z ${Organization+x} ]; then
+        return;
+    fi
+    if [ -z ${Repository+x} ]; then
+        return;
+    fi
+    mkdir -p /Temp/$Organization/$Repository
 }

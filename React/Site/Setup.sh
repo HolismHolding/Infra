@@ -1,8 +1,5 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/Scripts/GetRandomPort.sh
-. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
-
 function IsReactSite() {
     if [ -d "pages" ]; then
         return 0;
@@ -33,8 +30,6 @@ function CreateBuildDirectory() {
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
-    GetRandomPort
-    SetupNginxAndLocalDns
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory

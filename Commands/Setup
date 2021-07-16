@@ -1,11 +1,14 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
-. /HolismHolding/Infra/Scripts/TempDirectory.sh
+. /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
 . /HolismHolding/Infra/React/Setup.sh
 . /HolismHolding/Infra/DotNet/Setup.sh
 . /HolismHolding/Infra/Laravel/Setup.sh
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
+. /HolismHolding/Infra/Scripts/CreateCertificate.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 # sudo chmod u+rw /etc/hosts
@@ -16,8 +19,11 @@
 
 echo "Holding setup"
 ExtractAndExportData
-MakeSureTempDirectoryExists
+CreateTempDirectories
 GetHoldingInfra
+GetRandomPort
+SetupNginxAndLocalDns
+CreateCertificate
 
 if IsReact $1; then
     SetupReact
