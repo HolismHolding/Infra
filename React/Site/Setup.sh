@@ -27,9 +27,15 @@ function CreateBuildDirectory() {
     fi
 }
 
+function PullDockerImage() {
+    echo 'Pulling docker image holism/next-dev:latest'
+    docker pull holism/next-dev:latest
+}
+
 function SetupReactSite() {
     echo "Seting up site"
     GetReactSite
+    PullDockerImage
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
