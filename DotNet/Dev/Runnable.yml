@@ -3,7 +3,7 @@ services:
     api:
         image: holism/dotnet-dev:latest
         #restart: always
-        container_name: ${Repository}DotNetApi
+        container_name: ${Repository}Api
         working_dir: ${RepositoryPath}
         environment:
             - Organization=${Organization}
@@ -15,7 +15,7 @@ services:
             - /HolismDotNet/Framework:/HolismDotNet/Framework
             - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
-            - "5000:5000"
+            - "$RandomPort:5000"
         command: >
             sh -c
             "
@@ -32,7 +32,7 @@ services:
         image: mcr.microsoft.com/mssql/server
         #restart: always
         user: root
-        container_name: ${Repository}MsSqlDatabase
+        container_name: ${Repository}Database
         volumes:
             - /HolismHolding/Infra/DotNet/Dev/Database:/Temp
             - ./Database:/Database

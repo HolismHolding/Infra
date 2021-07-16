@@ -85,8 +85,10 @@ function SetupDotNet() {
     LinkGitIgnore
     PullDockerImage
     echo "DotNet, runnable|host|app"
-    cp /HolismHolding/Infra/DotNet/Dev/Runnable.yml /Temp/DotNetDevRunnable.yml
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/DotNetDevRunnable.yml
-    sed -i "s/*/\//g" /Temp/DotNetDevRunnable.yml
-    docker-compose -f /Temp/DotNetDevRunnable.yml up --remove-orphans
+    ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/DotNet/Dev/Runnable.yml > $ComposeFile
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
+    sed -i "s/*/\//g" $ComposeFile
+    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
 }
