@@ -2,9 +2,9 @@ version: "3.9"
 services: 
     react:
         image: holism/react-dev:latest
-        container_name: ${Repository}ReactDev
+        container_name: ${Organization}${Repository}
         ports:
-            - "4000:3000"
+            - "$RandomPort:3000"
         working_dir: /${Repository}
         volumes: 
             - /HolismReact/Infra:/Temp/Infra

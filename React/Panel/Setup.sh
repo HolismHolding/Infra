@@ -43,11 +43,25 @@ function GetReactAccounts() {
     fi
 }
 
+function PullDockerImage() {
+    echo 'Pulling docker image holism/react-dev:latest'
+    docker pull holism/react-dev:latest
+}
+
+function CreateBuildDirectory() {
+    if [ ! -d "/Temp$RepositoryPath/Build" ]; then
+        echo "Creating directory: /Temp$RepositoryPath/Build";
+        sudo mkdir "/Temp$RepositoryPath/Build";
+        sudo chmod -R 777 "/Temp$RepositoryPath/Build";
+    fi
+}
+
 function SetupReactPanel() {
     echo "Setting up panel"
     GetReactInfra
     GetReactPanel
     GetReactAccounts
+    PullDockerImage
     volumes=""
     GetDependencies volumes
     echo -e $volumes
@@ -64,9 +78,13 @@ function SetupReactPanel() {
             composeFile=Reusable
         fi
     fi
-    cp /HolismHolding/Infra/React/Panel/Dev/$composeFile.yml /Temp/ReactPanelDev$composeFile.yml
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" /Temp/ReactPanelDev$composeFile.yml
-    sed -i "s/*/\//g" /Temp/ReactPanelDev$composeFile.yml
-    echo "Using docker-compose file => /Temp/ReactPanelDev$composeFile.yml"
-    docker-compose -f /Temp/ReactPanelDev$composeFile.yml up --remove-orphans
+
+    ComposePath=/Temp/$Organization/$Repository/$composeFile.yml
+    mkdir -p $(dirname $ComposePath)
+    CreateBuildDirectory
+    envsubst < /HolismHolding/Infra/React/Panel/Dev/$composeFile.yml > $ComposePath
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposePath
+    sed -i "s/*/\//g" $ComposePath
+    echo "Using docker-compose file => $ComposePath"
+    docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
 }

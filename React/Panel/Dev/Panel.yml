@@ -2,9 +2,9 @@ version: "3.9"
 services: 
     react:
         image: holism/react-dev:latest
-        container_name: PanelReactDev
+        container_name: ReactPanel
         ports:
-            - "4000:3000"
+            - "$RandomPort:3000"
         working_dir: /react/Infra
         volumes: 
             - /HolismReact/Panel:/react/Infra/src/Panel
