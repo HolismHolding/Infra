@@ -3,7 +3,7 @@ services:
     api:
         image: holism/dotnet-dev:latest
         #restart: always
-        container_name: ${Repository}Api
+        container_name: ${Organization}${Repository}
         working_dir: ${RepositoryPath}
         environment:
             - Organization=${Organization}
