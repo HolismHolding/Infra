@@ -7,8 +7,9 @@
 . /HolismHolding/Infra/DotNet/Setup.sh
 . /HolismHolding/Infra/Laravel/Setup.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
-. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
+. /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 
 # somehow setup hosts too => https://www.interserver.net/tips/kb/local-domain-names-ubuntu/
 # sudo chmod u+rw /etc/hosts
@@ -22,8 +23,9 @@ ExtractAndExportData
 CreateTempDirectories
 GetHoldingInfra
 GetRandomPort
-SetupNginxAndLocalDns
+GetHost
 CreateCertificate
+SetupNginxAndLocalDns
 
 if IsReact $1; then
     SetupReact
