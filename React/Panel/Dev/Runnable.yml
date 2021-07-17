@@ -5,21 +5,22 @@ services:
         container_name: ${Organization}${Repository}
         ports:
             - "$RandomPort:3000"
-        working_dir: /${Repository}
+        working_dir: ${RepositoryPath}
         volumes: 
             - /HolismReact/Infra:/Temp/Infra
-            - /HolismReact/Panel:/${Repository}/src/Panel
-            - /HolismReact/Accounts:/${Repository}/src/Accounts
-            - ${RepositoryPath}/Logo.png:/${Repository}/src/logo.png
-            - ${RepositoryPath}/.env:/${Repository}/.env
-            - ${RepositoryPath}/.env.test:/${Repository}/.env.test
-            - ${RepositoryPath}/.env.production:/${Repository}/.env.production
-            - ${RepositoryPath}/Resources.js:/${Repository}/src/Resources.jsVolumeMappingPlaceHolder
+            - /HolismReact/Panel:${RepositoryPath}/src/Panel
+            - /HolismReact/Accounts:${RepositoryPath}/src/Accounts
+            - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
+            - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
+            - ${RepositoryPath}/.env:${RepositoryPath}/.env
+            - ${RepositoryPath}/.env.test:${RepositoryPath}/.env.test
+            - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
+            - ${RepositoryPath}/Resources.js:${RepositoryPath}/src/Resources.jsVolumeMappingPlaceHolder
         command: >
             sh -c
             "
-            cd /${Repository}
-            && if [ ! -d /${Repository}/node_modules ]; then ln -s /react/Infra/node_modules /${Repository}; fi
+            cd ${RepositoryPath}
+            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /react/Infra/node_modules ${RepositoryPath}; fi
             && cp -a /Temp/Infra/. .
             && npm start
             "

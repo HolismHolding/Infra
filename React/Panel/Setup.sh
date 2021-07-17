@@ -1,7 +1,5 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/CommonFunctions.sh
-
 function IsReactPanel() {
     if [ -f "App.js" ] || [ -f "Resources.js" ]; then
         return 0;
@@ -43,7 +41,7 @@ function GetReactAccounts() {
     fi
 }
 
-function PullDockerImage() {
+function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'
     docker pull holism/react-dev:latest
 }
@@ -57,11 +55,10 @@ function CreateBuildDirectory() {
 }
 
 function SetupReactPanel() {
-    echo "Setting up panel"
     GetReactInfra
     GetReactPanel
     GetReactAccounts
-    PullDockerImage
+    PullReactDockerImage
     volumes=""
     GetDependencies volumes
     echo -e $volumes
@@ -75,7 +72,7 @@ function SetupReactPanel() {
             composeFile=Runnable
         else
             echo "Setting up React, reusable|module|package"
-            composeFile=Reusable
+            composeFile=Runnable
         fi
     fi
 

@@ -47,7 +47,7 @@ function LinkGitIgnore() {
     git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
 }
 
-function PullDockerImage() {
+function PullDotNetDockerImage() {
     echo 'Pulling docker image holism/dotnet-dev:latest'
     docker pull holism/dotnet-dev:latest
 }
@@ -83,7 +83,7 @@ function SetupDotNet() {
     GetDependencies volumes
     echo -e $volumes
     LinkGitIgnore
-    PullDockerImage
+    PullDotNetDockerImage
     echo "DotNet, runnable|host|app"
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)

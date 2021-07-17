@@ -13,5 +13,6 @@ function SetupNginxAndLocalDns() {
     fi
     envsubst < /HolismHolding/Infra/NginxReverseProxyTemplate > /etc/nginx/conf.d/$Host.conf
     sed -i 's/https:\/\/;/https:\/\/$server_name$request_uri;/g' /etc/nginx/conf.d/$Host.conf
-    systemctl reload nginx
+    #systemctl reload nginx
+    sudo nginx -s reload
 }
