@@ -1,6 +1,6 @@
 FROM holism/next-dev:latest as dependencies
 WORKDIR ${RepositoryPath}
-COPY /HolismReact/Site/package.json /HolismReact/Site/package-lock.json ./
+# COPY /HolismReact/Site/package.json /HolismReact/Site/package-lock.json ./
 # RUN npm install
 
 FROM node:lts-alpine as builder
