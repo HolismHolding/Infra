@@ -3,10 +3,8 @@
 function BuildReactSite() {
     echo "Building site ..."
     GetHolismReactSite
-    ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
-    mkdir -p $(dirname $ComposeFile)
-    CreateBuildDirectory
-    envsubst < /HolismHolding/Infra/React/Site/Dev/Runnable.yml > $ComposeFile
+    ComposeFile=/HolismHolding/Infra/React/Site/Prod/Runnable.yml
+    envsubst < ComposeFile > $ComposeFile
     docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
 
 }

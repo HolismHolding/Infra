@@ -1,9 +1,16 @@
 . /HolismHolding/Infra/React/Site/GetHolismReactSite.sh
-. /HolismHolding/Infra/React/Site/CreateBuildDirectory.sh
 
 function PullNextDevDockerImage() {
     echo 'Pulling docker image holism/next-dev:latest'
     docker pull holism/next-dev:latest
+}
+
+function CreateBuildDirectory() {
+    if [ ! -d "/Temp$RepositoryPath/Build" ]; then
+        echo "Creating directory: /Temp$RepositoryPath/Build";
+        sudo mkdir "/Temp$RepositoryPath/Build";
+        sudo chmod -R 777 "/Temp$RepositoryPath/Build";
+    fi
 }
 
 function SetupReactSite() {
