@@ -34,8 +34,8 @@ function LinkGitIgnore() {
     if [ -f "$PWD/.gitignore" ]; then
         sudo rm -rf "$PWD/.gitignore"
     fi
-    ln -s /HolismHolding/Infra/DotNet/Dev/GitIgnore "$PWD/.gitignore"
-    git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
+    sudo ln -s /HolismHolding/Infra/DotNet/Dev/GitIgnore "$PWD/.gitignore"
+    #git -C "$PWD" update-index --assume-unchanged "$PWD/.gitignore"
 }
 
 function PullDotNetDockerImage() {
