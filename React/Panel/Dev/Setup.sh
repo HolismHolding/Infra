@@ -1,45 +1,6 @@
-#!/bin/bash
-
-function IsReactPanel() {
-    if [ -f "App.js" ] || [ -f "Resources.js" ]; then
-        return 0;
-    else
-        return 1;
-    fi
-}
-
-function GetReactInfra() {
-    infraPath=/HolismReact/Infra
-    if [ -d "$infraPath" ]; then
-        echo "Pulling $infraPath"
-        git -C $infraPath pull
-    else 
-        echo "Cloning $infraPath"
-        git -C /HolismReact clone git@github.com:HolismReact/Infra
-    fi
-}
-
-function GetReactPanel() {
-    panelPath=/HolismReact/Panel
-    if [ -d "$panelPath" ]; then
-        echo "Pulling $panelPath"
-        git -C $panelPath pull
-    else 
-        echo "Cloning $panelPath"
-        git -C /HolismReact clone git@github.com:HolismReact/Panel
-    fi
-}
-
-function GetReactAccounts() {
-    accountsPath=/HolismReact/Accounts
-    if [ -d "$accountsPath" ]; then
-        echo "Pulling $accountsPath"
-        git -C $accountsPath pull
-    else 
-        echo "Cloning $accountsPath"
-        git -C /HolismReact clone git@github.com:HolismReact/Accounts
-    fi
-}
+. /HolismHolding/Infra/React/Panel/GetReactInfra.sh
+. /HolismHolding/Infra/React/Panel/GetReactPanel.sh
+. /HolismHolding/Infra/React/Panel/GetReactAccounts.sh
 
 function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'

@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 
 sudo rm -rf /Temp/Build
 mkdir /Temp/Build

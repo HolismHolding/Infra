@@ -3,9 +3,10 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
+. /HolismHolding/Infra/React/IsReact.sh
 . /HolismHolding/Infra/React/Setup.sh
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/DotNet/Dev/Setup.sh
-. /HolismHolding/Infra/Laravel/Dev/Setup.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
@@ -26,14 +27,6 @@ if IsReact $1; then
     SetupReact
 elif IsDotNet $1; then
     SetupDotNet
-# elif IsLaravel $1; then
-#     SetupLaravel
-# elif IsPython $1; then
-#     SetupPython
-# elif IsNode $1; then
-#     SetupNode
-# elif IsAngular $1; then
-#     SetupAngular
 else
     echo "Project type = Unknown"
 fi

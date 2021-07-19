@@ -1,31 +1,23 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
-. /HolismHolding/Infra/Scripts/TempDirectory.sh
+. /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
+. /HolismHolding/Infra/React/IsReact.sh
 . /HolismHolding/Infra/React/Build.sh
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/DotNet/Prod/Build.sh
-. /HolismHolding/Infra/Laravel/Build.sh
 
 # package & app = module & host = reusable & runnable
 
 echo "Holding build"
 ExtractAndExportData
-MakeSureTempDirectoryExists
-GetHoldingInfra
+CreateTempDirectories
 
 if IsReact $1; then
     BuildReact
-elif IsDotNet $1; then
-    BuildDotNet
-# elif IsLaravel $1; then
-#     BuildLaravel
-# elif IsPython $1; then
-#     SetupPython
-# elif IsNode $1; then
-#     SetupNode
-# elif IsAngular $1; then
-#     SetupAngular
+# elif IsDotNet $1; then
+#     BuildDotNet
 else
     echo "Project type = Unknown"
 fi
