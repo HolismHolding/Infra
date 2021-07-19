@@ -15,4 +15,9 @@ function CreateTempDirectories() {
         return;
     fi
     mkdir -p /Temp/$Organization/$Repository
+    if [ -d /Build ]; then
+        sudo rm -rf /Build
+    fi
+    sudo mkdir /Build
+    sudo chmod -R 777 /Build
 }

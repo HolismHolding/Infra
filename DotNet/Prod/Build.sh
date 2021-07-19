@@ -53,9 +53,7 @@ function CopyDockerFile() {
 }
 
 function BuildImage() {
-    lowercaseOrg=$(echo $OrganizationPrefix | tr '[:upper:]' '[:lower:]')
-    lowercaseRepo=$(echo $Repository | tr '[:upper:]' '[:lower:]')
-    docker build -f /Temp/Build/Dockerfile --build-arg Path=$PWD -t $lowercaseOrg/$lowercaseRepo /Temp/Build
+    docker build -f /Temp/Build/Dockerfile --build-arg Path=$PWD -t $LowercaseOrg/$LowercaseRepo /Temp/Build
 }
 
 function BuildDotNet() {
