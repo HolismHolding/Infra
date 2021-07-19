@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/React/Site/Prod/Build.sh
 . /HolismHolding/Infra/React/Panel/Prod/Build.sh
+. /HolismHolding/Infra/React/Site/Prod/Build.sh
 
 function CreateHolismReactDirectory() {
     if [ ! -d "/HolismReact" ]; then

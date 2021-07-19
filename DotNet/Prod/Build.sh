@@ -1,8 +1,3 @@
-. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
-
-sudo rm -rf /Temp/Build
-mkdir /Temp/Build
-
 function CopyHoldingBase() {
     echo "Copying holding base ...";
     mkdir /Temp/Build/HolismHolding
@@ -63,12 +58,14 @@ function BuildImage() {
     docker build -f /Temp/Build/Dockerfile --build-arg Path=$PWD -t $lowercaseOrg/$lowercaseRepo /Temp/Build
 }
 
-ExtractAndExportData
-CopyHoldingBase
-CopyDotNetBase
-CopyDependencies
-CopyRepository
-RemoveBinsAndObjs
-RemvoeGits
-CopyDockerFile
-BuildImage
+function BuildDotNet() {
+    ExtractAndExportData
+    CopyHoldingBase
+    CopyDotNetBase
+    CopyDependencies
+    CopyRepository
+    RemoveBinsAndObjs
+    RemvoeGits
+    CopyDockerFile
+    BuildImage
+}

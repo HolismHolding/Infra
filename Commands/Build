@@ -16,8 +16,8 @@ CreateTempDirectories
 
 if IsReact $1; then
     BuildReact
-# elif IsDotNet $1; then
-#     BuildDotNet
+elif IsDotNet $1; then
+    BuildDotNet
 else
     echo "Project type = Unknown"
 fi

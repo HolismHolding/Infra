@@ -1,41 +1,15 @@
-#!/bin/bash
+. /HolismHolding/Infra/React/Site/GetHolismReactSite.sh
+. /HolismHolding/Infra/React/Site/CreateBuildDirectory.sh
 
-function IsReactSite() {
-    if [ -d "pages" ]; then
-        return 0;
-    else 
-        return 1;
-    fi
-}
-
-function GetReactSite() {
-    infraPath=/HolismReact/Site
-    if [ -d "$infraPath" ]; then
-        echo "Pulling $infraPath"
-        git -C $infraPath pull
-    else 
-        echo "Cloning $infraPath"
-        git -C /HolismReact clone git@github.com:HolismReact/Site
-    fi
-}
-
-function CreateBuildDirectory() {
-    if [ ! -d "/Temp$RepositoryPath/Build" ]; then
-        echo "Creating directory: /Temp$RepositoryPath/Build";
-        sudo mkdir "/Temp$RepositoryPath/Build";
-        sudo chmod -R 777 "/Temp$RepositoryPath/Build";
-    fi
-}
-
-function PullNextDockerImage() {
+function PullNextDevDockerImage() {
     echo 'Pulling docker image holism/next-dev:latest'
     docker pull holism/next-dev:latest
 }
 
 function SetupReactSite() {
     echo "Seting up site"
-    GetReactSite
-    PullNextDockerImage
+    GetHolismReactSite
+    PullNextDevDockerImage
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
