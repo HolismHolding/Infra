@@ -9,6 +9,8 @@ function ExtractAndExportData() {
     fi
     export Repository="$(basename $PWD)"
     export RepositoryPath=$PWD
+    export LowercaseOrg=$(echo $OrganizationPrefix | tr '[:upper:]' '[:lower:]')
+    export LowercaseRepo=$(echo $Repository | tr '[:upper:]' '[:lower:]')
     echo "Organization: " $Organization
     echo "Organization Prefix: " $OrganizationPrefix
     echo "Repository: " $Repository

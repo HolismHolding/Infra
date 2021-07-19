@@ -1,11 +1,13 @@
-FROM node:lts-alpine as dependencies
+FROM holism/next-dev:latest as dependencies
 WORKDIR ${RepositoryPath}
 COPY /HolismReact/Site/package.json /HolismReact/Site/package-lock.json ./
-RUN npm install
+# RUN npm install
 
 FROM node:lts-alpine as builder
 WORKDIR ${RepositoryPath}
-COPY . .
+COPY /HolismHolding/Infra /HolismHolding/Infra
+COPY /HolismReact/Site /HolismReact/Site
+COPY ${RepositoryPath} ${RepositoryPath}
 COPY --from=dependencies ${RepositoryPath}/node_modules ./node_modules
 RUN npm run build
 
