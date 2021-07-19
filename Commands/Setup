@@ -4,8 +4,8 @@
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
 . /HolismHolding/Infra/React/Setup.sh
-. /HolismHolding/Infra/DotNet/Setup.sh
-. /HolismHolding/Infra/Laravel/Setup.sh
+. /HolismHolding/Infra/DotNet/Dev/Setup.sh
+. /HolismHolding/Infra/Laravel/Dev/Setup.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh

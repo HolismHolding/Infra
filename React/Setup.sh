@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/React/Site/Setup.sh
-. /HolismHolding/Infra/React/Panel/Setup.sh
+. /HolismHolding/Infra/React/Site/Dev/Setup.sh
+. /HolismHolding/Infra/React/Panel/Dev/Setup.sh
 
 function IsReact() {
     if IsReactSite $1 || IsReactPanel $1; then
