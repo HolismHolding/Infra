@@ -22,7 +22,8 @@ services:
             dotnet build
             && /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath}
             && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
-            tail -f /dev/null
+            echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
+            && tail -f /dev/null
             "
         depends_on: 
             - "database"
