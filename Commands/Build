@@ -2,7 +2,7 @@
 
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
-. /HolismHolding/Infra/Scripts/GetHoldingInfra.sh
+. /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
 . /HolismHolding/Infra/React/IsReact.sh
 . /HolismHolding/Infra/React/Build.sh
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
