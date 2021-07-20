@@ -21,6 +21,7 @@ services:
             "
             cd ${RepositoryPath}
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /react/Infra/node_modules ${RepositoryPath}; fi
+            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && cp -a /Temp/Infra/. .
             && npm start
             "
