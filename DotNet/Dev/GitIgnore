@@ -260,7 +260,7 @@ _UpgradeReport_Files/
 Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
-ServiceFabricBackup/
+ServiceeFabricBackup/
 *.rptproj.bak
 
 # SQL Server files
