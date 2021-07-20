@@ -16,9 +16,9 @@ function CreateBuildDirectory() {
 }
 
 function SetupReactPanel() {
-    GetReactInfra
-    GetReactPanel
-    GetReactAccounts
+    GetReactInfra &
+    GetReactPanel &
+    GetReactAccounts &
     PullReactDockerImage
     volumes=""
     GetDependencies volumes
