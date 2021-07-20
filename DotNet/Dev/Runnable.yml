@@ -33,7 +33,7 @@ services:
         image: mcr.microsoft.com/mssql/server
         #restart: always
         user: root
-        container_name: ${Repository}Database
+        container_name: ${Organization}${Repository}Database
         volumes:
             - /HolismHolding/Infra/DotNet/Dev/Database:/Temp
             - ./Database:/Database
