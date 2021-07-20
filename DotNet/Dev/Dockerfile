@@ -48,41 +48,18 @@ RUN dotnet_sdk_version=3.1.410 \
     && dotnet help
     
 RUN apk update \
+    && apk add --no-cache git \
     && apk add --upgrade unzip \
     && apk add busybox-extras \
-    && mkdir /temp \
-    && cd /temp \
-    && dotnet new console -n Everything \
-    && cd /temp/Everything \
-    && dotnet add package morelinq -v 3.3.2 \
-    && dotnet add package Hashids.net -v 1.3.0 \
-    && dotnet add package Humanizer -v 2.8.26 \
-    && dotnet add package Selenium.WebDriver -v 4.0.0-beta1 \
-    && dotnet add package Selenium.Support -v 4.0.0-beta1 \
-    && dotnet add package Selenium.WebDriver.ChromeDriver -v 88.0.4324.9600 \
-    && dotnet add package Microsoft.Extensions.Configuration.Json -v 3.1.12 \
-    && dotnet add package Microsoft.Extensions.Configuration.Binder -v 3.1.12 \
-    && dotnet add package AngleSharp -v 0.14.0 \
-    && dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 3.1.12 \
-    && dotnet add package Microsoft.EntityFrameworkCore.Design -v 3.1.12 \
-    && dotnet add package System.Linq.Dynamic.Core -v 1.2.8 \
-    && dotnet add package Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite -v 3.1.12 \
-    && dotnet add package EFCore.BulkExtensions -v 3.3.1 \
-    && dotnet add package ClosedXML -v 0.95.4 \
-    && dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson -v 3.1.12 \
-    && dotnet add package System.Drawing.Common -v 4.7.2 \
-    && dotnet add package Mono.Cecil -v 0.11.3 \
-    && dotnet restore  \
-    && dotnet build
+    && dotnet tool install --global dotnet-ef --version 3.1.12
 
-RUN dotnet tool install --global dotnet-ef --version 3.1.12
-ENV PATH="${PATH}:/root/.dotnet/tools"
+ENV PATH="${PATH}:/root/.dotnet/tools:/HolismHolding/Infra/DotNet/Dev"  
 
-ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
-
-RUN cd /temp/Everything \
-    && dotnet add package Azure.Storage.Blobs -v 12.8.0 \
-    && dotnet restore  \
+RUN mkdir /HolismDotNet \
+    && chmod 777 /HolismDotNet \
+    && cd /HolismDotNet/ \
+    && git clone https://github.com/HolismDotNet/Framework \
+    && cd /HolismDotNet/Framework \
     && dotnet build
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile

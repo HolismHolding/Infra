@@ -5,7 +5,7 @@ function RunMigrations() {
     while read migrationDirectory; do
         dataAccess=$(dirname $migrationDirectory);
         echo "Running migrations for $dataAccess";
-        dotnet ef database update --project $dataAccess; &
+        dotnet ef database update --project $dataAccess &
     done 
 }
 
