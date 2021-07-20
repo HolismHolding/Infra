@@ -1,0 +1,11 @@
+#!/bin/bash
+
+find / -type d -name .git 2>&- | 
+while read gitFolder; do
+    parent=$(dirname $gitFolder);
+    echo "";
+    echo $parent;
+    git -C $parent pull
+done 
+
+# https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
