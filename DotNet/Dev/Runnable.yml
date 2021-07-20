@@ -20,8 +20,8 @@ services:
             sh -c
             "
             dotnet build
-            && /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath}
-            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
+            && /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath} &
+            dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "

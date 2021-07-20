@@ -4,7 +4,8 @@ function RunMigrations() {
     find / -type d -name Migrations 2>&- | grep DataAccess/Migrations |
     while read migrationDirectory; do
         dataAccess=$(dirname $migrationDirectory);
-        dotnet ef database update --project $dataAccess;
+        echo "Running migrations for $dataAccess";
+        dotnet ef database update --project $dataAccess; &
     done 
 }
 

@@ -14,14 +14,14 @@
 
 # package & app = module & host = reusable & runnable
 
-echo "Holding setup"
+sudo echo "Holding setup"
 ExtractAndExportData
-CreateTempDirectories
-GetHolismHoldingInfra
+CreateTempDirectories &
+GetHolismHoldingInfra &
 GetRandomPort
 GetHost
 CreateCertificate
-SetupNginxAndLocalDns
+SetupNginxAndLocalDns &
 
 if IsReact $1; then
     SetupReact
