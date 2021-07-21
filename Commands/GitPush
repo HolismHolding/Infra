@@ -2,6 +2,15 @@
 
 find / -type d -name .git 2>&- | 
 while read gitFolder; do
+    if [[ $gitFolder == *"/Temp/"* ]]; then
+        continue;
+    fi
+    if [[ $gitFolder == *"/Trash/"* ]]; then
+        continue;
+    fi
+    if [[ $gitFolder == *"/opt/"* ]]; then
+        continue;
+    fi
     parent=$(dirname $gitFolder);
     if [[ `git -C $parent status --porcelain` ]]; then
         echo "";
