@@ -6,3 +6,7 @@ RUN npm install marked
 RUN npm install node-sass@4.14.1
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Site/Dev"
 RUN npm install --save-dev eslint eslint-config-next
+RUN npm i --save @fortawesome/fontawesome-svg-core \
+             @fortawesome/free-solid-svg-icons \
+             @fortawesome/free-brands-svg-icons \
+             @fortawesome/react-fontawesome
