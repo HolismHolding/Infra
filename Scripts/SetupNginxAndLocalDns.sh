@@ -3,7 +3,7 @@ function SetupNginxAndLocalDns() {
         return;
     fi
     echo "Setting up NGINX and local DNS";
-    if ! grep -q "\s+$Host" /etc/hosts; then
+    if ! grep -q " $Host" /etc/hosts; then
         echo "127.0.0.1 $Host" >> /etc/hosts;
     fi
     if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
