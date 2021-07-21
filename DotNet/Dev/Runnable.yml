@@ -36,7 +36,7 @@ services:
         container_name: ${Organization}${Repository}Database
         volumes:
             - /HolismHolding/Infra/DotNet/Dev/Database:/Temp
-            - ./Database:/Database
+            - /Temp/${Organization}/Database:/var/opt/mssql/data
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=lksU2o412f7tBj58t07B
