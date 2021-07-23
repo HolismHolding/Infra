@@ -25,7 +25,7 @@
 | Read   |     GET     |    Item/List   | filter, sort, pagination |              |               |
 | Update |     POST    | Item/Update/Id |                          |   item JSON  |               |
 | Delete |     POST    | Item/Delete/Id |                          |              |               |
-| Upsert |     POST    |  Items/Upsert  |                          |   item JSON  |               |
+| Upsert |     POST    |  Item/Upsert   |                          |   item JSON  |               |
 
 <br />
 <br />
