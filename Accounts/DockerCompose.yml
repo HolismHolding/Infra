@@ -6,12 +6,12 @@ services:
         ports: 
             - "${RandomPort}:8080"
         environment: 
-            - KEYCLOAK_USER=admin
+            - KEYCLOAK_USER=PZx91EOd84ydum8Z3E6z
             - KEYCLOAK_PASSWORD=JNC1gcUVL9O6ZMxr7vKm
             - DB_VENDOR=mariadb
             - DB_ADDR=database
             - DB_DATABASE=accounts
-            - DB_USER=keycloak
+            - DB_USER=7F35e1j72wqJ53Cx22WU
             - DB_PASSWORD=52wfDZSvFsfhC5tT3jW9
         volumes:
             - /HolismHolding/Infra:/HolismHolding/Infra
@@ -24,7 +24,7 @@ services:
         environment:
             - MARIADB_ROOT_PASSWORD=2TBE9tN4Y5jM3Mvxjr5T
             - MYSQL_DATABASE=accounts
-            - MYSQL_USER=keycloak
+            - MYSQL_USER=7F35e1j72wqJ53Cx22WU
             - MYSQL_PASSWORD=52wfDZSvFsfhC5tT3jW9
     pma:
         image: phpmyadmin:latest
