@@ -7,9 +7,10 @@ services:
             - "$RandomPort:3000"
         working_dir: ${RepositoryPath}
         volumes: 
-            - /HolismReact/Infra:/Temp/Infra
-            - /HolismReact/Panel:${RepositoryPath}/src/Panel
-            - /HolismReact/Accounts:${RepositoryPath}/src/Accounts
+            - /HolismReact/Infra/src:${RepositoryPath}/src
+            - /HolismReact/Infra/public:${RepositoryPath}/public
+            - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
+            - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
@@ -22,6 +23,6 @@ services:
             cd ${RepositoryPath}
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /react/Infra/node_modules ${RepositoryPath}; fi
             && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
-            && cp -a /Temp/Infra/. .
-            && npm start
+            && npm start &
+            tail -f /dev/null
             "
