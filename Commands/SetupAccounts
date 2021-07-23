@@ -21,7 +21,7 @@ CreateTempDirectories
 GetRandomPort
 CreateCertificate
 SetupNginxAndLocalDns
-ComposeFile=/Temp/HolismAccounts/Accounts/Runnable.yml
+ComposeFile=/Temp/HolismAccounts/Accounts/DockerCompose.yml
 mkdir -p $(dirname $ComposeFile)
-envsubst < /HolismHolding/Infra/Accounts/Runnable.yml > $ComposeFile
+envsubst < /HolismHolding/Infra/Accounts/DockerCompose.yml > $ComposeFile
 docker-compose -p "Holism_Accounts" -f $ComposeFile up --remove-orphans

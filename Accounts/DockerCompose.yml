@@ -1,0 +1,33 @@
+version: "3.9"
+services: 
+    # accounts:
+    #     image: quay.io/keycloak/keycloak:14.0.0
+    #     container_name: Accounts
+    #     ports: 
+    #         - "${RandomPort}:8080"
+    #     environment: 
+    #         - KEYCLOAK_USER=admin
+    #         - KEYCLOAK_PASSWORD=admin
+    #         - DB_VENDOR:mariadb
+    #         - DB_ADDR:AccountsDatabase
+    #         - DB_DATABASE:accounts
+    #     volumes:
+    #         - /HolismHolding/Infra:/HolismHolding/Infra
+    #         - /Temp/HolismHolding/Accounts:/Temp
+    database:
+        image: mariadb
+        container_name: AccountsDatabase
+        ports:
+            - 3306:3306
+        environment:
+            - MARIADB_ROOT_PASSWORD=2TBE9tN4Y5jM3Mvxjr5T
+            - MYSQL_DATABASE=accounts
+            - MYSQL_USER=keycloak
+            - MYSQL_PASSWORD=52wfDZSvFsfhC5tT3jW9
+    pma:
+        image: phpmyadmin:latest
+        container_name: AccountsPma
+        ports:
+            - 3232:80
+        environment: 
+            - PMA_HOST=database
