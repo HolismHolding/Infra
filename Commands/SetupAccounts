@@ -1,22 +1,20 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 
-function SetupHost() {
-    export Host="accounts.holism.local";
-    if ! grep -q $Host /etc/hosts; then
-        echo "127.0.0.1 $Host" >> /etc/hosts;
-    fi
-    if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
-        sed -i "s/localhost:.*;/localhost:$RandomPort;/g" /etc/nginx/conf.d/$Host.conf
-    else
-        envsubst < /HolismHolding/Infra/NginxReverseProxyTemplate > /etc/nginx/conf.d/$Host.conf
-    fi
-    systemctl reload nginx
-}
+export Organization="HolismHolding"
+export OrganizationPrefix="Holism";
+export Repository="Accounts"
+export RepositoryPath="HolismHolding/Accounts"
+export LowercaseOrg="holism"
+export LowercaseRepo="accounts"
+echo "Organization: " $Organization
+echo "Organization Prefix: " $OrganizationPrefix
+echo "Repository: " $Repository
 
 GetRandomPort
-SetupHost
+SetupNginxAndLocalDns
 ComposeFile=/Temp/HolismAccounts/Accounts/Runnable.yml
 mkdir -p $(dirname $ComposeFile)
 envsubst < /HolismHolding/Infra/Accounts/Runnable.yml > $ComposeFile
