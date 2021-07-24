@@ -5,6 +5,7 @@ function RunMigrations() {
         echo "Running migrations for $dataAccess";
         dotnet ef database update --project $dataAccess &
     done 
+    echo -e '\033[0;31m'"Wait for all responses! They will be shown, though this command seems to be finished";
 }
 
 RunMigrations
