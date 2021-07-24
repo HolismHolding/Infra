@@ -26,6 +26,8 @@ services:
             - MYSQL_DATABASE=accounts
             - MYSQL_USER=7F35e1j72wqJ53Cx22WU
             - MYSQL_PASSWORD=52wfDZSvFsfhC5tT3jW9
+        volumes:
+            - /Temp/HolismHolding/Accounts/Database:/var/lib/mysql 
     pma:
         image: phpmyadmin:latest
         container_name: AccountsPma
