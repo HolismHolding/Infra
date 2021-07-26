@@ -1,0 +1,23 @@
+name: Build & Push holism/dotnet-dev:latest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildAndPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get /HolismHolding/Infra
+        run: |
+          sudo mkdir /HolismHolding
+          sudo chmod 777 /HolismHolding
+          cd /HolismHolding
+          git clone https://github.com/HolismHolding/Infra
+
+      - name: Build holism/dotnet-dev
+        run: |
+          cd /HolismHolding/Infra/DotNet/Dev
+          docker build -t holism/dotnet-dev:latest .
+      - name: Push holism/dotnet-dev
+        run: |
+          echo "pushing to docker"
