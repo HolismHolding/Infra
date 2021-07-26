@@ -11,18 +11,17 @@ services:
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
             - /HolismReact/Infra/public:${RepositoryPath}/public
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
-            - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
+                - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
-            - ${RepositoryPath}/.env.test:${RepositoryPath}/.env.test
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
-            - ${RepositoryPath}/Resources.js:${RepositoryPath}/src/Resources.jsVolumeMappingPlaceHolder
+            - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.jsVolumeMappingPlaceHolder
         command: >
             sh -c
             "
             cd ${RepositoryPath}
-            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /react/Infra/node_modules ${RepositoryPath}; fi
+            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismHolding/Infra/node_modules ${RepositoryPath}; fi
             && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && npm start &
             tail -f /dev/null
