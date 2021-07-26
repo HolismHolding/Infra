@@ -6,6 +6,7 @@ services:
         ports: 
             - "${RandomPort}:8080"
         environment: 
+            - KEYCLOAK_FRONTEND_URL=https://accounts.holism.com/auth
             - KEYCLOAK_USER=PZx91EOd84ydum8Z3E6z
             - KEYCLOAK_PASSWORD=JNC1gcUVL9O6ZMxr7vKm
             - DB_VENDOR=mariadb

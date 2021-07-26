@@ -74,7 +74,7 @@ function SetupDotNet() {
     GetDependencies volumes
     echo -e $volumes
     LinkGitIgnore
-    # PullDotNetDockerImage
+    PullDotNetDockerImage
     echo "DotNet, runnable|host|app"
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
