@@ -6,8 +6,9 @@ services:
         ports:
             - "$RandomPort:3000"
         working_dir: ${RepositoryPath}
-        volumes: 
-            - /HolismReact/Infra/src:${RepositoryPath}/src
+        volumes:
+            - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
+            - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
             - /HolismReact/Infra/public:${RepositoryPath}/public
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
             - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json

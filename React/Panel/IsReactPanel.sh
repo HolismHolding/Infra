@@ -1,5 +1,5 @@
 function IsReactPanel() {
-    if [ -f "App.js" ] || [ -f "Resources.js" ]; then
+    if [ -f "Menu.js" ]; then
         return 0;
     else
         return 1;
