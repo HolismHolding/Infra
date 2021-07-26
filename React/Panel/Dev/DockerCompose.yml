@@ -9,14 +9,17 @@ services:
         volumes:
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
+            - /HolismReact/Infra/src/Panel:${RepositoryPath}/src/Panel
+            - /HolismReact/Infra/src/Accounts:${RepositoryPath}/src/Accounts
             - /HolismReact/Infra/public:${RepositoryPath}/public
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
-                - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
+            - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
-            - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.jsVolumeMappingPlaceHolder
+            - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.js
+            - ${RepositoryPath}/Routes.js:${RepositoryPath}/src/Routes.jsVolumeMappingPlaceHolder
         command: >
             sh -c
             "
