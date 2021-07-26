@@ -20,4 +20,5 @@ jobs:
           docker build -t holism/dotnet-dev:latest .
       - name: Push holism/dotnet-dev
         run: |
-          echo "pushing to docker"
+          echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push holism/dotnet-dev:latest
