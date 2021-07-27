@@ -7,12 +7,15 @@ services:
             - "$RandomPort:3000"
         working_dir: ${RepositoryPath}
         volumes:
+            - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
             - /HolismReact/Infra/src/Panel:${RepositoryPath}/src/Panel
             - /HolismReact/Infra/src/Components:${RepositoryPath}/src/Components
             - /HolismReact/Infra/src/Accounts:${RepositoryPath}/src/Accounts
             - /HolismReact/Infra/public:${RepositoryPath}/public
+            - /HolismReact/Infra/craco.config.js:${RepositoryPath}/craco.config.js
+            - /HolismReact/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
             - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
@@ -27,6 +30,7 @@ services:
             cd ${RepositoryPath}
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismHolding/Infra/node_modules ${RepositoryPath}; fi
             && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
+            && npm install
             && npm start &
             tail -f /dev/null
             "
