@@ -18,7 +18,7 @@ services:
             - /HolismReact/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
             - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
-            - ${RepositoryPath}/Logo.png:${RepositoryPath}/src/logo.png
+            - ${RepositoryPath}/Logo.png:${RepositoryPath}/public/logo.png
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
