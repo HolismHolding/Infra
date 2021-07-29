@@ -7,3 +7,5 @@ RUN apk update \
     && git clone https://github.com/HolismReact/Infra \
     && cd /HolismHolding/Infra \
     && npm install
+RUN cd /HolismHolding/Infra \
+    && npm install --save eventemitter3
