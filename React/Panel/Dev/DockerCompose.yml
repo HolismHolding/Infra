@@ -10,7 +10,6 @@ services:
             - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
-            - /HolismReact/Infra/src/Style:${RepositoryPath}/src/Style
             - /HolismReact/Infra/src/Panel:${RepositoryPath}/src/Panel
             - /HolismReact/Infra/src/Components:${RepositoryPath}/src/Components
             - /HolismReact/Infra/src/Accounts:${RepositoryPath}/src/Accounts
