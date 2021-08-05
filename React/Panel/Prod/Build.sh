@@ -1,7 +1,7 @@
 . /HolismHolding/Infra/React/Panel/GetHolismReactInfra.sh
 
 function CopyHolismHoldingInfra() {
-    echo "Copying holding base ...";
+    echo "Copying holding infra ...";
     if [ -d "/Build/HolismHolding" ]; then
         sudo rm -rf /Build/HolismHolding
     fi
@@ -27,8 +27,8 @@ function CopyPanel() {
     cp -r /$Organization/$Repository /Build/$Organization/
 }
 
-function BuildReactSite() {
-    echo "Building site ..."
+function BuildReactPanel() {
+    echo "Building panel ..."
     GetHolismReactInfra
     CopyHolismHoldingInfra
     CopyHolismReactInfra

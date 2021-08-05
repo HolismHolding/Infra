@@ -10,7 +10,7 @@
 
 # package & app = module & host = reusable & runnable
 
-echo "Holding build"
+sudo echo "Holding build"
 ExtractAndExportData
 CreateTempDirectories
 
