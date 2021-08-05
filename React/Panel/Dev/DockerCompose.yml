@@ -7,6 +7,7 @@ services:
             - "$RandomPort:3000"
         working_dir: ${RepositoryPath}
         volumes:
+            - /Temp${RepositoryPath}/Build:${RepositoryPath}/build
             - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base

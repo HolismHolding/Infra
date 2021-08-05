@@ -1,4 +1,4 @@
-function GetReactInfra() {
+function GetHolismReactInfra() {
     infraPath=/HolismReact/Infra
     if [ -d "$infraPath" ]; then
         echo "Pulling $infraPath"

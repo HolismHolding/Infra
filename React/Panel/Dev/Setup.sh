@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/React/Panel/GetReactInfra.sh
+. /HolismHolding/Infra/React/Panel/GetHolismReactInfra.sh
 
 function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'
@@ -14,7 +14,7 @@ function CreateBuildDirectory() {
 }
 
 function SetupReactPanel() {
-    GetReactInfra &
+    GetHolismReactInfra &
     PullReactDockerImage
     volumes=""
     GetDependencies volumes
