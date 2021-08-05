@@ -21,3 +21,5 @@ elif IsDotNet $1; then
 else
     echo "Project type = Unknown"
 fi
+
+sudo rm -rf /Build
