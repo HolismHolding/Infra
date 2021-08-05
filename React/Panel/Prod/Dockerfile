@@ -36,7 +36,7 @@ FROM node:lts-alpine as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
 RUN npm install -g serve
-COPY --from=builder ${RepositoryPath}/build ./build
+COPY --from=builder ${RepositoryPath}/build .
 
 EXPOSE 3000
-CMD [ "serve", "-s", "build", "-l", "3000" ]
+CMD [ "serve", "-s", ".", "-l", "3000" ]
