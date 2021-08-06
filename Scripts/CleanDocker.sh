@@ -1,6 +1,6 @@
 function CleanDocker() {
-    echo 'Cleaning Docker, pruning images, networks, containers ...'
-    docker container prune -y
-    docker image prune -y
-    docker network prune -y
+    echo 'Cleaning Docker, pruning images, networks, containers ...';
+    docker container prune --force
+    docker image prune --force
+    docker network prune --force
 }

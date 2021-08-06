@@ -11,6 +11,7 @@
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
 . /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
+. /HolismHolding/Infra/Scripts/CleanDocker.sh
 
 # package & app = module & host = reusable & runnable
 
@@ -22,7 +23,7 @@ GetRandomPort
 GetHost
 CreateCertificate
 SetupNginxAndLocalDns &
-CleanDocker &
+CleanDocker
 
 if IsReact $1; then
     SetupReact
