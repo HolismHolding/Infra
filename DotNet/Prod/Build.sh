@@ -1,14 +1,14 @@
 function CopyHoldingBase() {
     echo "Copying holding base ...";
-    mkdir /Temp/Build/HolismHolding
-    cp -r /HolismHolding/Infra /Temp/Build/HolismHolding/Infra
+    mkdir /Build/HolismHolding
+    cp -r /HolismHolding/Infra /Build/HolismHolding/Infra
 }
 
 function CopyDotNetBase() {
     echo "Copying dot net base ...";
-    mkdir /Temp/Build/HolismDotNet
-    cp -r /HolismDotNet/Framework /Temp/Build/HolismDotNet/Framework
-    cp -r /HolismDotNet/Accounts /Temp/Build/HolismDotNet/Accounts
+    mkdir /Build/HolismDotNet
+    cp -r /HolismDotNet/Framework /Build/HolismDotNet/Framework
+    cp -r /HolismDotNet/Accounts /Build/HolismDotNet/Accounts
 }
 
 function CopyDependencies() {    
@@ -20,44 +20,44 @@ function CopyDependencies() {
     while IFS= read -r line || [ -n "$line" ]
         do
             Org=$(echo $line | cut -d'/' -f1)
-            if [ ! -d "/Temp/Build/$Org" ]; then
-                mkdir /Temp/Build/$Org
+            if [ ! -d "/Build/$Org" ]; then
+                mkdir /Build/$Org
             fi
             echo "Copying /$line";
-            cp -r /$line /Temp/Build/$line
+            cp -r /$line /Build/$line
         done < "$input"
 }
 
 function CopyRepository() {
     echo "Copying repository ..."
     Org=$(echo $PWD | cut -d'/' -f2)
-    if [ ! -d "/Temp/Build/$Org" ]; then
-        mkdir /Temp/Build/$Org
+    if [ ! -d "/Build/$Org" ]; then
+        mkdir /Build/$Org
     fi
-    cp -r $PWD /Temp/Build$PWD
+    cp -r $PWD /Build$PWD
 }
 
 function RemoveBinsAndObjs() {
     echo "Removing bin and obj directories ..."
-    find /Temp/Build -type d -name "bin" | xargs sudo rm -rf
-    find /Temp/Build -type d -name "obj" | xargs sudo rm -rf
+    find /Build -type d -name "bin" | xargs sudo rm -rf
+    find /Build -type d -name "obj" | xargs sudo rm -rf
 }
 
 function RemvoeGits() {
     echo "Removing .git directories"
-    find /Temp/Build -type d -name ".git" | xargs sudo rm -rf
+    find /Build -type d -name ".git" | xargs sudo rm -rf
 }
 
 function CopyDockerFile() {
-    cp /HolismHolding/Infra/DotNet/Prod/Dockerfile /Temp/Build/Dockerfile
+    export Dockerfile=/Build/Dockerfile
+    envsubst < /HolismHolding/Infra/DotNet/Prod/Dockerfile > $Dockerfile
 }
 
 function BuildImage() {
-    docker build -f /Temp/Build/Dockerfile --build-arg Path=$PWD -t $LowercaseOrg/$LowercaseRepo /Temp/Build
+    docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
 }
 
 function BuildDotNet() {
-    ExtractAndExportData
     CopyHoldingBase
     CopyDotNetBase
     CopyDependencies
