@@ -22,6 +22,7 @@ GetRandomPort
 GetHost
 CreateCertificate
 SetupNginxAndLocalDns &
+CleanDocker &
 
 if IsReact $1; then
     SetupReact
