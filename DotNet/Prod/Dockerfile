@@ -7,4 +7,7 @@ RUN cd ${RepositoryPath} \
 FROM mcr.microsoft.com/dotnet/aspnet:3.1
 COPY --from=0 /Temp/Publish /${RepositoryPath}
 WORKDIR ${RepositoryPath}
+RUN rm -rf ConnectionStrings.json \
+    && rm -rf Settings.json \
+    && rm -rf SettingsOverride.json
 CMD [ "dotnet", "${Organization}.${Repository}.Api.dll" ]

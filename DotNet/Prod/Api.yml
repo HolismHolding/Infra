@@ -4,8 +4,9 @@ services:
         image: ghcr.io/organization/repository:latest
         container_name: OrganizationRepository
         working_dir: /Organization/Repository
-        environment:
-            - SqlServerPassword:password
+        volumes:
+            - /Organization/Applications/Repository/ConnectionStrings.json:/Organization/Repository/ConnectionStrings.json
+            - /Organization/Applications/Repository/Settings:/Organization/Repository/Settings.json
         ports:
             - 5001:5000
         networks:
