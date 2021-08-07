@@ -55,3 +55,8 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # find and remove all <none> docker images
 `docker images | grep none | awk '{ print $3; }' | xargs docker rmi`
+
+# see linux version
+`cat /etc/os-release`
+`lsb_release -a`
+`hostnamectl`
