@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+    api:
+        image: ghcr.io/organization/repository:latest
+        container_name: OrganizationRepository
+        working_dir: /Organization/Repository
+        environment:
+            - SqlServerPassword:password
+        ports:
+            - 5001:5000
+        networks:
+            - organization_sql_server
+
+networks:
+    organization_sql_server:
+        driver: bridge
