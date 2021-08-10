@@ -13,5 +13,7 @@ server {
 
     location / {
         proxy_pass http://localhost:$RandomPort;
+        proxy_set_header X-Forwarded-Host  $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 }
