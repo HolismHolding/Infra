@@ -15,9 +15,6 @@ services:
             - DB_DATABASE=accounts
             - DB_USER=7F35e1j72wqJ53Cx22WU
             - DB_PASSWORD=52wfDZSvFsfhC5tT3jW9
-        volumes:
-            - /HolismHolding/Infra:/HolismHolding/Infra
-            - /Temp/HolismHolding/Accounts:/Temp
     database:
         image: mariadb
         container_name: AccountsDatabase
