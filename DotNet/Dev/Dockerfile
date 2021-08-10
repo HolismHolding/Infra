@@ -1,57 +1,6 @@
-# mcr.microsoft.com/dotnet/runtime-deps:3.1 => https://hub.docker.com/_/microsoft-dotnet-runtime-deps/
-# This image contains the native dependencies needed by .NET. It does not include .NET. It is for self-contained applications.
-
-# mcr.microsoft.com/dotnet/aspnet:3.1 => https://hub.docker.com/_/microsoft-dotnet-aspnet/
-# This image contains the ASP.NET Core and .NET runtimes and libraries and is optimized for running ASP.NET Core apps in production.
-
-# mcr.microsoft.com/dotnet/runtime:3.1 => https://hub.docker.com/_/microsoft-dotnet-runtime/
-# This image contains the .NET runtimes and libraries and is optimized for running .NET apps in production.
-
-# mcr.microsoft.com/dotnet/sdk:3.1 => https://hub.docker.com/_/microsoft-dotnet-sdk
-# This image contains the .NET SDK which is comprised of three parts:
-# 
-# .NET CLI
-# .NET runtime
-# ASP.NET Core
-#
-# Use this image for your development process (developing, building and testing applications).
-
-ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:3.1-alpine3.13
-
-ENV \
-    # Unset ASPNETCORE_URLS from aspnet base image
-    ASPNETCORE_URLS= \
-    # Disable the invariant mode (set in base image)
-    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false \
-    # Enable correct mode for dotnet watch (only mode supported in a container)
-    DOTNET_USE_POLLING_FILE_WATCHER=true \
-    LC_ALL=en_US.UTF-8 \
-    LANG=en_US.UTF-8 \
-    # Skip extraction of XML docs - generally not useful within an image/container - helps performance
-    NUGET_XMLDOC_MODE=skip \
-    # PowerShell telemetry for docker image usage
-    POWERSHELL_DISTRIBUTION_CHANNEL=PSDocker-DotnetCoreSDK-Alpine-3.13
-
-# Add dependencies for disabling invariant mode (set in base image)
-RUN apk add --no-cache icu-libs
-
-# Install .NET Core SDK
-RUN dotnet_sdk_version=3.1.410 \
-    && wget -O dotnet.tar.gz https://dotnetcli.azureedge.net/dotnet/Sdk/$dotnet_sdk_version/dotnet-sdk-$dotnet_sdk_version-linux-musl-x64.tar.gz \
-    && dotnet_sha512='d844e044d7dfbca0b69913c3d5a5dde0f46ddf4a43c1e8c2a474dc65c3089521d0e946507ede4654efc4281314360c66f5c477ee90e1e80f30115e7a5aa1b586' \
-    && echo "$dotnet_sha512  dotnet.tar.gz" | sha512sum -c - \
-    && mkdir -p /usr/share/dotnet \
-    && tar -C /usr/share/dotnet -oxzf dotnet.tar.gz ./packs ./sdk ./templates ./LICENSE.txt ./ThirdPartyNotices.txt \
-    && rm dotnet.tar.gz \
-    # Trigger first run experience by running arbitrary cmd
-    && dotnet help
+FROM mcr.microsoft.com/vscode/devcontainers/dotnetcore:0-3.1
     
-RUN apk update \
-    && apk add --no-cache git \
-    && apk add --upgrade unzip \
-    && apk add busybox-extras \
-    && dotnet tool install --global dotnet-ef --version 3.1.12
+RUN dotnet tool install --global dotnet-ef --version 3.1.12
 
 ENV PATH="${PATH}:/root/.dotnet/tools:/HolismHolding/Infra/DotNet/Dev"  
 
