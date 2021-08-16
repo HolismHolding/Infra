@@ -16,6 +16,9 @@ while read gitFolder; do
         echo "";
         echo $parent;
         git -C $parent status --porcelain
+    else if git -C $parent status | grep ahead; then
+        echo "";
+        echo "$parent is not pushed yet";
     fi
 done 
 
