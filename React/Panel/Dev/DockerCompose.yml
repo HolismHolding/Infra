@@ -20,6 +20,7 @@ services:
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
             - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.js:${RepositoryPath}/src/Logo.js
+            - ${RepositoryPath}/Favicon.ico:${RepositoryPath}/public/favicon.ico
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
