@@ -18,7 +18,10 @@ while read gitFolder; do
         git -C $parent status --porcelain
     elif [[ $(git -C $parent status | grep ahead) ]]; then
         echo "";
-        echo "$parent is not pushed yet";
+        echo "Push $parent";
+    elif [[ $(git -C $parent status | grep diverged) ]]; then
+        echo "";
+        echo "Sync $parent";
     fi
 done 
 
