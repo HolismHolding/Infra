@@ -1,0 +1,14 @@
+version: "3.9"
+services: 
+  code-server:
+    image: code-server:latest
+    ports: 
+      - 3532:8080
+      - 3533:443
+    volumes:
+      - /Temp/CodeServer/Config:/Temp/config/code-server
+    command: > 
+      sh -c
+      "
+      code-server --log trace
+      "

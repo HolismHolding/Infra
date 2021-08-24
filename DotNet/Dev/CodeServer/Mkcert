@@ -1,0 +1,1 @@
+sudo mkcert -cert-file /Temp/VsCode/Certificate.pem -key-file /Temp/VsCode/Key.pem vscode.local 2>/dev/null
