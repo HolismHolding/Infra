@@ -7,7 +7,8 @@
 `docker stop $(docker ps -aq)`   
 `docker container prune --force`   
 `docker rm -vf $(docker ps -a -q)`   
-`docker rmi -f $(docker images -a -q)`   
+`docker rmi -f $(docker images -a -q)`  
+`docker system prune`
 
 # find files, grep and rename
 
@@ -60,3 +61,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `cat /etc/os-release`
 `lsb_release -a`
 `hostnamectl`
+
+# docker usage stats
+`docker system df`
