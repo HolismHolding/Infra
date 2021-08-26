@@ -10,6 +10,10 @@
             "args": [],
             "cwd": "${workspaceFolder}/Api",
             "console": "internalConsole",
+             "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "${env:Host}."
+            },
             "stopAtEntry": false
         }
     ]

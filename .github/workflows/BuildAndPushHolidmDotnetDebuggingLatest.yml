@@ -1,4 +1,4 @@
-name: Build & Push holism/dotnet-debugging:latest
+name: Build & Push holism/dotnet-debugg:latest
 
 on:
   workflow_dispatch:
@@ -14,11 +14,11 @@ jobs:
           cd /HolismHolding
           git clone https://github.com/HolismHolding/Infra
 
-      - name: Build holism/dotnet-debugging
+      - name: Build holism/dotnet-debugg
         run: |
           cd /HolismHolding/Infra/DotNet/Debug
-          docker build -t holism/dotnet-debugging:latest .
-      - name: Push holism/dotnet-debugging
+          docker build -t holism/dotnet-debugg:latest .
+      - name: Push holism/dotnet-debugg
         run: |
           echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker push holism/dotnet-debugging:latest
+          docker push holism/dotnet-debugg:latest

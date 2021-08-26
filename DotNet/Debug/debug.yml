@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
     api:
-        image: holism/dotnet-debugging:latest
+        image: holism/dotnet-debug:latest
         #restart: always
         container_name: ${Organization}${Repository}
         working_dir: ${RepositoryPath}
@@ -10,19 +10,21 @@ services:
             - OrganizationPrefix=${OrganizationPrefix}
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
+            - Host=${Host}
             - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismDotNet/Framework:/HolismDotNet/Framework
             - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
-            - 5000:5000
+            - "$RandomPort:5000"
         command: >
             sh -c
             "
             rm -rf Api/bin
             && rm -rf Api/obj
             && dotnet build
+            & echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             & /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath} 
             && tail -f /dev/null
             "
