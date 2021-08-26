@@ -1,0 +1,7 @@
+{
+	"name": "Ubuntu",
+	"image": "holism/dotnet-debugging:latest",
+	"settings": {},
+	"extensions": ["ms-dotnettools.csharp"],
+	"remoteUser": "vscode"
+}
