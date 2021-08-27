@@ -5,16 +5,13 @@
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/CreateCertificate.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 . /HolismHolding/Infra/Scripts/GetDotNetInfra.sh
-. /HolismHolding/Infra/Scripts/GetDependenciesForApi.sh
-. /HolismHolding/Infra/Scripts/GetDotNetAccounts.sh
+. /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
+. /HolismHolding/Infra/Scripts/GetDependencies.sh
 
-function LinkGitIgnore() {
-    if [ -f "$PWD/.gitignore" ]; then
-        sudo rm -rf "$PWD/.gitignore"
-    fi
-    sudo ln -s /HolismHolding/Infra/DotNet/Dev/GitIgnore "$PWD/.gitignore"
-}
 
 function LinkDevContainer() {
     
@@ -40,33 +37,37 @@ function LinkVScodefiles() {
 }
 
 function PullDotNetDockerImage() {
-    echo 'Pulling docker image: holism/dotnet-debugging:latest'
-    docker pull holism/dotnet-debugging:latest
+    echo 'Pulling docker image: holism/dotnet-debug:latest'
+    docker pull holism/dotnet-debug:latest
 }
 
 
-sudo echo "Start Debugging"
-ExtractAndExportData
-CreateTempDirectories &
-# #GetHolismHoldingInfra &
-# # GetRandomPort
-GetHost
-# # CreateCertificate
-# # SetupNginxAndLocalDns &
-CleanDocker
+sudo echo "Start debug"
+if IsDotNet then
+    ExtractAndExportData
+    CreateTempDirectories &
+    GetHolismHoldingInfra &
+    GetRandomPort
+    GetHost
+    CreateCertificate
+    SetupNginxAndLocalDns &
+    CleanDocker
 
-GetDotNetInfra &
-GetDotNetAccounts &
-volumes=""
-GetDependencies volumes
-echo -e $volumes
-# LinkGitIgnore
-# PullDotNetDockerImage    echo "DotNet, runnable|host|app"
-LinkDevContainer
-LinkVScodefiles
-ComposeFile=/Temp/$Organization/$Repository/Debugging.yml
-mkdir -p $(dirname $ComposeFile)
-envsubst < /HolismHolding/Infra/DotNet/Debug/Debugging.yml > $ComposeFile
-sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
-sed -i "s/*/\//g" $ComposeFile
-docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+    GetDotNetInfra &
+    GetDotNetAccounts &
+    volumes=""
+    GetDependencies volumes
+    echo -e $volumes
+    LinkGitIgnore
+    # PullDotNetDockerImage    echo "DotNet, runnable|host|app"
+    LinkDevContainer
+    LinkVScodefiles
+    ComposeFile=/Temp/$Organization/$Repository/debug.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/DotNet/Debug/debug.yml > $ComposeFile
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
+    sed -i "s/*/\//g" $ComposeFile
+    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+else
+    echo "Project type = Unknown"
+fi

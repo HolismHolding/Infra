@@ -2,20 +2,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": ".NET Core Launch (web)",
+            "name": ".NET Core Launch",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Api/bin/FreyaCenter.StylistApi.Api",
+            "program": "${workspaceFolder}/Api/bin/FreyaCenter.${env:Repository}.Api",
             "args": [],
-            "cwd": "${workspaceFolder}",
+            "cwd": "${workspaceFolder}/Api",
             "console": "internalConsole",
-            "stopAtEntry": false,
-            "env": {
+             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
-                "ASPNETCORE_URLS": "http://localhost:5000"
-
-            }
+                "ASPNETCORE_URLS": "${env:Host}."
+            },
+            "stopAtEntry": false
         }
     ]
 }
