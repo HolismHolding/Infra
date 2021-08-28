@@ -43,31 +43,27 @@ function PullDotNetDockerImage() {
 
 
 sudo echo "Start debug"
-if IsDotNet then
-    ExtractAndExportData
-    CreateTempDirectories &
-    GetHolismHoldingInfra &
-    GetRandomPort
-    GetHost
-    CreateCertificate
-    SetupNginxAndLocalDns &
-    CleanDocker
+ExtractAndExportData
+CreateTempDirectories &
+GetHolismHoldingInfra &
+GetRandomPort
+GetHost
+CreateCertificate
+SetupNginxAndLocalDns &
+CleanDocker
 
-    GetDotNetInfra &
-    GetDotNetAccounts &
-    volumes=""
-    GetDependencies volumes
-    echo -e $volumes
-    LinkGitIgnore
-    # PullDotNetDockerImage    echo "DotNet, runnable|host|app"
-    LinkDevContainer
-    LinkVScodefiles
-    ComposeFile=/Temp/$Organization/$Repository/debug.yml
-    mkdir -p $(dirname $ComposeFile)
-    envsubst < /HolismHolding/Infra/DotNet/Debug/debug.yml > $ComposeFile
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
-    sed -i "s/*/\//g" $ComposeFile
-    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
-else
-    echo "Project type = Unknown"
-fi
+GetDotNetInfra &
+GetDotNetAccounts &
+volumes=""
+GetDependencies volumes
+echo -e $volumes
+LinkGitIgnore
+# PullDotNetDockerImage    echo "DotNet, runnable|host|app"
+LinkDevContainer
+LinkVScodefiles
+ComposeFile=/Temp/$Organization/$Repository/debug.yml
+mkdir -p $(dirname $ComposeFile)
+envsubst < /HolismHolding/Infra/DotNet/Debug/debug.yml > $ComposeFile
+sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
+sed -i "s/*/\//g" $ComposeFile
+docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
