@@ -17,6 +17,7 @@ function GetDependencies() {
             echo "Pulling /$Org/$Repo"
             git -C /$Org/$Repo pull &
         fi
+        LinkGitIgnore /$Org/$Repo
         volumes="$volumes\n            - *$Org*$Repo:*$Org*$Repo"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 }
