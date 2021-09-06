@@ -1,11 +1,13 @@
 #!/bin/bash
 
 function UpdateDatabase() {
+    dotnet build /HolismDotNet/Framework/DatabaseUpdater
+
     find . -name "*.json" 2>&- | grep Database |
     while read databaseJson; do
         database=$(basename $databaseJson .json);
         echo "Updating database for $database";
-        dotnet /HolismDotNet/Database/Holism.Database.dll $databaseJson &
+        dotnet /HolismDotNet/Framework/DatabaseUpdater/bin/Holism.DatabaseUpdater.dll $PWD $databaseJson &
     done 
     echo -e '\033[0;31m'"Wait for all responses! They will be shown, though this command seems to be finished";
 }
