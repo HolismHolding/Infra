@@ -3,6 +3,7 @@
 function UpdateDatabase() {
     dotnet build $PWD
     dotnet build /HolismDotNet/Framework/DatabaseUpdater
+    cp $PWD/ConnectionStrings.json /HolismDotNet/Framework/DatabaseUpdater/bin
 
     find . -name "*.json" 2>&- | grep Database |
     while read databaseJson; do
