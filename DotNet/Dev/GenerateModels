@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function GenerateModels() {
+    dotnet build $PWD
+    dotnet build /HolismDotNet/Framework/ModelGenerator
+    cp $PWD/ConnectionStrings.json /HolismDotNet/Framework/ModelGenerator/bin
+
+    find . -name "*.json" 2>&- | grep Database |
+    while read databaseJson; do
+        database=$(basename $databaseJson .json);
+        echo "Generating models for $database";
+        dotnet /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll $PWD $databaseJson &
+    done 
+    echo -e '\033[0;31m'"Wait for all responses! They will be shown, though this command seems to be finished";
+}
+
+GenerateModels

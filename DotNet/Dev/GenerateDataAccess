@@ -1,0 +1,17 @@
+#!/bin/bash
+
+function GenerateDataAccess() {
+    dotnet build $PWD
+    dotnet build /HolismDotNet/Framework/DataAccessGenerator
+    cp $PWD/ConnectionStrings.json /HolismDotNet/Framework/DataAccessGenerator/bin
+
+    find . -name "*.json" 2>&- | grep Database |
+    while read databaseJson; do
+        database=$(basename $databaseJson .json);
+        echo "Generating data access for $database";
+        dotnet /HolismDotNet/Framework/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll $PWD $databaseJson &
+    done 
+    echo -e '\033[0;31m'"Wait for all responses! They will be shown, though this command seems to be finished";
+}
+
+GenerateDataAccess

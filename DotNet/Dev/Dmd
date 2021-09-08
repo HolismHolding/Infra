@@ -1,0 +1,9 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/DotNet/Dev/UpdateDatabase
+. /HolismHolding/Infra/DotNet/Dev/GenerateModels
+. /HolismHolding/Infra/DotNet/Dev/GenerateDataAccess
+
+UpdateDatabase
+GenerateModels
+GenerateDataAccess
