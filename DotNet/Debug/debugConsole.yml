@@ -15,18 +15,7 @@ services:
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismDotNet/Framework:/HolismDotNet/Framework
-            - /FreyaCenter/OwnerApi:/FreyaCenter/OwnerApi
-            - /HolismDotNet/Accounts:/HolismDotNet/Accounts
-            - /HolismDotNet/Configuration:/HolismDotNet/Configuration
-            - /HolismDotNet/Geo:/HolismDotNet/Geo
-            - /HolismDotNet/Ticketing:/HolismDotNet/Ticketing
-            - /FreyaCenter/Services:/FreyaCenter/Services
-            - /FreyaCenter/Hr:/FreyaCenter/Hr
-            - /FreyaCenter/Salons:/FreyaCenter/Salons
-            - /FreyaCenter/Customers:/FreyaCenter/Customers
-            - /FreyaCenter/Faker:/FreyaCenter/Faker
-            - /FreyaCenter/Total:/FreyaCenter/Total
-            - /FreyaCenter/Appointments:/FreyaCenter/Appointments
+            - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
             - "$RandomPort:5000"
         command: >
