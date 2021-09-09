@@ -3,46 +3,21 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
-. /HolismHolding/Infra/Scripts/GetHost.sh
-. /HolismHolding/Infra/Scripts/CleanDocker.sh
+. /HolismHolding/Infra/React/Site/IsReactSite.sh
+. /HolismHolding/Infra/Next/Debug.sh
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
+. /HolismHolding/Infra/DotNet/Debug.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
 . /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
-. /HolismHolding/Infra/Scripts/GetDotNetInfra.sh
-. /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
-. /HolismHolding/Infra/Scripts/GetDependencies.sh
-
-
-function LinkDevContainer() {
-    
-    if [ -d "$PWD/.devcontainer" ]; then
-        sudo rm -rf "$PWD/.devcontainer"
-    fi
-
-    sudo mkdir $PWD/.devcontainer
-    sudo chmod -R 777 $PWD/.devcontainer
-    sudo ln -s /HolismHolding/Infra/DotNet/Debug/devcontainer "$PWD/.devcontainer/devcontainer.json"
-}
-
-
-function LinkVScodefiles() {
-    if [ -d "$PWD/.vscode" ]; then
-        sudo rm -rf "$PWD/.vscode"
-    fi
-    sudo mkdir $PWD/.vscode
-    sudo chmod -R 777 $PWD/.vscode
-    
-    sudo ln -s /HolismHolding/Infra/DotNet/Debug/launch "$PWD/.vscode/launch.json"
-    sudo ln -s /HolismHolding/Infra/DotNet/Debug/tasks "$PWD/.vscode/tasks.json"
-}
-
-function PullDotNetDockerImage() {
-    echo 'Pulling docker image: holism/dotnet-debug:latest'
-    docker pull holism/dotnet-debug:latest
-}
-
+. /HolismHolding/Infra/Scripts/CleanDocker.sh
 
 sudo echo "Start debug"
+if ! (IsReactSite || IsDotNet); then
+    echo "Project type = Unknown"
+    exit 1
+fi
 ExtractAndExportData
 CreateTempDirectories &
 GetHolismHoldingInfra &
@@ -52,18 +27,10 @@ CreateCertificate
 SetupNginxAndLocalDns &
 CleanDocker
 
-GetDotNetInfra &
-GetDotNetAccounts &
-volumes=""
-GetDependencies volumes
-echo -e $volumes
-LinkGitIgnore $PWD
-# PullDotNetDockerImage    echo "DotNet, runnable|host|app"
-LinkDevContainer
-LinkVScodefiles
-ComposeFile=/Temp/$Organization/$Repository/debug.yml
-mkdir -p $(dirname $ComposeFile)
-envsubst < /HolismHolding/Infra/DotNet/Debug/debug.yml > $ComposeFile
-sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
-sed -i "s/*/\//g" $ComposeFile
-docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+if IsReactSite $1; then
+    DebugSite
+elif IsDotNet $1; then
+    DebugDotNet
+else
+    echo "Project type = Unknown"
+fi

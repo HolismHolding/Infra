@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/${env:OrganizationPrefix}.${env:Repository}.dll",
+            "program": "${workspaceFolder}/bin/FreyaCenter.OwnerApi.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

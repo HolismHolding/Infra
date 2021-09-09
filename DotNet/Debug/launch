@@ -6,9 +6,9 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Api/bin/${env.OrganizationPrefix}.${env:Repository}.Api",
+            "program": "${workspaceFolder}/bin/${env:OrganizationPrefix}.${env:Repository}.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Api",
+            "cwd": "${workspaceFolder}",
             "console": "internalConsole",
              "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",

@@ -16,6 +16,10 @@
 # package & app = module & host = reusable & runnable
 
 sudo echo "Holding setup"
+if ! (IsReact || IsDotNet); then
+    echo "Project type = Unknown"
+    exit 1
+fi
 ExtractAndExportData
 CreateTempDirectories &
 GetHolismHoldingInfra &
