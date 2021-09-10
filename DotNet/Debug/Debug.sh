@@ -51,7 +51,7 @@ function DebugDotNet() {
     GetDotNetInfra &
     volumes=""
     if [ $RepositoryPath != '/HolismDotNet/Framework' ]; then
-        volumes="-${RepositoryPath}:${RepositoryPath}";
+        volumes=$(sed 's/\//*/g' <<< "\n            - ${RepositoryPath}:${RepositoryPath}");
     fi
     GetDependencies volumes
     echo -e $volumes
