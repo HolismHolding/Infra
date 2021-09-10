@@ -48,12 +48,11 @@ function DebugDotNet() {
         export SelectedProject=Api
     fi
 
-    echo $SelectedProject;
-
-    exit;
-
     GetDotNetInfra &
     volumes=""
+    if [ $RepositoryPath != '/HolismDotNet/Framework' ]; then
+        volumes="-${RepositoryPath}:${RepositoryPath}";
+    fi
     GetDependencies volumes
     echo -e $volumes
     LinkGitIgnore $PWD
