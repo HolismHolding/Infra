@@ -10,6 +10,7 @@ services:
             - OrganizationPrefix=${OrganizationPrefix}
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
+            - SelectedProject=${SelectedProject}
             - Host=${Host}
             - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
@@ -21,7 +22,9 @@ services:
         command: >
             sh -c
             "
-            dotnet build
+            rm -rf ${SelectedProject}/bin
+            && rm -rf ${SelectedProject}/obj
+            && dotnet build ${SelectedProject}
             & echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             & /HolismHolding/Infra/DotNet/Dev/SetupContainer.sh ${RepositoryPath} 
             && tail -f /dev/null
