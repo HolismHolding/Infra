@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/${env:OrganizationPrefix}.${env:Repository}.Api.dll",
+            "program": "${workspaceFolder}/bin/Holism.ModelGenerator.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
