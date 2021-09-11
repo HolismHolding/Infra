@@ -54,4 +54,17 @@ services:
             "
             /Temp/SetupContainer.sh &
             /opt/mssql/bin/sqlservr
-            "
+            "    
+    mariaDb:
+        image: mariadb
+        container_name: ${Organization}${Repository}MariaDb
+        ports:
+            - 3306:3306
+        environment:
+            - MARIADB_ROOT_PASSWORD=2TBE9tN4Y5jM3Mvxjr5T
+            - MYSQL_DATABASE=accounts
+            - MYSQL_USER=7F35e1j72wqJ53Cx22WU
+            - MYSQL_PASSWORD=52wfDZSvFsfhC5tT3jW9
+        volumes:
+            - /HolismHolding/Infra/DotNet/Dev/MariaDb:/Temp
+            - /Temp/${Organization}/MariaDb:/var/lib/mysql
