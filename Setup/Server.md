@@ -8,9 +8,9 @@
 - Change ssh port
     - 
 - NGINX
-    - [1.20.1](https://nginx.org/download/nginx-1.20.1.tar.gz)
-        - `apt update`
-        - `apt install nginx`
+    - `apt update`
+    - `apt install nginx`
+    - IMPORTANT NOTE => Only move /etc/nginx/sites-enabled/ and DO NOT MOVE /etc/nginx/sites-available/ because it's a symbolic link to that.
 - curl
     - `apt install curl`
 - micro
@@ -22,16 +22,9 @@
     - `apt install python3-certbot-nginx`
 - docker
     - `apt update`
-    - `apt-get install \     
-        apt-transport-https \   
-        ca-certificates \   
-        curl \    
-        gnupg \   
-        lsb-release`
-    -  `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
-    - `echo \
-  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian \
-  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
+    - `apt-get install apt-transport-https ca-certificates curl gnupg lsb-release`
+    - `curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
+    - `echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
     - `apt update`
     - `apt install docker-ce docker-ce-cli containerd.io`
     - `docker run hello-world`
@@ -40,4 +33,5 @@
     - `chmod +x /usr/local/bin/docker-compose`
     - `groupadd docker`
     - `usermod -aG docker $USER`
+    - `docker-compose -version`
 
