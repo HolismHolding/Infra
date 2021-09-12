@@ -5,7 +5,7 @@
 
 function GenerateDL() {
     Directory=$PWD
-    #dotnet build $PWD
+    
     # if [ ! -f /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
     # fi
     # if [ ! -f /HolismDotNet/Framework/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll ]; then
