@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+
+function GenerateDL() {
+    Directory=$PWD
+    #dotnet build $PWD
+    # if [ ! -f /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
+    # fi
+    # if [ ! -f /HolismDotNet/Framework/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll ]; then
+    # fi
+    dotnet build /HolismDotNet/Framework/DataAccessGenerator
+    dotnet build /HolismDotNet/Framework/ModelGenerator
+
+    cd /HolismDotNet/Framework/DataAccessGenerator
+    dotnet run $Directory $Organization $OrganizationPrefix $Repository 
+   
+    cd /HolismDotNet/Framework/ModelGenerator
+    dotnet run $Directory $Organization $OrganizationPrefix $Repository 
+
+}
+
+ExtractAndExportData
+GenerateDL
