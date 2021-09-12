@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Holism.DataAccessGenerator.dll",
+            "program": "${workspaceFolder}/bin/${env.Organization}.${env.Repository}.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

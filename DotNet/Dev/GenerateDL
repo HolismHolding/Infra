@@ -4,12 +4,29 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 
 function GenerateDL() {
+
+    if [ ! -f "$PWD/Database.json" ]; then
+        echo -e '\033[0;31m'"not found Database.json";
+        exit;
+    fi
+
+    if [ ! -f "$PWD/Models/Models.csproj" ]; then
+        echo -e '\033[0;31m'"Project type = Unknown";
+        exit;
+    fi
+
+    if [ ! -f "$PWD/DataAccess/DataAccess.csproj" ]; then
+        echo -e '\033[0;31m'"Project type = Unknown";
+        exit;
+    fi
+
     Directory=$PWD
-    
+
     # if [ ! -f /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
     # fi
     # if [ ! -f /HolismDotNet/Framework/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll ]; then
     # fi
+
     dotnet build /HolismDotNet/Framework/DataAccessGenerator
     dotnet build /HolismDotNet/Framework/ModelGenerator
 
