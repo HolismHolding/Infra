@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 
 if [ ! -f "$PWD/Database.json" ]; then
     echo -e '\033[0;31m'"not found Database.json";
