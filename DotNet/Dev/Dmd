@@ -1,5 +1,21 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/DotNet/Dev/UpdateDatabase
-. /HolismHolding/Infra/DotNet/Dev/GenerateModels
-. /HolismHolding/Infra/DotNet/Dev/GenerateDataAccess
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+
+if [ ! -f "$PWD/Database.json" ]; then
+    echo -e '\033[0;31m'"not found Database.json";
+    exit;
+fi
+
+if [ ! -f "$PWD/Models/Models.csproj" ] || [ ! -f "$PWD/DataAccess/DataAccess.csproj" ]; then
+    echo -e '\033[0;31m'"You should run this command inside a module, that has Models and DataAccess projects.";
+    exit;
+fi
+
+export Directory=$PWD
+
+dotnet build /HolismDotNet/Infra/Generation
+
+cd /HolismDotNet/Infra/Generation
+
+dotnet run $Directory $Organization $OrganizationPrefix $Repository 
