@@ -1,4 +1,4 @@
-function IsReactSite() {
+function IsNext() {
     if [ -d "pages" ]; then
         return 0;
     else 
