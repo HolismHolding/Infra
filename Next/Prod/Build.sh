@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/React/Site/GetHolismReactSite.sh
+. /HolismHolding/Infra/Next/GetHolismReactSite.sh
 
 function CopyHolismHoldingInfra() {
     echo "Copying holding base ...";
@@ -27,13 +27,13 @@ function CopySite() {
     cp -r /$Organization/$Repository /Build/$Organization/
 }
 
-function BuildReactSite() {
+function BuildNext() {
     echo "Building site ..."
     GetHolismReactSite
     CopyHolismHoldingInfra
     CopyHolismReactSite
     CopySite
     Dockerfile=/Build/Dockerfile
-    envsubst < /HolismHolding/Infra/React/Site/Prod/Dockerfile > $Dockerfile
+    envsubst < /HolismHolding/Infra/Next/Prod/Dockerfile > $Dockerfile
     docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
 }

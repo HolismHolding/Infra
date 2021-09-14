@@ -23,7 +23,7 @@ function SetupReactPanel() {
     ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposePath)
     CreateBuildDirectory
-    envsubst < /HolismHolding/Infra/React/Panel/Dev/DockerCompose.yml > $ComposePath
+    envsubst < /HolismHolding/Infra/React/Dev/DockerCompose.yml > $ComposePath
     sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposePath
     sed -i "s/*/\//g" $ComposePath
     echo "Using docker-compose file => $ComposePath"

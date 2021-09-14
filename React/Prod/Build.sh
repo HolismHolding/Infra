@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/React/Panel/GetHolismReactInfra.sh
+. /HolismHolding/Infra/React/GetHolismReactInfra.sh
 
 function CopyHolismHoldingInfra() {
     echo "Copying holding infra ...";
@@ -34,6 +34,6 @@ function BuildReactPanel() {
     CopyHolismReactInfra
     CopyPanel
     Dockerfile=/Build/Dockerfile
-    envsubst < /HolismHolding/Infra/React/Panel/Prod/Dockerfile > $Dockerfile
+    envsubst < /HolismHolding/Infra/React/Prod/Dockerfile > $Dockerfile
     docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
 }
