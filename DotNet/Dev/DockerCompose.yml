@@ -60,6 +60,8 @@ services:
         container_name: ${Organization}${Repository}MariaDb
         ports:
             - 3306:3306
+        logging:
+            driver: none
         environment:
             - MARIADB_ROOT_PASSWORD=2TBE9tN4Y5jM3Mvxjr5T
             - MYSQL_DATABASE=accounts
