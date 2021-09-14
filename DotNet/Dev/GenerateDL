@@ -22,18 +22,18 @@ function GenerateDL() {
 
     Directory=$PWD
 
-    # if [ ! -f /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
+    # if [ ! -f /HolismDotNet/Infra/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
     # fi
-    # if [ ! -f /HolismDotNet/Framework/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll ]; then
+    # if [ ! -f /HolismDotNet/Infra/DataAccessGenerator/bin/Holism.DataAccessGenerator.dll ]; then
     # fi
 
-    dotnet build /HolismDotNet/Framework/DataAccessGenerator
-    dotnet build /HolismDotNet/Framework/ModelGenerator
+    dotnet build /HolismDotNet/Infra/DataAccessGenerator
+    dotnet build /HolismDotNet/Infra/ModelGenerator
 
-    cd /HolismDotNet/Framework/DataAccessGenerator
+    cd /HolismDotNet/Infra/DataAccessGenerator
     dotnet run $Directory $Organization $OrganizationPrefix $Repository 
    
-    cd /HolismDotNet/Framework/ModelGenerator
+    cd /HolismDotNet/Infra/ModelGenerator
     dotnet run $Directory $Organization $OrganizationPrefix $Repository 
 
 }

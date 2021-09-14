@@ -7,7 +7,7 @@ function CopyHoldingBase() {
 function CopyDotNetBase() {
     echo "Copying dot net base ...";
     mkdir /Build/HolismDotNet
-    cp -r /HolismDotNet/Framework /Build/HolismDotNet/Framework
+    cp -r /HolismDotNet/Infra /Build/HolismDotNet/Infra
     cp -r /HolismDotNet/Accounts /Build/HolismDotNet/Accounts
 }
 

@@ -4,13 +4,13 @@
 
 function GenerateModels() {
     #dotnet build $PWD
-    if [ ! -f /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
-        dotnet build /HolismDotNet/Framework/ModelGenerator
+    if [ ! -f /HolismDotNet/Infra/ModelGenerator/bin/Holism.ModelGenerator.dll ]; then
+        dotnet build /HolismDotNet/Infra/ModelGenerator
     fi
-    cp $PWD/ConnectionStrings.json /HolismDotNet/Framework/ModelGenerator/bin
+    cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/ModelGenerator/bin
 
     echo "Generating models for $database";
-    dotnet /HolismDotNet/Framework/ModelGenerator/bin/Holism.ModelGenerator.dll $PWD $Organization $OrganizationPrefix $Repository
+    dotnet /HolismDotNet/Infra/ModelGenerator/bin/Holism.ModelGenerator.dll $PWD $Organization $OrganizationPrefix $Repository
     echo -e '\033[0;31m'"Wait for all responses! They will be shown, though this command seems to be finished";
 }
 

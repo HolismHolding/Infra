@@ -13,7 +13,7 @@ services:
             - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
-            - /HolismDotNet/Framework:/HolismDotNet/Framework
+            - /HolismDotNet/Infra:/HolismDotNet/Infra
             - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
             - "$RandomPort:5000"
