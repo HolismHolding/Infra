@@ -3,20 +3,25 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
-. /HolismHolding/Infra/React/IsReact.sh
-. /HolismHolding/Infra/React/Setup.sh
-. /HolismHolding/Infra/DotNet/IsDotNet.sh
-. /HolismHolding/Infra/DotNet/Dev/Setup.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
 . /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
 
+. /HolismHolding/Infra/React/IsReact.sh
+. /HolismHolding/Infra/React/Dev/Setup.sh
+
+. /HolismHolding/Infra/Next/IsNext.sh
+. /HolismHolding/Infra/Next/Dev/Setup.sh
+
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
+. /HolismHolding/Infra/DotNet/Dev/Setup.sh
+
 # package & app = module & host = reusable & runnable
 
 sudo echo "Holding setup"
-if ! (IsReact || IsDotNet); then
+if ! (IsReact || IsNext || IsDotNet); then
     echo "Project type = Unknown"
     exit 1
 fi
@@ -29,8 +34,10 @@ CreateCertificate
 SetupNginxAndLocalDns &
 CleanDocker
 
-if IsReact $1; then
-    SetupReact
+if IsNext $1; then
+    SetupNext
+elif IsReact $1; then
+    SetupReact;
 elif IsDotNet $1; then
     SetupDotNet
 else

@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/React/Site/GetHolismReactSite.sh
+. /HolismHolding/Infra/Next/GetHolismReactSite.sh
 
 function PullNextDevDockerImage() {
     echo 'Pulling docker image holism/next-dev:latest'
@@ -13,13 +13,13 @@ function CreateBuildDirectory() {
     fi
 }
 
-function SetupReactSite() {
+function SetupNext() {
     echo "Seting up site"
     GetHolismReactSite
     PullNextDevDockerImage
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
-    envsubst < /HolismHolding/Infra/React/Site/Dev/Runnable.yml > $ComposeFile
+    envsubst < /HolismHolding/Infra/Next/Dev/Runnable.yml > $ComposeFile
     docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
 }

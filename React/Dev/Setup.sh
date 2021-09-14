@@ -1,4 +1,4 @@
-. /HolismHolding/Infra/React/Panel/GetHolismReactInfra.sh
+. /HolismHolding/Infra/React/GetHolismReactInfra.sh
 
 function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'

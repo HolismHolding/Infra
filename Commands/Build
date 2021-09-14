@@ -3,19 +3,31 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
+
+. /HolismHolding/Infra/Next/IsNext.sh
+. /HolismHolding/Infra/Next/Prod/Build.sh
+
 . /HolismHolding/Infra/React/IsReact.sh
-. /HolismHolding/Infra/React/Build.sh
+. /HolismHolding/Infra/React/Prod/Build.sh
+
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/DotNet/Prod/Build.sh
 
 # package & app = module & host = reusable & runnable
 
 sudo echo "Holding build"
+if ! (IsReact || IsNext || IsDotNet); then
+    echo "Project type = Unknown"
+    exit 1
+fi
+
 ExtractAndExportData
 CreateTempDirectories
 
-if IsReact $1; then
-    BuildReact
+if IsNext $1; then
+    BuildNext
+elif IsReact $1; then
+    BuildReact;
 elif IsDotNet $1; then
     BuildDotNet
 else

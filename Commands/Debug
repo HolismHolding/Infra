@@ -3,18 +3,19 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
-. /HolismHolding/Infra/React/Site/IsReactSite.sh
-. /HolismHolding/Infra/Next/Debug.sh
-. /HolismHolding/Infra/DotNet/IsDotNet.sh
-. /HolismHolding/Infra/DotNet/Debug/Debug.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
 . /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
 
+. /HolismHolding/Infra/Next/IsNext.sh
+. /HolismHolding/Infra/Next/Debug/Debug.sh
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
+. /HolismHolding/Infra/DotNet/Debug/Debug.sh
+
 sudo echo "Start debug"
-if ! (IsReactSite || IsDotNet); then
+if ! (IsNext || IsDotNet); then
     echo "Project type = Unknown"
     exit 1
 fi
@@ -28,8 +29,8 @@ CreateCertificate
 SetupNginxAndLocalDns &
 CleanDocker
 
-if IsReactSite $1; then
-    DebugSite
+if IsNext $1; then
+    DebugNext
 elif IsDotNet $1; then
     DebugDotNet
 else
