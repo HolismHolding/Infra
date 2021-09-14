@@ -13,7 +13,7 @@ function CreateBuildDirectory() {
     fi
 }
 
-function SetupReactPanel() {
+function SetupReact() {
     GetHolismReactInfra &
     PullReactDockerImage
     volumes=""

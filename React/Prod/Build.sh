@@ -27,7 +27,7 @@ function CopyPanel() {
     cp -r /$Organization/$Repository /Build/$Organization/
 }
 
-function BuildReactPanel() {
+function BuildReact() {
     echo "Building panel ..."
     GetHolismReactInfra
     CopyHolismHoldingInfra
