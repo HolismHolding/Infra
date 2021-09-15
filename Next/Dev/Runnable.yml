@@ -8,7 +8,7 @@ services:
         working_dir: ${RepositoryPath}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
-            - /HolismReact/Site:/HolismReact/Site
+            - /HolismNext/Infra:/HolismNext/Infra
             - ${RepositoryPath}/components:${RepositoryPath}/components
             - ${RepositoryPath}/contents:${RepositoryPath}/contents
             - ${RepositoryPath}/pages:${RepositoryPath}/pages
@@ -19,7 +19,7 @@ services:
         command: >
             sh -c
             "
-            cp -a /HolismReact/Site/. .
+            cp -a /HolismNext/Infra/. .
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
             && npm run dev &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"

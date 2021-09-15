@@ -1,3 +1,4 @@
+. /HolismHolding/Infra/React/CreateHolismReactDirectory.sh
 . /HolismHolding/Infra/React/GetHolismReactInfra.sh
 
 function CopyHolismHoldingInfra() {
@@ -29,6 +30,7 @@ function CopyPanel() {
 
 function BuildReact() {
     echo "Building panel ..."
+    CreateHolismReactDirectory
     GetHolismReactInfra
     CopyHolismHoldingInfra
     CopyHolismReactInfra

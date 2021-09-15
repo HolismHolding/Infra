@@ -1,4 +1,5 @@
-. /HolismHolding/Infra/Next/GetHolismReactSite.sh
+. /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
+. /HolismHolding/Infra/Next/GetHolismNextInfra.sh
 
 function PullNextDevDockerImage() {
     echo 'Pulling docker image holism/next-dev:latest'
@@ -15,7 +16,8 @@ function CreateBuildDirectory() {
 
 function SetupNext() {
     echo "Seting up site"
-    GetHolismReactSite
+    CreateHolismNextDirectory
+    GetHolismNextInfra
     PullNextDevDockerImage
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)

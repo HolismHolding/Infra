@@ -1,3 +1,4 @@
+. /HolismHolding/Infra/React/CreateHolismReactDirectory.sh
 . /HolismHolding/Infra/React/GetHolismReactInfra.sh
 
 function PullReactDockerImage() {
@@ -14,6 +15,7 @@ function CreateBuildDirectory() {
 }
 
 function SetupReact() {
+    CreateHolismReactDirectory
     GetHolismReactInfra &
     PullReactDockerImage
     volumes=""
