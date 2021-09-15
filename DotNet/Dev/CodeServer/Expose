@@ -1,4 +1,0 @@
-sed -i.bak 's/cert: false/cert: true/' ~/.config/code-server/config.yaml \
-&& sed -i.bak 's/bind-addr: 127.0.0.1:8080/bind-addr: 0.0.0.0:443/' ~/.config/code-server/config.yaml \
-&& setcap cap_net_bind_service=+ep /usr/lib/code-server/lib/node \
-&& systemctl restart code-server@$USER
