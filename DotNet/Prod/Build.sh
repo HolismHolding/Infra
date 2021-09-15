@@ -1,8 +1,4 @@
-function CopyHoldingBase() {
-    echo "Copying holding base ...";
-    mkdir /Build/HolismHolding
-    cp -r /HolismHolding/Infra /Build/HolismHolding/Infra
-}
+. /HolismHolding/Infra/Scripts/CopyHolismHoldingInfraForBuild.sh
 
 function CopyDotNetBase() {
     echo "Copying dot net base ...";
@@ -58,7 +54,7 @@ function BuildImage() {
 }
 
 function BuildDotNet() {
-    CopyHoldingBase
+    CopyHolismHoldingInfraForBuild
     CopyDotNetBase
     CopyDependencies
     CopyRepository

@@ -1,21 +1,13 @@
 . /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
-
-function CopyHolismHoldingInfra() {
-    echo "Copying holding base ...";
-    if [ -d "/Build/HolismHolding" ]; then
-        sudo rm -rf /Build/HolismHolding
-    fi
-    mkdir -p /Build/HolismHolding
-    cp -r /HolismHolding/Infra /Build/HolismHolding/Infra
-}
+. /HolismHolding/Infra/Scripts/CopyHolismHoldingInfraForBuild.sh
 
 function CopyHolismNextInfra() {
     echo "Copying site base ...";
-    if [ -d "/Build/HolismReact" ]; then
-        sudo rm -rf /Build/HolismReact
+    if [ -d "/Build/HolismNext" ]; then
+        sudo rm -rf /Build/HolismNext
     fi
-    mkdir -p /Build/HolismReact
+    mkdir -p /Build/HolismNext
     cp -r /HolismNext/Infra /Build/HolismNext/Infra
 }
 
@@ -32,7 +24,7 @@ function BuildNext() {
     echo "Building site ..."
     CreateHolismNextDirectory
     GetHolismNextInfra
-    CopyHolismHoldingInfra
+    CopyHolismHoldingInfraForBuild
     CopyHolismNextInfra
     CopySite
     Dockerfile=/Build/Dockerfile

@@ -23,6 +23,7 @@ fi
 
 ExtractAndExportData
 CreateTempDirectories
+GetHolismHoldingInfra
 
 if IsNext $1; then
     BuildNext
