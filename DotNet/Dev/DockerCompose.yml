@@ -13,6 +13,7 @@ services:
             - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
+            - /LocalSecrets:/LocalSecrets
             - /HolismDotNet/Infra:/HolismDotNet/Infra
             - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
         ports: 
