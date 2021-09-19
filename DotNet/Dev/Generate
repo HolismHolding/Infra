@@ -24,4 +24,11 @@ cd /HolismDotNet/Infra/Generation
 
 dotnet run $Directory $Organization $OrganizationPrefix $Repository 
 
-sudo chmod -R 777 $Directory
+prompt=$(sudo -nv 2>&1)
+if [ $? -eq 0 ]; then
+    sudo chmod -R 777 $Directory
+elif echo $prompt | grep -q '^sudo:'; then
+    sudo chmod -R 777 $Directory
+else
+    chmod -R 777 $Directory
+fi
