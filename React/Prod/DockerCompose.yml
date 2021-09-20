@@ -1,0 +1,10 @@
+version: "3.0"
+services:
+  panel:
+    image: ghcr.io/organization/repository:latest
+    container_name: OrganizationRepository
+    ports: 
+      - 3000:3000
+    restart: always
+    
+
