@@ -44,6 +44,11 @@ function RemvoeGits() {
     find /Build -type d -name ".git" | xargs sudo rm -rf
 }
 
+function RemoveLocalSecrets() {
+    echo "Removing local secrets"
+    find . | grep LocalSecrets | xargs sudo rm -rf
+}
+
 function CopyDockerFile() {
     export Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/DotNet/Prod/Dockerfile > $Dockerfile
@@ -60,6 +65,7 @@ function BuildDotNet() {
     CopyRepository
     RemoveBinsAndObjs
     RemvoeGits
+    RemoveLocalSecrets
     CopyDockerFile
     BuildImage
 }
