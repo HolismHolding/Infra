@@ -1,0 +1,10 @@
+docker run --rm --interactive --tty\
+    redgate/sqlcompare:14 /IAgreeToTheEULA \
+    /s1:192.168.1.158 /db1:Accounts /u1:SA /p1:pass \
+    /s2:freya.center /db2:Accounts /u2:SA /p2:pass
+    
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P pass -d master
+
+https://documentation.red-gate.com/sc/using-the-command-line/command-line-basics
+
+ip address
