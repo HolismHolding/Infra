@@ -64,3 +64,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # docker usage stats
 `docker system df`
+
+# tar unzip
+`tar -xf archive.tar.gz`

@@ -1,0 +1,9 @@
+create a crontab for organization:
+
+0 10 * * * /Organization/Backup.sh
+
+---
+
+In Backup.sh write this script:
+
+azcopy copy /Organization "https://organization.blob.core.windows.net/backup/?sas" --recursive=true
