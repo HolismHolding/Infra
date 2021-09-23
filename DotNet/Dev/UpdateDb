@@ -1,0 +1,9 @@
+#!/bin/bash
+
+find $PWD -name Database.json 2>&- | 
+
+while read projectDatabase; do
+    parent=$(dirname $projectDatabase);
+    cd $parent
+    Generate  
+done
