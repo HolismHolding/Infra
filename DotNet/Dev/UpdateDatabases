@@ -1,0 +1,29 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+
+ExtractAndExportData
+
+red=`tput setaf 1`
+green=`tput setaf 2`
+reset=`tput sgr0`
+
+if [ ! -f "$PWD/Dependencies" ]; then
+    echo -e '\033[0;31m'"Can't find the file Dependencies";
+    return;
+fi
+
+dotnet build /HolismDotNet/Infra/Generation
+cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
+
+while read Dependency; do  
+    Org=$(echo $Dependency | cut -d'/' -f1)
+    Repo=$(echo $Dependency | cut -d'/' -f2)
+
+    if [ ! -f "/$Org/$Repo/Database.json" ]; then
+        echo "${red}not found Database.json for $Org/$Repo${reset}";
+    else 
+        #echo "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
+        dotnet /HolismDotNet/Infra/Generation/bin/Holism.Generation.dll "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
+    fi
+done <<< "$({ cat "$PWD/Dependencies"; echo; })"
