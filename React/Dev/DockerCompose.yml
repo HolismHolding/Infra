@@ -8,6 +8,7 @@ services:
         working_dir: ${RepositoryPath}
         volumes:
             - /Temp${RepositoryPath}/Build:${RepositoryPath}/build
+            - /HolismHolding:/HolismHolding
             - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
             - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
@@ -32,7 +33,7 @@ services:
             sh -c
             "
             cd ${RepositoryPath}
-            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismHolding/Infra/node_modules ${RepositoryPath}; fi
+            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismReact/Infra/node_modules ${RepositoryPath}; fi
             && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && npm start &
             tail -f /dev/null

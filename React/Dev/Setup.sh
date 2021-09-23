@@ -23,7 +23,6 @@ function SetupReact() {
     volumes=""
     GetDependencies volumes
     echo -e $volumes
-    return;
 
     ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposePath)
