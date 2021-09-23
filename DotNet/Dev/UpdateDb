@@ -1,10 +1,23 @@
 #!/bin/bash
+    echo "Getting dependencies";
+    if [ ! -f "$PWD/Dependencies" ]; then
+        echo "There Isn't Dependency"
+        return;
+    fi
 
-# find $PWD -name Database.json 2>&- | 
-
-# while read projectDatabase; do
-#     parent=$(dirname $projectDatabase);
-#     cd $parent
-#     Generate  
-#     dotnet build
-# done
+    while read Dependency; do  
+    
+        Org=$(echo $Dependency | cut -d'/' -f1)
+        Repo=$(echo $Dependency | cut -d'/' -f2)     
+    
+        if [ -f "/$Org/$Repo/Database.json" ]; then
+            cd /$Org/$Repo
+            Generate  
+            dotnet build               
+        fi
+    
+        if [ ! -f "/$Org/$Repo/Database.json" ]; then        
+            echo "There Isn't Database.json"    
+        fi
+    
+    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
