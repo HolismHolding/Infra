@@ -1,5 +1,6 @@
 . /HolismHolding/Infra/React/CreateHolismReactDirectory.sh
 . /HolismHolding/Infra/React/GetHolismReactInfra.sh
+. /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 
 function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'
@@ -18,9 +19,11 @@ function SetupReact() {
     CreateHolismReactDirectory
     GetHolismReactInfra &
     PullReactDockerImage
+    LinkGitIgnore $PWD
     volumes=""
     GetDependencies volumes
     echo -e $volumes
+    return;
 
     ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposePath)

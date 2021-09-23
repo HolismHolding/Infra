@@ -26,6 +26,8 @@ services:
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
             - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.js
             - ${RepositoryPath}/Routes.js:${RepositoryPath}/src/Routes.jsVolumeMappingPlaceHolder
+        #stdin_open: true # docker run -i
+        #tty: true        # docker run -t
         command: >
             sh -c
             "
