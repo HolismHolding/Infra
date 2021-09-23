@@ -16,7 +16,7 @@ jobs:
 
       - name: Build holism/react-dev
         run: |
-          cd /HolismHolding/Infra/React/Panel/Dev
+          cd /HolismHolding/Infra/React/Dev
           docker build -t holism/react-dev:latest .
       - name: Push holism/react-dev
         run: |
