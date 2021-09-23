@@ -1,9 +1,10 @@
 #!/bin/bash
 
-find $PWD -name Database.json 2>&- | 
+# find $PWD -name Database.json 2>&- | 
 
-while read projectDatabase; do
-    parent=$(dirname $projectDatabase);
-    cd $parent
-    Generate  
-done
+# while read projectDatabase; do
+#     parent=$(dirname $projectDatabase);
+#     cd $parent
+#     Generate  
+#     dotnet build
+# done
