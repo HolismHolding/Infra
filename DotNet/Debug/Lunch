@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/FreyaCenter.StylistApi.Api.dll",
+            "program": "${workspaceFolder}/bin/FreyaCenter.AdminApi.Api.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
