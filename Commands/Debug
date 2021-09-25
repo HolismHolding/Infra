@@ -16,6 +16,10 @@
 . /HolismHolding/Infra/DotNet/Debug/Debug.sh
 
 sudo echo "Start debug"
+if [ $PWD = '/' ]; then
+    echo "You are in the root directory. Run Debug from inside a project's directory.";
+    exit;
+fi
 if ! (IsNext || IsDotNet); then
     echo "Project type = Unknown"
     exit 1

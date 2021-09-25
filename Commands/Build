@@ -18,6 +18,10 @@
 # package & app = module & host = reusable & runnable
 
 sudo echo "Holding build"
+if [ $PWD = '/' ]; then
+    echo "You are in the root directory. Run Build from inside a project's directory.";
+    exit;
+fi
 if ! (IsReact || IsNext || IsDotNet); then
     echo "Project type = Unknown"
     exit 1
