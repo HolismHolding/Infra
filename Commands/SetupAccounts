@@ -4,6 +4,7 @@
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
+. /HolismHolding/Infra/Scripts/CleanDocker.sh
 
 sudo echo "Setting accounts up ..."
 export Organization="HolismHolding"
@@ -21,6 +22,7 @@ CreateTempDirectories
 GetRandomPort
 CreateCertificate
 SetupNginxAndLocalDns
+CleanDocker
 ComposeFile=/Temp/HolismAccounts/Accounts/DockerCompose.yml
 mkdir -p $(dirname $ComposeFile)
 envsubst < /HolismHolding/Infra/Accounts/DockerCompose.yml > $ComposeFile

@@ -11,6 +11,13 @@ server {
     ssl_certificate /Temp/$Organization/$Repository/Certificate.pem;
     ssl_certificate_key /Temp/$Organization/$Repository/Key.pem;
 
+    error_page 502 /502.html;
+
+    location /502 {
+    	root /HolismHolding/Infra/Nginx;
+    	internal;
+    }
+
     location / {
         proxy_pass http://localhost:$RandomPort;
         proxy_set_header X-Forwarded-Host  $host;
