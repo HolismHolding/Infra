@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# build = deploy = publish
+
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh

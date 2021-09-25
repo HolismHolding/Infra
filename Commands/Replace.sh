@@ -1,1 +1,0 @@
-grep -rl $1 $PWD | xargs sed -i 's/$1/string2/g'

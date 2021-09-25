@@ -1,3 +1,5 @@
+#!/bin/bash
+
 sudo rm -rf /Temp
 sudo rm -rf /etc/nginx/conf.d/*.*
 sudo rm -rf /Build
