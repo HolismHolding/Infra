@@ -1,7 +1,9 @@
 
 red=`tput setaf 1`
 green=`tput setaf 2`
+cyan=`tput setaf 6`
 reset=`tput sgr0`
+
 if [ ! -f "$PWD/Dependencies" ]; then
     echo -e '\033[0;31m'"Can't find the file Dependencies";
     return;
@@ -14,10 +16,10 @@ while read Dependency; do
 
     Org=$(echo $Dependency | cut -d'/' -f1)
     Repo=$(echo $Dependency | cut -d'/' -f2)
-    echo  "${green} $Org/$Repo${reset}";
+    echo -e "${cyan} ${Org} ${Repo} ${reset}"
     dotnet build /$Org/$Repo
 
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 
-echo  "${green} $PWD{reset}";
+echo  "${cyan} $PWD ${reset}";
 dotnet build $PWD
