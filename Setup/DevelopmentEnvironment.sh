@@ -81,6 +81,7 @@ function InstallDocker()
     # newgrp docker
     # sudo groupadd docker
     # sudo usermod -aG docker ${USER} restrat
+    # sudo usermod -aG docker $USER
 
     Write "Installed Docker"
 }
@@ -114,6 +115,7 @@ function InstallNginx()
     Write "Installing Nginx ..."
 
     sudo apt install nginx -y
+    sudo nginx -v
 
     Write "Installed Nginx"
 }
@@ -154,6 +156,19 @@ function InstallTelnet()
     Write "Installed Telnet"
 }
 
+function InstallAzureDataStudio()
+{
+    Write "Installing Azure Data Studio ..."
+
+    wget https://go.microsoft.com/fwlink/?linkid=2169956
+    mv index.html\?linkid\=2169956 ads.deb
+    sudo apt install ./ads.deb -y
+
+    # If not connecting => [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
+
+    Write "Installed Azure Data Studio"
+}
+
 function InstallVpn()
 {
     Write "Creating VPN ..."
@@ -171,3 +186,7 @@ InstallNginx
 InstallMkcert
 InstallMicro
 InstallTelnet
+InstallAzureDataStudio
+
+sudo apt install rename
+sudo apt-get install -y baobab

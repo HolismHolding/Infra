@@ -30,17 +30,17 @@
     - Computer name
       - YourNamePc or YourNameLaptop
     - **DO NOT** set up **Livepatch**
-        - Hit **Next**
+      - Hit **Next**
     - **DO NOT** help Ubuntu
-        - Select **No, don't send system info**
+      - Select **No, don't send system info**
     - Privacy (Location Services)
-        - Up to you
+      - Up to you
     - Remove everything from the left bar
     - **DO NOT** install any other language
     - Change culture
-        - Settings
-        - Region & Language
-        - English (United States)
+      - Settings
+      - Region & Language
+      - English (United States)
     - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
 - `sudo mkdir /Temp`
@@ -50,61 +50,62 @@
 - `sudo ./DevelopmentEnvironment.sh`
 
 - **DO NOT** install any other extension on VS Code
-    - In case you need something, talk to the team
+  - In case you need something, talk to the team
 
 * Software
 
-  - Git
-
-    - Only 2.31.1
-    - Only from https://git-scm.com/downloads
-    - Setup to not detect `chmod` commands
-      - `git config core.fileMode false`
-
-  - VS Code (any version above 1.56.2)
-    - Must install [Grammarly (unofficial)](https://marketplace.visualstudio.com/items?itemName=znck.grammarly&ssr=false#overview) extension
-    - Must install [Docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker) extension
-    - Must install [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp) extension
-  - Docker
-    - Only from [docker.com](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) and using `apt` repository
-    - Must be accompanied by [composer](https://docs.docker.com/compose/install/)
-    - Must add your user to docker group
-      - `sudo usermod -aG docker **your_user_name**`
-      - Get your user name using `whoami` command
   - Fiddler Everywhere
+
     - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
       - Make executable
         - `sudo chmod +x filename.AppImage`
       - Double click to run
     - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
       - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
-  - Azure Data Studio
-    - If not connecting, [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
-  - Nginx
-    - `sudo apt-get update`
-    - `sudo apt-get install nginx`
-    - verify the installation => `sudo nginx -v`
-  - rename
-    - `sudo apt install rename`
-  - baobab
-    - `sudo apt-get install -y baobab`
+
+  - Git - Generate keys and add your public key to GitHub - Open terminal - ssh-keygen -t ed25519 -C "pourmand2010@gmail.com" - Enter 3 times - Accept default filename - Empty password - Empty password, again - GitHub - Settings - SSH and GPG keys - New SSH Key - Copy/paste your public key there - Using Files - Go to the home folder - Show hidden files - .ssh folder - id_ed25519.pub - Right-click, open with the Text Editor, then copy - Introduce yourself to git - `git config --global user.email "your-email-of-github-here"` - `git config --global user.name "your name here"`
+    Docker
+    Compose
+    In case of permission denied
+    Run commands from here
+  - Configuration
+    - Add these to favorites, in order
+      - Files
+      - Chrome
+      - VS Code
+      - Terminal
+      - Azure Data Studio
+  - Chrome
+    - Make default
+      - On the first run, it asks for it
+    - Do not send crash reports
+    - Sign in
+    - Extensions
+      - JSONView
+      - Grammarly
+      - React Developer Tools
+  - VS Code
+    - Word wrap
+      - Files => Preferences => Settings
+      - Search for “word wrap”
+      - Select “on” from the dropdown
+  - Keyboard
+    - Settings
+      - Universal access
+      - Typing
+      - Repeat keys
+      - Delay = almost 10%
+      - Speed = almost 60%
 
 * Development
   - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,  
     `mkdir /HolismHolding`.
-    - Make sure the name maps the URL segment or the company name - Use [snake-casing](https://en.wikipedia.org/wiki/Snake_case) for naming
+    - Make sure the name maps the URL segment or the company name
   - Give that folder full permission so that all applications would work without bothering your development with `sudo` stuff:  
     `sudo chmod -R 777 /HolismHolding`
-  - Download the "company-wide" git bash file, to pull and push all repositories of a company in one step (without messages)
   - Only [use SSH to connect to GitHub](https://www.freecodecamp.org/news/how-to-fix-git-always-asking-for-user-credentials/).
-  - For each project
-    - `cd` into project's directory
-    - `./setup`
-      - Better to find a way to simply run `setup`
-    - `./serve`
-      - Better to find a way to simply run `serve`
 
-<hr />
+---
 
 # Arguments
 
