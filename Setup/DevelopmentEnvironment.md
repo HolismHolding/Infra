@@ -63,7 +63,29 @@
     - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
       - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
 
-  - Git - Generate keys and add your public key to GitHub - Open terminal - ssh-keygen -t ed25519 -C "pourmand2010@gmail.com" - Enter 3 times - Accept default filename - Empty password - Empty password, again - GitHub - Settings - SSH and GPG keys - New SSH Key - Copy/paste your public key there - Using Files - Go to the home folder - Show hidden files - .ssh folder - id_ed25519.pub - Right-click, open with the Text Editor, then copy - Introduce yourself to git - `git config --global user.email "your-email-of-github-here"` - `git config --global user.name "your name here"`
+  - Git 
+    - Restore `.ssh` directory, or
+    - Generate keys and add your public key to GitHub 
+      - Open terminal 
+      - ssh-keygen -t ed25519 -C "your-email" 
+      - Enter 3 times 
+        - Accept default filename 
+        - Empty password 
+        - Empty password, again 
+      - GitHub 
+        - Settings 
+        - SSH and GPG keys 
+        - New SSH Key 
+        - Copy/paste your public key there 
+          - Using Files 
+          - Go to the home folder 
+          - Show hidden files 
+          - .ssh folder 
+          - id_ed25519.pub 
+          - Right-click, open with the Text Editor, then copy 
+    - Introduce yourself to git 
+      - `git config --global user.email "your-email-of-github-here"` 
+      - `git config --global user.name "your name here"`
   - Docker
     - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
   - Configuration

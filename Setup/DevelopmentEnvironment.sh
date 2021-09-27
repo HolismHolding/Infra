@@ -169,6 +169,16 @@ function InstallAzureDataStudio()
     Write "Installed Azure Data Studio"
 }
 
+function RegisterHolismCommands()
+{
+    Write "Registering Holism Commands ..."
+
+    sudo chmod 777 /etc/bash.bashrc
+    sudo echo 'PATH="${PATH}:/HolismHolding/Infra/Commands"' >> /etc/bash.bashrc
+
+    Write "Registered Holism Commands"
+}
+
 function InstallVpn()
 {
     Write "Creating VPN ..."
@@ -187,6 +197,7 @@ InstallMkcert
 InstallMicro
 InstallTelnet
 InstallAzureDataStudio
+RegisterHolismCommands
 
 sudo apt install rename
 sudo apt-get install -y baobab
