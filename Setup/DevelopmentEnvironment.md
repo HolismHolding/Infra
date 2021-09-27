@@ -43,7 +43,14 @@
         - English (United States)
     - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
-- Run DevelopmentEnvironment.sh
+- `sudo mkdir /Temp`
+- `sudo chmod 777 /Temp`
+- `cd /Temp`
+- `wget https://raw.githubusercontent.com/HolismHolding/Infra/main/Setup/DevelopmentEnvironment.sh`
+- `sudo ./DevelopmentEnvironment.sh`
+
+- **DO NOT** install any other extension on VS Code
+    - In case you need something, talk to the team
 
 * Software
 
