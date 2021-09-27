@@ -169,6 +169,18 @@ function InstallAzureDataStudio()
     Write "Installed Azure Data Studio"
 }
 
+function InstallBeyondCompare()
+{
+    Write "Installing Beyond Compare ..."
+
+    wget https://www.scootersoftware.com/bcompare-4.4.0.25886_amd64.deb
+    sudo apt-get update
+    sudo apt-get install gdebi-core -y
+    sudo gdebi bcompare-4.4.0.25886_amd64.deb -y
+
+    Write "Installed Beyond Compare"
+}
+
 function RegisterHolismCommands()
 {
     Write "Registering Holism Commands ..."
@@ -182,6 +194,9 @@ function RegisterHolismCommands()
 function InstallVpn()
 {
     Write "Creating VPN ..."
+    # sudo apt install openconnect
+    # micro /Vpn
+    # printf 'username\npassword' | sudo openconnect vpn-server-address
 }
 
 Write "Holism Holding Installation"
@@ -197,6 +212,7 @@ InstallMkcert
 InstallMicro
 InstallTelnet
 InstallAzureDataStudio
+InstallBeyondCompare
 RegisterHolismCommands
 
 sudo apt install rename

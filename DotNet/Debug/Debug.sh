@@ -6,6 +6,7 @@
 . /HolismHolding/Infra/Scripts/GetDotNetInfra.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Scripts/GetDependencies.sh
+. /HolismHolding/Infra/DotNet/LinkLocalSecrets
 
 function LinkDevContainer() {
     
@@ -56,6 +57,7 @@ function DebugDotNet() {
     GetDependencies volumes
     echo -e $volumes
     LinkGitIgnore $PWD
+    LinkLocalSecrets
     # PullDotNetDockerImage    echo "DotNet, runnable|host|app"
     LinkDevContainer
     LinkVSCodeFiles
