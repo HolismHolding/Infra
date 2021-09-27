@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P lksU2o412f7tBj58t07B -d master
