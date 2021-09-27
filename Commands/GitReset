@@ -1,0 +1,20 @@
+#!/bin/bash
+
+find / -type d -name .git 2>&- | 
+while read gitFolder; do
+    if [[ $gitFolder == *"/Temp/"* ]]; then
+        continue;
+    fi
+    if [[ $gitFolder == *"/Trash/"* ]]; then
+        continue;
+    fi
+    if [[ $gitFolder == *"/opt/"* ]]; then
+        continue;
+    fi
+    parent=$(dirname $gitFolder);
+    echo "";
+    echo $parent;
+    git -C $parent reset --hard && echo "Reset $parent is done" &
+done 
+
+# https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
