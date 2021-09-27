@@ -4,13 +4,12 @@
 . /HolismHolding/Infra/Scripts/GetDotNetAccounts.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Scripts/GetDependencies.sh
-
+. /HolismHolding/Infra/DotNet/LinkLocalSecrets
 
 function PullDotNetDockerImage() {
     echo 'Pulling docker image holism/dotnet-dev:latest'
     docker pull holism/dotnet-dev:latest
 }
-
 
 function SetupDotNet() {
     echo ".NET"
@@ -20,6 +19,7 @@ function SetupDotNet() {
     GetDependencies volumes
     echo -e $volumes
     LinkGitIgnore $PWD
+    LinkLocalSecrets
     PullDotNetDockerImage
     echo "DotNet, runnable|host|app"
     ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
