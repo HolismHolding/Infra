@@ -75,8 +75,83 @@ function InstallDocker()
 
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+    sudo docker run hello-world
+
+    # sudo gpasswd -a $USER docker
+    # newgrp docker
+    # sudo groupadd docker
+    # sudo usermod -aG docker ${USER} restrat
 
     Write "Installed Docker"
+}
+
+function InstallDockerCompose()
+{
+    Write "Installing Docker Compose ..."
+
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+    sudo chmod +x /usr/local/bin/docker-compose
+    docker-compose --version
+
+    Write "Installed Docker Compose"
+}
+
+function InstallAnydesk()
+{
+    Write "Installing AnyDesk ..."
+
+    wget -qO - https://keys.anydesk.com/repos/DEB-GPG-KEY | sudo apt-key add -
+    echo "deb http://deb.anydesk.com/ all main" | sudo tee /etc/apt/sources.list.d/anydesk-stable.list
+    sudo apt update
+    sudo apt install anydesk -y
+
+    Write "Installed AnyDesk"
+}
+
+function InstallNginx()
+{
+    Write "Installing Nginx ..."
+
+    sudo apt install nginx -y
+
+    Write "Installed Nginx"
+}
+
+function InstallMkcert()
+{
+    Write "Installing Mkcert ..."
+
+    sudo apt install libnss3-tools
+    wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v1.4.3-linux-amd64
+    sudo cp mkcert-v1.4.3-linux-amd64 /usr/local/bin/mkcert
+    sudo chmod +x /usr/local/bin/mkcert
+    mkcert -install
+
+    Write "Installed Mkcert"
+}
+
+function InstallMicro()
+{
+    Write "Installing Micro ..."
+
+    cd /usr/local/bin
+    curl https://getmic.ro | bash
+
+    # or
+    # wget https://github.com/zyedidia/micro/releases/download/v2.0.10/micro-2.0.10-amd64.deb
+    # sudo apt install ./micro-2.0.10-amd64.deb
+
+    Write "Installed Micro"
+}
+
+function InstallTelnet()
+{
+    Write "Installing Telnet ..."
+
+    sudo apt-get install telnet -y
+
+    Write "Installed Telnet"
 }
 
 function InstallVpn()
@@ -90,3 +165,9 @@ InstallChrome
 InstallVsCode
 InstallGit
 InstallDocker
+InstallDockerCompose
+InstallAnydesk
+InstallNginx
+InstallMkcert
+InstallMicro
+InstallTelnet
