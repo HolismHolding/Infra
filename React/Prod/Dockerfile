@@ -2,7 +2,7 @@ FROM holism/react-dev:latest as builder
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismReact/Infra /HolismReact/Infra
 COPY ${RepositoryPath} ${RepositoryPath}
-RUN ln -s /HolismHolding/Infra/node_modules ${RepositoryPath}
+RUN ln -s /HolismReact/Infra/node_modules ${RepositoryPath}
 RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p /Temp \
     && cp -a ${RepositoryPath}/. /Temp \
@@ -28,7 +28,7 @@ RUN rm -rf ${RepositoryPath}/.git \
     && cp /HolismReact/Infra/tailwind.config.js ${RepositoryPath} \
     && cp /HolismReact/Infra/package.json ${RepositoryPath} \
     && cp /HolismReact/Infra/package-lock.json ${RepositoryPath}
-RUN find ${RepositoryPath}
+#RUN find ${RepositoryPath}
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
