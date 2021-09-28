@@ -1,0 +1,16 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/CleanDocker.sh
+
+function CreateDatabaseContainer()
+{
+    if [[ $(docker container ls | grep ${Organization}Databases) ]]; then
+        # docker container stop ${Organization}Databases
+        # CleanDocker
+        return;
+    fi
+    ComposeFile=/Temp/$Organization/SqlDockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/SqlServer/Dev/DockerCompose.yml > $ComposeFile
+    docker-compose -p "${Organization}_Databases" -f $ComposeFile up --remove-orphans
+}

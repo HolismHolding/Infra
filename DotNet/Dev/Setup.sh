@@ -5,6 +5,8 @@
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Scripts/GetDependencies.sh
 . /HolismHolding/Infra/DotNet/LinkLocalSecrets
+. /HolismHolding/Infra/DotNet/CreateApiContainer
+. /HolismHolding/Infra/SqlServer/Dev/CreateDatabaseContainer
 
 function PullDotNetDockerImage() {
     echo 'Pulling docker image holism/dotnet-dev:latest'
@@ -21,11 +23,7 @@ function SetupDotNet() {
     LinkGitIgnore $PWD
     LinkLocalSecrets
     PullDotNetDockerImage
-    echo "DotNet, runnable|host|app"
-    ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
-    mkdir -p $(dirname $ComposeFile)
-    envsubst < /HolismHolding/Infra/DotNet/Dev/DockerCompose.yml > $ComposeFile
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
-    sed -i "s/*/\//g" $ComposeFile
-    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+
+    CreateDatabaseContainer
+    CreateApiContainer "Dev"
 }

@@ -7,6 +7,8 @@
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Scripts/GetDependencies.sh
 . /HolismHolding/Infra/DotNet/LinkLocalSecrets
+. /HolismHolding/Infra/DotNet/CreateApiContainer
+. /HolismHolding/Infra/SqlServer/Dev/CreateDatabaseContainer
 
 function LinkDevContainer() {
     
@@ -58,13 +60,10 @@ function DebugDotNet() {
     echo -e $volumes
     LinkGitIgnore $PWD
     LinkLocalSecrets
-    # PullDotNetDockerImage    echo "DotNet, runnable|host|app"
+    PullDotNetDockerImage
     LinkDevContainer
     LinkVSCodeFiles
-    ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
-    mkdir -p $(dirname $ComposeFile)
-    envsubst < /HolismHolding/Infra/DotNet/Debug/DockerCompose.yml > $ComposeFile
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
-    sed -i "s/*/\//g" $ComposeFile
-    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+
+    CreateDatabaseContainer
+    CreateApiContainer "Debug"
 }

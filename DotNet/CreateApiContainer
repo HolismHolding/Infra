@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function CreateApiContainer()
+{
+    ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/DotNet/$1/DockerCompose.yml > $ComposeFile
+    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposeFile
+    sed -i "s/*/\//g" $ComposeFile
+    docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
+}

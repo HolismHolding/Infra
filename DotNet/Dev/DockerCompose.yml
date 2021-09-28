@@ -29,17 +29,11 @@ services:
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "
-        depends_on: 
-            - "database"
         stdin_open: true # docker run -i
         tty: true  # docker run -t
-    database:
-        image: holism/sql-dev:latest
-        container_name: ${Organization}${Repository}Database
-        volumes:
-            - /HolismHolding/Infra:/HolismHolding/Infra
-            - /Temp/${Organization}/Databases:/var/opt/mssql/data
-        ports:
-            - 1433:1433
-        logging:
-            driver: none
+        networks:
+            - ${Organization}Network
+networks:
+    ${Organization}Network:
+        name: ${Organization}Network
+        driver: bridge
