@@ -1,9 +1,9 @@
-      - name: Get ${Organization}/${Repository} using actions/checkout@v2
+      - name: Get ${Org}/${Repo} using actions/checkout@v2
         uses: actions/checkout@v2
         with:
-          repository: ${Organization}/${Repository}
+          repository: ${Org}/${Repo}
           token: ${{ secrets.PAT }}
-          path: ${Organization}/${Repository}
-      - name: Copy ${Organization}/${Repository} to root
+          path: ${Org}/${Repo}
+      - name: Copy ${Org}/${Repo} to root
         run: |
-          cp -r $GITHUB_WORKSPACE/${Organization}/${Repository} /${Organization}/${Repository} 
+          cp -r $GITHUB_WORKSPACE/${Org}/${Repo} /${Org}/${Repo} 

@@ -1,6 +1,6 @@
 function LinkGitIgnore() {
     if [ -f "$1/.gitignore" ]; then
-        echo "Removing old .gitignore ...";
+        #echo "Removing old .gitignore ...";
         sudo rm -rf "$1/.gitignore"
     fi
     if IsNext $1; then
@@ -15,6 +15,6 @@ function LinkGitIgnore() {
     if [ -z ${GitIgnoreSource+x} ]; then
         return;
     fi
-    echo "Creating .gitignore link to $GitIgnoreSource ...";
+    #echo "Creating .gitignore link to $GitIgnoreSource ...";
     sudo ln -s $GitIgnoreSource "$1/.gitignore"
 }

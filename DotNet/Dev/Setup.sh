@@ -13,16 +13,55 @@ function PullDotNetDockerImage() {
     docker pull holism/dotnet-dev:latest
 }
 
+function GetDependenciesActions()
+{
+    echo "Getting dependencies actions";
+    if [ ! -f "$PWD/Dependencies" ]; then
+        return;
+    fi
+    while read Dependency; do  
+
+        Org=$(echo $Dependency | cut -d'/' -f1)
+        Repo=$(echo $Dependency | cut -d'/' -f2)
+
+        Yaml=$(cat /HolismHolding/Infra/DotNet/GetRepositoryAction.yml)
+        DependencyAction=$(envsubst <<< $Yaml)
+
+        DependencyActions="$DependencyActions\n\n$DependencyAction"
+
+    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+}
+
+function CreateGitHubAction()
+{
+    GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
+    mkdir -p $(dirname $GitHubActionPath)
+    export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
+
+    DependencyActions=""
+    GetDependenciesActions DependencyActions
+
+    envsubst < /HolismHolding/Infra/DotNet/GitHubAction.yml > $GitHubActionPath
+    Temp=$(cat $GitHubActionPath)
+
+    echo -e "${Temp/GettingDependenciesRepositoriesPlacholder/"$DependencyActions"}" > $GitHubActionPath 
+
+    echo "Created GitHub action"
+}
+
 function SetupDotNet() {
     echo ".NET"
-    GetDotNetInfra &
-    GetDotNetAccounts &
-    volumes=""
-    GetDependencies volumes
-    echo -e $volumes
-    LinkGitIgnore $PWD
-    LinkLocalSecrets
-    PullDotNetDockerImage
+    # GetDotNetInfra &
+    # GetDotNetAccounts &
+    # volumes=""
+    # GetDependencies volumes
+    # #echo -e $volumes
+    # LinkGitIgnore $PWD
+    # LinkLocalSecrets
+    # PullDotNetDockerImage
+    CreateGitHubAction
+
+    return;
 
     CreateDatabaseContainer
     CreateApiContainer "Dev"
