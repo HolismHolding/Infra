@@ -51,14 +51,14 @@ function CreateGitHubAction()
 
 function SetupDotNet() {
     echo ".NET"
-    # GetDotNetInfra &
-    # GetDotNetAccounts &
-    # volumes=""
-    # GetDependencies volumes
-    # #echo -e $volumes
-    # LinkGitIgnore $PWD
-    # LinkLocalSecrets
-    # PullDotNetDockerImage
+    GetDotNetInfra &
+    GetDotNetAccounts &
+    volumes=""
+    GetDependencies volumes
+    #echo -e $volumes
+    LinkGitIgnore $PWD
+    LinkLocalSecrets
+    PullDotNetDockerImage
     CreateGitHubAction
 
     return;
