@@ -1,0 +1,9 @@
+      - name: Get ${Organization}/${Repository} using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/${Repository}
+          token: ${{ secrets.PAT }}
+          path: ${Organization}/${Repository}
+      - name: Copy ${Organization}/${Repository} to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/${Repository} /${Organization}/${Repository} 
