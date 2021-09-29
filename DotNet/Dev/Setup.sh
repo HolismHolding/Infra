@@ -60,9 +60,6 @@ function SetupDotNet() {
     LinkLocalSecrets
     PullDotNetDockerImage
     CreateGitHubAction
-
-    return;
-
     CreateDatabaseContainer
     CreateApiContainer "Dev"
 }
