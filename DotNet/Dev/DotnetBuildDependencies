@@ -2,6 +2,7 @@
 red=`tput setaf 1`
 green=`tput setaf 2`
 cyan=`tput setaf 6`
+magenta=`tput setaf 5`
 reset=`tput sgr0`
 
 if [ ! -f "$PWD/Dependencies" ]; then
@@ -9,14 +10,27 @@ if [ ! -f "$PWD/Dependencies" ]; then
     return;
 fi
 
- /HolismDotNet/Infra/Generation
+dotnet build /HolismDotNet/Infra/Generation
 cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
+sudo chmod -R 777 $PWD
 
 while read Dependency; do  
-
+    
     Org=$(echo $Dependency | cut -d'/' -f1)
     Repo=$(echo $Dependency | cut -d'/' -f2)
+    
     echo -e "${cyan} ${Org} ${Repo} ${reset}"
+
+    if [ ! -f "/$Org/$Repo/Database.json" ]; then
+        echo "${red}not found Database.json for $Org/$Repo${reset}";
+    else 
+        dotnet /HolismDotNet/Infra/Generation/bin/Holism.Generation.dll "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
+        echo -e "${magenta} ${Org} ${Repo}  database generated  ${reset}"
+    fi
+
+    find /$Org/$Repo -type d -name "bin" | xargs sudo rm -rf
+    find /$Org/$Repo -type d -name "obj" | xargs sudo rm -rf
+    find /$Org/$Repo -type d -name "Packages" | xargs sudo rm -rf
     dotnet build /$Org/$Repo
 
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
