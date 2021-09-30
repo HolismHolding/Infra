@@ -7,6 +7,7 @@ ExtractAndExportData
 red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
+cyan=`tput setaf 6`
 
 if [ ! -f "$PWD/Dependencies" ]; then
     echo -e '\033[0;31m'"Can't find the file Dependencies";
@@ -17,6 +18,7 @@ dotnet build /HolismDotNet/Infra/Generation
 cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
 
 while read Dependency; do  
+    echo "${cyan} ${Org}/${Repo} ${reset}"
     Org=$(echo $Dependency | cut -d'/' -f1)
     Repo=$(echo $Dependency | cut -d'/' -f2)
 

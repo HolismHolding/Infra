@@ -1,3 +1,5 @@
+. /HolismHolding/Infra/React/IsReact.sh
+
 function LinkGitIgnore() {
     if [ -f "$1/.gitignore" ]; then
         #echo "Removing old .gitignore ...";
