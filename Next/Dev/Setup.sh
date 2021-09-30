@@ -14,7 +14,7 @@ function CreateBuildDirectory() {
     fi
 }
 
-function CreateGitHubAction() {
+function CreateGitHubActionForNext() {
     GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
     mkdir -p $(dirname $GitHubActionPath)
     export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
@@ -27,7 +27,7 @@ function SetupNext() {
     CreateHolismNextDirectory
     GetHolismNextInfra
     PullNextDevDockerImage
-    CreateGitHubAction
+    CreateGitHubActionForNext
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
