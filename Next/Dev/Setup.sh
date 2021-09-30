@@ -25,8 +25,8 @@ function CreateGitHubActionForNext() {
 function SetupNext() {
     echo "Seting up site"
     CreateHolismNextDirectory
-    GetHolismNextInfra
-    PullNextDevDockerImage
+    GetHolismNextInfra &
+    PullNextDevDockerImage &
     CreateGitHubActionForNext
     ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
     mkdir -p $(dirname $ComposeFile)

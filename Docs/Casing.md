@@ -44,5 +44,10 @@
             <td>package.json, <br />package-lock.json</td>
             <td>kebab-case</td>
         </tr>
+        <tr>
+            <td>Next</td>
+            <td>Everything</td>
+            <td>camelCase</td>
+        </tr>
     </tbody>
 </table>
