@@ -32,7 +32,7 @@ function GetDependenciesActions()
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 }
 
-function CreateGitHubAction()
+function CreateGitHubActionForDotNet()
 {
     GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
     mkdir -p $(dirname $GitHubActionPath)
@@ -59,7 +59,7 @@ function SetupDotNet() {
     LinkGitIgnore $PWD
     LinkLocalSecrets
     PullDotNetDockerImage
-    CreateGitHubAction
+    CreateGitHubActionForDotNet
     
     CreateDatabaseContainer
     CreateApiContainer "Dev"

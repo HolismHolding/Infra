@@ -15,7 +15,7 @@ function CreateBuildDirectory() {
     fi
 }
 
-function CreateGitHubAction() {
+function CreateGitHubActionForReact() {
     GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
     mkdir -p $(dirname $GitHubActionPath)
     export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
@@ -28,7 +28,7 @@ function SetupReact() {
     GetHolismReactInfra &
     PullReactDockerImage
     LinkGitIgnore $PWD
-    CreateGitHubAction
+    CreateGitHubActionForReact
     volumes=""
     GetDependencies volumes
     echo -e $volumes
