@@ -25,6 +25,7 @@ services:
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
+            - ${RepositoryPath}/HeaderActions.js:${RepositoryPath}/src/HeaderActions.js
             - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.js
             - ${RepositoryPath}/Routes.js:${RepositoryPath}/src/Routes.jsVolumeMappingPlaceHolder
         #stdin_open: true # docker run -i
