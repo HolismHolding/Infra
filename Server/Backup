@@ -1,4 +1,4 @@
-create a crontab for organization:
+create a crontab for organization, using `crontab -e`, or by `micro /var/spool/cron/crontabs/root`:
 
 0 10 * * * /Organization/Backup.sh
 
