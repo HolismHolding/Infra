@@ -1,8 +1,18 @@
 #!/bin/bash
 
-Organization=$(basename $PWD)
+Organization=$1
+
+if [ ${Organization:-NotSet} == "NotSet" ]; then 
+    echo 'Organization name is not provided';
+    exit;
+fi
 
 echo "Organization: $Organization"
+
+sudo mkdir -p /$Organization
+sudo chmod 777 /$Organization
+
+cd /$Organization
 
 export accessToken=$(cat /LocalSecrets/GitHubAccessToken)
 
@@ -12,4 +22,4 @@ curl --silent -H "Authorization: token $accessToken" "https://api.github.com/org
     fi
 done
 
-sudo chmod -R 777 /$Organization
+sudo chmod -R 777 /$Organization 2>&-
