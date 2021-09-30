@@ -11,3 +11,5 @@ curl --silent -H "Authorization: token $accessToken" "https://api.github.com/org
         git clone git@github.com:$Organization/$name
     fi
 done
+
+sudo chmod -R 777 /$Organization

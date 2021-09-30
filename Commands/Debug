@@ -34,6 +34,8 @@ CreateCertificate
 SetupNginxAndLocalDns &
 CleanDocker
 
+sudo chmod -R 777 /$Organization
+
 if IsNext $1; then
     DebugNext
 elif IsDotNet $1; then
