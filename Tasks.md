@@ -1,0 +1,13 @@
+- push (notifications)
+- video call api
+- email
+- phone (responsive)
+  - pagination
+  - table
+  - list actions
+- site
+- payment (subscription)
+- search (elastisearch)
+- configuration
+- logs
+- culture
