@@ -20,12 +20,12 @@ function GetDependenciesActions()
         return;
     fi
     while read Dependency; do  
-
-        Org=$(echo $Dependency | cut -d'/' -f1)
-        Repo=$(echo $Dependency | cut -d'/' -f2)
+        
+        export Org=$(echo $Dependency | cut -d'/' -f1)
+        export Repo=$(echo $Dependency | cut -d'/' -f2)
 
         Yaml=$(cat /HolismHolding/Infra/DotNet/GetRepositoryAction.yml)
-        DependencyAction=$(envsubst <<< $Yaml)
+        DependencyAction=$(envsubst <<< "$Yaml")
 
         DependencyActions="$DependencyActions\n\n$DependencyAction"
 
@@ -60,8 +60,6 @@ function SetupDotNet() {
     LinkLocalSecrets
     PullDotNetDockerImage
     CreateGitHubAction
-
-    return;
 
     CreateDatabaseContainer
     CreateApiContainer "Dev"
