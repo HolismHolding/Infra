@@ -1,0 +1,24 @@
+#!/bin/bash
+
+Organization=$1
+
+if [ ${Organization:-NotSet} == "NotSet" ]; then 
+    echo 'Organization name is not provided';
+    exit;
+fi
+
+sudo echo "Organization: $Organization"
+
+docker stop $(docker ps -aq)
+docker container prune --force
+docker rm -vf $(docker ps -a -q)
+docker system prune -y
+
+cd /$Organization
+
+ls | while read -r name ; do
+    if [[ "$name" == *Api ]] || [[ "$name" == *Panel ]] || [ "$name" == Site ]; then
+       cd /$Organization/$name;
+       Setup &
+    fi
+done
