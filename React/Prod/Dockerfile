@@ -12,7 +12,6 @@ RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p ${RepositoryPath}/src/Base \
     && mkdir -p ${RepositoryPath}/src/Panel \
     && mkdir -p ${RepositoryPath}/src/Components \
-    && mkdir -p ${RepositoryPath}/src/Accounts \
     && mkdir -p ${RepositoryPath}/src/public \
     && cp ${RepositoryPath}/Logo.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/HeaderActions.js ${RepositoryPath}/src \
@@ -23,7 +22,6 @@ RUN rm -rf ${RepositoryPath}/.git \
     && cp -r /HolismReact/Infra/src/Base ${RepositoryPath}/src \
     && cp -r /HolismReact/Infra/src/Panel ${RepositoryPath}/src \
     && cp -r /HolismReact/Infra/src/Components ${RepositoryPath}/src \
-    && cp -r /HolismReact/Infra/src/Accounts ${RepositoryPath}/src \
     && cp -r /HolismReact/Infra/public ${RepositoryPath}/public \
     && cp /HolismReact/Infra/craco.config.js ${RepositoryPath} \
     && cp /HolismReact/Infra/tailwind.config.js ${RepositoryPath} \
