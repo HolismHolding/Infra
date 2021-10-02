@@ -15,6 +15,7 @@ RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p ${RepositoryPath}/src/Accounts \
     && mkdir -p ${RepositoryPath}/src/public \
     && cp ${RepositoryPath}/Logo.js ${RepositoryPath}/src \
+    && cp ${RepositoryPath}/HeaderActions.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Menu.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Routes.js ${RepositoryPath}/src \
     && cp /HolismReact/Infra/src/index.css ${RepositoryPath}/src \
