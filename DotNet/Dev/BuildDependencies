@@ -31,7 +31,9 @@ while read Dependency; do
     find /$Org/$Repo -type d -name "bin" | xargs sudo rm -rf
     find /$Org/$Repo -type d -name "obj" | xargs sudo rm -rf
     find /$Org/$Repo -type d -name "Packages" | xargs sudo rm -rf
-    dotnet build /$Org/$Repo
+    cd /$Org/$Repo
+    Generate
+    dotnet build 
 
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 
