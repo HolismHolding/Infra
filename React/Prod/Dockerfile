@@ -4,7 +4,9 @@ COPY . .
 RUN rm -rf ${RepositoryPath}
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismReact/Infra /HolismReact/Infra
+RUN true
 COPY ${RepositoryPath} ${RepositoryPath}
+RUN true
 RUN ln -s /HolismReact/Infra/node_modules ${RepositoryPath}
 RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p /Temp \
