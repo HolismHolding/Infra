@@ -15,6 +15,13 @@ jobs:
           sudo chmod 777 /HolismHolding
           cd /HolismHolding
           git clone https://github.com/HolismHolding/Infra
+
+      - name: Create /${Organization} directory
+        run: |
+          sudo mkdir /${Organization}
+          sudo chmod 777 /${Organization}
+
+      GettingDependenciesRepositoriesPlacholder
           
       - name: Get ${Organization}/${Repository} using actions/checkout@v2
         uses: actions/checkout@v2
@@ -22,8 +29,6 @@ jobs:
           repository: ${Organization}/${Repository}
           token: ${{ github.token }}
           path: ${Organization}/${Repository}
-
-      GettingDependenciesRepositoriesPlacholder
         
       - name: Copy ${Organization}/${Repository} to root
         run: |
