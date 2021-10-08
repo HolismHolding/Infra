@@ -1,6 +1,7 @@
 . /HolismHolding/Infra/React/CreateHolismReactDirectory.sh
 . /HolismHolding/Infra/React/GetHolismReactInfra.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
+. /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 
 function PullReactDockerImage() {
     echo 'Pulling docker image holism/react-dev:latest'
@@ -15,20 +16,12 @@ function CreateBuildDirectory() {
     fi
 }
 
-function CreateGitHubActionForReact() {
-    GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
-    mkdir -p $(dirname $GitHubActionPath)
-    export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
-    envsubst < /HolismHolding/Infra/React/GitHubAction.yml > $GitHubActionPath
-    echo "Created GitHub action"
-}
-
 function SetupReact() {
     CreateHolismReactDirectory
     GetHolismReactInfra &
     PullReactDockerImage
     LinkGitIgnore $PWD
-    CreateGitHubActionForReact
+    CreateGitHubAction React
     volumes=""
     GetDependencies volumes
     echo -e $volumes
