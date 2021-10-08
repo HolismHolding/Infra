@@ -6,6 +6,11 @@ services:
         ports:
             - "$RandomPort:3000"
         working_dir: ${RepositoryPath}
+        environment:
+            - Organization=${Organization}
+            - OrganizationPrefix=${OrganizationPrefix}
+            - RepositoryPath=${RepositoryPath}
+            - Repository=${Repository}
         volumes:
             - /Temp${RepositoryPath}/Build:${RepositoryPath}/build
             - /HolismHolding:/HolismHolding

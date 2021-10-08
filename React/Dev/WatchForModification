@@ -1,0 +1,6 @@
+#!/bin/sh
+
+inotifywait -m -r -e modify --format '%w%f' "$RepositoryPath" | while read File
+do
+    echo "File $File is modified"
+done
