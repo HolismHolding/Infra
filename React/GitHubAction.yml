@@ -39,8 +39,6 @@ jobs:
         
       - name: Copy ${Organization}/${Repository} to root
         run: |
-          sudo mkdir /${Organization}
-          sudo chmod -R 777 /${Organization}
           cp -r $GITHUB_WORKSPACE/${Organization}/${Repository} /${Organization}/${Repository}
           
       - name: Build production docker
