@@ -1,4 +1,5 @@
 FROM holism/react-dev:latest as builder
+WORKDIR /
 COPY . .
 RUN rm -rf ${RepositoryPath}
 COPY /HolismHolding/Infra /HolismHolding/Infra
@@ -31,14 +32,14 @@ RUN rm -rf ${RepositoryPath}/.git \
     && cp /HolismReact/Infra/package-lock.json ${RepositoryPath}
 #RUN find ${RepositoryPath}
 WORKDIR ${RepositoryPath}
-# RUN npm run build
+RUN npm run build
 
-# FROM node:lts-alpine as runner
-# WORKDIR ${RepositoryPath}
-# ENV NODE_ENV production
-# RUN npm install -g serve
-# COPY --from=builder ${RepositoryPath}/build .
+FROM node:lts-alpine as runner
+WORKDIR ${RepositoryPath}
+ENV NODE_ENV production
+RUN npm install -g serve
+COPY --from=builder ${RepositoryPath}/build .
 
-# EXPOSE 3000
-# CMD [ "serve", "-s", ".", "-l", "3000" ]
-CMD [ "tail", "-f", "/dev/null" ]
+EXPOSE 3000
+CMD [ "serve", "-s", ".", "-l", "3000" ]
+# CMD [ "tail", "-f", "/dev/null" ]
