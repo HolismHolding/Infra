@@ -1,4 +1,4 @@
-function CopyHolismHoldingInfraForBuild() {
+function CopyHolismHoldingInfra() {
     echo "Copying holding base ...";
     if [ -d "/Build/HolismHolding" ]; then
         sudo rm -rf /Build/HolismHolding

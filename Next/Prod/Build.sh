@@ -1,6 +1,8 @@
 . /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
-. /HolismHolding/Infra/Scripts/CopyHolismHoldingInfraForBuild.sh
+. /HolismHolding/Infra/Scripts/CopyHolismHoldingInfra.sh
+. /HolismHolding/Infra/Scripts/CopyDependencies.sh
+. /HolismHolding/Infra/Scripts/CopyRepository.sh
 
 function CopyHolismNextInfra() {
     echo "Copying site base ...";
@@ -11,22 +13,17 @@ function CopyHolismNextInfra() {
     cp -r /HolismNext/Infra /Build/HolismNext/Infra
 }
 
-function CopySite() {
-    echo "Copying site ...";
-    if [ -d "/Build/$Organization/$Repository" ]; then
-        sudo rm -rf /Build/$Organization/$Repository
-    fi
-    mkdir -p /Build/$Organization/$Repository
-    cp -r /$Organization/$Repository /Build/$Organization/
-}
-
 function BuildNext() {
     echo "Building site ..."
+
     CreateHolismNextDirectory
     GetHolismNextInfra
-    CopyHolismHoldingInfraForBuild
+
+    CopyHolismHoldingInfra
     CopyHolismNextInfra
-    CopySite
+    CopyDependencies
+    CopyRepository
+
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/Next/Prod/Dockerfile > $Dockerfile
     docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
