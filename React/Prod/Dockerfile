@@ -4,6 +4,7 @@ COPY . .
 RUN rm -rf ${RepositoryPath}
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismReact/Infra /HolismReact/Infra
+# https://stackoverflow.com/questions/51115856/docker-failed-to-export-image-failed-to-create-image-failed-to-get-layer
 RUN true
 COPY ${RepositoryPath} ${RepositoryPath}
 RUN true
