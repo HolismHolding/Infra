@@ -15,6 +15,13 @@ jobs:
           sudo chmod 777 /HolismHolding
           cd /HolismHolding
           git clone https://github.com/HolismHolding/Infra
+          
+      - name: Get /HolismReact/Infra
+        run: |
+          sudo mkdir /HolismReact
+          sudo chmod 777 /HolismReact
+          cd /HolismReact
+          git clone https://github.com/HolismReact/Infra
 
       - name: Create /${Organization} directory
         run: |
