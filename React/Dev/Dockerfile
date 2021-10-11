@@ -4,6 +4,7 @@ WORKDIR /HolismReact
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
 
 RUN apk update \
+    && apk add --no-cache inotify-tools \
     && apk add --no-cache git \
     && apk add --upgrade unzip \
     && cd /HolismReact \
