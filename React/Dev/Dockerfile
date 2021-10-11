@@ -10,4 +10,5 @@ RUN apk update \
     && cd /HolismReact \
     && git clone https://github.com/HolismReact/Infra \
     && cd /HolismReact/Infra \
+    && rm -rf package-lock.json \
     && npm install

@@ -9,21 +9,23 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_HOST: database
+      WORDPRESS_DB_HOST: database:3307
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: 2TBE9tN4Y5jM3Mvxjr5T
       WORDPRESS_DB_NAME: blog
+    volumes:
+      - /Temp/Organization/Blog:/var/www/html
 
   database:
     image: mariadb
     container_name: OrganizationBlogDatabase
     ports:
-        - 3306:3306
+        - 3307:3306
     environment:
         - MARIADB_ROOT_PASSWORD=2TBE9tN4Y5jM3Mvxjr5T
         - MYSQL_DATABASE=blog
     volumes:
-        - /Organization/Blog/Database:/var/lib/mysql 
+        - /Temp/Organization/Blog/Database:/var/lib/mysql 
     logging:
         driver: none
   pma:
