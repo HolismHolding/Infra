@@ -1,5 +1,17 @@
 #!/bin/bash
 
+echo 'Getting the current status ...'
+GitStatus
+
+echo
+echo
+echo 'Still pushing? (y,n)'
+read Consent
+
+if [ $Consent != 'y' ]; then
+    exit;
+fi
+
 find / -type d -name .git 2>&- | 
 while read gitFolder; do
     if [[ $gitFolder == *"/Temp/"* ]]; then
