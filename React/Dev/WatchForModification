@@ -1,6 +1,17 @@
 #!/bin/sh
 
-inotifywait -m -r -e modify --format '%w%f' "$RepositoryPath" | while read File
-do
-    echo "File $File is modified"
-done
+function Watch()
+{
+    inotifywait -m -r -e modify --format '%w%f' "$1" | while read File
+    do
+        echo "File $File is modified"
+    done
+}
+
+function WatchInfra()
+{
+    # find all symbolic links
+    find / -type l -exec readlink -nf {} ';' -exec echo " -> {}" ';' | grep "/HolismReact.*.js" | grep -v node_modules
+}
+
+Watch $RepositoryPath
