@@ -67,3 +67,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # tar unzip
 `tar -xf archive.tar.gz`
+
+# find and filter ports
+`netstat -tulpn | grep LISTEN | grep 31`
