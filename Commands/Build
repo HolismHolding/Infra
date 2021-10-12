@@ -41,4 +41,4 @@ else
     echo "Project type = Unknown"
 fi
 
-# sudo rm -rf /Build
+sudo rm -rf /Build
