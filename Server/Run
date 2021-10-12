@@ -1,1 +1,1 @@
-docker-compose -p "ContainerName" up
+docker-compose -p "ContainerName" up -d
