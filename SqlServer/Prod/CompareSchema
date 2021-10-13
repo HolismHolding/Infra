@@ -1,11 +1,46 @@
 #!/bin/bash
 
-export Database=Logs
+. /HolismHolding/Infra/Scripts/Message.sh
 
-sudo mkdir -p /Temp/SchemaCompare/$Database
+if [ ! -f "$PWD/Dependencies" ]; then
+    Error "Can't find the file Dependencies";
+    exit;
+fi
 
-sqlpackage /a:extract /of:true /scs:"data source=localhost,1433; initial catalog=$Database; user id=SA; password=lksU2o412f7tBj58t07B;" /tf:"/Temp/SchemaCompare/$Database/Source.dacpac";
+export TargetServer=$1
 
-sqlpackage /a:deployreport /op:"/Temp/SchemaCompare/$Database/Report.xml" /of:True /sf:"/Temp/SchemaCompare/$Database/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$Database; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True 
+if [ ${TargetServer:-NotSet} == "NotSet" ]; then 
+    Error "TargetServer is not provided";
+    exit;
+fi
 
-sqlpackage /a:script /op:"/Temp/SchemaCompare/$Database/Migration.sql" /of:True /sf:"/Temp/SchemaCompare/$Database/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=Logs; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True
+export TargetPassword=$2
+
+if [ ${TargetPassword:-NotSet} == "NotSet" ]; then 
+    Error "TargetPassword is not provided";
+    exit;
+fi
+
+sudo rm -rf /Temp/SchemaCompare
+
+function Compare()
+{
+    sudo mkdir -p /Temp/SchemaCompare/$1
+    sudo chmod -R 777 /Temp/SchemaCompare/$1
+
+    sqlpackage /a:extract /of:true /scs:"data source=localhost,1433; initial catalog=$1; user id=SA; password=lksU2o412f7tBj58t07B;" /tf:"/Temp/SchemaCompare/$1/Source.dacpac";
+
+    sqlpackage /a:deployreport /op:"/Temp/SchemaCompare/$1/Report.xml" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$1; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True 
+
+    sqlpackage /a:script /op:"/Temp/SchemaCompare/$1/Migration.sql" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=Logs; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True
+}
+
+while read Dependency; do  
+    
+    Org=$(echo $Dependency | cut -d'/' -f1)
+    Repo=$(echo $Dependency | cut -d'/' -f2)
+
+    Info "Comparing $Repo ...";
+    Compare $Repo
+    
+done <<< "$({ cat "$PWD/Dependencies"; echo; })"
