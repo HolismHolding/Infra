@@ -109,6 +109,9 @@
       - Files => Preferences => Settings
       - Search for “word wrap”
       - Select “on” from the dropdown
+  - Azure Data Studio
+    - Disable telemetry
+      - Settings => search for Telemetry
   - Keyboard
     - Settings
       - Universal access
