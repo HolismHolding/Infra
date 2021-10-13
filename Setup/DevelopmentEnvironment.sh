@@ -169,6 +169,20 @@ function InstallAzureDataStudio()
     Write "Installed Azure Data Studio"
 }
 
+function InstallSqlPackage()
+{
+    Write "Installing SQL Package ..."
+    sudo mkdir /sqlpackage
+    wget https://download.microsoft.com/download/0/2/0/020aa2fa-f3f2-41ba-bacd-ff15557890d3/sqlpackage-linux-x64-en-US-15.0.5084.2.zip
+    unzip ~/Downloads/sqlpackage-linux-x64-en-US-15.0.5084.2.zip -d /sqlpackage
+    chmod a+x /sqlpackage/sqlpackage
+    echo 'export PATH="$PATH:/sqlpackage"' >> /etc/bash.bashrc
+    source /etc/bash.bashrc
+    sudo apt-get install libunwind8
+    sudo apt-get install libicu66
+    Write "Installed SQL Package"
+}
+
 function InstallBeyondCompare()
 {
     Write "Installing Beyond Compare ..."
@@ -212,6 +226,7 @@ InstallMkcert
 InstallMicro
 InstallTelnet
 InstallAzureDataStudio
+InstallSqlPackage
 InstallBeyondCompare
 RegisterHolismCommands
 
