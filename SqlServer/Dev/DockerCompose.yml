@@ -10,6 +10,7 @@ services:
             - 1433:1433
         logging:
             driver: none
+        # restart: always
         networks:
             - ${Organization}Network
 networks:
