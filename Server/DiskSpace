@@ -1,0 +1,8 @@
+`cd /`
+`du -h --max-depth=1`
+
+usually logs, or docker
+
+/var/bin/docker/overlay2
+
+use `docker system prune`
