@@ -69,7 +69,7 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `tar -xf archive.tar.gz`
 
 # find and filter ports
-`netstat -tulpn | grep LISTEN | grep 31`
+`netstat -tulpn | grep LISTEN | grep -v tcp6 | grep port_number`
 
 # double-click
 `xdg-open filename`
