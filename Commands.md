@@ -73,3 +73,7 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # double-click
 `xdg-open filename`
+
+# disk usage and free space
+`df -h /`
+df = disk-free
