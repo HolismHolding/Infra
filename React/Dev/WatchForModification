@@ -1,20 +1,28 @@
 #!/bin/sh
 
-inotifywait -m /HolismReact/ -r -e modify --format '%w%f' "$1" | 
-while read File
-do
-    #echo "File $File is modified"
-    find /$Organization/$Repository/ -type l | grep -v node_modules | grep -v .gitignore
+function RefreshLink()
+{
+    ModifiedFile=$1
+    find /$Organization/$Repository/ -type l | grep -v node_modules | grep -v .gitignore |
     while read LinkedFile; do 
         OriginalPath=$(readlink -f $LinkedFile)
-        #echo "$LinkedFile - $OriginalPath"
-        if [ $OriginalPath = $File ]; then
-            Temp=$(dirname $File)/wjagCcKD0uY859DianqQ.temp
-            #echo 'equal';
-            cp $File $Temp
+        if [ $OriginalPath = $ModifiedFile ]; then
+            Temp=$(dirname $ModifiedFile)/wjagCcKD0uY859DianqQ.temp
+
+            # echo "Modified file: $ModifiedFile"
+            # echo "Linked file: $LinkedFile"
+            # echo "Original path: $OriginalPath"
+            # echo "Temp: $Temp"
+            cp $ModifiedFile $Temp
             ln -s -f $Temp $LinkedFile
-            ln -s -f $File $LinkedFile
-            sudo rm -rf $Temp
+            ln -s -f $ModifiedFile $LinkedFile
+            rm -rf $Temp
         fi
     done
+}
+
+inotifywait -m /HolismReact/ -r -e modify --format '%w%f' "$1" | 
+while read ModifiedFile
+do
+    RefreshLink $ModifiedFile
 done
