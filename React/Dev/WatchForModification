@@ -1,17 +1,20 @@
 #!/bin/sh
 
-function Watch()
-{
-    inotifywait -m -r -e modify --format '%w%f' "$1" | while read File
-    do
-        echo "File $File is modified"
+inotifywait -m /HolismReact/ -r -e modify --format '%w%f' "$1" | 
+while read File
+do
+    #echo "File $File is modified"
+    find /$Organization/$Repository/ -type l | grep -v node_modules | grep -v .gitignore
+    while read LinkedFile; do 
+        OriginalPath=$(readlink -f $LinkedFile)
+        #echo "$LinkedFile - $OriginalPath"
+        if [ $OriginalPath = $File ]; then
+            Temp=$(dirname $File)/wjagCcKD0uY859DianqQ.temp
+            #echo 'equal';
+            cp $File $Temp
+            ln -s -f $Temp $LinkedFile
+            ln -s -f $File $LinkedFile
+            sudo rm -rf $Temp
+        fi
     done
-}
-
-function WatchInfra()
-{
-    # find all symbolic links
-    find / -type l -exec readlink -nf {} ';' -exec echo " -> {}" ';' | grep "/HolismReact.*.js" | grep -v node_modules
-}
-
-Watch $RepositoryPath
+done
