@@ -13,6 +13,23 @@ function CopyHolismReactInfra() {
     cp -r /HolismReact/Infra /Build/HolismReact/Infra
 }
 
+function UseProductionCracoBuildConfig()
+{
+    cp /HolismReact/Infra/CracoProductionConfig /Build/HolismReact/Infra/craco.config.js
+}
+
+function ReplaceSymlinksWithOriginalFiles()
+{
+    find /Build/$Organization/$Repository -type l | 
+    while read file; do 
+        OriginalPath=$(readlink -f $file)
+        echo "$file - $OriginalPath"
+        sudo rm -rf $file;
+        cp $OriginalPath $file
+        sudo chmod 777 $file
+    done
+}
+
 function BuildReact() {
     echo "Building panel ..."
 
@@ -23,6 +40,8 @@ function BuildReact() {
     CopyHolismReactInfra
     CopyDependencies
     CopyRepository
+    UseProductionCracoBuildConfig
+    ReplaceSymlinksWithOriginalFiles
 
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/React/Prod/Dockerfile > $Dockerfile
