@@ -9,12 +9,13 @@ function RefreshLink()
         if [ $OriginalPath = $ModifiedFile ]; then
             Temp=$(dirname $ModifiedFile)/wjagCcKD0uY859DianqQ.temp
 
-            # echo "Modified file: $ModifiedFile"
-            # echo "Linked file: $LinkedFile"
-            # echo "Original path: $OriginalPath"
-            # echo "Temp: $Temp"
+            echo "Modified file: $ModifiedFile"
+            echo "Linked file: $LinkedFile"
+            echo "Original path: $OriginalPath"
+            echo "Temp: $Temp"
             cp $ModifiedFile $Temp
             ln -s -f $Temp $LinkedFile
+            sleep 0.01
             ln -s -f $ModifiedFile $LinkedFile
             rm -rf $Temp
         fi
