@@ -77,3 +77,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 # disk usage and free space
 `df -h /`
 df = disk-free
+
+# test internet speed from shell
+`curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -`
