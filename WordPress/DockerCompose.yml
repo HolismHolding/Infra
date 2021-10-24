@@ -28,6 +28,7 @@ services:
         - /Organization/Blog/Database:/var/lib/mysql 
     logging:
         driver: none
+        
   pma:
       image: phpmyadmin:latest
       container_name: OrganizationBlogPma
