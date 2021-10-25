@@ -11,4 +11,3 @@
 - configuration
 - logs
 - culture
-- 404 client page (react)
