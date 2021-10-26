@@ -1,0 +1,14 @@
+# Create
+`micro /var/spool/cron/crontabs/root`
+
+# Enable logging
+`micro /etc/rsyslog.conf`
+find `#cron.*                     -/var/log/cron`
+remove #
+`service rsyslog restart`
+
+# Check cron is running
+`ps -ef | grep cron | grep -v grep`
+
+# Start cron service
+`/sbin/service cron start`

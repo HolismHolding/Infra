@@ -1,4 +1,0 @@
-`micro /etc/rsyslog.conf`
-find `#cron.*                     -/var/log/cron`
-remove #
-`service rsyslog restart`
