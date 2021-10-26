@@ -9,5 +9,4 @@
 - payment (subscription)
 - search (elastisearch)
 - configuration
-- logs
 - culture
