@@ -7,3 +7,5 @@ create a crontab for organization, using `crontab -e`, or by `micro /var/spool/c
 In Backup.sh write this script:
 
 azcopy copy /Organization "https://organization.blob.core.windows.net/backup/?sas" --recursive=true
+
+azcopy benchmark "https://organization.blob.core.windows.net/backup/?sas"
