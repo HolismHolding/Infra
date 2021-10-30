@@ -4,6 +4,12 @@ create a crontab for organization, using `crontab -e`, or by `micro /var/spool/c
 
 ---
 
+wget https://aka.ms/downloadazcopy-v10-linux
+mv downloadazcopy-v10-linux azcopy
+tar -xf azcopy
+rm -rf azcopy
+mv azcopy_linux_amd64_10.13.0 azcopy
+
 In Backup.sh write this script:
 
 azcopy copy /Organization "https://organization.blob.core.windows.net/backup/?sas" --recursive=true
