@@ -15,3 +15,13 @@ In Backup.sh write this script:
 azcopy copy /Organization "https://organization.blob.core.windows.net/backup/?sas" --recursive=true
 
 azcopy benchmark "https://organization.blob.core.windows.net/backup/?sas"
+
+
+------------
+
+Download from azure
+
+mkdir /Organization
+chmod 777 /Organization
+
+./azcopy copy "https://storage_name.blob.core.windows.net/backup/?sas" /Organization --recursive=true
