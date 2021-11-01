@@ -8,18 +8,9 @@
 - Change ssh port
     - 
 - NGINX
-    - `apt update`
-    - `apt install nginx`
     - IMPORTANT NOTE => Only move /etc/nginx/sites-enabled/ and DO NOT MOVE /etc/nginx/sites-available/ because it's a symbolic link to that.
-- curl
-    - `apt install curl`
-- micro
-    - `cd /usr/local/bin`
-    - `curl https://getmic.ro | bash`
-- certbot
-    - `apt update`
-    - `apt install certbot`
-    - `apt install python3-certbot-nginx`
+
+
 - docker
     - `apt update`
     - `apt-get install apt-transport-https ca-certificates curl gnupg lsb-release`
