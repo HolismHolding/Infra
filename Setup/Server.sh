@@ -116,6 +116,22 @@ function InstallTelnet()
     Write "Installed Telnet"
 }
 
+function InstallAzcopy()
+{
+    Write "Installing AzCopy ..."
+    
+    # https://unix.stackexchange.com/a/154828/168855
+
+    wget https://aka.ms/downloadazcopy-v10-linux &&
+    mv downloadazcopy-v10-linux /azcopy_dir &&
+    tar -xf /azcopy_dir &&
+    rm -rf /azcopy_dir
+    find / -type d -name "*azcopy*" -print0 | xargs -0 -I {} mv {} /azcopy_dir &&
+    mv /azcopy_dir/azcopy /azcopy &&
+    rm -rf /azcopy_dir
+
+}
+
 UpdateApt
 InstallCurl
 InstallDocker
@@ -124,3 +140,4 @@ InstallNginx
 InstallCertbot
 InstallMicro
 InstallTelnet
+InstallAzcopy
