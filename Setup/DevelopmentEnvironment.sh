@@ -82,6 +82,7 @@ function InstallDocker()
     # sudo groupadd docker
     # sudo usermod -aG docker ${USER} restrat
     # sudo usermod -aG docker $USER
+    # restart
 
     Write "Installed Docker"
 }
