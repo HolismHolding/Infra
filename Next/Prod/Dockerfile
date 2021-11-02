@@ -3,7 +3,7 @@ WORKDIR ${RepositoryPath}
 # COPY /HolismNext/Infra/package.json /HolismNext/Infra/package-lock.json ./
 # RUN npm install
 
-FROM node:lts-alpine as builder
+FROM node:14-buster-slim as builder
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismNext/Infra /HolismNext/Infra
 COPY ${RepositoryPath} ${RepositoryPath}
@@ -12,7 +12,7 @@ RUN cp -a /HolismNext/Infra/. ${RepositoryPath}
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
-FROM node:lts-alpine as runner
+FROM node:14-buster-slim as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
 COPY --from=builder ${RepositoryPath}/next.config.js ./
