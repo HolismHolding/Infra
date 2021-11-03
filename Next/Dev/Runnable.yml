@@ -20,7 +20,8 @@ services:
             sh -c
             "
             cp -a /HolismNext/Infra/. .
-            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /site/node_modules ${RepositoryPath}; fi
+            && ln -s /site/node_modules ${RepositoryPath}
+            && ln -s /site/package.json ${RepositoryPath}
             && npm run dev &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
