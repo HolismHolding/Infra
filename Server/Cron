@@ -12,3 +12,9 @@ remove #
 
 # Start cron service
 `/sbin/service cron start`
+
+# some crons
+0 4 * * * /Organization/Backup
+0 6 * * * /Organization/Restart
+0 12 * * * /usr/bin/certbot renew --quiet
+0 8 * * * docker system prune --force
