@@ -8,20 +8,21 @@ services:
         working_dir: ${RepositoryPath}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
-            - /HolismNext/Infra:/HolismNext/Infra
+            - /HolismNext/Infra/Base:${RepositoryPath}/components/Base
+            - /HolismNext/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - ${RepositoryPath}/components:${RepositoryPath}/components
             - ${RepositoryPath}/contents:${RepositoryPath}/contents
             - ${RepositoryPath}/pages:${RepositoryPath}/pages
             - ${RepositoryPath}/public:${RepositoryPath}/public
             - ${RepositoryPath}/styles:${RepositoryPath}/styles
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
-            - /Temp${RepositoryPath}/Build:${RepositoryPath}/.next
+            - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
         command: >
             sh -c
             "
-            cp -a /HolismNext/Infra/. .
-            && ln -s /site/node_modules ${RepositoryPath}
+            ln -s /site/node_modules ${RepositoryPath}
             && ln -s /site/package.json ${RepositoryPath}
+            && ln -s /site/postcss.config.js ${RepositoryPath}
             && npm run dev &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null

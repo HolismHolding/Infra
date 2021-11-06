@@ -18,3 +18,8 @@ remove #
 0 6 * * * /Organization/Restart
 0 12 * * * /usr/bin/certbot renew --quiet
 0 8 * * * docker system prune --force
+
+# to test cron
+crontab /var/spool/cron/crontabs/root (or any other file) => runs
+crontab -l => lists
+then edit /var/spool/cron/crontabs/root
