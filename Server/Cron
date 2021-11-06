@@ -20,6 +20,6 @@ remove #
 0 8 * * * docker system prune --force
 
 # to test cron
-crontab /var/spool/cron/crontabs/root (or any other file) => runs
+crontab /var/spool/cron/crontabs/root (or any other file) => runs (caution => it might run continuously, causing a lot of bandwidth and cost on services)
 crontab -l => lists
 then edit /var/spool/cron/crontabs/root
