@@ -28,9 +28,9 @@ function SetupNext() {
     GetHolismNextInfra &
     PullNextDevDockerImage &
     CreateGitHubActionForNext
-    ComposeFile=/Temp/$Organization/$Repository/Runnable.yml
+    ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
-    envsubst < /HolismHolding/Infra/Next/Dev/Runnable.yml > $ComposeFile
+    envsubst < /HolismHolding/Infra/Next/Dev/DockerCompose.yml > $ComposeFile
     docker-compose -p "${Organization}_${Repository}" -f $ComposeFile up --remove-orphans
 }

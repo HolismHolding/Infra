@@ -12,7 +12,6 @@ services:
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
         volumes:
-            - /Temp${RepositoryPath}/Build:${RepositoryPath}/build
             - /HolismHolding:/HolismHolding
             - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
             - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
