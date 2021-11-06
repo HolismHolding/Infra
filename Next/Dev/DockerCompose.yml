@@ -3,8 +3,6 @@ services:
     site:
         image: holism/next-dev:latest
         container_name: ${Organization}${Repository}
-        ports:
-            - "${RandomPort}:3000"
         working_dir: ${RepositoryPath}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
@@ -23,7 +21,8 @@ services:
             ln -s /site/node_modules ${RepositoryPath}
             && ln -s /site/package.json ${RepositoryPath}
             && ln -s /site/postcss.config.js ${RepositoryPath}
-            && npm run dev &
+            && npx next dev -p ${RandomPort} &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "
+        network_mode: "host"
