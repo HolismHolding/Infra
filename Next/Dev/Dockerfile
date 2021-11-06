@@ -1,4 +1,8 @@
 FROM node:14-buster-slim
+RUN apt update
+RUN apt install ca-certificates -y
+RUN apt install procps -y
+RUN apt curl -y
 RUN npx create-next-app -e with-tailwindcss site --use-npm
 WORKDIR /site
 RUN npm install --no-optional
