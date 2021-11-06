@@ -8,6 +8,7 @@ COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismNext/Infra /HolismNext/Infra
 COPY ${RepositoryPath} ${RepositoryPath}
 COPY --from=dependencies /site/node_modules ${RepositoryPath}/node_modules
+COPY --from=dependencies /site/package.json ${RepositoryPath}/package.json
 RUN cp -a /HolismNext/Infra/. ${RepositoryPath}
 WORKDIR ${RepositoryPath}
 RUN npm run build
