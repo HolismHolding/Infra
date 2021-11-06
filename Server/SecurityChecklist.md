@@ -1,0 +1,5 @@
+- change ssh port
+- change SQL Server default port
+    - in Firewall
+    - in docker-compose.yml
+    - in ConnectionStrings.json of all related APIs
