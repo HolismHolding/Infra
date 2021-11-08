@@ -27,3 +27,6 @@ or
 # To test cron
 - `crontab /var/spool/cron/crontabs/root`
     - **(or any other file) => runs (caution => it might run continuously, causing a lot of bandwidth and cost on services, thus preferrably never run it)**
+
+# To reset cron (remove all crons)
+`crontab -r`
