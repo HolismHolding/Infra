@@ -13,5 +13,6 @@ RUN npm install sass --no-optional
 RUN npm install @tailwindcss/typography --no-optional
 RUN npm install --save-dev eslint eslint-config-next
 RUN npm i --save @heroicons/react --no-optional
+RUN npm i --save @headlessui/react --no-optional
 
 ENV PATH="${PATH}:/HolismHolding/Infra/Next/Dev"
