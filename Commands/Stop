@@ -1,5 +1,5 @@
 #!/bin/bash
 
-for i in $(docker ps -a -q --filter name=$1); do docker rm $(docker stop $i); done
+for i in $(docker ps -a -q --filter name=$1); do docker rm $i --force; done
 
 docker system prune --force
