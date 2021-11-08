@@ -1,5 +1,6 @@
 . /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
+. /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
 
 function PullNextDevDockerImage() {
     echo 'Pulling docker image holism/next-dev:latest'
@@ -28,6 +29,7 @@ function SetupNext() {
     GetHolismNextInfra &
     PullNextDevDockerImage &
     CreateGitHubActionForNext
+    DetermineTailwindConfigPath
     ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
