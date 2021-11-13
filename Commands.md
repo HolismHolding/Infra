@@ -82,3 +82,7 @@ df = disk-free
 
 # test internet speed from shell
 `curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -`
+
+# get current timezone
+`cat /etc/timezone`
+`timedatectl`

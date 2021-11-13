@@ -30,3 +30,7 @@ or
 
 # To reset cron (remove all crons)
 `crontab -r`
+
+# IMPORTANT
+
+Make sure your cron is exactly what you want. For example, `* 10 * * * /Organization/Backup` runs every minute for that hour. Thus change it to `0 10 * * * /Organization/Backup`
