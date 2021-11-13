@@ -11,6 +11,8 @@ COPY --from=dependencies /site/node_modules ${RepositoryPath}/node_modules
 COPY --from=dependencies /site/package.json ${RepositoryPath}/package.json
 COPY --from=dependencies /site/postcss.config.js ${RepositoryPath}/postcss.config.js
 RUN cp -a /HolismNext/Infra/. ${RepositoryPath}
+RUN if [ ! -d "${RepositoryPath}/contents" ]; then mkdir ${RepositoryPath}/contents; fi
+RUN echo dummy > ${RepositoryPath}/contents/dummy.md
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
