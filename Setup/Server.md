@@ -8,14 +8,10 @@
 - Change ssh port
 
 - Optionally change name servers
-    - vim /etc/resolv.conf
+    - nano /etc/resolv.conf
     - to save
-        - Esc
-        - :w
-        - Enter
+        - Ctrl+S
     - to exit
-        - Esc
-        - :wq
-        - Enter
+        - Ctrl+X
 - NGINX
     - IMPORTANT NOTE => Only move /etc/nginx/sites-enabled/ and DO NOT MOVE /etc/nginx/sites-available/ because it's a symbolic link to that.
