@@ -11,6 +11,7 @@ if [ ! -f "$PWD/Dependencies" ]; then
 fi
 
 dotnet build /HolismDotNet/Infra/Generation
+export IsBuilt=1;
 cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
 
 while read Dependency; do  
@@ -21,6 +22,7 @@ while read Dependency; do
     if [ ! -f "/$Org/$Repo/Database.json" ]; then
         Warning "Did not found Database.json for $Org/$Repo";
     else 
-        dotnet /HolismDotNet/Infra/Generation/bin/Holism.Generation.dll "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
+        cd /$Org/$Repo
+        Generate
     fi
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
