@@ -24,7 +24,8 @@ services:
             rm -rf Api/bin
             && rm -rf Api/obj
             && dotnet build
-            && /HolismHolding/Infra/SqlServer/Dev/SetupContainer.sh  ${RepositoryPath} &
+            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
+            /HolismHolding/Infra/SqlServer/Dev/SetupContainer.sh  ${RepositoryPath} &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "
