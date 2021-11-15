@@ -13,6 +13,9 @@ services:
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: 2TBE9tN4Y5jM3Mvxjr5T
       WORDPRESS_DB_NAME: blog
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'https://blog.domain.com');
+        define('WP_SITEURL', 'https://blog.domain.com');   
     volumes:
       - /Organization/Blog/Content:/var/www/html/wp-content
 
