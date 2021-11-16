@@ -7,6 +7,7 @@ services:
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismNext/Infra/Base:${RepositoryPath}/Base
+            - /HolismNext/Infra/UiComponents:${RepositoryPath}/UiComponents
             - ${TailwindConfigPath}/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - ${RepositoryPath}/next.config.js:${RepositoryPath}/next.config.js
             - ${RepositoryPath}/components:${RepositoryPath}/components
