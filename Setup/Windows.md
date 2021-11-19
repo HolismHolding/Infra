@@ -1,0 +1,3 @@
+- Explorer => View => Options
+  - Show hidden files
+  - Uncheck `Hide extensions for known types`
