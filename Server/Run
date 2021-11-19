@@ -1,1 +1,3 @@
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+
 docker-compose -p "ContainerName" up -d
