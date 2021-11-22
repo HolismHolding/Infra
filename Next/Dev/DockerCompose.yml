@@ -6,6 +6,7 @@ services:
         working_dir: ${RepositoryPath}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
+            - /HolismNext/Infra:/HolismNext/Infra
             - /HolismNext/Infra/Base:${RepositoryPath}/Base
             - /HolismNext/Infra/UiComponents:${RepositoryPath}/UiComponents
             - ${TailwindConfigPath}/tailwind.config.js:${RepositoryPath}/tailwind.config.js
