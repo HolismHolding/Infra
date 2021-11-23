@@ -1,5 +1,6 @@
 . /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
+. /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
 
 function PullNextDevDockerImage() {
@@ -27,6 +28,7 @@ function SetupNext() {
     echo "Seting up site"
     CreateHolismNextDirectory
     GetHolismNextInfra &
+    LinkGitIgnore $PWD
     PullNextDevDockerImage &
     CreateGitHubActionForNext
     DetermineTailwindConfigPath
