@@ -1,3 +1,5 @@
+- upgrade to material ui 5
+- upgrade to .net 6
 - push (notifications)
 - video call api
 - email
