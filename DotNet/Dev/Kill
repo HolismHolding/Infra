@@ -1,0 +1,1 @@
+pgrep -f "dotnet.*Api.dll" | xargs kill

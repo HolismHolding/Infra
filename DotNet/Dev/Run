@@ -1,4 +1,4 @@
-pgrep -f "dotnet.*Api.dll" | xargs kill
+. /HolismHolding/Infra/DotNet/Dev/Kill
 
 echo "Building /$Organization/$Repository ...";
 
