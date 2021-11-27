@@ -3,9 +3,9 @@ services:
     database:
         image: mcr.microsoft.com/mssql/server:latest
         user: root
-        container_name: OrganizationDatabase
+        container_name: OrganizationDatabases
         volumes:
-            - /Organization/Databases/Organization:/var/opt/mssql/data
+            - /Organization/Databases:/var/opt/mssql/data
         environment:
             - ACCEPT_EULA=Y
             - SA_PASSWORD=password
