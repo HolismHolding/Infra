@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/SadraTrade.AdminApi.Api.dll",
+            "program": "${workspaceFolder}/bin/Holism.Generation.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
