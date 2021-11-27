@@ -38,8 +38,6 @@ function BuildDotNet() {
     RemoveLocalSecrets
     SetRepositoryNameInConnectionStringsFile
 
-    exit;
-
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/DotNet/Prod/Dockerfile > $Dockerfile
     docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
