@@ -1,6 +1,7 @@
 . /HolismHolding/Infra/Scripts/CopyHolismHoldingInfra.sh
 . /HolismHolding/Infra/Scripts/CopyDependencies.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
+. /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
 
 function CopyHolismDotNetInfra() {
     echo "Copying HolismDotNet/Infra ...";
@@ -20,6 +21,11 @@ function RemoveLocalSecrets() {
     find . | grep LocalSecrets | xargs sudo rm -rf
 }
 
+function SetRepositoryNameInConnectionStringsFile()
+{
+    sed -i "s/Repository/$Repository/g" /Build/$Organization/$Repository/ConnectionStrings.json
+}
+
 function BuildDotNet() {
 
     CopyHolismHoldingInfra
@@ -28,8 +34,11 @@ function BuildDotNet() {
     CopyRepository
 
     RemoveBinsAndObjs
-    RemvoeGits
+    RemoveGitsDirectory
     RemoveLocalSecrets
+    SetRepositoryNameInConnectionStringsFile
+
+    exit;
 
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/DotNet/Prod/Dockerfile > $Dockerfile
