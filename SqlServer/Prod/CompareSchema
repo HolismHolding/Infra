@@ -33,6 +33,8 @@ function Compare()
     sqlpackage /a:deployreport /op:"/Temp/SchemaCompare/$1/Report.xml" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$1; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
 
     sqlpackage /a:script /op:"/Temp/SchemaCompare/$1/Migration.sql" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$1; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
+
+    sudo chmod -R 777 /Temp/SchemaCompare
 }
 
 while read Dependency; do  
