@@ -4,9 +4,10 @@
 . /HolismHolding/Infra/Scripts/CopyDependencies.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
 . /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
+. /HolismHolding/Infra/Scripts/Message.sh
 
 function CopyHolismReactInfra() {
-    echo "Copying HolismReact/Infra ...";
+    Info "Copying HolismReact/Infra ...";
     if [ -d "/Build/HolismReact" ]; then
         sudo rm -rf /Build/HolismReact
     fi
@@ -21,10 +22,12 @@ function UseProductionCracoBuildConfig()
 
 function ReplaceSymlinksWithOriginalFiles()
 {
+    Info "Replacing symlinks with the original files ..."
+    echo
     find /Build/$Organization/$Repository -type l | 
     while read file; do 
         OriginalPath=$(readlink -f $file)
-        echo "$file - $OriginalPath"
+        Info "$file - $OriginalPath"
         sudo rm -rf $file;
         cp $OriginalPath $file
         sudo chmod 777 $file
@@ -43,7 +46,9 @@ function BuildReact() {
     CopyRepository
     RemoveGitsDirectory
     UseProductionCracoBuildConfig
+    Divide
     ReplaceSymlinksWithOriginalFiles
+    Divide
 
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/React/Prod/Dockerfile > $Dockerfile

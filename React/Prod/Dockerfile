@@ -18,9 +18,9 @@ RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p ${RepositoryPath}/src/Base \
     && mkdir -p ${RepositoryPath}/src/Panel \
     && mkdir -p ${RepositoryPath}/src/Components \
-    && mkdir -p ${RepositoryPath}/src/public \
+    && mkdir -p ${RepositoryPath}/public \
     && cp ${RepositoryPath}/Logo.js ${RepositoryPath}/src \
-    && cp ${RepositoryPath}/Favicon.ico ${RepositoryPath}/src/public/favicon.ico \
+    && cp ${RepositoryPath}/Favicon.ico ${RepositoryPath}/public/favicon.ico \
     && cp ${RepositoryPath}/HeaderActions.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Menu.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Routes.js ${RepositoryPath}/src \
@@ -29,15 +29,15 @@ RUN rm -rf ${RepositoryPath}/.git \
     && cp -r /HolismReact/Infra/src/Base ${RepositoryPath}/src \
     && cp -r /HolismReact/Infra/src/Panel ${RepositoryPath}/src \
     && cp -r /HolismReact/Infra/src/Components ${RepositoryPath}/src \
-    && cp -r /HolismReact/Infra/public ${RepositoryPath}/public \
+    && cp -a /HolismReact/Infra/public/. ${RepositoryPath}/public \
     && cp /HolismReact/Infra/craco.config.js ${RepositoryPath} \
     && cp /HolismReact/Infra/tailwind.config.js ${RepositoryPath} \
     && cp /HolismReact/Infra/package.json ${RepositoryPath} \
     && cp /HolismReact/Infra/package-lock.json ${RepositoryPath}
 #RUN find ${RepositoryPath}
-RUN ls ${RepositoryPath}/src/public -lah
+RUN ls ${RepositoryPath}/public -lah
 WORKDIR ${RepositoryPath}
-RUN npm run build
+# RUN npm run build
 
 # FROM node:lts-alpine as runner
 # WORKDIR ${RepositoryPath}

@@ -26,3 +26,10 @@ function Error()
 {
     echo "${red}$1${reset}"
 }
+
+function Divide()
+{
+    sudo echo ""
+    sudo echo "${magenta}----------${reset}"
+    sudo echo ""
+}
