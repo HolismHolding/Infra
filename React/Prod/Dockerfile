@@ -35,7 +35,6 @@ RUN rm -rf ${RepositoryPath}/.git \
     && cp /HolismReact/Infra/package.json ${RepositoryPath} \
     && cp /HolismReact/Infra/package-lock.json ${RepositoryPath}
 #RUN find ${RepositoryPath}
-RUN ls ${RepositoryPath}/public -lah
 WORKDIR ${RepositoryPath}
 # RUN npm run build
 
