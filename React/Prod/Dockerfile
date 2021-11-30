@@ -20,7 +20,7 @@ RUN rm -rf ${RepositoryPath}/.git \
     && mkdir -p ${RepositoryPath}/src/Components \
     && mkdir -p ${RepositoryPath}/src/public \
     && cp ${RepositoryPath}/Logo.js ${RepositoryPath}/src \
-    && cp ${RepositoryPath}/Favicon.ico ${RepositoryPath}/public/favicon.ico \
+    && cp ${RepositoryPath}/Favicon.ico ${RepositoryPath}/src/public/favicon.ico \
     && cp ${RepositoryPath}/HeaderActions.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Menu.js ${RepositoryPath}/src \
     && cp ${RepositoryPath}/Routes.js ${RepositoryPath}/src \

@@ -3,6 +3,7 @@
 . /HolismHolding/Infra/Scripts/CopyHolismHoldingInfra.sh
 . /HolismHolding/Infra/Scripts/CopyDependencies.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
+. /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
 
 function CopyHolismReactInfra() {
     echo "Copying HolismReact/Infra ...";
@@ -40,6 +41,7 @@ function BuildReact() {
     CopyHolismReactInfra
     CopyDependencies
     CopyRepository
+    RemoveGitsDirectory
     UseProductionCracoBuildConfig
     ReplaceSymlinksWithOriginalFiles
 

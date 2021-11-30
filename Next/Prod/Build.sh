@@ -3,6 +3,7 @@
 . /HolismHolding/Infra/Scripts/CopyHolismHoldingInfra.sh
 . /HolismHolding/Infra/Scripts/CopyDependencies.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
+. /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
 
 function CopyHolismNextInfra() {
     echo "Copying site base ...";
@@ -23,6 +24,7 @@ function BuildNext() {
     CopyHolismNextInfra
     CopyDependencies
     CopyRepository
+    RemoveGitsDirectory
 
     Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/Next/Prod/Dockerfile > $Dockerfile
