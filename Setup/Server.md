@@ -1,8 +1,8 @@
 # Server setup
 
 - OS
-    - Debian Buster
-        - [10.10.0 x64](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.10.0-amd64-netinst.iso)
+    - Debian Bullseye
+        - [debian-11.1.0-amd64-netinst](https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.1.0-amd64-netinst.iso)
 - Login with root
 - Change root password (how?)
 - Change ssh port
