@@ -1,4 +1,3 @@
-#docker build -t holism/dotnet-debug:latest .
 ARG VARIANT="3.1"
 FROM mcr.microsoft.com/vscode/devcontainers/dotnetcore:0-${VARIANT}
 
