@@ -4,7 +4,7 @@ COPY . .
 RUN cd ${RepositoryPath} \
     && dotnet publish Api -o /Temp/Publish
 
-FROM mcr.microsoft.com/dotnet/aspnet:3.1
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 COPY --from=0 /Temp/Publish /${RepositoryPath}
 WORKDIR ${RepositoryPath}
 RUN rm -rf ConnectionStrings.json \

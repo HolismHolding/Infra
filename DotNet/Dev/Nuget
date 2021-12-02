@@ -1,0 +1,7 @@
+cd ~
+cd .local
+cd share
+cd NuGet
+cd v3-cache
+cd 670c1461c29885f9aa22c281d8b7da90845b38e4\$ps\:_api.nuget.org_v3_index.json
+export NugetPath=$PWD

@@ -23,7 +23,7 @@ function SetupDotNet() {
     #echo -e $volumes
     LinkGitIgnore $PWD
     LinkLocalSecrets
-    PullDotNetDockerImage
+    # PullDotNetDockerImage
     CreateGitHubAction DotNet
     
     CreateDatabaseContainer
