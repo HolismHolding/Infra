@@ -10,3 +10,6 @@ RUN mkdir /HolismDotNet \
     && git clone https://github.com/HolismDotNet/Infra \
     && cd /HolismDotNet/Infra \
     && dotnet build
+
+RUN apt update \
+    && apt install -y procps

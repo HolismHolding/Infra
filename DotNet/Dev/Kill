@@ -1,1 +1,2 @@
-pgrep -f "dotnet.*Api.dll" | xargs kill
+# pgrep -f "dotnet.*Api.dll" | xargs kill
+ps -ef | grep 'dotnet' | grep -v grep | awk '{print $2}' | xargs -r kill -9
