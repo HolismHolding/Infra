@@ -28,7 +28,9 @@ function Compare()
     sudo mkdir -p /Temp/SchemaCompare/$1
     sudo chmod -R 777 /Temp/SchemaCompare/$1
 
-    if [ -f "$Org/$Repo/Database.json" ]; then
+    echo "$Org/$Repo/Database.json";
+
+    if [ ! -f "$Org/$Repo/Database.json" ]; then
         return;
     fi
 
