@@ -17,3 +17,4 @@ RUN npm i --save --save-dev eslint eslint-config-next
 RUN npm i --save @heroicons/react --no-optional
 RUN npm i --save @headlessui/react --no-optional
 RUN npm i --save nodemailer --no-optional
+RUN npm i --save cookieconsent --no-optional
