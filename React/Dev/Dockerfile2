@@ -4,8 +4,6 @@ ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"
 
 RUN apt update
 RUN apt install inotify-tools -y
-RUN apt install git -y
-RUN apt install unzip -y
 
 RUN npx create-react-app panel --use-npm
 
