@@ -9,11 +9,13 @@ RUN npx create-react-app panel --use-npm
 
 WORKDIR /panel
 
+RUN npm i --save @mui/material @emotion/react @emotion/styled --no-optional
+RUN npm i --save @mui/icons-material --no-optional
+
+
 RUN npm i --no-optional
 RUN npm i --save @craco/craco --no-optional
 RUN npm i --save @date-io/date-fns --no-optional
-RUN npm i --save @mui/material @emotion/react @emotion/styled --no-optional
-RUN npm i --save @mui/icons-material --no-optional
 RUN npm i --save @material-ui/pickers --no-optional
 RUN npm i --save @zoomus/websdk --no-optional
 RUN npm i --save axios --no-optional
