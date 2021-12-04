@@ -1,0 +1,29 @@
+FROM node:14-buster-slim
+
+ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
+
+RUN apt update
+RUN apt add --no-cache inotify-tools
+RUN apt add --no-cache git
+RUN apt add --upgrade unzip
+
+RUN npx create-react-app panel --use-npm
+
+WORKDIR /panel
+
+RUN npm i --no-optional
+RUN npm i --save @craco/craco --no-optional
+RUN npm i --save @date-io/date-fns --no-optional
+RUN npm i --save @material-ui/core --no-optional
+RUN npm i --save @material-ui/icons --no-optional
+RUN npm i --save @material-ui/pickers --no-optional
+RUN npm i --save @zoomus/websdk --no-optional
+RUN npm i --save axios --no-optional
+RUN npm i --save date-fns --no-optional
+RUN npm i --save eventemitter3 --no-optional
+RUN npm i --save react-color --no-optional
+RUN npm i --save react-router-dom --no-optional
+RUN npm i --save react-scripts --no-optional
+RUN npm i --save recharts --no-optional
+
+RUN npm i -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9 --no-optional
