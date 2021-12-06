@@ -17,6 +17,7 @@ services:
             - DB_PASSWORD=52wfDZSvFsfhC5tT3jW9
         logging:
             driver: none
+        restart: always
     database:
         image: mariadb
         container_name: AccountsDatabase
@@ -31,6 +32,7 @@ services:
             - /Temp/HolismHolding/Accounts/Database:/var/lib/mysql 
         logging:
             driver: none
+        restart: always
     pma:
         image: phpmyadmin:latest
         container_name: AccountsPma
@@ -40,3 +42,4 @@ services:
             - PMA_HOST=database
         logging:
             driver: none
+        restart: always

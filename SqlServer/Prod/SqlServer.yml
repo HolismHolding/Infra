@@ -16,6 +16,7 @@ services:
             driver: none
         networks:
             - OrganizationNetwork
+        restart: always
 networks:
     OrganizationNetwork:
         name: OrganizationNetwork

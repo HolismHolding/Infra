@@ -18,7 +18,6 @@ services:
         define('WP_SITEURL', 'https://blog.domain.com');   
     volumes:
       - /Organization/Blog/Content:/var/www/html/wp-content
-
   database:
     image: mariadb
     container_name: OrganizationBlogDatabase
@@ -31,7 +30,7 @@ services:
         - /Organization/Blog/Database:/var/lib/mysql 
     logging:
         driver: none
-        
+    restart: always
   pma:
       image: phpmyadmin:latest
       container_name: OrganizationBlogPma
@@ -41,3 +40,4 @@ services:
           - PMA_HOST=database
       logging:
           driver: none
+    restart: always
