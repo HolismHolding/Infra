@@ -40,4 +40,4 @@ services:
           - PMA_HOST=database
       logging:
           driver: none
-    restart: always
+      restart: always

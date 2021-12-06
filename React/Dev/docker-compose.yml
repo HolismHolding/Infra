@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  react:
+    image: node:14-buster-slim
+    container_name: NewReact
+    ports:
+      - 3000:3000
+    volumes:
+      - /HolismHolding:/HolismHolding
+      - /HolismReact:/HolismReact
+      - /HolismReact/NewInfra:/panel
+    command: tail -f /dev/null
