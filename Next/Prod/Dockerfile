@@ -13,6 +13,8 @@ COPY --from=dependencies /site/postcss.config.js ${RepositoryPath}/postcss.confi
 RUN cp -a /HolismNext/Infra/. ${RepositoryPath}
 RUN if [ ! -d "${RepositoryPath}/contents" ]; then mkdir ${RepositoryPath}/contents; fi
 RUN echo dummy > ${RepositoryPath}/contents/dummy.md
+RUN if [ ! -d "${RepositoryPath}/public" ]; then mkdir ${RepositoryPath}/public; fi
+RUN echo dummy > ${RepositoryPath}/public/dummy.md
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
