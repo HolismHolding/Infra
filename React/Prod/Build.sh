@@ -29,7 +29,7 @@ function ReplaceSymlinksWithOriginalFiles()
         OriginalPath=$(readlink -f $file)
         Info "$file - $OriginalPath"
         sudo rm -rf $file;
-        cp $OriginalPath $file
+        cp -r $OriginalPath $file
         sudo chmod 777 $file
     done
 }
