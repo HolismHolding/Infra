@@ -138,8 +138,9 @@ function InstallMicro()
 {
     Write "Installing Micro ..."
 
+    sudo chmod -R 777 /usr/local/bin
     cd /usr/local/bin
-    curl https://getmic.ro | bash
+    sudo curl https://getmic.ro | bash
 
     # or
     # wget https://github.com/zyedidia/micro/releases/download/v2.0.10/micro-2.0.10-amd64.deb
