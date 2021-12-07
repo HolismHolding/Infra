@@ -24,7 +24,7 @@ services:
             rm -rf Api/bin
             && rm -rf Api/obj
             && dotnet build Api
-            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.Api.dll &
+            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.dll &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "

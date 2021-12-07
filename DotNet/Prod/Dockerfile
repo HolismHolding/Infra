@@ -10,4 +10,4 @@ WORKDIR ${RepositoryPath}
 RUN rm -rf ConnectionStrings.json \
     && rm -rf Settings.json \
     && rm -rf SettingsOverride.json
-CMD [ "dotnet", "${Organization}.${Repository}.Api.dll" ]
+CMD [ "dotnet", "${Organization}.${Repository}.dll" ]

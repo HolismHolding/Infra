@@ -4,6 +4,6 @@ echo "Building /$Organization/$Repository ...";
 
 dotnet build /$Organization/$Repository
 
-echo "Running /$Organization/Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll ...";
+echo "Running /$Organization/Repository/Api/bin/$OrganizationPrefix.$Repository.dll ...";
 
-dotnet /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.Api.dll &
+dotnet /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.dll &
