@@ -1,5 +1,5 @@
 {
-	"name": "Ubuntu",
+	"name": "DebianBullseye",
 	"image": "holism/dotnet-debug:latest",
 	"settings": {},
 	"extensions": ["ms-dotnettools.csharp"],
