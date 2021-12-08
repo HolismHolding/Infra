@@ -24,9 +24,9 @@ services:
             "
             rm -rf ${SelectedProject}/bin
             && rm -rf ${SelectedProject}/obj
+            && echo SelectedProjetc: ${SelectedProject}
             && dotnet build ${SelectedProject}
             & echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
-            & /HolismHolding/Infra/SqlServer/Dev/SetupContainer.sh  ${RepositoryPath} 
             && tail -f /dev/null
             "
         stdin_open: true # docker run -i

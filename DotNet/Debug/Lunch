@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Holism.Generation.dll",
+            "program": "${workspaceFolder}/bin/${Organization}.${Repository}.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
