@@ -1,4 +1,6 @@
 . /HolismHolding/Infra/React/IsReact.sh
+. /HolismHolding/Infra/Next/IsNext.sh
+. /HolismHolding/Infra/DotNet/IsDotNet.sh
 
 function LinkGitIgnore() {
     if [ -f "$1/.gitignore" ]; then
@@ -7,7 +9,7 @@ function LinkGitIgnore() {
     fi
     if IsNext $1; then
         export GitIgnoreSource="/HolismHolding/Infra/Next/Dev/GitIgnore";
-    elif IsReact $1; then
+    elif IsReact $1 || [ $(basename $1) = 'Common' ]; then
         export GitIgnoreSource="/HolismHolding/Infra/React/Dev/GitIgnore";
     elif IsDotNet $1; then
         export GitIgnoreSource="/HolismHolding/Infra/DotNet/Dev/GitIgnore";
