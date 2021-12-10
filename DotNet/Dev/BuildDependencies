@@ -25,7 +25,7 @@ while read Dependency; do
 
     find /$Org/$Repo -type d -name "bin" | xargs sudo rm -rf
     find /$Org/$Repo -type d -name "obj" | xargs sudo rm -rf
-    find /$Org/$Repo -type d -name "Packages" | xargs sudo rm -rf
+    # find /$Org/$Repo -type d -name "Packages" | xargs sudo rm -rf
     cd /$Org/$Repo    
     dotnet build 
 
