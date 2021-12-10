@@ -12,4 +12,5 @@ RUN mkdir /HolismDotNet \
     && dotnet build
 
 RUN apt update \
-    && apt install -y procps
+    && apt install -y procps \
+    && apt install gettext-base
