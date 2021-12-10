@@ -32,7 +32,7 @@ if [ -d "/$Organization/$Repository/Models" ]; then
 fi
 
 if [ -d "/$Organization/$Repository/DataAccess" ]; then
-    envsubst < /HolismDotNet/Infra/DataAccess/Usings.cs > /$Organization/$Repository/DataAccess/Usings.cs
+    envsubst < /HolismDotNet/Infra/DataAccess/Usings > /$Organization/$Repository/DataAccess/Usings.cs
 fi
 
 prompt=$(sudo -nv 2>&1)
