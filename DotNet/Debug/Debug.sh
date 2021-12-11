@@ -9,6 +9,7 @@
 . /HolismHolding/Infra/DotNet/LinkLocalSecrets
 . /HolismHolding/Infra/DotNet/CreateApiContainer
 . /HolismHolding/Infra/SqlServer/Dev/CreateDatabaseContainer
+. /HolismHolding/Infra/DotNet/LinkUsings.sh
 
 function LinkDevContainer() {
     
@@ -63,6 +64,7 @@ function DebugDotNet() {
     PullDotNetDockerImage
     LinkDevContainer
     LinkVSCodeFiles
+    LinkUsings
 
     CreateDatabaseContainer
     CreateApiContainer "Debug"
