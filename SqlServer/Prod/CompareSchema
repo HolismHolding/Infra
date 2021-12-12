@@ -33,8 +33,8 @@ sudo rm -rf /Temp/SchemaCompare
 
 function Compare()
 {
-    Org=$(echo $Dependency | cut -d'/' -f1)
-    Repo=$(echo $Dependency | cut -d'/' -f2)
+    Org=$(echo $1 | cut -d'/' -f1)
+    Repo=$(echo $1 | cut -d'/' -f2)
 
     Info "Comparing $Repo ...";
 
@@ -53,11 +53,11 @@ function Compare()
         code /Temp/SchemaCompare
     fi
 
-    sqlpackage /a:extract /of:true /scs:"data source=localhost,1433; initial catalog=$1; user id=SA; password=lksU2o412f7tBj58t07B;" /tf:"/Temp/SchemaCompare/$1/Source.dacpac";
+    sqlpackage /a:extract /of:true /scs:"data source=localhost,1433; initial catalog=$Repo; user id=SA; password=lksU2o412f7tBj58t07B;" /tf:"/Temp/SchemaCompare/$Repo/Source.dacpac";
 
-    sqlpackage /a:deployreport /op:"/Temp/SchemaCompare/$1/Report.xml" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$1; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
+    sqlpackage /a:deployreport /op:"/Temp/SchemaCompare/$Repo/Report.xml" /of:True /sf:"/Temp/SchemaCompare/$Repo/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$Repo; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
 
-    sqlpackage /a:script /op:"/Temp/SchemaCompare/$1/Migration.sql" /of:True /sf:"/Temp/SchemaCompare/$1/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$1; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
+    sqlpackage /a:script /op:"/Temp/SchemaCompare/$Repo/Migration.sql" /of:True /sf:"/Temp/SchemaCompare/$Repo/Source.dacpac" /tcs:"data source=$TargetServer; initial catalog=$Repo; user id=SA; password=$TargetPassword;" /P:DropObjectsNotInSource=True /P:DropPermissionsNotInSource=False /P:IgnorePermissions=True /mp:10
 
     sudo chmod -R 777 /Temp/SchemaCompare
 }
