@@ -2,35 +2,47 @@
 
 . /HolismHolding/Infra/Scripts/Message.sh
 
-if [ ! -f "$PWD/Dependencies" ]; then
-    Error "Can't find the file Dependencies";
-    exit;
-fi
+function EnsureDependenciesExist()
+{
+    if [ ! -f "$PWD/Dependencies" ]; then
+        Error "Can't find the file Dependencies";
+        exit;
+    fi
+}
 
-export TargetServer=$1
+function EnsureTargetServerIsProvided()
+{
+    export TargetServer=$1
 
-if [ ${TargetServer:-NotSet} == "NotSet" ]; then 
-    Error "TargetServer is not provided";
-    exit;
-fi
+    if [ ${TargetServer:-NotSet} == "NotSet" ]; then 
+        Error "TargetServer is not provided";
+        exit;
+    fi
+}
 
-export TargetPassword=$2
-
-if [ ${TargetPassword:-NotSet} == "NotSet" ]; then 
-    Error "TargetPassword is not provided";
-    exit;
-fi
+function LoadPassword()
+{
+    if [ ! -f /LocalSecrets/$TargetServer ]; then
+        Error "TargetPassword does not exist in local secrets";
+        exit;
+    fi
+    export TargetPassword=$(cat /LocalSecrets/$TargetServer)
+}
 
 sudo rm -rf /Temp/SchemaCompare
 
 function Compare()
 {
+    Org=$(echo $Dependency | cut -d'/' -f1)
+    Repo=$(echo $Dependency | cut -d'/' -f2)
+
+    Info "Comparing $Repo ...";
+
     sudo mkdir -p /Temp/SchemaCompare/$1
     sudo chmod -R 777 /Temp/SchemaCompare/$1
 
-    echo "$Org/$Repo/Database.json";
-
-    if [ ! -f "$Org/$Repo/Database.json" ]; then
+    if [ ! -f "/$Org/$Repo/Database.json" ]; then
+        Warning "/$Org/$Repo/Database.json does not exist"
         return;
     fi
 
@@ -43,12 +55,29 @@ function Compare()
     sudo chmod -R 777 /Temp/SchemaCompare
 }
 
-while read Dependency; do  
-    
-    Org=$(echo $Dependency | cut -d'/' -f1)
-    Repo=$(echo $Dependency | cut -d'/' -f2)
+EnsureTargetServerIsProvided $1
+LoadPassword
 
-    Info "Comparing $Repo ...";
-    Compare $Repo
+function LoopOverDepedencies()
+{
+    EnsureDependenciesExist
     
-done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+    while read Dependency; do  
+    
+        Compare $Dependency
+    
+    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+}
+
+function CompareOnce()
+{
+    Compare $1
+}
+
+export Dependency=$2
+
+if [ ${Dependency:-NotSet} == "NotSet" ]; then 
+    LoopOverDepedencies
+else
+    CompareOnce $2
+fi
