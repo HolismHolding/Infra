@@ -38,8 +38,8 @@ function Compare()
 
     Info "Comparing $Repo ...";
 
-    sudo mkdir -p /Temp/SchemaCompare/$1
-    sudo chmod -R 777 /Temp/SchemaCompare/$1
+    sudo mkdir -p /Temp/SchemaCompare/$Repo
+    sudo chmod -R 777 /Temp/SchemaCompare/$Repo
 
     if [ ! -f "/$Org/$Repo/Database.json" ]; then
         Warning "/$Org/$Repo/Database.json does not exist"
@@ -50,7 +50,7 @@ function Compare()
 
     if [[ $OpenedVsCode == 0 ]]; then
         OpenedVsCode=1
-        code /Temp/SchemaCompare
+        #code /Temp/SchemaCompare
     fi
 
     sqlpackage /a:extract /of:true /scs:"data source=localhost,1433; initial catalog=$Repo; user id=SA; password=lksU2o412f7tBj58t07B;" /tf:"/Temp/SchemaCompare/$Repo/Source.dacpac";
