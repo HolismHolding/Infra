@@ -4,6 +4,8 @@ services:
         image: holism/next-dev:latest
         container_name: ${Organization}${Repository}
         working_dir: ${RepositoryPath}
+        environment:
+          - NEXT_TELEMETRY_DISABLED=1
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismNext/Infra:/HolismNext/Infra
