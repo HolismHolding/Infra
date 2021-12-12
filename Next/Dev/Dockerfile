@@ -1,6 +1,6 @@
 FROM node:14-buster-slim
 
-RUN npx create-next-app -e with-tailwindcss site --use-npm
+RUN npx create-next-app --example with-tailwindcss site --use-npm
 
 WORKDIR /site
 
