@@ -28,9 +28,9 @@ function LinkVSCodeFiles() {
     fi
     sudo mkdir $PWD/$SelectedProject/.vscode
     sudo chmod -R 777 $PWD/$SelectedProject/.vscode
-    
-    cp /HolismHolding/Infra/DotNet/Debug/Lunch "$PWD/$SelectedProject/.vscode/launch.json"
-    cp /HolismHolding/Infra/DotNet/Debug/Tasks "$PWD/$SelectedProject/.vscode/tasks.json"
+
+    envsubst < /HolismHolding/Infra/DotNet/Debug/Lunch > $PWD/$SelectedProject/.vscode/launch.json
+    envsubst < /HolismHolding/Infra/DotNet/Debug/Tasks > $PWD/$SelectedProject/.vscode/tasks.json
 }
 
 function PullDotNetDockerImage() {
