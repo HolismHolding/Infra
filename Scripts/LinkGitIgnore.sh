@@ -20,5 +20,5 @@ function LinkGitIgnore() {
         return;
     fi
     # echo "Creating .gitignore link to $GitIgnoreSource for $1 ...";
-    sudo ln -s $GitIgnoreSource "$1/.gitignore"
+    sudo ln -f -s $GitIgnoreSource "$1/.gitignore"
 }

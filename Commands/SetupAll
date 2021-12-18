@@ -17,7 +17,7 @@ docker system prune -y
 cd /$Organization
 
 ls | while read -r name ; do
-    if [[ "$name" == *Api ]] || [[ "$name" == *Panel ]] || [ "$name" == Site ]; then
+    if [[ "$name" == *Api ]] || [[ "$name" == *Panel ]] || [ "$name" == Site ]  || [ "$name" == Blog ]; then
        cd /$Organization/$name;
        Setup &
     fi
