@@ -12,3 +12,4 @@
 - search (elastisearch)
 - configuration
 - culture
+- link AdminApi.sln or any other API solution file to Api.sln from the base, and name it as the $Repository

@@ -9,6 +9,7 @@
 . /HolismHolding/Infra/SqlServer/Dev/CreateDatabaseContainer
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/DotNet/LinkUsings.sh
+. /HolismHolding/Infra/DotNet/LinkApiSolution.sh
 
 function PullDotNetDockerImage() {
     echo 'Pulling docker image holism/dotnet-dev:latest'
@@ -25,6 +26,7 @@ function SetupDotNet() {
     LinkGitIgnore $PWD
     LinkUsings
     LinkLocalSecrets
+    LinkApiSolution
     PullDotNetDockerImage
     CreateGitHubAction DotNet
     
