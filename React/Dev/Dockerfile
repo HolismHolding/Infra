@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:14-buster-slim
 WORKDIR /HolismReact
 
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
