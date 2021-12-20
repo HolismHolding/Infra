@@ -3,11 +3,11 @@ WORKDIR /HolismReact
 
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
 
-RUN apk update \
-    && npm install -g npm@8.2.0 \
-    && apk add --no-cache inotify-tools \
-    && apk add --no-cache git \
-    && apk add --upgrade unzip \
+RUN apt update \
+    && npm install -g npm@8.2.0 -y \
+    && apt install inotify-tools -y \
+    && apt install git -y \
+    && apt install --upgrade unzip -y \
     && cd /HolismReact \
     && git clone https://github.com/HolismReact/Infra \
     && cd /HolismReact/Infra \
