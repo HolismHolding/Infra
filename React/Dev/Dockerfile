@@ -13,3 +13,7 @@ RUN apt update \
     && cd /HolismReact/Infra \
     && rm -rf package-lock.json \
     && npm install --legacy-peer-deps
+
+RUN apt update \
+    && apt install -y procps \
+    && apt install gettext-base
