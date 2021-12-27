@@ -23,7 +23,6 @@ services:
             - /HolismReact/Infra/craco.config.js:${RepositoryPath}/craco.config.js
             - /HolismReact/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
-            - /HolismReact/Infra/package-lock.json:${RepositoryPath}/package-lock.json
             - ${RepositoryPath}/Logo.js:${RepositoryPath}/src/Logo.js
             - ${RepositoryPath}/Favicon.ico:${RepositoryPath}/public/favicon.ico
             - ${RepositoryPath}:${RepositoryPath}/src/${Repository}

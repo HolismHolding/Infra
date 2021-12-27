@@ -1,7 +1,5 @@
 FROM holism/next-dev:latest as dependencies
 WORKDIR ${RepositoryPath}
-# COPY /HolismNext/Infra/package.json /HolismNext/Infra/package-lock.json ./
-# RUN npm install
 
 FROM node:14-buster-slim as builder
 COPY /HolismHolding/Infra /HolismHolding/Infra
