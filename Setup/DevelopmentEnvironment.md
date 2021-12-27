@@ -119,6 +119,10 @@
       - Repeat keys
       - Delay = almost 10%
       - Speed = almost 60%
+  - Root
+    - `sudo ln -f -s ~/.ssh/id_ed25519 /root/.ssh/id_ed25519`
+    - `sudo ln -f -s ~/.ssh/id_ed25519.pub /root/.ssh/id_ed25519.pub`
+    - `sudo ln -f -s ~/.ssh/known_hosts /root/.ssh/known_hosts`
 
 * Development
   - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,  
