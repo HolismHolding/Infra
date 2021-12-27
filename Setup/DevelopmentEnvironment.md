@@ -120,6 +120,7 @@
       - Delay = almost 10%
       - Speed = almost 60%
   - Root
+    - `sudo mkdir -p /root/.ssh`
     - `sudo ln -f -s ~/.ssh/id_ed25519 /root/.ssh/id_ed25519`
     - `sudo ln -f -s ~/.ssh/id_ed25519.pub /root/.ssh/id_ed25519.pub`
     - `sudo ln -f -s ~/.ssh/known_hosts /root/.ssh/known_hosts`
