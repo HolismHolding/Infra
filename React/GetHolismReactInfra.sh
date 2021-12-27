@@ -3,8 +3,9 @@ function GetHolismReactInfra() {
     if [ -d "$infraPath" ]; then
         echo "Pulling $infraPath"
         git -C $infraPath pull
-    else 
+    else
         echo "Cloning $infraPath"
         git -C /HolismReact clone git@github.com:HolismReact/Infra || git -C /HolismReact clone https://github.com/HolismReact/Infra
     fi
+    sudo chmod -R 777 /HolismReact
 }
