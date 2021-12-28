@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+
+  database:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: IC1joYMLZTT0fQMJ5qcz
+
+  admin:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
