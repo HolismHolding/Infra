@@ -1,0 +1,33 @@
+version: "3.9"
+services: 
+    api:
+        image: holism/node-dev:latest
+        #restart: always
+        container_name: ${Organization}${Repository}
+        working_dir: ${RepositoryPath}
+        environment:
+            - Organization=${Organization}
+            - OrganizationPrefix=${OrganizationPrefix}
+            - RepositoryPath=${RepositoryPath}
+            - Repository=${Repository}
+        volumes: 
+            - /HolismHolding/Infra:/HolismHolding/Infra
+            - /LocalSecrets:/LocalSecrets
+            - /HolismNode/Infra:/HolismNode/Infra
+            - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
+        ports: 
+            - "$RandomPort:5000"
+        command: >
+            sh -c
+            "
+            echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
+            && tail -f /dev/null
+            "
+        stdin_open: true # docker run -i
+        tty: true  # docker run -t
+        networks:
+            - ${Organization}Network
+networks:
+    ${Organization}Network:
+        name: ${Organization}Network
+        driver: bridge
