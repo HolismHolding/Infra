@@ -1,0 +1,45 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/Message.sh
+
+ExtractAndExportData
+
+if [ ! -f "$PWD/Database.json" ]; then
+    Warning "Did not found Database.json";
+    exit;
+fi
+
+if [ ! -f "$PWD/Models/Models.csproj" ] || [ ! -f "$PWD/DataAccess/DataAccess.csproj" ]; then
+    Warning "You should run this command inside a module, that has Models and DataAccess projects.";
+    exit;
+fi
+
+export Directory=$PWD
+
+if [ -z ${IsBuilt+x} ]; then
+    dotnet build /HolismDotNet/Infra/MariaDbGeneration
+fi
+
+cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/MariaDbGeneration/bin
+
+cd /HolismDotNet/Infra/MariaDbGeneration
+
+dotnet run $Directory $Organization $OrganizationPrefix $Repository
+
+if [ -d "/$Organization/$Repository/Models" ]; then
+    ln -f -s /HolismDotNet/Infra/Models/Usings.cs /$Organization/$Repository/Models/Usings.cs
+fi
+
+if [ -d "/$Organization/$Repository/DataAccess" ]; then
+    envsubst < /HolismDotNet/Infra/DataAccess/Usings > /$Organization/$Repository/DataAccess/Usings.cs
+fi
+
+prompt=$(sudo -nv 2>&1)
+if [ $? -eq 0 ]; then
+    sudo chmod -R 777 $Directory
+elif echo $prompt | grep -q '^sudo:'; then
+    sudo chmod -R 777 $Directory
+else
+    chmod -R 777 $Directory
+fi

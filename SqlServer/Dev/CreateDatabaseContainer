@@ -2,6 +2,22 @@
 
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
 
+function CreateSqlServerDatabaseContainer()
+{
+    ComposeFile=/Temp/$Organization/SqlDockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/SqlServer/Dev/DockerCompose.yml > $ComposeFile
+    docker-compose -p "${Organization}_Databases" -f $ComposeFile up --remove-orphans
+}
+
+function CreateMariaDbDatabaseContainer()
+{
+    ComposeFile=/Temp/$Organization/MaraiDbDockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/MariaDb/Dev/DockerCompose.yml > $ComposeFile
+    docker-compose -p "${Organization}_MaraiDb_Databases" -f $ComposeFile up --remove-orphans
+}
+
 function CreateDatabaseContainer()
 {
     if [[ $(docker container ls | grep ${Organization}Databases) ]]; then
@@ -9,8 +25,6 @@ function CreateDatabaseContainer()
         # CleanDocker
         return;
     fi
-    ComposeFile=/Temp/$Organization/SqlDockerCompose.yml
-    mkdir -p $(dirname $ComposeFile)
-    envsubst < /HolismHolding/Infra/SqlServer/Dev/DockerCompose.yml > $ComposeFile
-    docker-compose -p "${Organization}_Databases" -f $ComposeFile up --remove-orphans
+    CreateSqlServerDatabaseContainer
+    CreateMariaDbDatabaseContainer
 }
