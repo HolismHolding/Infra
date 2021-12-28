@@ -14,7 +14,7 @@ services:
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /LocalSecrets:/LocalSecrets
             - /HolismNode/Infra:/HolismNode/Infra
-            - ${RepositoryPath}:${RepositoryPath}VolumeMappingPlaceHolder
+            - ${RepositoryPath}:${RepositoryPath}
         ports: 
             - "$RandomPort:5000"
         command: >
