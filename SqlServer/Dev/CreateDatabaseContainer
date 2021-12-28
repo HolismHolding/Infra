@@ -1,9 +1,11 @@
 #!/bin/bash
 
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
+. /HolismHolding/Infra/Scripts/Message.sh
 
 function CreateSqlServerDatabaseContainer()
 {
+    Info 'Creating SQL Server container'
     ComposeFile=/Temp/$Organization/SqlDockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     envsubst < /HolismHolding/Infra/SqlServer/Dev/DockerCompose.yml > $ComposeFile
@@ -12,6 +14,7 @@ function CreateSqlServerDatabaseContainer()
 
 function CreateMariaDbDatabaseContainer()
 {
+    Info 'Creating MariaDB container'
     ComposeFile=/Temp/$Organization/MaraiDbDockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     envsubst < /HolismHolding/Infra/MariaDb/Dev/DockerCompose.yml > $ComposeFile
@@ -20,11 +23,11 @@ function CreateMariaDbDatabaseContainer()
 
 function CreateDatabaseContainer()
 {
-    if [[ $(docker container ls | grep ${Organization}Databases) ]]; then
-        # docker container stop ${Organization}Databases
-        # CleanDocker
-        return;
-    fi
+    # if [[ $(docker container ls | grep ${Organization}Databases) ]]; then
+    #     # docker container stop ${Organization}Databases
+    #     # CleanDocker
+    #     return;
+    # fi
     CreateSqlServerDatabaseContainer
     CreateMariaDbDatabaseContainer
 }
