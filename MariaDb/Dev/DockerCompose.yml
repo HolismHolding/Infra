@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+    database:
+        #image: holism/maria-dev:latest
+        image: mariadb:latest
+        container_name: ${Organization}MariaDbDatabases
+        volumes:
+            - /HolismHolding/Infra:/HolismHolding/Infra
+            - /Temp/${Organization}/MariaDbDatabases:/var/lib/mysql
+        ports:
+            - 3306:3306
+        logging:
+            driver: none
+        # restart: always
+        networks:
+            - ${Organization}Network
+    admin:
+        image: adminer
+        container_name: ${Organization}Adminer
+        restart: always
+        logging:
+            driver: none
+        ports:
+            - 8080:8080
+networks:
+    ${Organization}Network:
+        name: ${Organization}Network
+        driver: bridge

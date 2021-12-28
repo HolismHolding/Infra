@@ -15,10 +15,10 @@ function CreateSqlServerDatabaseContainer()
 function CreateMariaDbDatabaseContainer()
 {
     Info 'Creating MariaDB container'
-    ComposeFile=/Temp/$Organization/MaraiDbDockerCompose.yml
+    ComposeFile=/Temp/$Organization/MariaDbDockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     envsubst < /HolismHolding/Infra/MariaDb/Dev/DockerCompose.yml > $ComposeFile
-    docker-compose -p "${Organization}_MaraiDb_Databases" -f $ComposeFile up --remove-orphans
+    docker-compose -p "${Organization}_MariaDb_Databases" -f $ComposeFile up --remove-orphans
 }
 
 function CreateDatabaseContainer()
@@ -28,6 +28,8 @@ function CreateDatabaseContainer()
     #     # CleanDocker
     #     return;
     # fi
+    Devide
     CreateSqlServerDatabaseContainer
     CreateMariaDbDatabaseContainer
+    Devide
 }
