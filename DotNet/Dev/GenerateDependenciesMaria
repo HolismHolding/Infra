@@ -1,0 +1,28 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/Message.sh
+
+ExtractAndExportData
+
+if [ ! -f "$PWD/Dependencies" ]; then
+    Error "Can't find the file Dependencies";
+    return;
+fi
+
+dotnet build /HolismDotNet/Infra/MariaDbGeneration
+export IsBuilt=1;
+cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/MariaDbGeneration/bin
+
+while read Dependency; do  
+    Info "${Org}/${Repo}"
+    Org=$(echo $Dependency | cut -d'/' -f1)
+    Repo=$(echo $Dependency | cut -d'/' -f2)
+
+    if [ ! -f "/$Org/$Repo/Database.json" ]; then
+        Warning "Did not found Database.json for $Org/$Repo";
+    else 
+        cd /$Org/$Repo
+        Generate
+    fi
+done <<< "$({ cat "$PWD/Dependencies"; echo; })"
