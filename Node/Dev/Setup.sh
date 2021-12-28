@@ -16,7 +16,7 @@ function CreateGitHubActionForNode() {
 }
 
 function SetupNode() {
-    echo "Seting up site"
+    echo "Seting up Node API"
     CreateHolismNodeDirectory
     GetHolismNodeInfra &
     LinkGitIgnore $PWD
