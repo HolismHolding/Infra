@@ -11,6 +11,7 @@ services:
             - OrganizationPrefix=${OrganizationPrefix}
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
+            - WDS_SOCKET_PORT=0
         volumes:
             - /HolismHolding:/HolismHolding
             - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
