@@ -2,6 +2,7 @@ version: "3.9"
 services:
     database:
         image: holism/sql-dev:latest
+        user: root
         container_name: ${Organization}Databases
         volumes:
             - /HolismHolding/Infra:/HolismHolding/Infra
