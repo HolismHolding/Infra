@@ -8,7 +8,7 @@
             "preLaunchTask": "build",
             "program": "/${Organization}/${Repository}/Api/bin/${Organization}.${Repository}.dll",
             "args": [],
-            "cwd": "/${Organization}/${Repository}/Api",
+            "cwd": "/${Organization}/${Repository}",
             "console": "internalConsole",
              "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development",
