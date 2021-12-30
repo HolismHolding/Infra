@@ -86,3 +86,7 @@ df = disk-free
 # get current timezone
 `cat /etc/timezone`
 `timedatectl`
+
+# get system info
+`uname`
+`man uname`
