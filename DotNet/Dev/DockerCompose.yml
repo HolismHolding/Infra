@@ -10,6 +10,7 @@ services:
             - OrganizationPrefix=${OrganizationPrefix}
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
+            - Host=${Host}
             - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra

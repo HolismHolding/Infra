@@ -1,7 +1,0 @@
-{
-	"name": "DebianBullseye",
-	"image": "holism/dotnet-debug:latest",
-	"settings": {},
-	"extensions": ["ms-dotnettools.csharp"],
-	"remoteUser": "vscode"
-}

@@ -1,0 +1,10 @@
+{
+	"name": "${Organization}${Repository}",
+	"image": "holism/dotnet-dev:latest",
+	"settings": {},
+	"extensions": ["ms-dotnettools.csharp"],
+	"remoteUser": "vscode",
+	"mounts": [
+		"source=${Organization}${Repository},target=/root/.vscode-server/extensions,type=volume"
+	]
+}

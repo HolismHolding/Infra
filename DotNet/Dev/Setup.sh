@@ -18,6 +18,28 @@ function PullDotNetDockerImage() {
     docker pull holism/dotnet-dev:latest
 }
 
+function LinkDevContainer() {
+    
+    if [ -d "$Organization/$Repository/.devcontainer" ]; then
+        sudo rm -rf "$Organization/$Repository/.devcontainer"
+    fi
+
+    sudo mkdir $Organization/$Repository/.devcontainer
+    sudo chmod -R 777 $Organization/$Repository/.devcontainer
+    envsubst < /HolismHolding/Infra/DotNet/Debug/DevContainer > "$Organization/$Repository/.devcontainer/devcontainer.json"
+}
+
+function LinkVSCodeFiles() {
+    if [ -d "$Organization/$Repository/.vscode" ]; then
+        sudo rm -rf "$Organization/$Repository/.vscode"
+    fi
+    sudo mkdir $Organization/$Repository/.vscode
+    sudo chmod -R 777 $Organization/$Repository/.vscode
+
+    envsubst < /HolismHolding/Infra/DotNet/Debug/Lunch > $Organization/$Repository/.vscode/launch.json
+    envsubst < /HolismHolding/Infra/DotNet/Debug/Tasks > $Organization/$Repository/.vscode/tasks.json
+}
+
 function SetupDotNet() {
     echo ".NET"
     GetDotNetInfra &
@@ -26,6 +48,8 @@ function SetupDotNet() {
     GetDependencies volumes
     #echo -e $volumes
     LinkGitIgnore $PWD
+    LinkDevContainer
+    LinkVSCodeFiles
     LinkUsings
     LinkLocalSecrets
     LinkApiSolution
