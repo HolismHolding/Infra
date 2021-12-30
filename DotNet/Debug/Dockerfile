@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/vscode/devcontainers/dotnet:6.0-bullseye
+ARG VARIANT="6.0-bullseye-slim"
+FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
     
 ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
 
@@ -12,4 +13,5 @@ RUN mkdir /HolismDotNet \
     && dotnet build
 
 RUN apt update \
-    && apt install -y procps
+    && apt install -y procps \
+    && apt install gettext-base

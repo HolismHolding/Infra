@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/sdk:6.0
+ARG VARIANT="6.0-bullseye-slim"
+FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
     
 ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
 
