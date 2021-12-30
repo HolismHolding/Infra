@@ -14,6 +14,6 @@
 	],
 	"remoteUser": "vscode",
 	"mounts": [
-		"source=${Organization}${Repository},target=/root/.vscode-server/extensions,type=volume"
+		"source=${LowercaseOrg}${LowercaseRepo},target=/root/.vscode-server/extensions,type=volume"
 	]
 }
