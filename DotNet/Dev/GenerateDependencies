@@ -26,3 +26,7 @@ while read Dependency; do
         Generate
     fi
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+
+if [ -d /$Organization/Common ] && [ -f /$Organization/Common/InitialData.sql ]; then
+    docker exec -i ${Organization}Databases mysql -u root -pIC1joYMLZTT0fQMJ5qcz < /$Organization/Common/InitialData.sql
+fi
