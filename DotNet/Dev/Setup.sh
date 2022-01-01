@@ -40,6 +40,13 @@ function LinkVSCodeFiles() {
     envsubst < /HolismHolding/Infra/DotNet/Dev/Tasks > /$Organization/$Repository/.vscode/tasks.json
 }
 
+function InsertInitialData()
+{
+    if [ -d /$Organization/Common ] && [ -f /$Organization/Common/InitialData.sql ]; then
+        docker exec -i ${Organization}Databases mysql -u root -pIC1joYMLZTT0fQMJ5qcz < /$Organization/Common/InitialData.sql
+    fi
+}
+
 function SetupDotNet() {
     echo ".NET"
     LinkDevContainer
@@ -60,5 +67,6 @@ function SetupDotNet() {
     CreateGitHubAction DotNet
     
     CreateDatabaseContainer
+    InsertInitialData
     CreateApiContainer "Dev"
 }
