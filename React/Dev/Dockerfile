@@ -2,6 +2,7 @@ FROM node:14-buster-slim
 WORKDIR /HolismReact
 
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
+ENV WDS_SOCKET_PORT=0
 
 RUN apt update \
     && npm install -g npm@8.2.0 -y \
