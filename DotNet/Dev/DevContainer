@@ -12,7 +12,7 @@
 	"extensions": [
 		"ms-dotnettools.csharp"
 	],
-	"remoteUser": "vscode",
+	"remoteUser": "root",
 	"mounts": [
 		"source=${LowercaseOrg}${LowercaseRepo},target=/root/.vscode-server/extensions,type=volume"
 	],
