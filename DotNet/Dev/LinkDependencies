@@ -20,6 +20,10 @@ sudo ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infr
 sudo ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra/Business
 sudo ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra/Api
 
+sudo mkdir -p /$Organization/$Repository/Api/Cloud
+sudo chmod -R 777 /$Organization/$Repository/Api/Cloud
+sudo ln -s -f /HolismDotNet/Cloud/Azure /$Organization/$Repository/Api/Cloud/Azure
+
 while read Dependency; do  
     Info "${Org}/${Repo}"
     Org=$(echo $Dependency | cut -d'/' -f1)

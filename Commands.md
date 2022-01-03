@@ -17,6 +17,9 @@
 You can use use `-n` to only see the changes, without applying them, to ensure the regex is correct.
 
 `find . | grep search | rename -n 's/old/new'`
+`find / -path "*/Models/bin" 2>&-`
+`find / -type d -name "*something*" 2>&-`
+`find / -type f -name "*something*" 2>&-`
 
 # git submodules
 
