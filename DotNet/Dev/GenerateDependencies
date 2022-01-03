@@ -10,9 +10,9 @@ if [ ! -f "$PWD/Dependencies" ]; then
     exit;
 fi
 
-dotnet build /HolismDotNet/Infra/Generation
+dotnet build /HolismDotNet/Generation
 export IsBuilt=1;
-cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
+cp $PWD/ConnectionStrings.json /HolismDotNet/Generation/bin
 
 while read Dependency; do  
     Info "${Org}/${Repo}"

@@ -6,7 +6,7 @@ if [ ! -f "$PWD/Dependencies" ]; then
 fi
 
 dotnet build /HolismDotNet/Infra
-cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
+cp $PWD/ConnectionStrings.json /HolismDotNet/Generation/bin
 sudo chmod -R 777 $PWD
 
 while read Dependency; do  
@@ -19,7 +19,7 @@ while read Dependency; do
     # if [ ! -f "/$Org/$Repo/Database.json" ]; then
     #     echo "${red}not found Database.json for $Org/$Repo${reset}";
     # else 
-    #     dotnet /HolismDotNet/Infra/Generation/bin/Holism.Generation.dll "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
+    #     dotnet /HolismDotNet/Generation/bin/Holism.Generation.dll "/$Org/$Repo" $Organization "OrganizationPrefix" $Repo "GenerateDatabaseOnly" 
     #     echo -e "${magenta} ${Org} ${Repo}  database generated  ${reset}"
     # fi
 

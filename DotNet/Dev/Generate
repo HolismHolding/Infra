@@ -18,12 +18,12 @@ fi
 export Directory=$PWD
 
 if [ -z ${IsBuilt+x} ]; then
-    dotnet build /HolismDotNet/Infra/Generation
+    dotnet build /HolismDotNet/Generation
 fi
 
-cp $PWD/ConnectionStrings.json /HolismDotNet/Infra/Generation/bin
+cp $PWD/ConnectionStrings.json /HolismDotNet/Generation/bin
 
-cd /HolismDotNet/Infra/Generation
+cd /HolismDotNet/Generation
 
 dotnet run $Directory $Organization $OrganizationPrefix $Repository
 
