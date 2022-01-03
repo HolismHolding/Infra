@@ -1,0 +1,35 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/Message.sh
+
+ExtractAndExportData
+
+if [ ! -f "$PWD/Dependencies" ]; then
+    Error "Can't find the file Dependencies";
+    return;
+fi
+
+sudo mkdir -p /$Organization/$Repository/Api/Infra
+ln -s -f /HolismDotNet/Infra/Infra /$Organization/$Repository/Api/Infra/Infra
+ln -s -f /HolismDotNet/Infra/Validation /$Organization/$Repository/Api/Infra/Validation
+ln -s -f /HolismDotNet/Infra/Normalization /$Organization/$Repository/Api/Infra/Normalization
+ln -s -f /HolismDotNet/Infra/Models /$Organization/$Repository/Api/Infra/Models
+ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infra/DataAccess
+ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra/Business
+ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra/Api
+
+while read Dependency; do  
+    Info "${Org}/${Repo}"
+    Org=$(echo $Dependency | cut -d'/' -f1)
+    Repo=$(echo $Dependency | cut -d'/' -f2)
+
+    if [ ! -f "/$Org/$Repo/Database.json" ]; then
+        Warning "Did not found Database.json for $Org/$Repo";
+    else 
+        sudo mkdir -p /$Organization/$Repository/$Repo
+        ln -s -f /$Org/$Repo/Models /$Organization/$Repository/$Repo/Models
+        ln -s -f /$Org/$Repo/DataAccess /$Organization/$Repository/$Repo/DataAccess
+        ln -s -f /$Org/$Repo/Business /$Organization/$Repository/$Repo/Business
+    fi
+done <<< "$({ cat "$PWD/Dependencies"; echo; })"
