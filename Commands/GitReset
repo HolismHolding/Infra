@@ -1,5 +1,16 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/Message.sh
+
+echo
+Warning 'All of your local changes will be deleted permanentaly.'
+Warning 'Are you sure you want to reset? (y,n)'
+read Consent
+
+if [ $Consent != 'y' ]; then
+    exit;
+fi
+
 find / -type d -name .git 2>&- | 
 while read gitFolder; do
     if [[ $gitFolder == *"/Temp/"* ]]; then
