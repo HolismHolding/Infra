@@ -12,17 +12,17 @@ fi
 
 sudo mkdir -p /$Organization/$Repository/Api/Infra
 sudo chmod -R 777 /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Infra /$Organization/$Repository/Api/Infra/Infra
-sudo ln -s -f /HolismDotNet/Infra/Validation /$Organization/$Repository/Api/Infra/Validation
-sudo ln -s -f /HolismDotNet/Infra/Normalization /$Organization/$Repository/Api/Infra/Normalization
-sudo ln -s -f /HolismDotNet/Infra/Models /$Organization/$Repository/Api/Infra/Models
-sudo ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infra/DataAccess
-sudo ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra/Business
-sudo ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra/Api
+sudo ln -s -f /HolismDotNet/Infra/Infra /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/Validation /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/Normalization /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/Models /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra
+sudo ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra
 
 sudo mkdir -p /$Organization/$Repository/Api/Cloud
 sudo chmod -R 777 /$Organization/$Repository/Api/Cloud
-sudo ln -s -f /HolismDotNet/Cloud/Azure /$Organization/$Repository/Api/Cloud/Azure
+sudo ln -s -f /HolismDotNet/Cloud/Azure /$Organization/$Repository/Api/Cloud
 
 while read Dependency; do  
     Info "${Org}/${Repo}"
@@ -34,9 +34,9 @@ while read Dependency; do
     else 
         sudo mkdir -p /$Organization/$Repository/Api/$Repo
         sudo chmod -R 777 /$Organization/$Repository/Api/$Repo
-        sudo ln -s -f /$Org/$Repo/Models /$Organization/$Repository/Api/$Repo/Models
-        sudo ln -s -f /$Org/$Repo/DataAccess /$Organization/$Repository/Api/$Repo/DataAccess
-        sudo ln -s -f /$Org/$Repo/Business /$Organization/$Repository/Api/$Repo/Business
+        sudo ln -s -f /$Org/$Repo/Models /$Organization/$Repository/Api/$Repo
+        sudo ln -s -f /$Org/$Repo/DataAccess /$Organization/$Repository/Api/$Repo
+        sudo ln -s -f /$Org/$Repo/Business /$Organization/$Repository/Api/$Repo
     fi
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 
