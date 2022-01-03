@@ -10,7 +10,7 @@ if [ ! -f "$PWD/Database.json" ]; then
     exit;
 fi
 
-if [ ! -f "$PWD/Models/Models.csproj" ] || [ ! -f "$PWD/DataAccess/DataAccess.csproj" ]; then
+if [ ! -d "$PWD/Models" ] || [ ! -d "$PWD/DataAccess" ]; then
     Warning "You should run this command inside a module, that has Models and DataAccess projects.";
     exit;
 fi
