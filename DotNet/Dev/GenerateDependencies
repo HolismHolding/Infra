@@ -7,7 +7,7 @@ ExtractAndExportData
 
 if [ ! -f "$PWD/Dependencies" ]; then
     Error "Can't find the file Dependencies";
-    return;
+    exit;
 fi
 
 dotnet build /HolismDotNet/Infra/Generation
