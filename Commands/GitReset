@@ -25,7 +25,7 @@ while read gitFolder; do
     parent=$(dirname $gitFolder);
     echo "";
     echo $parent;
-    git -C $parent reset --hard && echo "Reset $parent is done" &
+    git -C $parent reset --hard && git -C $parent clean -fxd echo "Reset $parent is done" &
 done 
 
 # https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
