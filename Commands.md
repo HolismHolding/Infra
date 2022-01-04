@@ -93,3 +93,10 @@ df = disk-free
 # get system info
 `uname`
 `man uname`
+
+---
+`2>&-` closes the error stream (bad habit, because some apps crash if they encounter closed stream for erro)
+`2>/dev/null` ignores error, but redirects them to an open stream
+
+# find using negation
+`find / -type f ! -path '*Api/Settings.json' -name "Settings.json" 2>/dev/null`
