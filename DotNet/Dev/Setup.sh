@@ -12,6 +12,7 @@
 . /HolismHolding/Infra/DotNet/LinkApiSolution.sh
 . /HolismHolding/Infra/DotNet/LinkConnectionStrings.sh
 . /HolismHolding/Infra/DotNet/LinkSettings.sh
+. /HolismHolding/Infra/DotNet/Dev/LinkDependencies
 
 function PullDotNetDockerImage() {
     echo 'Pulling docker image holism/dotnet-dev:latest'
@@ -63,6 +64,7 @@ function SetupDotNet() {
     LinkApiSolution
     LinkConnectionStrings
     LinkSettings
+    LinkDependencies
     PullDotNetDockerImage
     CreateGitHubAction DotNet
     

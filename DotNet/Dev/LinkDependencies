@@ -10,34 +10,45 @@ if [ ! -f "$PWD/Dependencies" ]; then
     exit;
 fi
 
-sudo mkdir -p /$Organization/$Repository/Api/Infra
-sudo chmod -R 777 /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Infra /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Validation /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Normalization /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Models /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra
-sudo ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra
+function LinkDependencies()
+{
+    Divide
 
-sudo mkdir -p /$Organization/$Repository/Api/Cloud
-sudo chmod -R 777 /$Organization/$Repository/Api/Cloud
-sudo ln -s -f /HolismDotNet/Cloud/Azure /$Organization/$Repository/Api/Cloud
+    Info "Linkding dependencies ..."
 
-while read Dependency; do  
-    Info "${Org}/${Repo}"
-    Org=$(echo $Dependency | cut -d'/' -f1)
-    Repo=$(echo $Dependency | cut -d'/' -f2)
+    find /$Organization/$Repository/Api -type d -and -not -name "Api" -and -not -name "Controllers" | xargs sudo rm -rf
 
-    if [ ! -f "/$Org/$Repo/Database.json" ]; then
-        Warning "Did not found Database.json for $Org/$Repo";
-    else 
-        sudo mkdir -p /$Organization/$Repository/Api/$Repo
-        sudo chmod -R 777 /$Organization/$Repository/Api/$Repo
-        sudo ln -s -f /$Org/$Repo/Models /$Organization/$Repository/Api/$Repo
-        sudo ln -s -f /$Org/$Repo/DataAccess /$Organization/$Repository/Api/$Repo
-        sudo ln -s -f /$Org/$Repo/Business /$Organization/$Repository/Api/$Repo
-    fi
-done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+    sudo mkdir -p /$Organization/$Repository/Api/Infra
+    sudo chmod -R 777 /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Infra /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Validation /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Normalization /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Models /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/DataAccess /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Business /$Organization/$Repository/Api/Infra
+    sudo ln -s -f /HolismDotNet/Infra/Api /$Organization/$Repository/Api/Infra
 
-sudo chmod -R 777 /$Organization/$Repository
+    sudo mkdir -p /$Organization/$Repository/Api/Cloud
+    sudo chmod -R 777 /$Organization/$Repository/Api/Cloud
+    sudo ln -s -f /HolismDotNet/Cloud/Azure /$Organization/$Repository/Api/Cloud
+
+    while read Dependency; do  
+        Info "${Org}/${Repo}"
+        Org=$(echo $Dependency | cut -d'/' -f1)
+        Repo=$(echo $Dependency | cut -d'/' -f2)
+
+        if [ ! -f "/$Org/$Repo/Database.json" ]; then
+            Warning "Did not found Database.json for $Org/$Repo";
+        else 
+            sudo mkdir -p /$Organization/$Repository/Api/$Repo
+            sudo chmod -R 777 /$Organization/$Repository/Api/$Repo
+            sudo ln -s -f /$Org/$Repo/Models /$Organization/$Repository/Api/$Repo
+            sudo ln -s -f /$Org/$Repo/DataAccess /$Organization/$Repository/Api/$Repo
+            sudo ln -s -f /$Org/$Repo/Business /$Organization/$Repository/Api/$Repo
+        fi
+    done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+
+    sudo chmod -R 777 /$Organization/$Repository
+
+    Divide
+}
