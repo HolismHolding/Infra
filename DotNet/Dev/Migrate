@@ -24,6 +24,8 @@ dotnet build /HolismDotNet/Migration
 
 cp $PWD/ConnectionStrings.json /HolismDotNet/Migration/bin
 
+sudo rm /$Organization/Migration/$Environment/*.*
+
 /HolismDotNet/Migration/bin/Holism.Migration $PWD $Organization $OrganizationPrefix $Repository
 
 prompt=$(sudo -nv 2>&1)
