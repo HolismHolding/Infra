@@ -100,3 +100,7 @@ df = disk-free
 
 # find using negation
 `find / -type f ! -path '*Api/Settings.json' -name "Settings.json" 2>/dev/null`
+
+# undo latest commit
+`git reset HEAD~`
+`git reset --hard`
