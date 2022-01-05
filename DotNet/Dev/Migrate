@@ -1,0 +1,36 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
+. /HolismHolding/Infra/Scripts/Message.sh
+
+ExtractAndExportData
+
+if [ $Repository != "AdminApi" ]; then
+    Warning "You should run this command inside AdminApi.";
+    exit;
+fi
+
+if [ ! -f "$PWD/ConnectionStrings.json" ]; then
+    Warning "Did not found ConnectionStrings.json";
+    exit;
+fi
+
+if [ ! -f "$PWD/Dependencies" ]; then
+    Warning "Did not found Dependencies";
+    exit;
+fi
+
+dotnet build /HolismDotNet/Migration
+
+cp $PWD/ConnectionStrings.json /HolismDotNet/Migration/bin
+
+/HolismDotNet/Migration/bin/Holism.Migration $PWD $Organization $OrganizationPrefix $Repository
+
+prompt=$(sudo -nv 2>&1)
+if [ $? -eq 0 ]; then
+    sudo chmod -R 777 /$Organization/Migration
+elif echo $prompt | grep -q '^sudo:'; then
+    sudo chmod -R 777 /$Organization/Migration
+else
+    chmod -R 777 /$Organization/Migration
+fi
