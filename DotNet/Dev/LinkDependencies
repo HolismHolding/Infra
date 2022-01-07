@@ -50,5 +50,9 @@ function LinkDependencies()
 
     sudo chmod -R 777 /$Organization/$Repository
 
+    if [ -d /$Organization/$Repository/Api/Logs ]; then
+        git -C /$Organization/$Repository add Api/Logs/. -f
+    fi
+
     Divide
 }
