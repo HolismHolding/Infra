@@ -132,6 +132,16 @@ function InstallDockerCompose()
     Write "Installed Docker Compose"
 }
 
+function RegisterHolismCommands()
+{
+    Write "Registering Holism Commands ..."
+
+    sudo chmod 777 /etc/bash.bashrc
+    sudo echo 'PATH="${PATH}:/HolismHolding/Server"' >> /etc/bash.bashrc
+
+    Write "Registered Holism Commands"
+}
+
 UpdateApt
 InstallCurl
 InstallNginx
@@ -141,3 +151,4 @@ InstallTelnet
 InstallAzcopy
 InstallDocker
 InstallDockerCompose
+RegisterHolismCommands
