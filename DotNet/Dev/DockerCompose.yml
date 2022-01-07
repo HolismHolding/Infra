@@ -12,7 +12,6 @@ services:
             - Repository=${Repository}
             - Environment=Development
             - Host=${Host}
-            - SqlServerPassword=wAv7tvFrYbDX8v8mYe1K
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /LocalSecrets:/LocalSecrets
