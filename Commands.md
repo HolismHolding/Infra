@@ -104,3 +104,7 @@ df = disk-free
 # undo latest commit
 `git reset HEAD~`
 `git reset --hard`
+
+# See error code in shell
+Run a command, then
+`echo $?`

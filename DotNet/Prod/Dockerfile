@@ -2,6 +2,8 @@ FROM holism/dotnet-dev:latest
 RUN mkdir /Temp
 COPY . .
 RUN cd ${RepositoryPath} \
+    && rm -rf bin \
+    && rm -rf obj \
     && dotnet publish Api -o /Temp/Publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
