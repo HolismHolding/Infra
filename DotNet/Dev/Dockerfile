@@ -15,6 +15,7 @@ RUN echo '<Project Sdk="Microsoft.NET.Sdk.Web"><Import Project="/HolismDotNet/In
 RUN echo 'System.Console.WriteLine("hello");' > /Temp/Program.cs
 RUN dotnet restore
 RUN dotnet build
+WORKDIR /
 RUN rm -rf /Temp
 
 RUN apt update
