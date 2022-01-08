@@ -48,6 +48,18 @@ function InsertInitialData()
     fi
 }
 
+function CreateDatabaseGitHubAction()
+{
+    if [[ $Repository != "AdminApi" ]]; then
+        return;
+    fi
+    GitHubActionPath=/$Organization/$Repository/.github/workflows/ScriptProductionDatabase.yml
+    mkdir -p $(dirname $GitHubActionPath)
+    export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
+
+    envsubst < /HolismHolding/Infra/DotNet/ScriptProductionDatabase.yml > $GitHubActionPath
+}
+
 function SetupDotNet() {
     echo ".NET"
     LinkDevContainer
@@ -67,6 +79,7 @@ function SetupDotNet() {
     LinkDependencies
     PullDotNetDockerImage
     CreateGitHubAction DotNet
+    CreateDatabaseGitHubAction
     
     CreateDatabaseContainer
     InsertInitialData
