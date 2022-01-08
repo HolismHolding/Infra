@@ -10,12 +10,12 @@ if [ $Repository != "AdminApi" ]; then
     exit;
 fi
 
-if [ ! -f "$PWD/ConnectionStrings.json" ]; then
+if [ ! -f "/$Organization/$Repository/ConnectionStrings.json" ]; then
     Warning "Did not found ConnectionStrings.json";
     exit;
 fi
 
-if [ ! -f "$PWD/Dependencies" ]; then
+if [ ! -f "/$Organization/$Repository/Dependencies" ]; then
     Warning "Did not found Dependencies";
     exit;
 fi
@@ -23,13 +23,13 @@ fi
 dotnet build /HolismDotNet/Migration
 chmod -R 777 /HolismDotNet/Migration
 
-cp $PWD/ConnectionStrings.json /HolismDotNet/Migration/bin
+cp /$Organization/$Repository/ConnectionStrings.json /HolismDotNet/Migration/bin
 
 if [ -d /$Organization/Migration/$Environment ]; then
     sudo rm /$Organization/Migration/$Environment/*.*
 fi
 
-/HolismDotNet/Migration/bin/Holism.Migration $PWD $Organization $OrganizationPrefix $Repository
+/HolismDotNet/Migration/bin/Holism.Migration /$Organization/$Repository $Organization $OrganizationPrefix $Repository
 
 prompt=$(sudo -nv 2>&1)
 if [ $? -eq 0 ]; then
