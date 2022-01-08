@@ -54,6 +54,7 @@
 - `sudo chmod 777 /Temp`
 - `cd /Temp`
 - `wget https://raw.githubusercontent.com/HolismHolding/Infra/main/Setup/DevelopmentEnvironment.sh`
+- `sudo chmod 777 DevelopmentEnvironment.sh`
 - `sudo ./DevelopmentEnvironment.sh`
 
 - **DO NOT** install any other extension on VS Code
