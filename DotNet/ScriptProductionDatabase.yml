@@ -44,25 +44,25 @@ jobs:
           sudo mkdir /${Organization}
           sudo chmod 777 /${Organization}
 
-      # - name: Get ${Organization}/Migration using actions/checkout@v2
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: ${Organization}/Migration
-      #     token: ${{ github.token }}
-      #     path: ${Organization}/Migration
-      # - name: Copy ${Organization}/Migration to root
-      #   run: |
-      #     cp -r $GITHUB_WORKSPACE/${Organization}/Migration /${Organization}/Migration 
+      - name: Get ${Organization}/Migration using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/Migration
+          token: ${{ github.token }}
+          path: ${Organization}/Migration
+      - name: Copy ${Organization}/Migration to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/Migration /${Organization}/Migration 
 
-      # - name: Get ${Organization}/AdminApi using actions/checkout@v2
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: ${Organization}/AdminApi
-      #     token: ${{ github.token }}
-      #     path: ${Organization}/AdminApi
-      # - name: Copy ${Organization}/AdminApi to root
-      #   run: |
-      #     cp -r $GITHUB_WORKSPACE/${Organization}/AdminApi /${Organization}/AdminApi    
+      - name: Get ${Organization}/AdminApi using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/AdminApi
+          token: ${{ github.token }}
+          path: ${Organization}/AdminApi
+      - name: Copy ${Organization}/AdminApi to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/AdminApi /${Organization}/AdminApi    
           
       # - name: Run Migration
       #   run: |
