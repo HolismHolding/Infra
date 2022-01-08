@@ -29,6 +29,12 @@
       - Press **Continue**
     - Computer name
       - YourNamePc or YourNameLaptop
+      - **DO NOT** choose auto-login
+      - If you choose auto-login, you will encouner *keyring* later. To disable auto-login later:
+        - Settings
+        - User
+        - Unlock
+        - disable Automatic Login
     - **DO NOT** set up **Livepatch**
       - Hit **Next**
     - **DO NOT** help Ubuntu
