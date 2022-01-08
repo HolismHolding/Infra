@@ -1,4 +1,4 @@
-name: Analyze Production Database
+name: Script Production Database
 
 on:
   schedule:
