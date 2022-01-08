@@ -108,3 +108,6 @@ df = disk-free
 # See error code in shell
 Run a command, then
 `echo $?`
+
+# check boolean in terminal
+`[ "AdminApi" == "AdminApi" ] && echo yes`
