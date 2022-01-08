@@ -27,13 +27,13 @@ cd /HolismDotNet/Generation
 
 dotnet run $Directory $Organization $OrganizationPrefix $Repository
 
-if [ -d "/$Organization/$Repository/Models" ]; then
-    ln -f -s /HolismDotNet/Infra/Models/Usings.cs /$Organization/$Repository/Models/Usings.cs
-fi
+# if [ -d "/$Organization/$Repository/Models" ]; then
+#     ln -f -s /HolismDotNet/Infra/Models/Usings.cs /$Organization/$Repository/Models/Usings.cs
+# fi
 
-if [ -d "/$Organization/$Repository/DataAccess" ]; then
-    envsubst < /HolismDotNet/Infra/DataAccess/Usings > /$Organization/$Repository/DataAccess/Usings.cs
-fi
+# if [ -d "/$Organization/$Repository/DataAccess" ]; then
+#     envsubst < /HolismDotNet/Infra/DataAccess/Usings > /$Organization/$Repository/DataAccess/Usings.cs
+# fi
 
 prompt=$(sudo -nv 2>&1)
 if [ $? -eq 0 ]; then
