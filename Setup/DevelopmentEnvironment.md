@@ -29,6 +29,7 @@
       - Press **Continue**
     - Computer name
       - YourNamePc or YourNameLaptop
+      - Choose a simple password (you will be asked for it frequently)
       - **DO NOT** choose auto-login
       - If you choose auto-login, you will encouner *keyring* later. To disable auto-login later:
         - Settings
