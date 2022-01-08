@@ -77,6 +77,8 @@ jobs:
       - name: Run Migration
         run: |
           cd /${Organization}/AdminApi
+          sed -i 's/server=[^;]*;/server=${{ secrets.DATABASEDOMAIN }}; port=${{ secrets.DATABASEPORT }};/g' ConnectionStrings.json 
+          sed -i 's/password=[^;]*;/password=${{ secrets.PRODUCTIONDATABASEPASSWORD }};/g' ConnectionStrings.json 
           /HolismHolding/Infra/DotNet/Dev/Migrate
 
       - name: Push production migration
