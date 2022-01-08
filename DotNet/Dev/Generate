@@ -19,6 +19,7 @@ export Directory=$PWD
 
 if [ -z ${IsBuilt+x} ]; then
     dotnet build /HolismDotNet/Generation
+    chmod -R 777 /HolismDotNet/Generation
 fi
 
 cp $PWD/ConnectionStrings.json /HolismDotNet/Generation/bin

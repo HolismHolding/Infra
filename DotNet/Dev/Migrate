@@ -21,6 +21,7 @@ if [ ! -f "$PWD/Dependencies" ]; then
 fi
 
 dotnet build /HolismDotNet/Migration
+chmod -R 777 /HolismDotNet/Migration
 
 cp $PWD/ConnectionStrings.json /HolismDotNet/Migration/bin
 

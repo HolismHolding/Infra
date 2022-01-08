@@ -3,6 +3,7 @@
 echo "Building /$Organization/$Repository ...";
 
 dotnet build /$Organization/$Repository
+chmod -R 777 /$Organization/$Repository
 
 echo "Running /$Organization/$Repository/Api/bin/$OrganizationPrefix.$Repository.dll ...";
 
