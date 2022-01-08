@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# azure data studio + compare extension + profilder extension + agent extension
-
 function Write()
 {
     sudo echo ""
@@ -38,9 +36,7 @@ function InstallVsCode()
     sudo apt update
     sudo apt install code -y
 
-    code --install-extension ms-azuretools.vscode-docker
     code --install-extension ms-vscode-remote.remote-containers
-    code --install-extension esbenp.prettier-vscode
 
     Write "Installed VS Code"
 }
@@ -158,33 +154,6 @@ function InstallTelnet()
     Write "Installed Telnet"
 }
 
-function InstallAzureDataStudio()
-{
-    Write "Installing Azure Data Studio ..."
-
-    wget https://go.microsoft.com/fwlink/?linkid=2169956
-    mv index.html\?linkid\=2169956 ads.deb
-    sudo apt install ./ads.deb -y
-
-    # If not connecting => [update OpenSSL](https://github.com/microsoft/azuredatastudio/issues/13457#issuecomment-832202549)
-
-    Write "Installed Azure Data Studio"
-}
-
-function InstallSqlPackage()
-{
-    Write "Installing SQL Package ..."
-    sudo mkdir /sqlpackage
-    wget https://download.microsoft.com/download/0/2/0/020aa2fa-f3f2-41ba-bacd-ff15557890d3/sqlpackage-linux-x64-en-US-15.0.5084.2.zip
-    unzip ~/Downloads/sqlpackage-linux-x64-en-US-15.0.5084.2.zip -d /sqlpackage
-    chmod a+x /sqlpackage/sqlpackage
-    echo 'export PATH="$PATH:/sqlpackage"' >> /etc/bash.bashrc
-    source /etc/bash.bashrc
-    sudo apt-get install libunwind8
-    sudo apt-get install libicu66
-    Write "Installed SQL Package"
-}
-
 function InstallBeyondCompare()
 {
     Write "Installing Beyond Compare ..."
@@ -227,8 +196,6 @@ InstallNginx
 InstallMkcert
 InstallMicro
 InstallTelnet
-InstallAzureDataStudio
-InstallSqlPackage
 InstallBeyondCompare
 RegisterHolismCommands
 
