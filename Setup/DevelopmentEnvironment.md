@@ -102,7 +102,7 @@
       - Chrome
       - VS Code
       - Terminal
-      - Azure Data Studio
+      - Editor
   - Chrome
     - Make default
       - On the first run, it asks for it
