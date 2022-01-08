@@ -166,6 +166,16 @@ function InstallBeyondCompare()
     Write "Installed Beyond Compare"
 }
 
+function InstallJq()
+{
+    Write "Installing jq ..."
+
+    sudo apt-get update
+    sudo apt-get install jq -y
+
+    Write "Installed jq"
+}
+
 function RegisterHolismCommands()
 {
     Write "Registering Holism Commands ..."
@@ -197,6 +207,7 @@ InstallMkcert
 InstallMicro
 InstallTelnet
 InstallBeyondCompare
+InstallJq
 RegisterHolismCommands
 
 sudo apt install rename
