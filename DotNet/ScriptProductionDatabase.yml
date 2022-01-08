@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${Organization}/Migration
-          token: ${{ github.token }}
+          token: ${{ secrets.PAT }}
           path: ${Organization}/Migration
       - name: Copy ${Organization}/Migration to root
         run: |
@@ -58,7 +58,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: ${Organization}/AdminApi
-          token: ${{ github.token }}
+          token: ${{ secrets.PAT }}
           path: ${Organization}/AdminApi
       - name: Copy ${Organization}/AdminApi to root
         run: |
