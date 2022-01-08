@@ -13,7 +13,6 @@ fi
 dotnet build /HolismDotNet/Generation
 chmod -R 777 /HolismDotNet/Generation
 export IsBuilt=1;
-cp $PWD/ConnectionStrings.json /HolismDotNet/Generation/bin
 
 while read Dependency; do  
     Info "${Org}/${Repo}"
