@@ -113,6 +113,7 @@
       - Grammarly
       - React Developer Tools
   - VS Code
+    - Turn on sync (using GitHub)
     - Word wrap
       - Files => Preferences => Settings
       - Search for “word wrap”
