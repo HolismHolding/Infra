@@ -60,6 +60,34 @@ function CreateDatabaseGitHubAction()
     envsubst < /HolismHolding/Infra/DotNet/ScriptProductionDatabase.yml > $GitHubActionPath
 }
 
+function GetDotNetGeneration() {
+    generartionPath=/HolismDotNet/Generation
+    if [ -d "$generartionPath" ]; then
+        echo "Pulling $generartionPath"
+        git -C $generartionPath pull
+    else
+        sudo mkdir -p /HolismDotNet
+        sudo chmod -R 777 /HolismDotNet
+        echo "Cloning $generartionPath"
+        git -C /HolismDotNet clone git@github.com:HolismDotNet/Generation
+    fi
+    sudo chmod -R 777 /HolismDotNet
+}
+
+function GetDotNetMigration() {
+    migrationPath=/HolismDotNet/Migration
+    if [ -d "$migrationPath" ]; then
+        echo "Pulling $migrationPath"
+        git -C $migrationPath pull
+    else
+        sudo mkdir -p /HolismDotNet
+        sudo chmod -R 777 /HolismDotNet
+        echo "Cloning $migrationPath"
+        git -C /HolismDotNet clone git@github.com:HolismDotNet/Migration
+    fi
+    sudo chmod -R 777 /HolismDotNet
+}
+
 function SetupDotNet() {
     echo ".NET"
     LinkDevContainer
@@ -67,6 +95,8 @@ function SetupDotNet() {
     # return;
     GetDotNetInfra &
     GetDotNetAccounts &
+    GetDotNetGeneration &
+    GetDotNetMigration &
     volumes=""
     GetDependencies volumes
     #echo -e $volumes
