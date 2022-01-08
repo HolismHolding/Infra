@@ -25,7 +25,9 @@ chmod -R 777 /HolismDotNet/Migration
 
 cp $PWD/ConnectionStrings.json /HolismDotNet/Migration/bin
 
-sudo rm /$Organization/Migration/$Environment/*.*
+if [ -d /$Organization/Migration/$Environment ]; then
+    sudo rm /$Organization/Migration/$Environment/*.*
+fi
 
 /HolismDotNet/Migration/bin/Holism.Migration $PWD $Organization $OrganizationPrefix $Repository
 
