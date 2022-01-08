@@ -83,6 +83,7 @@ jobs:
 
       - name: Push production migration
         run: |
+          cd /${Organization}/Migration
           git config --global user.name 'Migration Builder'
           git config --global user.email 'nefcanto@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
