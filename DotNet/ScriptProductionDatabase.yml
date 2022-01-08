@@ -44,6 +44,16 @@ jobs:
           sudo mkdir /${Organization}
           sudo chmod 777 /${Organization}
 
+      - name: Get ${Organization}/Common using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/Common
+          token: ${{ secrets.PAT }}
+          path: ${Organization}/Common
+      - name: Copy ${Organization}/Common to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/Common /${Organization}/Common 
+
       - name: Get ${Organization}/Migration using actions/checkout@v2
         uses: actions/checkout@v2
         with:
