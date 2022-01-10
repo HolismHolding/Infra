@@ -83,13 +83,6 @@ jobs:
 
       - name: Push production script
         run: |
-          git config --global user.name 'Migration Builder'
-          git config --global user.email 'nefcanto@users.noreply.github.com'
-          git commit -am "production script"
-          git push
-
-      - name: Push production script
-        run: |
           cd /${Organization}/Migration
           git config --global user.name 'Migration Builder'
           git config --global user.email 'nefcanto@users.noreply.github.com'
