@@ -13,6 +13,8 @@ function SetupNginxAndLocalDns() {
     if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
         rm -rf "/etc/nginx/conf.d/$Host.conf";
     fi
+    export NginxParamsServerName='$server_name'
+    export NginParamsRequestUri='$request_uri'
     export NginxHostParameter='$host';
     export NginxSchemeParameter='$scheme';
     export NginxHttpUpgradeParameter='$http_upgrade';

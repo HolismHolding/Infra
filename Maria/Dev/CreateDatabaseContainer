@@ -2,6 +2,9 @@
 
 . /HolismHolding/Infra/Scripts/CleanDocker.sh
 . /HolismHolding/Infra/Scripts/Message.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/CreateCertificate.sh
 
 function GetOrganizationDatabaseHost()
 {
@@ -23,6 +26,12 @@ function CreateMariaDatabaseContainer()
 function CreateDatabaseContainer()
 {
     GetOrganizationDatabaseHost
+    GetRandomPort
+    SetupNginxAndLocalDns
+    CreateCertificate
+    export AdminerRandomPort=RandomPort
+    GetRandomPort
+    export MariaRandomPort=RandomPort
     Divide
     #CreateMariaDatabaseContainer
     Divide
