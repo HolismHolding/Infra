@@ -6,7 +6,7 @@ function RefreshLink()
     find /$Organization/$Repository/ -type l | grep -v node_modules | grep -v .gitignore |
     while read LinkedFile; do 
         OriginalPath=$(readlink -f $LinkedFile)
-        if [ $OriginalPath = $ModifiedFile ]; then
+        if [[ $OriginalPath == $ModifiedFile ]]; then
             Temp=$(dirname $ModifiedFile)/wjagCcKD0uY859DianqQ.temp
 
             echo "Modified file: $ModifiedFile"
