@@ -12,7 +12,7 @@ RUN npm i --save eventemitter3 --no-optional
 RUN npm i --save marked --no-optional
 RUN npm i --save recharts --no-optional
 RUN npm i --save sass --no-optional
-RUN npm i --save --save-dev @tailwindcss/typography --no-optional
+RUN npm i -D @tailwindcss/typography --no-optional
 RUN npm i --save --save-dev eslint eslint-config-next
 RUN npm i --save @heroicons/react --no-optional
 RUN npm i --save @headlessui/react --no-optional
