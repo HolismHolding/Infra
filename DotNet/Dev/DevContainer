@@ -15,6 +15,5 @@
 	"remoteUser": "root",
 	"mounts": [
 		"source=${LowercaseOrg}${LowercaseRepo},target=/root/.vscode-server/extensions,type=volume"
-	],
-	"source": "https://code.visualstudio.com/remote/advancedcontainers/avoid-extension-reinstalls"
+	]
 }
