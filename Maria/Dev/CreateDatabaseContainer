@@ -1,0 +1,32 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/CleanDocker.sh
+. /HolismHolding/Infra/Scripts/Message.sh
+
+function GetOrganizationDatabaseHost()
+{
+    IFS='.' read -r -a array <<< "api.freya.center"
+    for element in "${array[@]}"
+    do
+        echo "$element"
+    done
+}
+
+function CreateMariaDatabaseContainer()
+{
+    Info 'Creating MariaDB container'
+    ComposeFile=/Temp/$Organization/MariaDockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/Maria/Dev/DockerCompose.yml > $ComposeFile
+    docker-compose -p "${Organization}Databases" -f $ComposeFile up --remove-orphans
+}
+
+function CreateDatabaseContainer()
+{
+    GetOrganizationDatabaseHost
+    Divide
+    CreateMariaDatabaseContainer
+    Divide
+}
+
+GetOrganizationDatabaseHost

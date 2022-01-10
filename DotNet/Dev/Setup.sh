@@ -6,7 +6,7 @@
 . /HolismHolding/Infra/Scripts/GetDependencies.sh
 . /HolismHolding/Infra/DotNet/LinkLocalSecrets
 . /HolismHolding/Infra/DotNet/CreateApiContainer
-. /HolismHolding/Infra/SqlServer/Dev/CreateDatabaseContainer
+. /HolismHolding/Infra/Maria/Dev/CreateDatabaseContainer
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/DotNet/LinkUsings.sh
 . /HolismHolding/Infra/DotNet/LinkApiSolution.sh
