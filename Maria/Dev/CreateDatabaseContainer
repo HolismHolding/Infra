@@ -6,10 +6,20 @@
 function GetOrganizationDatabaseHost()
 {
     IFS='.' read -r -a array <<< "api.freya.center"
-    for element in "${array[@]}"
+    echo "${array[@]}"
+    min=0
+    max=$(( ${#array[@]} -1 ))
+    while [[ min -lt max ]]
     do
-        echo "$element"
+        # Swap current first and last elements
+        x="${array[$min]}"
+        array[$min]="${array[$max]}"
+        array[$max]="$x"
+
+        # Move closer
+        (( min++, max-- ))
     done
+    echo "${array[@]}"
 }
 
 function CreateMariaDatabaseContainer()
