@@ -13,9 +13,9 @@ function SetupNginxAndLocalDns() {
     if [ -f "/etc/nginx/conf.d/$Host.conf" ]; then
         rm -rf "/etc/nginx/conf.d/$Host.conf";
     fi
-    export host='$host';
-    export http_upgrade='$http_upgrade';
-    export scheme='$scheme';
+    export NginxHostParameter='$host';
+    export NginxSchemeParameter='$scheme';
+    export NginxHttpUpgradeParameter='$http_upgrade';
     envsubst < /HolismHolding/Infra/NginxReverseProxyTemplate > /etc/nginx/conf.d/$Host.conf
     sed -i 's/https:\/\/;/https:\/\/$server_name$request_uri;/g' /etc/nginx/conf.d/$Host.conf
     #systemctl reload nginx

@@ -1,7 +1,7 @@
 server {
     listen 80;
     server_name $Host;
-    return 301 https://$server_name$request_uri;
+    return 301 https://$NginxParamsServerName$NginParamsRequestUri;
 }
 
 server {
@@ -20,11 +20,11 @@ server {
 
     location / {
         proxy_pass http://localhost:$RandomPort;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $NginxHostParameter;
+        proxy_set_header X-Forwarded-Proto $NginxSchemeParameter;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Upgrade $NginxHttpUpgradeParameter;
         proxy_set_header Connection "Upgrade";
-        proxy_set_header Host $host;
+        proxy_set_header Host $NginxHostParameter;
     }
 }

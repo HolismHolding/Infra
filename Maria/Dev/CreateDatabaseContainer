@@ -5,21 +5,10 @@
 
 function GetOrganizationDatabaseHost()
 {
-    IFS='.' read -r -a array <<< "api.freya.center"
-    echo "${array[@]}"
-    min=0
-    max=$(( ${#array[@]} -1 ))
-    while [[ min -lt max ]]
-    do
-        # Swap current first and last elements
-        x="${array[$min]}"
-        array[$min]="${array[$max]}"
-        array[$max]="$x"
-
-        # Move closer
-        (( min++, max-- ))
-    done
-    echo "${array[@]}"
+    IFS='.' read -r -a array <<< $(cat Host)
+    hostIndex=$(( ${#array[@]} - 2 ))
+    hostArray=(${array[@]:$hostIndex:2})
+    export Host=db.${hostArray[0]}.${hostArray[1]}
 }
 
 function CreateMariaDatabaseContainer()
@@ -35,7 +24,7 @@ function CreateDatabaseContainer()
 {
     GetOrganizationDatabaseHost
     Divide
-    CreateMariaDatabaseContainer
+    #CreateMariaDatabaseContainer
     Divide
 }
 
