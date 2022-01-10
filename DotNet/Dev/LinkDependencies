@@ -5,13 +5,12 @@
 
 ExtractAndExportData
 
-if [ ! -f "$PWD/Dependencies" ]; then
-    Error "Can't find the file Dependencies";
-    exit;
-fi
-
 function LinkDependencies()
 {
+    if [ ! -f "$PWD/Dependencies" ]; then
+        Error "Can't find the file Dependencies";
+        return;
+    fi
     Divide
 
     Info "Linkding dependencies ..."

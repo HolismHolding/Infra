@@ -111,3 +111,6 @@ Run a command, then
 
 # check boolean in terminal
 `[ "AdminApi" == "AdminApi" ] && echo yes`
+
+# Find the location of a command
+`whereis Setup`
