@@ -1,12 +1,9 @@
 function CreateCertificate() {
     CertificatePath=/Temp/$Organization/$Repository;
+    sudo mkdir -p $CertificatePath
+    sudo chmod 777 $CertificatePath
     if [ -z ${Host+x} ]; then
         return;
-    fi
-    if [[ $Host = "db."* ]]; then
-        CertificatePath=/Temp/$Organization/Databases;
-        sudo mkdir -p $CertificatePath
-        sudo chmod 777 $CertificatePath
     fi
     sudo rm -rf $CertificatePath/Certificate.pem;
     sudo rm -rf $CertificatePath/Key.pem

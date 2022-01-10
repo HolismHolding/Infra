@@ -17,7 +17,7 @@ function GetOrganizationDatabaseHost()
 function CreateMariaDatabaseContainer()
 {
     Info 'Creating MariaDB container'
-    ComposeFile=/Temp/$Organization/MariaDockerCompose.yml
+    ComposeFile=/Temp/$Organization/Databases/MariaDockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     envsubst < /HolismHolding/Infra/Maria/Dev/DockerCompose.yml > $ComposeFile
     docker-compose -p "${Organization}Databases" -f $ComposeFile up --remove-orphans
@@ -26,14 +26,23 @@ function CreateMariaDatabaseContainer()
 function CreateDatabaseContainer()
 {
     GetOrganizationDatabaseHost
+
+    OriginalRepository=$Repository
+    Repository=Databases
+    OriginalRandomPort=$RandomPort
     GetRandomPort
-    SetupNginxAndLocalDns
+    export MariaPort=$RandomPort
+    GetRandomPort
+    export AdminerPort=$RandomPort
+
     CreateCertificate
-    export AdminerRandomPort=RandomPort
-    GetRandomPort
-    export MariaRandomPort=RandomPort
+    SetupNginxAndLocalDns
+
+    Repository=$OriginalRepository
+    RandomPort=$OriginalRandomPort
+    
     Divide
-    #CreateMariaDatabaseContainer
+    CreateMariaDatabaseContainer
     Divide
 }
 

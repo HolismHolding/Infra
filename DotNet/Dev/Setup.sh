@@ -90,26 +90,26 @@ function GetDotNetMigration() {
 
 function SetupDotNet() {
     echo ".NET"
-    # LinkDevContainer
-    # LinkVSCodeFiles
-    # GetDotNetInfra &
-    # GetDotNetAccounts &
-    # GetDotNetGeneration &
-    # GetDotNetMigration &
-    # volumes=""
-    # GetDependencies volumes
-    # LinkGitIgnore $PWD
-    # LinkUsings
-    # LinkLocalSecrets
-    # LinkApiSolution
-    # LinkConnectionStrings
-    # LinkSettings
-    # LinkDependencies
-    # PullDotNetDockerImage
-    # CreateGitHubAction DotNet
-    # CreateDatabaseGitHubAction
+    LinkDevContainer
+    LinkVSCodeFiles
+    GetDotNetInfra &
+    GetDotNetAccounts &
+    GetDotNetGeneration &
+    GetDotNetMigration &
+    volumes=""
+    GetDependencies volumes
+    LinkGitIgnore $PWD
+    LinkUsings
+    LinkLocalSecrets
+    LinkApiSolution
+    LinkConnectionStrings
+    LinkSettings
+    LinkDependencies
+    PullDotNetDockerImage
+    CreateGitHubAction DotNet
+    CreateDatabaseGitHubAction
     
     CreateDatabaseContainer
-    # InsertInitialData
-    # CreateApiContainer "Dev"
+    InsertInitialData
+    CreateApiContainer "Dev"
 }
