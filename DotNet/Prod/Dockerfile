@@ -13,3 +13,4 @@ RUN rm -rf ConnectionStrings.json \
     && rm -rf Settings.json \
     && rm -rf SettingsOverride.json
 CMD [ "dotnet", "${Organization}.${Repository}.dll" ]
+# todo: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run
