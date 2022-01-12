@@ -29,8 +29,7 @@ services:
             && rm -rf Api/obj
             && dotnet build Api
             && chmod -R 777 Api
-            && Migrate &
-            dotnet Api/bin/${OrganizationPrefix}.${Repository}.dll &
+            && dotnet Api/bin/${OrganizationPrefix}.${Repository}.dll &
             echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
             && tail -f /dev/null
             "

@@ -47,3 +47,8 @@ elif echo $prompt | grep -q '^sudo:'; then
 else
     chmod -R 777 $Directory
 fi
+
+if [ -z ${IsBuilt+x} ]; then
+    dotnet build /HolismDotNet/Generation
+    chmod -R 777 /HolismDotNet/Generation
+fi

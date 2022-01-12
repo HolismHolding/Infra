@@ -26,3 +26,5 @@ while read Dependency; do
         Generate
     fi
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
+
+Migrate
