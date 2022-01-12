@@ -9,7 +9,7 @@ reset=`tput sgr0`
 
 function Success()
 {
-    echo "${green}$1{$reset}"
+    echo "${green}$1${reset}"
 }
 
 function Info()

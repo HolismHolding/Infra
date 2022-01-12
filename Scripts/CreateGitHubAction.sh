@@ -33,6 +33,7 @@ function CreateGitHubAction()
 
     CopyTarget=/$Organization/.github/workflows/$Repository.yml
     sudo cp $GitHubActionPath $CopyTarget
+    sudo sed -i "s/name:.*$/name: $Repository/g" $CopyTarget
 
     echo "Created GitHub action"
 }
