@@ -5,10 +5,10 @@
 
 ExtractAndExportData
 
-if [ $Repository != "AdminApi" ]; then
-    Warning "You should run this command inside AdminApi.";
-    exit;
-fi
+# if [ $Repository != "AdminApi" ]; then
+#     Warning "You should run this command inside AdminApi.";
+#     exit;
+# fi
 
 if [ ! -f "/$Organization/$Repository/ConnectionStrings.json" ]; then
     Warning "Did not found ConnectionStrings.json";
