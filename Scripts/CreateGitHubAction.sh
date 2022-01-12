@@ -29,7 +29,10 @@ function CreateGitHubAction()
     envsubst < /HolismHolding/Infra/$1/GitHubAction.yml > $GitHubActionPath
     Temp=$(cat $GitHubActionPath)
 
-    echo -e "${Temp/GettingDependenciesRepositoriesPlacholder/"$DependencyActions"}" > $GitHubActionPath 
+    echo -e "${Temp/GettingDependenciesRepositoriesPlacholder/"$DependencyActions"}" > $GitHubActionPath
+
+    CopyTarget=/$Organization/.github/workflows/$Repository.yml
+    sudo cp $GitHubActionPath $CopyTarget
 
     echo "Created GitHub action"
 }

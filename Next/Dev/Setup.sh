@@ -2,15 +2,16 @@
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
+. /HolismHolding/Infra/Scripts/Message.sh
 
 function PullNextDevDockerImage() {
-    echo 'Pulling docker image holism/next-dev:latest'
+    Info 'Pulling docker image holism/next-dev:latest'
     docker pull holism/next-dev:latest
 }
 
 function CreateBuildDirectory() {
     if [ ! -d "/Temp$RepositoryPath/Build" ]; then
-        echo "Creating directory: /Temp$RepositoryPath/Build";
+        Info "Creating directory: /Temp$RepositoryPath/Build";
         sudo mkdir "/Temp$RepositoryPath/Build";
         sudo chmod -R 777 "/Temp$RepositoryPath/Build";
     fi
@@ -21,11 +22,13 @@ function CreateGitHubActionForNext() {
     mkdir -p $(dirname $GitHubActionPath)
     export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
     envsubst < /HolismHolding/Infra/Next/GitHubAction.yml > $GitHubActionPath
-    echo "Created GitHub action"
+    CopyTarget=/$Organization/.github/workflows/$Repository.yml
+    sudo cp $GitHubActionPath $CopyTarget
+    Success "Created GitHub action"
 }
 
 function SetupNext() {
-    echo "Seting up site"
+    Info "Seting up site"
     CreateHolismNextDirectory
     GetHolismNextInfra &
     LinkGitIgnore $PWD
