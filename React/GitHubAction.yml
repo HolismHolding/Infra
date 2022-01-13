@@ -28,7 +28,7 @@ jobs:
           sudo mkdir /${Organization}
           sudo chmod 777 /${Organization}
 
-      GettingDependenciesRepositoriesPlacholder
+      GettingDependencyRepositoriesPlacholder
           
       - name: Get ${Organization}/${Repository} using actions/checkout@v2
         uses: actions/checkout@v2

@@ -9,6 +9,9 @@ jobs:
   buildAndPush:
     runs-on: ubuntu-latest
     steps:
+
+      # Base
+
       - name: Get /HolismHolding/Infra
         run: |
           sudo mkdir /HolismHolding
@@ -28,17 +31,13 @@ jobs:
           sudo mkdir /${Organization}
           sudo chmod 777 /${Organization}
 
-      GettingDependenciesRepositoriesPlacholder
+      # Dependencies
+
+      GettingDependencyRepositoriesPlacholder
+
+      # Main
           
-      - name: Get ${Organization}/${Repository} using actions/checkout@v2
-        uses: actions/checkout@v2
-        with:
-          repository: ${Organization}/${Repository}
-          token: ${{ github.token }}
-          path: ${Organization}/${Repository}
-      - name: Copy ${Organization}/${Repository} to root
-        run: |
-          cp -r $GITHUB_WORKSPACE/${Organization}/${Repository} /${Organization}/${Repository}    
+      GettingMainRepositoryPlaceholder
           
       - name: Build production docker
         run: |

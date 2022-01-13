@@ -24,7 +24,7 @@ function CreateGitHubActionForNext() {
     envsubst < /HolismHolding/Infra/Next/GitHubAction.yml > $GitHubActionPath
     CopyTarget=/$Organization/.github/workflows/$Repository.yml
     sudo cp $GitHubActionPath $CopyTarget
-    sudo sed -i "s/name:.*$/name: $Repository/g" $CopyTarget
+    sudo sed -i "s/^name:.*$/name: $Repository/g" $CopyTarget
 
     Success "Created GitHub action"
 }
