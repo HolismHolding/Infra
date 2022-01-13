@@ -2,5 +2,5 @@
 
       - name: Move /${ParentOrganization}/${Organization} to /${Organization}
         run: |
-          mv /${ParentOrganization}/${Organization}/${Organization} /${Organization}
+          cp -a /${ParentOrganization}/${Organization}/. /${Organization}
           ls /${Organization} -lah
