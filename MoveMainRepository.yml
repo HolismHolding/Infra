@@ -4,3 +4,4 @@
         run: |
           mv /${ParentOrganization}/${Organization} /${Organization}
           ls /${Organization} -lah
+          ls /${Organization}/${Organization} -lah
