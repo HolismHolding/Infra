@@ -2,5 +2,5 @@
 
       - name: Move /${ParentOrganization}/${Organization} to /${Organization}
         run: |
-          cp -a /${ParentOrganization}/${Organization}/. /${Organization}
+          sudo cp -a /${ParentOrganization}/${Organization}/. /${Organization}
           ls /${Organization} -lah
