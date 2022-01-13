@@ -54,9 +54,9 @@ function CreateGitHubAction()
     ActionSnippet="\n$ActionSnippet"
 
     if [[ $ParentOrganization != "" ]]; then
-        CopyYml=$(cat /HolismHolding/Infra/CopyParentToMain.yml)
-        CopySnippet=$(envsubst <<< "$CopyYml")
-        ActionSnippet="$ActionSnippet$CopySnippet"
+        MoveYml=$(cat /HolismHolding/Infra/MoveMainRepository.yml)
+        MoveSnippet=$(envsubst <<< "$MoveYml")
+        ActionSnippet="$ActionSnippet$MoveSnippet"
     fi
 
     Temp=$(cat $GitHubActionPath)
