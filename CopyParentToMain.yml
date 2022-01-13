@@ -1,5 +1,5 @@
 
 
-      - name: Copy ${ParentOrganization}/${Organization}/${Repository} to root
+      - name: Copy ${ParentOrganization}/${Organization}/ to root
         run: |
-          cp -r $GITHUB_WORKSPACE/${ParentOrganization}/${Organization}/${Repository} /${Organization}/${Repository} 
+          cp -r $GITHUB_WORKSPACE/${ParentOrganization}/${Organization} /${Organization}
