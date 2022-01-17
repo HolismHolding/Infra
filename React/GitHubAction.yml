@@ -31,12 +31,8 @@ jobs:
           sudo mkdir /${Organization}
           sudo chmod 777 /${Organization}
 
-      # Dependencies
-
-      GettingDependencyRepositoriesPlacholder
+      # DependenciesGettingDependencyRepositoriesPlacholder
 
       # Main
-          
       GettingMainRepositoryPlaceholder
-
       BuildLoginPushLogout
