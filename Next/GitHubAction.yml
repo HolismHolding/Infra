@@ -9,6 +9,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
+      # Base
+
       - name: Get /HolismHolding/Infra
         run: |
           sudo mkdir /HolismHolding
@@ -16,32 +19,13 @@ jobs:
           cd /HolismHolding
           git clone https://github.com/HolismHolding/Infra
 
-      - name: Get ${Organization}/${Repository} using actions/checkout@v2
-        uses: actions/checkout@v2
-        with:
-          repository: ${Organization}/${Repository}
-          token: ${{ github.token }}
-          path: ${Organization}/${Repository}
-
-      - name: Copy ${Organization}/${Repository} to root
+      - name: Create /${Organization} directory
         run: |
           sudo mkdir /${Organization}
-          sudo chmod -R 777 /${Organization}
-          cp -r $GITHUB_WORKSPACE/${Organization}/${Repository} /${Organization}/${Repository}
+          sudo chmod 777 /${Organization}
 
-      - name: Build production docker
-        run: |
-          cd /${Organization}/${Repository}
-          /HolismHolding/Infra/Commands/Build
-
-      - name: Log in to GitHub Container Repository
-        run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-
-      - name: Push the image
-        run: |
-          docker push ghcr.io/DockerImageNamePlaceHolder:latest
+      # Main
           
-      - name: Logout from GitHub Container Repository
-        run: |
-          docker logout
+      GettingMainRepositoryPlaceholder
+
+      BuildLoginPushLogout

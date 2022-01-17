@@ -62,6 +62,11 @@ function CreateGitHubAction()
     Temp=$(cat $GitHubActionPath)
     echo -e "${Temp/GettingMainRepositoryPlaceholder/"$ActionSnippet"}" > $GitHubActionPath
 
+    BuildLoginPushLogoutYml=$(cat /HolismHolding/Infra/BuildLoginPushLogout.yml)
+    BuidlLoginPushLogoutSnippet=$(envsubst <<< "$BuildLoginPushLogoutYml")
+    Temp=$(cat $GitHubActionPath)
+    echo -e "${Temp/BuildLoginPushLogout/"$BuidlLoginPushLogoutSnippet"}" > $GitHubActionPath
+
     DockerImageName=${LowercaseOrg}/${LowercaseRepo}
     if [[ $ParentOrganization != "" ]]; then
         DockerImageName=$LowercaseParentOrg/${LowercaseOrg}/${LowercaseRepo}
@@ -69,7 +74,6 @@ function CreateGitHubAction()
     echo $DockerImageName
     Temp=$(cat $GitHubActionPath)
     echo -e "${Temp/DockerImageNamePlaceHolder/"$DockerImageName"}" > $GitHubActionPath
-
 
     CopyTarget=/$Organization/.github/workflows/$Repository.yml
     sudo cp $GitHubActionPath $CopyTarget
