@@ -44,7 +44,7 @@ fi
 
 DockerImageName=ghcr.io/$LowercaseOrg/$LowercaseRepo:latest
 if [[ $ParentOrganization != "" ]]; then
-    DockerImageName=ghcr.io/$LowercaseParentOrg/${LowercaseOrg}/${LowercaseRepo}
+    DockerImageName=ghcr.io/$LowercaseParentOrg/${LowercaseOrg}/${LowercaseRepo}:latest
 fi
 docker build -f $Dockerfile -t $DockerImageName /Build
 
