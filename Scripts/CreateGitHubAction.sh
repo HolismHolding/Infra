@@ -44,11 +44,11 @@ function CreateGitHubAction()
 
 
     if [[ $ParentOrganization == "" ]]; then
-        Org=$Organization
-        Repo=$Repository
+        export Org=$Organization
+        export Repo=$Repository
     else
-        Org=$ParentOrganization
-        Repo=$Organization
+        export Org=$ParentOrganization
+        export Repo=$Organization
     fi
     GetActionSnippet $Org $Repo
     ActionSnippet="\n$ActionSnippet"
