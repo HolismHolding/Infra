@@ -26,7 +26,5 @@ function BuildNext() {
     CopyRepository
     RemoveGitsDirectory
 
-    Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/Next/Prod/Dockerfile > $Dockerfile
-    docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
 }

@@ -40,7 +40,7 @@ jobs:
 
       - name: Push the image
         run: |
-          docker push ghcr.io/${LowercaseOrg}/${LowercaseRepo}:latest
+          docker push ghcr.io/DockerImageNamePlaceHolder:latest
           
       - name: Logout from GitHub Container Repository
         run: |

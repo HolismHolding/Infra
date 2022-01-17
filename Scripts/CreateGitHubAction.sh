@@ -62,6 +62,15 @@ function CreateGitHubAction()
     Temp=$(cat $GitHubActionPath)
     echo -e "${Temp/GettingMainRepositoryPlaceholder/"$ActionSnippet"}" > $GitHubActionPath
 
+    DockerImageName=${LowercaseOrg}/${LowercaseRepo}
+    if [[ $ParentOrganization != "" ]]; then
+        DockerImageName=$LowercaseParentOrg/${LowercaseOrg}/${LowercaseRepo}
+    fi
+    echo $DockerImageName
+    Temp=$(cat $GitHubActionPath)
+    echo -e "${Temp/DockerImageNamePlaceHolder/"$DockerImageName"}" > $GitHubActionPath
+
+
     CopyTarget=/$Organization/.github/workflows/$Repository.yml
     sudo cp $GitHubActionPath $CopyTarget
     sudo sed -i "s/^name:.*$/name: $Repository/g" $CopyTarget

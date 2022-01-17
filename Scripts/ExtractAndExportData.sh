@@ -15,6 +15,7 @@ function ExtractAndExportData() {
     export LowercaseRepo=$(echo $Repository | tr '[:upper:]' '[:lower:]')
     if [ -f /$Organization/Parent ]; then
         export ParentOrganization=$(cat /$Organization/Parent)
+        export LowercaseParentOrg=$(echo $ParentOrganization | tr '[:upper:]' '[:lower:]')
     fi
     echo "Organization: " $Organization
     echo "Organization Prefix: " $OrganizationPrefix

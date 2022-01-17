@@ -31,6 +31,7 @@ ExtractAndExportData
 CreateTempDirectories
 GetHolismHoldingInfra
 
+Dockerfile=/Build/Dockerfile
 if IsNext $1; then
     BuildNext
 elif IsReact $1; then
@@ -40,5 +41,11 @@ elif IsDotNet $1; then
 else
     echo "Project type = Unknown"
 fi
+
+DockerImageName=ghcr.io/$LowercaseOrg/$LowercaseRepo:latest
+if [[ $ParentOrganization != "" ]]; then
+    DockerImageName=ghcr.io/$LowercaseParentOrg/$LowercaseOrg_$LowercaseRepo
+fi
+docker build -f $Dockerfile -t $DockerImageName /Build
 
 sudo rm -rf /Build

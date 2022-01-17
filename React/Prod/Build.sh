@@ -50,7 +50,5 @@ function BuildReact() {
     ReplaceSymlinksWithOriginalFiles
     Divide
 
-    Dockerfile=/Build/Dockerfile
     envsubst < /HolismHolding/Infra/React/Prod/Dockerfile > $Dockerfile
-    docker build -f $Dockerfile -t ghcr.io/$LowercaseOrg/$LowercaseRepo:latest /Build
 }
