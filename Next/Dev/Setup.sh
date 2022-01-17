@@ -2,6 +2,7 @@
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
 . /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
+. /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/Scripts/Message.sh
 
 function PullNextDevDockerImage() {
@@ -17,25 +18,13 @@ function CreateBuildDirectory() {
     fi
 }
 
-function CreateGitHubActionForNext() {
-    GitHubActionPath=/$Organization/$Repository/.github/workflows/BuildAndPushDockerImage.yml
-    mkdir -p $(dirname $GitHubActionPath)
-    export GITHUB_WORKSPACE="$""GITHUB_WORKSPACE"
-    envsubst < /HolismHolding/Infra/Next/GitHubAction.yml > $GitHubActionPath
-    CopyTarget=/$Organization/.github/workflows/$Repository.yml
-    sudo cp $GitHubActionPath $CopyTarget
-    sudo sed -i "s/^name:.*$/name: $Repository/g" $CopyTarget
-
-    Success "Created GitHub action"
-}
-
 function SetupNext() {
     Info "Seting up site"
     CreateHolismNextDirectory
     GetHolismNextInfra &
     LinkGitIgnore $PWD
     PullNextDevDockerImage &
-    CreateGitHubActionForNext
+    CreateGitHubAction Next
     DetermineTailwindConfigPath
     ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
