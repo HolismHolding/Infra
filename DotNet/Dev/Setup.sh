@@ -9,6 +9,7 @@
 . /HolismHolding/Infra/Maria/Dev/CreateDatabaseContainer
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/DotNet/LinkUsings.sh
+. /HolismHolding/Infra/DotNet/LinkApiDependencies.sh
 . /HolismHolding/Infra/DotNet/LinkApiSolution.sh
 . /HolismHolding/Infra/DotNet/LinkApiCsproj.sh
 . /HolismHolding/Infra/DotNet/LinkConnectionStrings.sh
@@ -101,6 +102,7 @@ function SetupDotNet() {
     GetDependencies volumes
     LinkGitIgnore $PWD
     LinkUsings
+    LinkApiDependencies
     LinkLocalSecrets
     LinkApiSolution
     LinkApiCsproj
