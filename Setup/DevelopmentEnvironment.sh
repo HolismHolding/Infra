@@ -73,12 +73,11 @@ function InstallDocker()
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
     sudo docker run hello-world
 
-    # sudo gpasswd -a $USER docker
-    # newgrp docker
-    # sudo groupadd docker
-    # sudo usermod -aG docker ${USER} restrat
-    # sudo usermod -aG docker $USER
-    # restart
+    sudo gpasswd -a $USER docker
+    newgrp docker
+    sudo groupadd docker
+    sudo usermod -aG docker ${USER}
+    sudo usermod -aG docker $USER
 
     Write "Installed Docker"
 }
@@ -212,3 +211,5 @@ RegisterHolismCommands
 
 sudo apt install rename
 sudo apt-get install -y baobab
+
+Write "IMPORTANT => RESTART YOUR SYSTEM"
