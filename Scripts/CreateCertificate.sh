@@ -4,7 +4,7 @@ function CreateCertificate() {
     CertificatePath=/Temp/$Organization/$Repository;
     sudo mkdir -p $CertificatePath
     sudo chmod 777 $CertificatePath
-    if [ $Repository != "Databases" ] [ ! -f /$Organization/$Repository/Host ]; then
+    if [[ $Repository != "Databases" ]] && [ ! -f /$Organization/$Repository/Host ]; then
         Error "Host file does not exist in /$Organization/$Repository";
         exit;
     fi
