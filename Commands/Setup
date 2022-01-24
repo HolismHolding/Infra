@@ -25,7 +25,7 @@ if [ $PWD = '/' ]; then
     echo "You are in the root directory. Run Setup from inside a project's directory.";
     exit;
 fi
-if ! (IsReact || IsNext || IsDotNet || IsNode); then
+if ! (IsReact || IsNext || IsDotNet); then
     echo "Project type = Unknown"
     exit 1
 fi

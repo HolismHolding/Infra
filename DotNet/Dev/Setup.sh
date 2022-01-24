@@ -10,6 +10,7 @@
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/DotNet/LinkUsings.sh
 . /HolismHolding/Infra/DotNet/LinkApiSolution.sh
+. /HolismHolding/Infra/DotNet/LinkApiCsproj.sh
 . /HolismHolding/Infra/DotNet/LinkConnectionStrings.sh
 . /HolismHolding/Infra/DotNet/LinkSettings.sh
 . /HolismHolding/Infra/DotNet/Dev/LinkDependencies
@@ -102,6 +103,7 @@ function SetupDotNet() {
     LinkUsings
     LinkLocalSecrets
     LinkApiSolution
+    LinkApiCsproj
     LinkConnectionStrings
     LinkSettings
     LinkDependencies
