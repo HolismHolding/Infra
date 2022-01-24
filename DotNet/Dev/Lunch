@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "/${Organization}/${Repository}/Api/bin/${Organization}.${Repository}.dll",
+            "program": "/${Organization}/${Repository}/Api/bin/Api.dll",
             "args": [],
             "cwd": "/${Organization}/${Repository}",
             "console": "internalConsole",
