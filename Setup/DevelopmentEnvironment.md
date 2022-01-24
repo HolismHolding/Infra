@@ -48,8 +48,9 @@
       - Settings
       - Region & Language
       - English (United States)
-    - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
+    - todo: DO NOT THIS [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
+- First, install VPN and connect to it (in case of doubt, ASK)
 - `sudo mkdir /Temp`
 - `sudo chmod 777 /Temp`
 - `cd /Temp`
