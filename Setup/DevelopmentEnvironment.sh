@@ -73,12 +73,6 @@ function InstallDocker()
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
     sudo docker run hello-world
 
-    sudo gpasswd -a $USER docker
-    newgrp docker
-    sudo groupadd docker
-    sudo usermod -aG docker ${USER}
-    sudo usermod -aG docker $USER
-
     Write "Installed Docker"
 }
 
@@ -193,6 +187,19 @@ function InstallVpn()
     # printf 'username\npassword' | sudo openconnect vpn-server-address
 }
 
+function SetDockerPermissions()
+{
+    Write "Setting docker permissions ... "
+    
+    sudo gpasswd -a $USER docker
+    newgrp docker
+    sudo groupadd docker
+    sudo usermod -aG docker ${USER}
+    sudo usermod -aG docker $USER
+    
+    Write "Set docker permissions"
+}
+
 Write "Holism Holding Installation"
 
 InstallChrome
@@ -213,3 +220,4 @@ sudo apt install rename
 sudo apt-get install -y baobab
 
 Write "IMPORTANT => RESTART YOUR SYSTEM"
+SetDockerPermissions
