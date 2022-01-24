@@ -114,3 +114,6 @@ Run a command, then
 
 # Find the location of a command
 `whereis Setup`
+
+# validate certificate
+openssl verify --verbose Certificate.pem
