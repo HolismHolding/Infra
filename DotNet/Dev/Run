@@ -1,10 +1,9 @@
+. /HolismHolding/Infra/Scripts/Message.sh
+
 . /HolismHolding/Infra/DotNet/Dev/Kill
 
-echo "Building /$Organization/$Repository ...";
+. /HolismHolding/Infra/DotNet/Dev/Build
 
-dotnet build /$Organization/$Repository
-chmod -R 777 /$Organization/$Repository
-
-echo "Running /$Organization/$Repository/Api/bin/Api.dll ...";
+Info "Running /$Organization/$Repository/Api/bin/Api.dll ...";
 
 dotnet /$Organization/$Repository/Api/bin/Api.dll &

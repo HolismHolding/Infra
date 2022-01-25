@@ -1,0 +1,6 @@
+. /HolismHolding/Infra/Scripts/Message.sh
+
+Info "Building /$Organization/$Repository ...";
+
+dotnet build /$Organization/$Repository
+chmod -R 777 /$Organization/$Repository
