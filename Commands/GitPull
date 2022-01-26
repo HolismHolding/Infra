@@ -16,9 +16,11 @@ while read gitFolder; do
     parent=$(dirname $gitFolder);
     echo "";
     Info $parent;
-    git -C $parent pull && Success "Got $parent" &
+    (git -C $parent pull && Success "Got $parent") &
 done 
 wait
+Divide
 Success "Got all"
+Divide
 
 # https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find

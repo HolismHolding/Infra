@@ -29,7 +29,7 @@ function Error()
 
 function Divide()
 {
-    sudo echo ""
-    sudo echo "${magenta}----------${reset}"
-    sudo echo ""
+    echo ""
+    echo "${magenta}----------${reset}"
+    echo ""
 }
