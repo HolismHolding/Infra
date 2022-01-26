@@ -16,7 +16,7 @@ while read gitFolder; do
     parent=$(dirname $gitFolder);
     echo "";
     Info $parent;
-    (git -C $parent pull && Success "Got $parent") &
+    (git -C $parent pull; Success "Got $parent") &
 done 
 wait
 Divide
