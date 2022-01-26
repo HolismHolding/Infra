@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/Message.sh
+
 find / -type d -name .git 2>&- | 
 while read gitFolder; do
     if [[ $gitFolder == *"/Temp/"* ]]; then
@@ -13,8 +15,10 @@ while read gitFolder; do
     fi
     parent=$(dirname $gitFolder);
     echo "";
-    echo $parent;
-    git -C $parent pull && echo "Got $parent" &
+    Info $parent;
+    git -C $parent pull && Success "Got $parent" &
 done 
+wait
+Success "Got all"
 
 # https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
