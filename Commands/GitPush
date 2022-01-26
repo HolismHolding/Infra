@@ -12,7 +12,7 @@ if [ $Consent != 'y' ]; then
     exit;
 fi
 
-find / -type d -name .git 2>&- | 
+find / -type d -name .git 2>/dev/null | 
 while read gitFolder; do
     if [[ $gitFolder == *"/Temp/"* ]]; then
         continue;

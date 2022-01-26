@@ -22,4 +22,4 @@ curl --silent -H "Authorization: token $accessToken" "https://api.github.com/org
     fi
 done
 
-sudo chmod -R 777 /$Organization 2>&-
+sudo chmod -R 777 /$Organization 2>/dev/null

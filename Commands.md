@@ -17,9 +17,9 @@
 You can use use `-n` to only see the changes, without applying them, to ensure the regex is correct.
 
 `find . | grep search | rename -n 's/old/new'`
-`find / -path "*/Models/bin" 2>&-`
-`find / -type d -name "*something*" 2>&-`
-`find / -type f -name "*something*" 2>&-`
+`find / -path "*/Models/bin" 2>/dev/null`
+`find / -type d -name "*something*" 2>/dev/null`
+`find / -type f -name "*something*" 2>/dev/null`
 
 # git submodules
 
@@ -54,10 +54,10 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `echo $0`
 
 # suppressing error messages
-`grep -nr something 2>&-`
+`grep -nr something 2>/dev/null`
 
 # all .git repositories on your machine
-`find / -type d -name .git 2>&-`
+`find / -type d -name .git 2>/dev/null`
 
 # find and remove all <none> docker images
 `docker images | grep none | awk '{ print $3; }' | xargs docker rmi`
@@ -95,7 +95,7 @@ df = disk-free
 `man uname`
 
 ---
-`2>&-` closes the error stream (bad habit, because some apps crash if they encounter closed stream for erro)
+`2>/dev/null` closes the error stream (bad habit, because some apps crash if they encounter closed stream for erro)
 `2>/dev/null` ignores error, but redirects them to an open stream
 
 # find using negation
