@@ -24,5 +24,3 @@ find / -type d -name .git 2>/dev/null |
 Divide
 Success "Got all"
 Divide
-
-# https://stackoverflow.com/questions/9612090/how-to-loop-through-file-names-returned-by-find
