@@ -28,12 +28,12 @@ find / -type d -name .git 2>/dev/null |
         fi
         parent=$(dirname $gitFolder);
         if [[ `git -C $parent status --porcelain` ]]; then
-            $(echo ""; 
+            echo "";
             Info $parent;
             git -C $parent status --porcelain
             git -C $parent add .
             git -C $parent commit -m "committed by script"
-            git -C $parent push) &
+            git -C $parent push
         fi
     done
     wait
