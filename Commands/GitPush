@@ -1,11 +1,13 @@
 #!/bin/bash
 
-echo 'Getting the current status ...'
+. /HolismHolding/Infra/Scripts/Message.sh
+
+Info 'Getting the current status ...'
 GitStatus
 
 echo
 echo
-echo 'Still pushing? (y,n)'
+Warning 'Still pushing? (y,n)'
 read Consent
 
 if [ $Consent != 'y' ]; then
@@ -13,23 +15,29 @@ if [ $Consent != 'y' ]; then
 fi
 
 find / -type d -name .git 2>/dev/null | 
-while read gitFolder; do
-    if [[ $gitFolder == *"/Temp/"* ]]; then
-        continue;
-    fi
-    if [[ $gitFolder == *"/Trash/"* ]]; then
-        continue;
-    fi
-    if [[ $gitFolder == *"/opt/"* ]]; then
-        continue;
-    fi
-    parent=$(dirname $gitFolder);
-    if [[ `git -C $parent status --porcelain` ]]; then
-        echo "";
-        echo $parent;
-        git -C $parent status --porcelain
-        git -C $parent add .
-        git -C $parent commit -m "committed by script"
-        git -C $parent push
-    fi
-done
+{
+    while read gitFolder; do
+        if [[ $gitFolder == *"/Temp/"* ]]; then
+            continue;
+        fi
+        if [[ $gitFolder == *"/Trash/"* ]]; then
+            continue;
+        fi
+        if [[ $gitFolder == *"/opt/"* ]]; then
+            continue;
+        fi
+        parent=$(dirname $gitFolder);
+        if [[ `git -C $parent status --porcelain` ]]; then
+            $(echo ""; 
+            Info $parent;
+            git -C $parent status --porcelain
+            git -C $parent add .
+            git -C $parent commit -m "committed by script"
+            git -C $parent push) &
+        fi
+    done
+    wait
+}
+Divide
+Success "Pushed all"
+Divide
