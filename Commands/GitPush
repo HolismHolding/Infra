@@ -35,7 +35,7 @@ find / -type d -name .git 2>/dev/null |
                 git -C $parent add .
                 git -C $parent commit -m "committed by script"
                 git -C $parent push
-            )
+            ) &
         fi
     done
     wait
