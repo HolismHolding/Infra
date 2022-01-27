@@ -3,22 +3,24 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
 find / -type d -name .git 2>/dev/null | 
-while read gitFolder; do
-    if [[ $gitFolder == *"/Temp/"* ]]; then
-        continue;
-    fi
-    if [[ $gitFolder == *"/Trash/"* ]]; then
-        continue;
-    fi
-    if [[ $gitFolder == *"/opt/"* ]]; then
-        continue;
-    fi
-    parent=$(dirname $gitFolder);
-    echo "";
-    Info $parent;
-    (git -C $parent pull; Success "Got $parent") &
-done 
-wait
+{
+    while read gitFolder; do
+        if [[ $gitFolder == *"/Temp/"* ]]; then
+            continue;
+        fi
+        if [[ $gitFolder == *"/Trash/"* ]]; then
+            continue;
+        fi
+        if [[ $gitFolder == *"/opt/"* ]]; then
+            continue;
+        fi
+        parent=$(dirname $gitFolder);
+        echo "";
+        Info $parent;
+        (git -C $parent pull; Success "Got $parent") &
+    done 
+    wait
+}
 Divide
 Success "Got all"
 Divide
