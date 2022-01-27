@@ -36,6 +36,9 @@ function LinkDependencies()
         Org=$(echo $Dependency | cut -d'/' -f1)
         Repo=$(echo $Dependency | cut -d'/' -f2)
 
+        if [[ $Repo == "Cloud" ]] || [[ $Repo == "Common" ]]; then
+            continue;
+        fi
         if [ ! -f "/$Org/$Repo/Database.json" ]; then
             Warning "Did not found Database.json for $Org/$Repo";
         else 
