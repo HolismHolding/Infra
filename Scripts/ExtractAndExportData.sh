@@ -1,7 +1,8 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
 function ExtractAndExportData() {
-    echo "Directory: " $PWD
+    Info "Directory: $PWD"
+    echo
     export Organization="`dirname $PWD | sed 's/\///g'`"
     if [[ $Organization == *"Holism"* ]]; then
         export OrganizationPrefix="Holism";
@@ -17,10 +18,10 @@ function ExtractAndExportData() {
         export ParentOrganization=$(cat /$Organization/Parent)
         export LowercaseParentOrg=$(echo $ParentOrganization | tr '[:upper:]' '[:lower:]')
     fi
-    echo "Organization: " $Organization
-    echo "Organization Prefix: " $OrganizationPrefix
-    echo "Repository: " $Repository
+    Success "Organization: $Organization"
+    Success "Organization Prefix: $OrganizationPrefix"
+    Success "Repository: $Repository"
     if [[ $ParentOrganization != "" ]]; then
-        Info "Parent Organization: $ParentOrganization"
+        Success "Parent Organization: $ParentOrganization"
     fi
 }

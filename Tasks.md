@@ -1,5 +1,4 @@
-- upgrade to material ui 5
-- upgrade to .net 6
+- Remove organization prefix from extract and everywhere
 - push (notifications)
 - video call api
 - email
