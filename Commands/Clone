@@ -1,13 +1,14 @@
 #!/bin/bash
+. /HolismHolding/Infra/Scripts/Message.sh
 
 Organization=$1
 
-if [ ${Organization:-NotSet} == "NotSet" ]; then 
-    echo 'Organization name is not provided';
+if [[ $Organization == "" ]]; then 
+    Error 'Organization name is not provided';
     exit;
 fi
 
-echo "Organization: $Organization"
+Info "Organization: $Organization"
 
 sudo mkdir -p /$Organization
 sudo chmod 777 /$Organization
