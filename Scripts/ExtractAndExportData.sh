@@ -1,6 +1,7 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
 function ExtractAndExportData() {
+    Divide
     Info "Directory: $PWD"
     echo
     export Organization="`dirname $PWD | sed 's/\///g'`"
@@ -24,4 +25,5 @@ function ExtractAndExportData() {
     if [[ $ParentOrganization != "" ]]; then
         Success "Parent Organization: $ParentOrganization"
     fi
+    Divide
 }

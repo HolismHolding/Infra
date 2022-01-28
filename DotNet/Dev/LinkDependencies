@@ -3,8 +3,6 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/Message.sh
 
-ExtractAndExportData
-
 function LinkDependencies()
 {
     if [ ! -f "$PWD/Dependencies" ]; then
