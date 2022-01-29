@@ -1,11 +1,8 @@
 #!/bin/bash
 
-docker stats --no-stream | awk '/SadraTrade/  {print $3, $4, $8, $11}' | xargs awk '{
-    for (i=2; i<=NF; i++) {
-        sumcols[i]+= $i; sumrows+= $i 
-    }; print $0, sumrows
-}
-END { for (x in sumcols)
-         { printf SEP sumcols[x]; SEP=FS };
-     print ""
-}' infile
+# /temp/l => a file containing organization names line by line
+
+# /temp/awk.txt => the command here:
+# https://unix.stackexchange.com/questions/688228/how-to-group-docker-stats-by-container-name-prefix
+
+docker stats --no-stream | awk -f /Temp/awk.txt /Temp/l -
