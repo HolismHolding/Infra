@@ -1,0 +1,44 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/Scripts/Message.sh
+. /HolismHolding/Infra/Scripts/SetupNginxAndLocalDns.sh
+. /HolismHolding/Infra/Scripts/GetRandomPort.sh
+. /HolismHolding/Infra/Scripts/CreateCertificate.sh
+
+function GetOrganizationStorageHost()
+{
+    IFS='.' read -r -a array <<< $(cat Host)
+    hostIndex=$(( ${#array[@]} - 2 ))
+    hostArray=(${array[@]:$hostIndex:2})
+    export Host=storage.${hostArray[0]}.${hostArray[1]}
+}
+
+function CreateContainer()
+{
+    Info 'Creating storage container'
+    ComposeFile=/Temp/$Organization/Storage/DockerCompose.yml
+    mkdir -p $(dirname $ComposeFile)
+    envsubst < /HolismHolding/Infra/Storage/Dev/DockerCompose.yml > $ComposeFile
+    docker-compose -p "${Organization}Storage" -f $ComposeFile up --remove-orphans
+}
+
+function CreateStorageContainer()
+{
+    GetOrganizationStorageHost
+
+    OriginalRepository=$Repository
+    Repository=Storage
+    OriginalRandomPort=$RandomPort
+    GetRandomPort
+    export StoragePort=$RandomPort
+
+    CreateCertificate
+    SetupNginxAndLocalDns
+
+    Repository=$OriginalRepository
+    RandomPort=$OriginalRandomPort
+    
+    Divide
+    CreateContainer
+    Divide
+}

@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  azure:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: ${Organization}Storage
+    ports:
+      - $StoragePort:10000
+    volumes:
+      - /Temp/${Organization}/Storage:/data

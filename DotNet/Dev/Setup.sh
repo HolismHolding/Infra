@@ -7,6 +7,7 @@
 . /HolismHolding/Infra/DotNet/LinkLocalSecrets
 . /HolismHolding/Infra/DotNet/CreateApiContainer
 . /HolismHolding/Infra/Maria/Dev/CreateDatabaseContainer
+. /HolismHolding/Infra/Storage/Dev/CreateStorageContainer
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/DotNet/LinkUsings.sh
 . /HolismHolding/Infra/DotNet/LinkApiDependencies.sh
@@ -92,28 +93,29 @@ function GetDotNetMigration() {
 
 function SetupDotNet() {
     echo ".NET"
-    LinkDevContainer
-    LinkVSCodeFiles
-    GetDotNetInfra &
-    GetDotNetAccounts &
-    GetDotNetGeneration &
-    GetDotNetMigration &
-    volumes=""
-    GetDependencies volumes
-    LinkGitIgnore $PWD
-    LinkUsings
-    LinkApiDependencies
-    LinkLocalSecrets
-    LinkApiSolution
-    LinkApiCsproj
-    LinkConnectionStrings
-    LinkSettings
-    LinkDependencies
-    PullDotNetDockerImage
-    CreateGitHubAction DotNet
-    CreateDatabaseGitHubAction
+    # LinkDevContainer
+    # LinkVSCodeFiles
+    # GetDotNetInfra &
+    # GetDotNetAccounts &
+    # GetDotNetGeneration &
+    # GetDotNetMigration &
+    # volumes=""
+    # GetDependencies volumes
+    # LinkGitIgnore $PWD
+    # LinkUsings
+    # LinkApiDependencies
+    # LinkLocalSecrets
+    # LinkApiSolution
+    # LinkApiCsproj
+    # LinkConnectionStrings
+    # LinkSettings
+    # LinkDependencies
+    # PullDotNetDockerImage
+    # CreateGitHubAction DotNet
+    # CreateDatabaseGitHubAction
     
-    CreateDatabaseContainer
-    InsertInitialData
-    CreateApiContainer "Dev"
+    CreateStorageContainer
+    # CreateDatabaseContainer
+    # InsertInitialData
+    # CreateApiContainer "Dev"
 }
