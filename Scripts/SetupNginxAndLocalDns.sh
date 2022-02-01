@@ -1,3 +1,5 @@
+. /HolismHolding/Infra/Scripts/Message.sh
+
 function SetupNginxAndLocalDns() {
     if [ -z ${Host+x} ]; then
         return;
@@ -6,7 +8,7 @@ function SetupNginxAndLocalDns() {
     sudo chmod 777 /etc/hosts
     sudo chmod -R 777 /etc/nginx/conf.d
 
-    echo "Setting up NGINX and local DNS";
+    Info "Setting up NGINX and local DNS for $Host";
     if ! grep -q " $Host" /etc/hosts; then
         echo "127.0.0.1 $Host" >> /etc/hosts;
     fi
