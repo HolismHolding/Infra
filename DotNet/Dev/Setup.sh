@@ -114,7 +114,7 @@ function SetupDotNet() {
     CreateGitHubAction DotNet
     CreateDatabaseGitHubAction
     
-    CreateStorageContainer
+    # CreateStorageContainer
     CreateDatabaseContainer
     InsertInitialData
     CreateApiContainer "Dev"
