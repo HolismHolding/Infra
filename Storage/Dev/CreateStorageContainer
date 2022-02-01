@@ -19,7 +19,7 @@ function CreateContainer()
     ComposeFile=/Temp/$Organization/Storage/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     envsubst < /HolismHolding/Infra/Storage/Dev/DockerCompose.yml > $ComposeFile
-    docker-compose -p "${Organization}Storage" -f $ComposeFile up --remove-orphans
+    docker-compose -p "${Organization}Storage" -f $ComposeFile up -d --remove-orphans
 }
 
 function CreateStorageContainer()
