@@ -19,7 +19,7 @@ services:
   admin:
     image: adminer
     container_name: ${Organization}Adminer
-    restart: always
+    # restart: always
     logging:
       driver: none
     ports:

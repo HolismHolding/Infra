@@ -21,3 +21,4 @@ RUN rm -rf /Temp
 RUN apt update
 RUN apt install -y procps
 RUN apt install gettext-base
+RUN apt-get update && apt-get install -y apt-utils libgdiplus libc6-dev
