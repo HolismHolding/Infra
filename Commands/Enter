@@ -14,7 +14,9 @@ export ExitCode=$?
 
 if [[ $ExitCode != 0 ]];
 then
+    Divide
     Error "No container named $ContainerName is found"
+    Divide
     exit
 fi
 
