@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# /temp/l => a file containing organization names line by line
+# /Temp/Organizations => a file containing organization names line by line
 
-# /temp/awk.txt => the command here:
+# /HolismHolding/Server/Scripts/DockerAwk.sh => the command here:
 # https://unix.stackexchange.com/questions/688228/how-to-group-docker-stats-by-container-name-prefix
 
-docker stats --no-stream | awk -f /Temp/awk.txt /Temp/l -
+docker stats --no-stream | awk -f /HolismHolding/Server/Scripts/DockerAwk.sh /Temp/Organizations -
