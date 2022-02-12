@@ -13,11 +13,6 @@ if [ ! -f "$PWD/Database.json" ]; then
     exit;
 fi
 
-if [ ! -d "$PWD/Models" ] || [ ! -d "$PWD/DataAccess" ]; then
-    Warning "You should run this command inside a module, that has Models and DataAccess projects.";
-    exit;
-fi
-
 export Directory=$PWD
 
 if [ -z ${IsBuilt+x} ]; then
