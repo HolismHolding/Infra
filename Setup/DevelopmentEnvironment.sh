@@ -72,6 +72,12 @@ function InstallDocker()
     sudo apt-get update
     sudo apt-get install docker-ce docker-ce-cli containerd.io -y
     sudo docker run hello-world
+    
+    # sudo gpasswd -a $USER docker
+    # newgrp docker
+    # sudo groupadd docker
+    # sudo usermod -aG docker ${USER}
+    # sudo usermod -aG docker $USER
 
     Write "Installed Docker"
 }
