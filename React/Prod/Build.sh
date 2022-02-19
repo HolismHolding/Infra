@@ -49,6 +49,8 @@ function BuildReact() {
     Divide
     ReplaceSymlinksWithOriginalFiles
     Divide
+    ReplaceSymlinksWithOriginalFiles
+    Divide
 
     envsubst < /HolismHolding/Infra/React/Prod/Dockerfile > $Dockerfile
 }
