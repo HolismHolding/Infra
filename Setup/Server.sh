@@ -152,3 +152,10 @@ InstallAzcopy
 InstallDocker
 InstallDockerCompose
 RegisterHolismCommands
+
+# notes:
+# If docker is not installed, cancel and install docker manually by copy/pasting commands into the terminal
+# If docker-compose can't be downloaded, download it on your PC and scp it onto the server
+# Run this command for download
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /Temp/docker-compose
+# Then copy it to server's /usr/local/bin/docker-compose
