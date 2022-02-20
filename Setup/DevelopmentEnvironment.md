@@ -66,14 +66,15 @@
 
 * Software
 
-  - Fiddler Everywhere
-
-    - From [Official website](https://www.telerik.com/download/fiddler-everywhere)
-      - Make executable
-        - `sudo chmod +x filename.AppImage`
-      - Double click to run
-    - Enable [capturing HTTPS traffic](https://docs.telerik.com/fiddler-everywhere/user-guide/settings/https)
-      - [Installation guide](https://askubuntu.com/a/649463/1269127) for Ubuntu
+  - Wireshark
+    - `sudo add-apt-repository universe`
+    - `sudo apt install wireshark`
+    - Hit `Yes`
+    - `sudo dpkg-reconfigure wireshark-common`
+    - `sudo chmod +x /usr/bin/dumpcap`
+    - Add this to `~/.bashrc`
+    - `export SSLKEYLOGFILE=~/.ssl-key.log`
+    - `touch ~/.ssl-key.log`
 
   - Git 
     - Restore `.ssh` directory, or
