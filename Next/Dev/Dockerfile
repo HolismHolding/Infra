@@ -20,7 +20,8 @@ RUN npm i --save nodemailer --no-optional
 RUN npm i --save cookieconsent --no-optional
 RUN npm i --save react-countup --no-optional
 RUN npm i --save swiper --no-optional
-RUN npm i --save wowjs
+#RUN npm i --save wowjs
+#Run npm i --save animate.css
 
 RUN apt update
 RUN apt install curl -y
