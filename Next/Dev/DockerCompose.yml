@@ -13,7 +13,7 @@ services:
             - /HolismNext/Infra/tailwind.js:${RepositoryPath}/tailwind.js
             - /HolismNext/Infra/Base:${RepositoryPath}/Base
             - /HolismNext/Infra/UiComponents:${RepositoryPath}/UiComponents
-            - ${RepositoryPath}/tailwind.config.js:${RepositoryPath}/tailwind.config.js
+            - ${TailwindConfigPath}/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - ${RepositoryPath}/next.config.js:${RepositoryPath}/next.config.js
             - ${RepositoryPath}/components:${RepositoryPath}/components
             - ${RepositoryPath}/contents:${RepositoryPath}/contents
