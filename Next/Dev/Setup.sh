@@ -1,7 +1,6 @@
 . /HolismHolding/Infra/Next/CreateHolismNextDirectory.sh
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
 . /HolismHolding/Infra/Scripts/LinkGitIgnore.sh
-. /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 . /HolismHolding/Infra/Scripts/Message.sh
 
@@ -25,7 +24,6 @@ function SetupNext() {
     LinkGitIgnore $PWD
     PullNextDevDockerImage &
     CreateGitHubAction Next
-    DetermineTailwindConfigPath
     ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
     CreateBuildDirectory
