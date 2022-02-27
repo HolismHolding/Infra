@@ -116,4 +116,7 @@ Run a command, then
 `whereis Setup`
 
 # validate certificate
-openssl verify --verbose Certificate.pem
+`openssl verify --verbose Certificate.pem`
+
+# Counting files
+`find . -name "*.md" 2>/dev/null | wc -l`
