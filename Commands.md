@@ -120,3 +120,6 @@ Run a command, then
 
 # Counting files
 `find . -name "*.md" 2>/dev/null | wc -l`
+
+# Get docker image manifest
+`docker manifest inspect -v image_full_name`

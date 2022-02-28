@@ -1,9 +1,9 @@
 ARG VARIANT="6.0-bullseye-slim"
-FROM mcr.microsoft.com/vscode/devcontainers/dotnet:0-${VARIANT}
+FROM mcr.microsoft.com/vscode/devcontainers/dotnet:${VARIANT}
     
 ENV PATH="${PATH}:/HolismHolding/Infra/DotNet/Dev"
 
-ENV Nuget=/root/.local/share/NuGet/v3-cache/670c1461c29885f9aa22c281d8b7da90845b38e4$ps:_api.nuget.org_v3_index.json/
+ENV Nuget=/root/.local/share/NuGet/v3-cache/
 
 RUN mkdir /HolismDotNet
 RUN chmod 777 /HolismDotNet
