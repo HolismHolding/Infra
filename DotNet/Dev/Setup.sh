@@ -62,11 +62,11 @@ function CreateDatabaseGitHubAction()
 
     envsubst < /HolismHolding/Infra/DotNet/ScriptProductionDatabase.yml > $GitHubActionPath
 
-    if [[ $ParentOrganization != "" ]]; then
-        CopyTarget=/$Organization/.github/workflows/Database.yml
-        sudo cp $GitHubActionPath $CopyTarget
-        sudo sed -i "s/^name:.*$/name: Database/g" $CopyTarget
-    fi
+    # if [[ $ParentOrganization != "" ]]; then
+    #     CopyTarget=/$Organization/.github/workflows/Database.yml
+    #     sudo cp $GitHubActionPath $CopyTarget
+    #     sudo sed -i "s/^name:.*$/name: Database/g" $CopyTarget
+    # fi
 }
 
 function GetDotNetGeneration() {
