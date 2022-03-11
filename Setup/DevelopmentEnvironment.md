@@ -99,6 +99,9 @@
     - Introduce yourself to git 
       - `git config --global user.email "your-email-of-github-here"` 
       - `git config --global user.name "your name here"`
+    - Login into GitHub Container Registry
+      - username
+      - package reading personal access token
   - Docker
     - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
   - Configuration
