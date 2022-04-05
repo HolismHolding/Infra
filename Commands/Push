@@ -3,7 +3,7 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
 Info 'Getting the current status ...'
-GitStatus
+Status
 
 echo
 echo
