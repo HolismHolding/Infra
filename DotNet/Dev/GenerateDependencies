@@ -23,7 +23,7 @@ while read Dependency; do
         Warning "Did not found Database.json for $Org/$Repo";
     else 
         cd /$Org/$Repo
-        Generate
+        Generate &
     fi
 done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 
