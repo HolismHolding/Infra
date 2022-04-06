@@ -19,7 +19,8 @@ function CreateMariaDatabaseContainer()
     Info 'Creating MariaDB container'
     ComposeFile=/Temp/$Organization/Databases/DockerCompose.yml
     mkdir -p $(dirname $ComposeFile)
-    envsubst < /HolismHolding/Infra/Maria/Dev/DockerCompose.yml > $ComposeFile
+    sudo chmod 777 $(dirname $ComposeFile)
+    sudo envsubst < /HolismHolding/Infra/Maria/Dev/DockerCompose.yml > $ComposeFile
     docker-compose -p "${Organization}Databases" -f $ComposeFile up -d --remove-orphans
 }
 
