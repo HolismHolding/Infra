@@ -1,0 +1,4 @@
+-- Make sure file is copied into the container
+-- docker cp /Temp/Results.csv ContainerName:/tmp/Results.csv
+
+LOAD DATA LOCAL INFILE '/tmp/Results.csv' INTO table SchemaName.TableName FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
