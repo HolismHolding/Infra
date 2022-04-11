@@ -43,6 +43,7 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `du -sh directory_name`
 `du -sh .`
 `du -h .` *list of subdirectories and their sizes*
+`du -h * | sort -h` list and order by size
 
 # check status of
 `sudo systemctl status nginx`
