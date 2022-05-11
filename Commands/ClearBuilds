@@ -1,0 +1,8 @@
+. /HolismHolding/Infra/Scripts/Message.sh
+
+find / -type d \( -name bin -or -name obj \) -path "*Api*" 2>/dev/null |
+while read directory; do
+    rm -rf $directory
+    # echo $directory
+    Success "Deleted $directory"
+done
