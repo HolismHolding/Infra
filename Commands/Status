@@ -1,5 +1,9 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/Message.sh
+
+echo
+
 find / -type d -name .git 2>/dev/null | 
 while read gitFolder; do
     if [[ $gitFolder == *"/Temp/"* ]]; then
@@ -12,17 +16,16 @@ while read gitFolder; do
         continue;
     fi
     parent=$(dirname $gitFolder);
-    # echo $parent
     if [[ `git -C $parent status --porcelain` ]]; then
-        echo "";
-        echo $parent;
+        Info $parent;
         git -C $parent status --porcelain
+        Divide
     elif [[ $(git -C $parent status | grep ahead) ]]; then
-        echo "";
-        echo "Push $parent";
+        Warning "Push $parent";
+        Divide
     elif [[ $(git -C $parent status | grep diverged) ]]; then
-        echo "";
-        echo "Sync $parent";
+        Warning "Sync $parent";
+        Divide
     fi
 done 
 

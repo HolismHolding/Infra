@@ -3,6 +3,7 @@
 . /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/CreateTempDirectories.sh
 . /HolismHolding/Infra/Scripts/GetHolismHoldingInfra.sh
+. /HolismHolding/Infra/Scripts/GetHolismHoldingPolicies.sh
 . /HolismHolding/Infra/Scripts/GetRandomPort.sh
 . /HolismHolding/Infra/Scripts/GetHost.sh
 . /HolismHolding/Infra/Scripts/CreateCertificate.sh
@@ -32,6 +33,7 @@ fi
 ExtractAndExportData
 CreateTempDirectories &
 GetHolismHoldingInfra &
+GetHolismHoldingPolicies &
 GetRandomPort
 GetHost
 CreateCertificate
