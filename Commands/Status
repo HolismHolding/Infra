@@ -19,6 +19,9 @@ while read gitFolder; do
     if [[ `git -C $parent status --porcelain` ]]; then
         Info $parent;
         git -C $parent status --porcelain
+        if [ -d /HolismHolding/Policies ]; then
+            /HolismHolding/Policies/Run.sh $parent
+        fi
         Divide
     elif [[ $(git -C $parent status | grep ahead) ]]; then
         Warning "Push $parent";

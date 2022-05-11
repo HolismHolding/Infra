@@ -20,7 +20,15 @@ RUN npm i --save nodemailer --no-optional
 RUN npm i --save cookieconsent --no-optional
 RUN npm i --save react-countup --no-optional
 RUN npm i --save swiper --no-optional
-RUN npm i --save @mui/material @emotion/react @emotion/styled --no-optional
+
+RUN npm install @mui/base --no-optional
+RUN npm install @mui/material @mui/icons-material @emotion/cache @emotion/react @emotion/server @emotion/styled --no-optional
+RUN npm install @mui/lab --no-optional
+RUN npm install @date-io/date-fns --no-optional
+RUN npm install @date-io/date-fns-jalali --no-optional
+RUN npm install date-fns --no-optional
+RUN npm install date-fns-jalali --no-optional
+
 RUN npm i --save react-youtube
 #RUN npm i --save wowjs
 #Run npm i --save animate.css
