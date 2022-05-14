@@ -12,7 +12,6 @@ RUN npm i --save eventemitter3 --no-optional
 RUN npm i --save marked --no-optional
 RUN npm i --save recharts --no-optional
 RUN npm i --save sass --no-optional
-RUN npm i -D @tailwindcss/typography --no-optional
 RUN npm i --save --save-dev eslint eslint-config-next
 RUN npm i --save @heroicons/react --no-optional
 RUN npm i --save @headlessui/react --no-optional
@@ -20,18 +19,19 @@ RUN npm i --save nodemailer --no-optional
 RUN npm i --save cookieconsent --no-optional
 RUN npm i --save react-countup --no-optional
 RUN npm i --save swiper --no-optional
-
-RUN npm install @mui/base --no-optional
-RUN npm install @mui/material @mui/icons-material @emotion/cache @emotion/react @emotion/server @emotion/styled --no-optional
-RUN npm install @mui/lab --no-optional
-RUN npm install @date-io/date-fns --no-optional
-RUN npm install @date-io/date-fns-jalali --no-optional
-RUN npm install date-fns --no-optional
-RUN npm install date-fns-jalali --no-optional
-
+RUN npm i --save @mui/base --no-optional
+RUN npm i --save @mui/material @mui/icons-material @emotion/cache @emotion/react @emotion/server @emotion/styled --no-optional
+RUN npm i --save @mui/lab --no-optional
+RUN npm i --save @date-io/date-fns --no-optional
+RUN npm i --save @date-io/date-fns-jalali --no-optional
+RUN npm i --save date-fns --no-optional
+RUN npm i --save date-fns-jalali --no-optional
 RUN npm i --save react-youtube
-#RUN npm i --save wowjs
-#Run npm i --save animate.css
+# RUN npm i --save wowjs
+# Run npm i --save animate.css
+RUN npm i --save formik --no-optional
+RUN npm i --save yup --no-optional
+RUN npm i -D @tailwindcss/typography --no-optional
 
 RUN apt update
 RUN apt install curl -y
