@@ -1,0 +1,91 @@
+name: Script Production Database
+
+on:
+  schedule:
+    - cron:  '30 7 * * *'
+  workflow_dispatch:
+
+jobs:
+  buildAndPush:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '6.0.x' ]
+    env:
+      Environment: Production
+    steps:
+
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v1.7.2
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+
+      - name: Get /HolismHolding/Infra
+        run: |
+          sudo mkdir /HolismHolding
+          sudo chmod 777 /HolismHolding
+          cd /HolismHolding
+          git clone https://github.com/HolismHolding/Infra
+          
+      - name: Get /HolismDotNet/Infra
+        run: |
+          sudo mkdir /HolismDotNet
+          sudo chmod 777 /HolismDotNet
+          cd /HolismDotNet
+          git clone https://github.com/HolismDotNet/Infra
+          
+      - name: Get /HolismDotNet/Migration
+        run: |
+          cd /HolismDotNet
+          git clone https://github.com/HolismDotNet/Migration
+
+      - name: Create /${Organization} directory
+        run: |
+          sudo mkdir /${Organization}
+          sudo chmod 777 /${Organization}
+
+      - name: Get ${Organization}/Common using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/Common
+          token: ${{ secrets.PAT }}
+          path: ${Organization}/Common
+      - name: Copy ${Organization}/Common to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/Common /${Organization}/Common 
+
+      - name: Get ${Organization}/Migration using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/Migration
+          token: ${{ secrets.PAT }}
+          path: ${Organization}/Migration
+      - name: Copy ${Organization}/Migration to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/Migration /${Organization}/Migration 
+
+      - name: Get ${Organization}/AdminApi using actions/checkout@v2
+        uses: actions/checkout@v2
+        with:
+          repository: ${Organization}/AdminApi
+          token: ${{ secrets.PAT }}
+          path: ${Organization}/AdminApi
+      - name: Copy ${Organization}/AdminApi to root
+        run: |
+          cp -r $GITHUB_WORKSPACE/${Organization}/AdminApi /${Organization}/AdminApi    
+          
+      - name: Run Migration
+        run: |
+          cd /${Organization}/AdminApi
+          sed -i 's/server=[^;]*;/server=${{ secrets.DATABASEDOMAIN }}; port=${{ secrets.DATABASEPORT }};/g' ConnectionStrings.json 
+          sed -i 's/password=[^;]*;/password=${{ secrets.PRODUCTIONDATABASEPASSWORD }};/g' ConnectionStrings.json 
+          /HolismHolding/Infra/DotNet/Dev/Migrate
+
+      - name: Push production script
+        run: |
+          cd /${Organization}/Migration
+          git config --global user.name 'Migration Builder'
+          git config --global user.email 'nefcanto@users.noreply.github.com'
+          git add .
+          git commit -m "production script" || exit 0
+          git push
