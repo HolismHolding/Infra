@@ -1,0 +1,11 @@
+export AverageTime=0
+while read Line; do
+    echo $Line
+    ping 192.168.1.1 | awk '{gsub("time=", ""); print $7}'
+
+    if [[ $AverageTime > 5 ]]; then
+        nmclinmcli con down MobinNet2295-1
+        nmcli device wifi connect MobinNet2295-1
+        export AverageTime=0
+    fi
+done <<< $(ping 192.168.1.1)
