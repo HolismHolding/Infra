@@ -16,7 +16,7 @@ while true; do
     AverageTime=$(ping -q -c5 192.168.1.1 | awk -F'[/=]' 'END{print $6}')
     IsSlow=$(echo "scale=2; ($AverageTime > 5)" | bc)
     if [ $IsSlow == "1" ]; then
-        Warning "WiFi got slow. Average ping time is $AverageTime. Reconnecting ..."
+        Warning "WiFi got slow. The average ping time is $AverageTime. Reconnecting ..."
         nmcli con down $WiFiName
         nmcli device wifi connect $WiFiName
         Success "Reconnected to WiFi."
