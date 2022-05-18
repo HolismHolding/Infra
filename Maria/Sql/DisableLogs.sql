@@ -1,0 +1,1 @@
+set global general_log='OFF';

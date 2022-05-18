@@ -1,11 +1,13 @@
-export AverageTime=0
-while read Line; do
-    echo $Line
-    ping 192.168.1.1 | awk '{gsub("time=", ""); print $7}'
+. /HolismHolding/Infra/Scripts/Message.sh
 
+while true; do
+    export AverageTime=$(ping -q -c10 192.168.1.1 | awk -F'[/=]' 'END{print $2, $6}')
     if [[ $AverageTime > 5 ]]; then
-        nmclinmcli con down MobinNet2295-1
-        nmcli device wifi connect MobinNet2295-1
-        export AverageTime=0
+        Warning "WiFi got slow. Average ping time is $AverageTime. Reconnecting ..."
+        # nmcli con down MobinNet2295-1
+        # nmcli device wifi connect MobinNet2295-1
+        Success "Reconnected to WiFi."
+    else
+        Info "Average ping time $AverageTime"
     fi
-done <<< $(ping 192.168.1.1)
+done
