@@ -1,11 +1,24 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
+echo
+Info 'What is the WiFi name?'
+read WiFiName
+
+if [ $WiFiName == '' ]; then
+    Error "WiFi name can not be empty"
+    exit;
+fi
+
+Success "Now checking ..."
+echo
+
 while true; do
-    export AverageTime=$(ping -q -c10 192.168.1.1 | awk -F'[/=]' 'END{print $2, $6}')
-    if [[ $AverageTime > 5 ]]; then
+    AverageTime=$(ping -q -c5 192.168.1.1 | awk -F'[/=]' 'END{print $6}')
+    IsSlow=$(echo "scale=2; ($AverageTime > 5)" | bc)
+    if [ $IsSlow == "1" ]; then
         Warning "WiFi got slow. Average ping time is $AverageTime. Reconnecting ..."
-        # nmcli con down MobinNet2295-1
-        # nmcli device wifi connect MobinNet2295-1
+        nmcli con down $WiFiName
+        nmcli device wifi connect $WiFiName
         Success "Reconnected to WiFi."
     else
         Info "Average ping time $AverageTime"
