@@ -35,9 +35,14 @@ function CheckTheAverageAndEachInstance()
         Average=$(echo "scale=2; $Sum/5" | bc)
         IsSlow=$(echo "scale=2; ($Average > 5)" | bc)
         AreAllSlow=$(IFS=+; echo "$((${AreSlowTimes[*]}))")
-        if [ $IsSlow == "1" ] && [ AreAllSlow == "5" ]; then
-            Warning "WiFi got slow. The average ping time is $Average. Reconnecting ..."
-            Reconnect
+        if [ $IsSlow == "1" ]; then
+            if [ AreAllSlow == "5" ]; then
+                Warning "WiFi got slow. The average ping time is $Average. Reconnecting ..."
+                Reconnect
+            else
+                Info "Average ping time $Average but individual ping times are:"
+                echo "${Times[@]}"
+            fi
         else
             Info "Average ping time $Average"
         fi
