@@ -1,13 +1,7 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
-echo
-Info 'What is the WiFi name?'
-read WiFiName
-
-if [ $WiFiName == '' ]; then
-    Error "WiFi name can not be empty"
-    exit;
-fi
+WiFiName=$(nmcli -t -f active,ssid dev wifi | grep '^yes' | awk -F ':' '{print $2}')
+Info "Found $WiFiName"
 
 Success "Now checking ..."
 echo
