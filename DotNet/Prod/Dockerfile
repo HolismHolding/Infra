@@ -7,6 +7,7 @@ RUN cd ${RepositoryPath} \
     && dotnet publish Api -o /Temp/Publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
+RUN apt-get update && apt-get install -y apt-utils libgdiplus libc6-dev
 COPY --from=0 /Temp/Publish /${RepositoryPath}
 WORKDIR ${RepositoryPath}
 RUN rm -rf ConnectionStrings.json \
