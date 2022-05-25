@@ -26,7 +26,9 @@ function SetRepositoryNameInConnectionStringsFile()
     sed -i "s/Repository/$Repository/g" /Build/$Organization/$Repository/ConnectionStrings.json
 }
 
-function BuildDotNet() {
+function BuildDotNet() 
+{
+    export PATH="${PATH}"
 
     CopyHolismHoldingInfra
     CopyHolismDotNetInfra

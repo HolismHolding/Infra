@@ -15,7 +15,6 @@ WORKDIR ${RepositoryPath}
 RUN rm -rf ConnectionStrings.json \
     && rm -rf Settings.json \
     && rm -rf SettingsOverride.json
-RUN echo alias Kill="ps -ef | grep 'dotnet' | grep -v grep | awk '{print $2}' | xargs -r kill -9" >> /etc/bash.bashrc
-RUN echo alias Run="dotnet Api.dll" >> /etc/bash.bashrc
+RUN PATH="${PATH}:/Commands"
 CMD [ "dotnet", "Api.dll" ]
 # todo: https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run
