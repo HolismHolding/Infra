@@ -48,4 +48,4 @@ if [[ $ParentOrganization != "" ]]; then
 fi
 docker build -f $Dockerfile -t $DockerImageName /Build
 
-# sudo rm -rf /Build
+sudo rm -rf /Build
