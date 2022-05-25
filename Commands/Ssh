@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# . /HolismHolding/Infra/Scripts/Message.sh
+
+# Domain=$1
+
+# if [[ $Domain == "" ]]; then 
+#     Error 'Domain is not provided';
+#     exit;
+# fi
+
+# if [ ! -f /LocalSecrets/Servers ]; then
+#     Error '/LocalSecrets/Servers file is not found';
+#     exit;
+# fi
+
+# Info "Domain: $Domain"
+
+# export pass=$(cat /LocalSecrets/Servers | grep "$Domain" | awk -F ',' '{print $NF}')
+
+# Info $pass
+
+# printf $pass | ssh root@$Domain
+
+function HowTo()
+{
+    ssh-keygen # to create a key pair on your local, named ~/.ssh/key_name
+    ssh-copy-id -i ~/.ssh/key_name root@domain # to copy the id to the server
+    ssh root@domain # to login without password
+}
