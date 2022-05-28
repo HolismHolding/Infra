@@ -16,6 +16,7 @@ while read gitFolder; do
         continue;
     fi
     parent=$(dirname $gitFolder);
+
     if [[ `git -C $parent status --porcelain` ]]; then
         Info $parent;
         git -C $parent status --porcelain
