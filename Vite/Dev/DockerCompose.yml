@@ -13,11 +13,9 @@ services:
             - Repository=${Repository}
         volumes:
             - /HolismHolding:/HolismHolding
-            - /HolismVite/Infra/src/App.css:${RepositoryPath}/src/App.css
             - /HolismVite/Infra/src/App.jsx:${RepositoryPath}/src/App.jsx
             - /HolismVite/Infra/src/favicon.svg:${RepositoryPath}/src/favicon.svg
             - /HolismVite/Infra/src/index.css:${RepositoryPath}/src/index.css
-            - /HolismVite/Infra/src/logo.svg:${RepositoryPath}/src/logo.svg
             - /HolismVite/Infra/src/main.jsx:${RepositoryPath}/src/main.jsx
             - /HolismVite/Infra/index.html:${RepositoryPath}/index.html
             - /HolismVite/Infra/package.json:${RepositoryPath}/package.json
