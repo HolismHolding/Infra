@@ -10,7 +10,7 @@ RUN apt update \
     && apt install --upgrade unzip -y \
     && cd /HolismReact \
     && git clone https://github.com/HolismReact/InfraVite \
-    && cd /HolismReact/Infra \
+    && cd /HolismReact/InfraVite \
     && rm -rf package-lock.json \
     && npm install --legacy-peer-deps
 
