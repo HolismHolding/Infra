@@ -1,4 +1,5 @@
 . /HolismHolding/Infra/React/IsReact.sh
+. /HolismHolding/Infra/Vite/IsVite.sh
 . /HolismHolding/Infra/Next/IsNext.sh
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
 
@@ -9,6 +10,8 @@ function LinkGitIgnore() {
     fi
     if IsNext $1; then
         export GitIgnoreSource="/HolismHolding/Infra/Next/Dev/GitIgnore";
+    elif IsVite $1; then
+        export GitIgnoreSource="/HolismHolding/Infra/Vite/Dev/GitIGinore";
     elif IsReact $1 || [ $(basename $1) = 'Common' ]; then
         export GitIgnoreSource="/HolismHolding/Infra/React/Dev/GitIgnore";
     elif IsDotNet $1; then

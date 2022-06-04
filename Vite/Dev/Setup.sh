@@ -4,8 +4,8 @@
 . /HolismHolding/Infra/Scripts/CreateGitHubAction.sh
 
 function PullViteDockerImage() {
-    echo 'Pulling docker image holism/react-dev:latest'
-    docker pull holism/react-dev:latest
+    echo 'Pulling docker image holism/vite-dev:latest'
+    docker pull holism/vite-dev:latest
 }
 
 function CreateBuildDirectory() {
