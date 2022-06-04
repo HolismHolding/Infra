@@ -22,6 +22,8 @@ services:
             - /HolismVite/Infra/index.html:${RepositoryPath}/index.html
             - /HolismVite/Infra/package.json:${RepositoryPath}/package.json
             - /HolismVite/Infra/vite.config.js:${RepositoryPath}/vite.config.js
+            - /HolismVite/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
+            - /HolismVite/Infra/postcss.config.js:${RepositoryPath}/postcss.config.js
         command: >
             sh -c
             "
