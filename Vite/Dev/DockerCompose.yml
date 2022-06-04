@@ -1,7 +1,7 @@
 version: "3.9"
 services: 
     react:
-        image: holism/react-dev:latest
+        image: holism/vite-dev:latest
         container_name: ${Organization}${Repository}
         ports:
             - "$RandomPort:3000"
@@ -11,36 +11,23 @@ services:
             - OrganizationPrefix=${OrganizationPrefix}
             - RepositoryPath=${RepositoryPath}
             - Repository=${Repository}
-            - WDS_SOCKET_PORT=0
         volumes:
             - /HolismHolding:/HolismHolding
-            - /HolismReact/Infra/src/index.css:${RepositoryPath}/src/index.css
-            - /HolismReact/Infra/src/index.js:${RepositoryPath}/src/index.js
-            - /HolismReact/Infra/src/Base:${RepositoryPath}/src/Base
-            - /HolismReact/Infra/src/Panel:${RepositoryPath}/src/Panel
-            - /HolismReact/Infra/src/Components:${RepositoryPath}/src/Components
-            - /HolismReact/Infra/public/index.html:${RepositoryPath}/public/index.html
-            - /HolismReact/Infra/public/robots.txt:${RepositoryPath}/public/robots.txt
-            - /HolismReact/Infra/craco.config.js:${RepositoryPath}/craco.config.js
-            - /HolismReact/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
-            - /HolismReact/Infra/package.json:${RepositoryPath}/package.json
-            - ${RepositoryPath}/Logo.js:${RepositoryPath}/src/Logo.js
-            - ${RepositoryPath}/Favicon.ico:${RepositoryPath}/public/favicon.ico
-            - ${RepositoryPath}:${RepositoryPath}/src/${Repository}
-            - ${RepositoryPath}/.env:${RepositoryPath}/.env
-            - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
-            - ${RepositoryPath}/HeaderActions.js:${RepositoryPath}/src/HeaderActions.js
-            - ${RepositoryPath}/Menu.js:${RepositoryPath}/src/Menu.js
-            - ${RepositoryPath}/Routes.js:${RepositoryPath}/src/Routes.jsVolumeMappingPlaceHolder
-        #stdin_open: true # docker run -i
-        #tty: true        # docker run -t
+            - /HolismVite/Infra/src/App.css:${RepositoryPath}/src/App.css
+            - /HolismVite/Infra/src/App.jsx:${RepositoryPath}/src/App.jsx
+            - /HolismVite/Infra/src/favicon.svg:${RepositoryPath}/src/favicon.svg
+            - /HolismVite/Infra/src/index.css:${RepositoryPath}/src/index.css
+            - /HolismVite/Infra/src/logo.svg:${RepositoryPath}/src/logo.svg
+            - /HolismVite/Infra/src/main.jsx:${RepositoryPath}/src/main.jsx
+            - /HolismVite/Infra/index.html:${RepositoryPath}/index.html
+            - /HolismVite/Infra/package.json:${RepositoryPath}/package.json
+            - /HolismVite/Infra/vite.config.js:${RepositoryPath}/vite.config.js
         command: >
             sh -c
             "
             cd ${RepositoryPath}
-            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismReact/Infra/node_modules ${RepositoryPath}; fi
-            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
-            && WatchForModification &
-            npm start &
+            && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismVite/Infra/node_modules ${RepositoryPath}; fi
+            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host" &
+            npm dev &
             tail -f /dev/null
             "
