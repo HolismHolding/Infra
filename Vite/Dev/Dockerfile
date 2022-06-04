@@ -10,7 +10,7 @@ RUN apt update \
     && apt install --upgrade unzip -y \
     && cd /HolismVite \
     && git clone https://github.com/HolismVite/Infra \
-    && cd /HolismVite/InfraVite \
+    && cd /HolismVite/Infra \
     && rm -rf package-lock.json \
     && npm install --legacy-peer-deps
 
