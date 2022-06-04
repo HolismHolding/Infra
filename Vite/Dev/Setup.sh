@@ -17,10 +17,10 @@ function CreateBuildDirectory() {
 }
 
 function SetupVite() {
-    CreateHolismViteDirectory
-    GetHolismViteInfra &
-    PullViteDockerImage
-    LinkGitIgnore $PWD
+    # CreateHolismViteDirectory
+    # GetHolismViteInfra &
+    # PullViteDockerImage
+    # LinkGitIgnore $PWD
     # CreateGitHubAction Vite
     volumes=""
     # GetDependencies volumes
