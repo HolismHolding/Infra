@@ -1,0 +1,24 @@
+name: Build & Push holism/vite-dev:latest
+
+on:
+  workflow_dispatch:
+
+jobs:
+  buildAndPush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get /HolismHolding/Infra
+        run: |
+          sudo mkdir /HolismHolding
+          sudo chmod 777 /HolismHolding
+          cd /HolismHolding
+          git clone https://github.com/HolismHolding/Infra
+
+      - name: Build holism/vite-dev
+        run: |
+          cd /HolismHolding/Infra/Vite/Dev
+          docker build -t holism/vite-dev:latest .
+      - name: Push holism/vite-dev
+        run: |
+          echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+          docker push holism/vite-dev:latest
