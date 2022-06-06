@@ -18,33 +18,32 @@ function CreateBuildDirectory() {
 
 function BuildMappings()
 {
-    find . -maxdepth 1 -type l -or -type d | sort | 
     while read Item; do
         ReplacedItem=${Item#./}
-        if [ $ReplacedItem == .gitignore ] || [ $ReplacedItem == .github ] || [ $ReplacedItem == Dependencies ]; then
+        if [ $ReplacedItem == .gitignore ] || [ $ReplacedItem == .github ] || [ $ReplacedItem == Dependencies ] || [ $ReplacedItem == . ]; then
             continue
         fi
-        volumes="$volumes\n            - $RepositoryPath/:"
-    done
+        export volumes="$volumes\n            - *$Organization*$Repository*$ReplacedItem:*$Organization*$Repository*src*$ReplacedItem"
+    done <<< "$(find . -maxdepth 1 -type l -or -type d | sort)"
 }
 
 function SetupVite() {
-    # CreateHolismViteDirectory
-    # GetHolismViteInfra &
-    # PullViteDockerImage
-    # LinkGitIgnore $PWD
-    # CreateGitHubAction Vite
-    volumes=""
+    CreateHolismViteDirectory
+    GetHolismViteInfra &
+    PullViteDockerImage
+    LinkGitIgnore $PWD
+    CreateGitHubAction Vite
+    export volumes=""
     GetDependencies
     BuildMappings
     echo -e $volumes
 
-    # ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
-    # mkdir -p $(dirname $ComposePath)
-    # CreateBuildDirectory
-    # envsubst < /HolismHolding/Infra/Vite/Dev/DockerCompose.yml > $ComposePath
-    # sed -i "s/DependenciesMappingPlaceHolder/$volumes/g" $ComposePath
-    # sed -i "s/*/\//g" $ComposePath
-    # echo "Using docker-compose file => $ComposePath"
-    # docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
+    ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
+    mkdir -p $(dirname $ComposePath)
+    CreateBuildDirectory
+    envsubst < /HolismHolding/Infra/Vite/Dev/DockerCompose.yml > $ComposePath
+    sed -i "s/DependenciesMappingPlaceHolder/$volumes/g" $ComposePath
+    sed -i "s/*/\//g" $ComposePath
+    echo "Using docker-compose file => $ComposePath"
+    docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
 }
