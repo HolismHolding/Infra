@@ -24,7 +24,7 @@ services:
             - /HolismVite/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismVite/Infra/postcss.config.js:${RepositoryPath}/postcss.config.js
             - ${RepositoryPath}/Logo.jsx:${RepositoryPath}/src/Logo.jsx
-            - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/src/faviconsVolumeMappingPlaceHolder
+            - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/src/favicons
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
             - ${RepositoryPath}/HeaderActions.jsx:${RepositoryPath}/src/HeaderActions.jsx
@@ -35,7 +35,8 @@ services:
             "
             cd ${RepositoryPath}
             && if [ ! -d ${RepositoryPath}/node_modules ]; then ln -s /HolismVite/Infra/node_modules ${RepositoryPath}; fi
-            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host" &
+            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
+            && WatchForModification &
             npm run dev &
             tail -f /dev/null
             "
