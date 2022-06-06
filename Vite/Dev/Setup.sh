@@ -21,9 +21,9 @@ function SetupVite() {
     # GetHolismViteInfra &
     # PullViteDockerImage
     # LinkGitIgnore $PWD
-    # CreateGitHubAction Vite
+    CreateGitHubAction Vite
     volumes=""
-    # GetDependencies volumes
+    GetDependencies volumes
     echo -e $volumes
 
     ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
