@@ -9,22 +9,22 @@ reset=`tput sgr0`
 
 function Success()
 {
-    echo "${green}$1${reset}"
+    echo "${green}$*${reset}"
 }
 
 function Info()
 {
-    echo "${cyan}$1${reset}"
+    echo "${cyan}$*${reset}"
 }
 
 function Warning()
 {
-    echo "${yellow}$1${reset}"
+    echo "${yellow}$*${reset}"
 }
 
 function Error()
 {
-    echo "${red}$1${reset}"
+    echo "${red}$*${reset}"
 }
 
 function Divide()

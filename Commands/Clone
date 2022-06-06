@@ -17,10 +17,17 @@ cd /$Organization
 
 export accessToken=$(cat /LocalSecrets/GitHubAccessToken)
 
-curl --silent -H "Authorization: token $accessToken" "https://api.github.com/orgs/$Organization/repos" | jq -r ".[].name" | while read -r name ; do
-    if [[ "$name" == *Api ]] || [[ "$name" == *Panel ]] || [[ "$name" == Site ]] || [[ "$name" == Common ]] || [[ "$name" == Blog ]]; then
+Response=$(curl --silent -H "Authorization: token $accessToken" "https://api.github.com/orgs/$Organization/repos")
+
+if [[ $Response == *"Not Found"* ]]; then
+    Error $Response
+else
+    echo $Response | jq -r ".[].name" | while read -r name ; do
         git clone git@github.com:$Organization/$name
-    fi
-done
+        # if [[ "$name" == *Api ]] || [[ "$name" == *Panel ]] || [[ "$name" == Site ]] || [[ "$name" == Common ]] || [[ "$name" == Blog ]]; then
+        #     git clone git@github.com:$Organization/$name
+        # fi
+    done
+fi
 
 sudo chmod -R 777 /$Organization 2>/dev/null
