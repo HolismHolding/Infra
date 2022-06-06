@@ -20,7 +20,10 @@ function BuildMappings()
 {
     find . -maxdepth 1 -type l -or -type d | sort | 
     while read Item; do
-        echo $Item
+        ReplacedItem=${Item#./}
+        if [ $ReplacedItem == .gitignore ] || [ $ReplacedItem == .github ] || [ $ReplacedItem == Dependencies ]; then
+            continue
+        fi
         volumes="$volumes\n            - $RepositoryPath/:"
     done
 }
@@ -32,8 +35,8 @@ function SetupVite() {
     # LinkGitIgnore $PWD
     # CreateGitHubAction Vite
     volumes=""
-    GetDependencies volumes
-    BuildMappings volumes
+    GetDependencies
+    BuildMappings
     echo -e $volumes
 
     # ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml

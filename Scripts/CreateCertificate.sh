@@ -13,7 +13,7 @@ function CreateCertificate() {
     fi
     sudo rm -rf $CertificatePath/Certificate.pem;
     sudo rm -rf $CertificatePath/Key.pem
-    Info "Creating certificate for $Host";
+    Info "Creating certificate for $Host ...";
     mkcert -cert-file $CertificatePath/Certificate.pem -key-file $CertificatePath/Key.pem $Host 2>/dev/null
     sudo chmod 777 $CertificatePath/Certificate.pem;
     sudo chmod 777 $CertificatePath/Key.pem;

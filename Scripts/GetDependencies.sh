@@ -1,5 +1,6 @@
 function GetDependencies() {
-    echo "Getting dependencies";
+    Info "Getting dependencies ...";
+    Divide
     if [ ! -f "$PWD/Dependencies" ]; then
         return;
     fi
@@ -11,13 +12,12 @@ function GetDependencies() {
             sudo chmod -R 777 "/$Org"
         fi
         if [ ! -d "/$Org/$Repo" ]; then 
-            echo "Cloning /$Org/$Repo"
+            Info "Cloning /$Org/$Repo ..."
             git -C /$Org clone git@github.com:$Org/$Repo &
         else 
-            echo "Pulling /$Org/$Repo"
+            Info "Pulling /$Org/$Repo ..."
             git -C /$Org/$Repo pull &
         fi
-        #LinkGitIgnore /$Org/$Repo
         volumes="$volumes\n            - *$Org*$Repo:*$Org*$Repo"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
 }

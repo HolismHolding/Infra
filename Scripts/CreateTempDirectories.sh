@@ -4,7 +4,7 @@ function CreateTempDirectories() {
     fi
     permissions=$(stat /Temp | grep -oP "(?<=Access: \()[^)]*")
     if [  $permissions = "0777/drwxrwxrwx" ]; then
-        echo '/Temp folder has full access'
+        Success '/Temp folder has full access'
     else 
         sudo chmod -R 777 /Temp
     fi
