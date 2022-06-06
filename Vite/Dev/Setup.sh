@@ -16,22 +16,32 @@ function CreateBuildDirectory() {
     fi
 }
 
+function BuildMappings()
+{
+    find . -maxdepth 1 -type l -or -type d | sort | 
+    while read Item; do
+        echo $Item
+        volumes="$volumes\n            - $RepositoryPath/:"
+    done
+}
+
 function SetupVite() {
-    CreateHolismViteDirectory
-    GetHolismViteInfra &
-    PullViteDockerImage
-    LinkGitIgnore $PWD
-    CreateGitHubAction Vite
+    # CreateHolismViteDirectory
+    # GetHolismViteInfra &
+    # PullViteDockerImage
+    # LinkGitIgnore $PWD
+    # CreateGitHubAction Vite
     volumes=""
     GetDependencies volumes
+    BuildMappings volumes
     echo -e $volumes
 
-    ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
-    mkdir -p $(dirname $ComposePath)
-    CreateBuildDirectory
-    envsubst < /HolismHolding/Infra/Vite/Dev/DockerCompose.yml > $ComposePath
-    sed -i "s/DependenciesMappingPlaceHolder/$volumes/g" $ComposePath
-    sed -i "s/*/\//g" $ComposePath
-    echo "Using docker-compose file => $ComposePath"
-    docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
+    # ComposePath=/Temp/$Organization/$Repository/DockerCompose.yml
+    # mkdir -p $(dirname $ComposePath)
+    # CreateBuildDirectory
+    # envsubst < /HolismHolding/Infra/Vite/Dev/DockerCompose.yml > $ComposePath
+    # sed -i "s/DependenciesMappingPlaceHolder/$volumes/g" $ComposePath
+    # sed -i "s/*/\//g" $ComposePath
+    # echo "Using docker-compose file => $ComposePath"
+    # docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
 }
