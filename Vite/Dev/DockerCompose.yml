@@ -23,7 +23,13 @@ services:
             - /HolismVite/Infra/vite.config.js:${RepositoryPath}/vite.config.js
             - /HolismVite/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismVite/Infra/postcss.config.js:${RepositoryPath}/postcss.config.js
+            - ${RepositoryPath}/Logo.jsx:${RepositoryPath}/src/Logo.jsx
             - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/src/faviconsVolumeMappingPlaceHolder
+            - ${RepositoryPath}/.env:${RepositoryPath}/.env
+            - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
+            - ${RepositoryPath}/HeaderActions.jsx:${RepositoryPath}/src/HeaderActions.jsx
+            - ${RepositoryPath}/Menu.jsx:${RepositoryPath}/src/Menu.jsx
+            - ${RepositoryPath}/Routes.jsx:${RepositoryPath}/src/Routes.jsxVolumeMappingPlaceHolder
         command: >
             sh -c
             "
