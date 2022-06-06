@@ -29,7 +29,7 @@ services:
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
             - ${RepositoryPath}/HeaderActions.jsx:${RepositoryPath}/src/HeaderActions.jsx
             - ${RepositoryPath}/Menu.jsx:${RepositoryPath}/src/Menu.jsx
-            - ${RepositoryPath}/Routes.jsx:${RepositoryPath}/src/Routes.jsxVolumeMappingPlaceHolder
+            - ${RepositoryPath}/Routes.jsx:${RepositoryPath}/src/Routes.jsxDependenciesMappingPlaceHolder
         command: >
             sh -c
             "

@@ -30,7 +30,7 @@ function SetupVite() {
     mkdir -p $(dirname $ComposePath)
     CreateBuildDirectory
     envsubst < /HolismHolding/Infra/Vite/Dev/DockerCompose.yml > $ComposePath
-    sed -i "s/VolumeMappingPlaceHolder/$volumes/g" $ComposePath
+    sed -i "s/DependenciesMappingPlaceHolder/$volumes/g" $ComposePath
     sed -i "s/*/\//g" $ComposePath
     echo "Using docker-compose file => $ComposePath"
     docker-compose -p "${Organization}_${Repository}" -f $ComposePath up --remove-orphans
