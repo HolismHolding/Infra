@@ -8,9 +8,8 @@ RUN npm install -g npm@8.2.0 -y
 RUN apt install inotify-tools -y
 RUN apt install git -y
 RUN apt install --upgrade unzip -y
-RUN cd /HolismVite
 RUN git clone https://github.com/HolismVite/Infra
-RUN cd /HolismVite/Infra
+WORKDIR /HolismVite/Infra
 RUN rm -rf package-lock.json
 RUN npm install --legacy-peer-deps
 
