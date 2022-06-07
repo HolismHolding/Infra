@@ -18,8 +18,8 @@ function CreateBuildDirectory() {
 
 function SetupReact() {
     CreateHolismReactDirectory
-    GetHolismReactInfra &
-    PullReactDockerImage
+    # GetHolismReactInfra &
+    # PullReactDockerImage
     LinkGitIgnore $PWD
     CreateGitHubAction React
     volumes=""
