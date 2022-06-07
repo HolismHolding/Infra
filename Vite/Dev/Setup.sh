@@ -29,8 +29,8 @@ function BuildMappings()
 
 function SetupVite() {
     CreateHolismViteDirectory
-    GetHolismViteInfra &
-    PullViteDockerImage
+    # GetHolismViteInfra &
+    # PullViteDockerImage
     LinkGitIgnore $PWD
     CreateGitHubAction Vite
     export volumes=""

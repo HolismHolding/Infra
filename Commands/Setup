@@ -34,8 +34,8 @@ if ! (IsReact || IsNext || IsDotNet || IsVite); then
 fi
 ExtractAndExportData
 CreateTempDirectories &
-GetHolismHoldingInfra &
-GetHolismHoldingPolicies &
+# GetHolismHoldingInfra &
+# GetHolismHoldingPolicies &
 GetRandomPort
 GetHost
 CreateCertificate

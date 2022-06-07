@@ -14,9 +14,9 @@ function GetDependencies() {
         if [ ! -d "/$Org/$Repo" ]; then 
             Info "Cloning /$Org/$Repo ..."
             git -C /$Org clone git@github.com:$Org/$Repo &
-        else 
-            Info "Pulling /$Org/$Repo ..."
-            git -C /$Org/$Repo pull &
+        # else 
+            # Info "Pulling /$Org/$Repo ..."
+            # git -C /$Org/$Repo pull &
         fi
         volumes="$volumes\n            - *$Org*$Repo:*$Org*$Repo"
     done <<< "$({ cat "$PWD/Dependencies"; echo; })"
