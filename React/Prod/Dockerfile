@@ -43,7 +43,7 @@ RUN npm run build
 FROM node:lts-alpine as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
-RUN npm install -g serve
+RUN npm install --location=global serve
 COPY --from=builder ${RepositoryPath}/build .
 
 EXPOSE 3000

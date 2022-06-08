@@ -4,7 +4,7 @@ WORKDIR /HolismReact
 ENV PATH="${PATH}:/HolismHolding/Infra/React/Dev"  
 
 RUN apt update \
-    && npm install -g npm@8.2.0 -y \
+    && npm install --location=global npm@8.2.0 -y \
     && apt install inotify-tools -y \
     && apt install git -y \
     && apt install --upgrade unzip -y \

@@ -38,16 +38,16 @@ RUN mv /HolismVite/Infra/package.json ${RepositoryPath}
 RUN mv /HolismVite/Infra/postcss.config.js ${RepositoryPath}
 RUN mv /Temp/* ${RepositoryPath}/src
 RUN find /Temp -maxdepth 1 | sort
-RUN find ${RepositoryPath} | sort
-RUN ls ${RepositoryPath} -lah
+# RUN find ${RepositoryPath} | sort
+# RUN ls ${RepositoryPath} -lah
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
 FROM node:lts-alpine as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
-RUN npm install -g serve
-COPY --from=builder ${RepositoryPath}/build .
+RUN npm install --location=global serve
+COPY --from=builder ${RepositoryPath}/dist .
 
 EXPOSE 3000
 CMD [ "serve", "-s", ".", "-l", "3000" ]

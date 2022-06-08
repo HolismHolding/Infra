@@ -41,6 +41,10 @@ function BuildVite() {
     CopyRepository
     RemoveGitsDirectory
     Divide
+    ReplaceSymlinksWithOriginalFiles
+    Divide
+    ReplaceSymlinksWithOriginalFiles
+    Divide
 
     envsubst < /HolismHolding/Infra/Vite/Prod/Dockerfile > $Dockerfile
 }
