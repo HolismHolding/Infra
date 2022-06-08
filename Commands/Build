@@ -15,6 +15,9 @@
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/DotNet/Prod/Build.sh
 
+. /HolismHolding/Infra/Vite/IsVite.sh
+. /HolismHolding/Infra/Vite/Prod/Build.sh
+
 # package & app = module & host = reusable & runnable
 
 sudo echo "Holding build"
@@ -34,6 +37,8 @@ GetHolismHoldingInfra
 Dockerfile=/Build/Dockerfile
 if IsNext $1; then
     BuildNext
+elif IsVite $1; then
+    BuildVite
 elif IsReact $1; then
     BuildReact;
 elif IsDotNet $1; then
