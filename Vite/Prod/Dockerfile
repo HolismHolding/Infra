@@ -1,4 +1,4 @@
-FROM holism/vite-dev:latest as builder
+FROM node:lts-bullseye-slim as builder
 WORKDIR /
 COPY . .
 RUN rm -rf ${RepositoryPath}
@@ -9,7 +9,6 @@ RUN true
 COPY ${RepositoryPath} /Temp
 RUN true
 Run mkdir -p ${RepositoryPath} \
-    && ln -s /HolismVite/Infra/node_modules ${RepositoryPath} \
     && rm -rf /Temp/.git \
     && rm -rf /Temp/.gitignore \
     && rm -rf /Temp/.github \
@@ -41,6 +40,7 @@ Run mkdir -p ${RepositoryPath} \
 # RUN find ${RepositoryPath} | sort
 # RUN ls ${RepositoryPath} -lah
 WORKDIR ${RepositoryPath}
+RUN npm install --legacy-peer-deps
 RUN npm run build
 
 FROM node:lts-alpine as runner
