@@ -97,6 +97,14 @@ function GetDotNetMigration() {
     sudo chmod -R 777 /HolismDotNet
 }
 
+function BuildLocalizationMappings()
+{
+    while read Item; do
+        ReplacedItem="${Item//\//*}"
+        export volumes="$volumes\n            - $ReplacedItem:$ReplacedItem"
+    done <<< "$(find /HolismVite /$Organization -type f -name 'Localization.json' 2>/dev/null | sort)"
+}
+
 function SetupDotNet() {
     echo ".NET"
     LinkDevContainer
@@ -107,6 +115,9 @@ function SetupDotNet() {
     GetDotNetMigration &
     volumes=""
     GetDependencies volumes
+    BuildLocalizationMappings volumes
+    # echo -e $volumes
+    
     LinkGitIgnore $PWD
     LinkUsings
     LinkApiDependencies
