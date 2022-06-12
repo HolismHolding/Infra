@@ -17,6 +17,7 @@ Run mkdir -p ${RepositoryPath} \
     && rm -rf /Temp/Dependencies \
     && mkdir -p ${RepositoryPath}/src \
     && mkdir -p ${RepositoryPath}/public \
+    && mkdir -p ${RepositoryPath}/public/favicons \
     && mkdir -p ${RepositoryPath}/public/Fonts \
     && mkdir -p ${RepositoryPath}/src/Base \
     && mkdir -p ${RepositoryPath}/src/Panel \
@@ -27,8 +28,8 @@ Run mkdir -p ${RepositoryPath} \
     && mv /Temp/Logo.jsx ${RepositoryPath}/src \
     && mv /Temp/Menu.jsx ${RepositoryPath}/src \
     && mv /Temp/Routes.jsx ${RepositoryPath}/src \
+    && cp -a /Temp/Branding/Favicons/* ${RepositoryPath}/public/favicons \
     && mv /Temp/Branding ${RepositoryPath}/src/Branding \
-    && mv /Temp/Branding/Favicons ${RepositoryPath}/public/favicons \
     && mv /HolismVite/Infra/src/index.css ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/main.jsx ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/public \
