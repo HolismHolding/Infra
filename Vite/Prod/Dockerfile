@@ -28,6 +28,7 @@ Run mkdir -p ${RepositoryPath} \
     && mv /Temp/Menu.jsx ${RepositoryPath}/src \
     && mv /Temp/Routes.jsx ${RepositoryPath}/src \
     && mv /Temp/Branding ${RepositoryPath}/src/Branding \
+    && mv /Temp/Branding/Favicons ${RepositoryPath}/public/favicons \
     && mv /HolismVite/Infra/src/index.css ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/main.jsx ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/public \

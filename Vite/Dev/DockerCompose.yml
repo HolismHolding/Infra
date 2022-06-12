@@ -26,6 +26,7 @@ services:
             - /HolismVite/Infra/postcss.config.js:${RepositoryPath}/postcss.config.js
             - ${RepositoryPath}/Logo.jsx:${RepositoryPath}/src/Logo.jsx
             - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/src/favicons
+            - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/public/favicons
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
             - ${RepositoryPath}/.env.production:${RepositoryPath}/.env.production
             - ${RepositoryPath}/HeaderActions.jsx:${RepositoryPath}/src/HeaderActions.jsx
