@@ -13,7 +13,7 @@ services:
             - Repository=${Repository}
         volumes:
             - /HolismHolding:/HolismHolding
-            - /HolismVite/Infra/src/Fonts:${RepositoryPath}/src/Fonts
+            - /HolismVite/Infra/src/Fonts:${RepositoryPath}/public/Fonts
             - /HolismVite/Infra/src/Base:${RepositoryPath}/src/Base
             - /HolismVite/Infra/src/Components:${RepositoryPath}/src/Components
             - /HolismVite/Infra/src/Panel:${RepositoryPath}/src/Panel

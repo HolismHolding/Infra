@@ -16,7 +16,8 @@ Run mkdir -p ${RepositoryPath} \
     && rm -rf /Temp/Host \
     && rm -rf /Temp/Dependencies \
     && mkdir -p ${RepositoryPath}/src \
-    && mkdir -p ${RepositoryPath}/src/Fonts \
+    && mkdir -p ${RepositoryPath}/public \
+    && mkdir -p ${RepositoryPath}/public/Fonts \
     && mkdir -p ${RepositoryPath}/src/Base \
     && mkdir -p ${RepositoryPath}/src/Panel \
     && mkdir -p ${RepositoryPath}/src/Components \
@@ -29,7 +30,7 @@ Run mkdir -p ${RepositoryPath} \
     && mv /Temp/Branding ${RepositoryPath}/src/Branding \
     && mv /HolismVite/Infra/src/index.css ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/main.jsx ${RepositoryPath}/src \
-    && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/src \
+    && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/public \
     && mv /HolismVite/Infra/src/Base ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Panel ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Components ${RepositoryPath}/src \
