@@ -109,10 +109,10 @@ function SetupDotNet() {
     echo ".NET"
     LinkDevContainer
     LinkVSCodeFiles
-    GetDotNetInfra &
-    GetDotNetAccounts &
-    GetDotNetGeneration &
-    GetDotNetMigration &
+    # GetDotNetInfra &
+    # GetDotNetAccounts &
+    # GetDotNetGeneration &
+    # GetDotNetMigration &
     volumes=""
     GetDependencies volumes
     BuildLocalizationMappings volumes
@@ -127,7 +127,7 @@ function SetupDotNet() {
     LinkConnectionStrings
     LinkSettings
     LinkDependencies
-    PullDotNetDockerImage
+    # PullDotNetDockerImage
     CreateGitHubAction DotNet
     CreateDatabaseGitHubAction
     
