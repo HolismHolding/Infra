@@ -20,8 +20,9 @@ Run mkdir -p ${RepositoryPath} \
     && mkdir -p ${RepositoryPath}/public/favicons \
     && mkdir -p ${RepositoryPath}/public/Fonts \
     && mkdir -p ${RepositoryPath}/src/Base \
-    && mkdir -p ${RepositoryPath}/src/Panel \
     && mkdir -p ${RepositoryPath}/src/Components \
+    && mkdir -p ${RepositoryPath}/src/Hooks \
+    && mkdir -p ${RepositoryPath}/src/Panel \
     && mv /Temp/.env ${RepositoryPath} \
     && mv /Temp/.env.production ${RepositoryPath} \
     && mv /Temp/HeaderActions.jsx ${RepositoryPath}/src \
@@ -34,8 +35,9 @@ Run mkdir -p ${RepositoryPath} \
     && mv /HolismVite/Infra/src/main.jsx ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/public \
     && mv /HolismVite/Infra/src/Base ${RepositoryPath}/src \
-    && mv /HolismVite/Infra/src/Panel ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Components ${RepositoryPath}/src \
+    && mv /HolismVite/Infra/src/Hooks ${RepositoryPath}/src \
+    && mv /HolismVite/Infra/src/Panel ${RepositoryPath}/src \
     && mv /HolismVite/Infra/index.html ${RepositoryPath}/index.html \
     && mv /HolismVite/Infra/vite.config.js ${RepositoryPath} \
     && mv /HolismVite/Infra/tailwind.config.js ${RepositoryPath} \
