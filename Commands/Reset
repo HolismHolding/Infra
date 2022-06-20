@@ -1,17 +1,27 @@
 #!/bin/bash
+. /HolismHolding/Infra/Scripts/Message.sh
 
-sudo rm -rf /Temp
-sudo rm -rf /etc/nginx/conf.d/*.*
+Organization=$1
+
+if [[ $Organization == "" ]]; then 
+    sudo rm -rf /Temp/$Organization
+    # find and delete nginx config files
+    # find and delete oragnization records in the local DNS
+else
+    sudo rm -rf /Temp
+    sudo rm -rf /etc/nginx/conf.d/*.*
+
+    HostName=$(hostname)
+
+    sudo echo "127.0.0.1	localhost" > /etc/hosts
+    sudo echo "127.0.1.1	$HostName" >> /etc/hosts
+    sudo echo "" >> /etc/hosts
+    sudo echo "# The following lines are desirable for IPv6 capable hosts" >> /etc/hosts
+    sudo echo "::1     ip6-localhost ip6-loopback" >> /etc/hosts
+    sudo echo "fe00::0 ip6-localnet" >> /etc/hosts
+    sudo echo "ff00::0 ip6-mcastprefix" >> /etc/hosts
+    sudo echo "ff02::1 ip6-allnodes" >> /etc/hosts
+    sudo echo "ff02::2 ip6-allrouters" >> /etc/hosts
+fi
+
 sudo rm -rf /Build
-
-HostName=$(hostname)
-
-sudo echo "127.0.0.1	localhost" > /etc/hosts
-sudo echo "127.0.1.1	$HostName" >> /etc/hosts
-sudo echo "" >> /etc/hosts
-sudo echo "# The following lines are desirable for IPv6 capable hosts" >> /etc/hosts
-sudo echo "::1     ip6-localhost ip6-loopback" >> /etc/hosts
-sudo echo "fe00::0 ip6-localnet" >> /etc/hosts
-sudo echo "ff00::0 ip6-mcastprefix" >> /etc/hosts
-sudo echo "ff02::1 ip6-allnodes" >> /etc/hosts
-sudo echo "ff02::2 ip6-allrouters" >> /etc/hosts
