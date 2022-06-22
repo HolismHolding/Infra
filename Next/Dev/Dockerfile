@@ -32,6 +32,7 @@ RUN npm i --save react-youtube
 RUN npm i --save formik --no-optional
 RUN npm i --save yup --no-optional
 RUN npm i -D @tailwindcss/typography --no-optional
+RUN npm i -D @svgr/webpack
 
 RUN apt update
 RUN apt install curl -y
