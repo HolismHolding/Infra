@@ -1,3 +1,7 @@
+- Change names from:
+  - holism/dotnet-dev to holism/api
+  - holism/vite-dev to holism/panel
+  - holism/next-dev to holism/site
 - Remove organization prefix from extract and everywhere
 - push (notifications)
 - video call api
