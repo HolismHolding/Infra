@@ -2,6 +2,7 @@
 . /HolismHolding/Infra/Vite/IsVite.sh
 . /HolismHolding/Infra/Next/IsNext.sh
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
+. /HolismHolding/Infra/Scripts/Message.sh
 
 function LinkGitIgnore() {
     if [ -f "$1/.gitignore" ]; then
@@ -22,10 +23,12 @@ function LinkGitIgnore() {
     if [ -z ${GitIgnoreSource+x} ]; then
         return;
     fi
-    if [ -f $1/.gitignore ]; then
-        sudo rm -rf $1/.gitignore
+    if [ ! -d $1/.git ]; then
+        Warning "$1 is not a git repository"
+        return;
     fi
     # echo "Creating .gitignore link to $GitIgnoreSource for $1 ...";
     #sudo ln -f -s $GitIgnoreSource "$1/.gitignore"
-    cp $GitIgnoreSource "$1/.gitignore"
+    # todo: Instead, copy it to .git/info/exclude
+    cp $GitIgnoreSource "$1/.git/info/exclude"
 }
