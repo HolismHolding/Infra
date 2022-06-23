@@ -2,12 +2,18 @@
 
 ---
 
-### BEFORE INSTALLATION
+<details>
+  <summary>BEFORE INSTALLATION</summary>
+  
   - If this is not your first installation, make sure to backup ~/.ssh folder to be restored later. You can zip it and upload it to your google drive storage.
+  
+</details>
 
 ---
 
-### Install OS
+<details>
+  <summary>OS</summary>
+  
 
 - Ubuntu
   - Only 22.04 LTS
@@ -60,6 +66,8 @@
     - English (United States)
   - todo: DO NOT DO THIS YET
     - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
+  
+</details>
 
 ---
 
