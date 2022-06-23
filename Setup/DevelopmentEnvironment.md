@@ -107,8 +107,14 @@
 - Docker
   - Login
     - `docker login`
-  - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
-    - test with `sudo`
+  - In case of permission denied
+    - test with `sudo` and make sure it works
+    - if it works, run these commands
+      - `sudo gpasswd -a $USER docker`
+      - `newgrp docker`
+      - `sudo groupadd docker`
+      - `sudo usermod -aG docker ${USER}`
+      - `sudo usermod -aG docker $USER`
 
 - Git 
   - Restore `.ssh` directory, or
