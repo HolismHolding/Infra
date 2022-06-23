@@ -50,12 +50,16 @@
   - Privacy (Location Services)
     - Up to you
   - Remove everything from the left bar
-  - **DO NOT** install any other language
+  - **DO NOT** install any other languages
+    - Just English & Persian
+    - **DO NOT** change defaults
   - Change culture
     - Settings
     - Region & Language
+    - Format
     - English (United States)
-  - todo: DO NOT THIS [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
+  - todo: DO NOT DO THIS YET
+    - [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
 ---
 
