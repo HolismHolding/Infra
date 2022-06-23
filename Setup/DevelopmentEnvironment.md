@@ -6,10 +6,10 @@
 * OS
 
   - Ubuntu
-    - Only 20.04 LTS
+    - Only 22.04 LTS
     - Only from ubunto.com
     - Bootable image
-      - using [Rufus](https://rufus.ie/en_US/)
+      - using [Startup Disk Creator](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu)
     - Boot
     - Choose **Install Ubuntu**
       - Select English (US)
