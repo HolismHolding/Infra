@@ -16,7 +16,8 @@
       - Select English (US)
     - Keyboard layout
       - Enlish (US)
-    - Connect to WiFi
+    - DO NOT Connect to WiFi
+      - Reason: faster installation and async update after installation
     - Minimal installation
       - Make sure no box is selected
     - Erase disk and install Ubuntu
