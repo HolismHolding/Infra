@@ -1,2 +1,2 @@
-role@product.local
-100
+user: role@product.local   
+pass: 100
