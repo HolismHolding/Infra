@@ -25,7 +25,6 @@ services:
             - /HolismVite/Infra/vite.config.js:${RepositoryPath}/vite.config.js
             - /HolismVite/Infra/tailwind.config.js:${RepositoryPath}/tailwind.config.js
             - /HolismVite/Infra/postcss.config.js:${RepositoryPath}/postcss.config.js
-            - ${RepositoryPath}/Logo.jsx:${RepositoryPath}/src/Logo.jsx
             - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/src/favicons
             - ${RepositoryPath}/Branding/Favicons:${RepositoryPath}/public/favicons
             - ${RepositoryPath}/.env:${RepositoryPath}/.env
