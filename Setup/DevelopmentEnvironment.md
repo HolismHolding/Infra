@@ -97,6 +97,11 @@
     - Add this to `~/.bashrc`
     - `export SSLKEYLOGFILE=~/.ssl-key.log`
     - `touch ~/.ssl-key.log`
+  - Docker
+    - Login
+      - `docker login`
+    - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
+      - test with `sudo`
 
   - Git 
     - Restore `.ssh` directory, or
@@ -122,10 +127,9 @@
       - `git config --global user.email "your-email-of-github-here"` 
       - `git config --global user.name "your name here"`
     - Login into GitHub Container Registry
+      - `docker login ghcr.io`
       - username
       - package reading personal access token
-  - Docker
-    - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
   - Configuration
     - Add these to favorites, in order
       - Files
