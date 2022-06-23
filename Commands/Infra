@@ -1,0 +1,9 @@
+sudo mkdir -p /HolismHolding
+sudo chmod 777 /HolismHolding
+
+cd /HolismHolding
+
+git clone git@github.com:HolismHolding/Infra
+git clone git@github.com:HolismHolding/Server
+git clone git@github.com:HolismHolding/Policies
+git clone git@github.com:HolismHolding/Quality
