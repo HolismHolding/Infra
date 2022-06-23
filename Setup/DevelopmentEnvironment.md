@@ -71,19 +71,19 @@
 
 ---
 
- - First configure the keyboard
+- Confiture the keyboard
     - Settings
       - Universal access
       - Typing
       - Repeat keys
       - Delay = almost 10%
       - Speed = almost 60%
-- Then connect to WiFi
-- Then install VPN and connect to it (in case of doubt, ASK)
-- Then update Ubuntu (using VPN)
+- Connect to WiFi
+- Install VPN and connect to it (in case of doubt, ASK)
+- Update Ubuntu (using VPN)
   - Settings
   - Software Update
-- Then install software using script
+- Install software using script
   - `sudo mkdir /Temp`
   - `sudo chmod 777 /Temp`
   - `cd /Temp`
@@ -94,77 +94,76 @@
 - **DO NOT** install any other extension on VS Code
   - In case you need something, talk to the team
 
-* Software
 
-  - Wireshark
-    - `sudo add-apt-repository universe`
-    - `sudo apt install wireshark`
-    - Hit `Yes`
-    - `sudo dpkg-reconfigure wireshark-common`
-    - `sudo chmod +x /usr/bin/dumpcap`
-    - Add this to `~/.bashrc`
-    - `export SSLKEYLOGFILE=~/.ssl-key.log`
-    - `touch ~/.ssl-key.log`
-  - Docker
-    - Login
-      - `docker login`
-    - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
-      - test with `sudo`
+- Wireshark
+  - `sudo add-apt-repository universe`
+  - `sudo apt install wireshark`
+  - Hit `Yes`
+  - `sudo dpkg-reconfigure wireshark-common`
+  - `sudo chmod +x /usr/bin/dumpcap`
+  - Add this to `~/.bashrc`
+  - `export SSLKEYLOGFILE=~/.ssl-key.log`
+  - `touch ~/.ssl-key.log`
+- Docker
+  - Login
+    - `docker login`
+  - In case of permission denied, run commands from [here](https://stackoverflow.com/questions/59265190/permission-denied-in-docker-compose-on-linux)
+    - test with `sudo`
 
-  - Git 
-    - Restore `.ssh` directory, or
-    - Generate keys and add your public key to GitHub 
-      - Open terminal 
-      - ssh-keygen -t ed25519 -C "your-email" 
-      - Enter 3 times 
-        - Accept default filename 
-        - Empty password 
-        - Empty password, again 
-      - GitHub 
-        - Settings 
-        - SSH and GPG keys 
-        - New SSH Key 
-        - Copy/paste your public key there 
-          - Using Files 
-          - Go to the home folder 
-          - Show hidden files 
-          - .ssh folder 
-          - id_ed25519.pub 
-          - Right-click, open with the Text Editor, then copy 
-    - Introduce yourself to git 
-      - `git config --global user.email "your-email-of-github-here"` 
-      - `git config --global user.name "your name here"`
-    - Login into GitHub Container Registry
-      - `docker login ghcr.io`
-      - username
-      - package reading personal access token
-  - Configuration
-    - Add these to favorites, in order
-      - Files
-      - Chrome
-      - VS Code
-      - Terminal
-      - Editor
-  - Chrome
-    - Make default
-      - On the first run, it asks for it
-    - Do not send crash reports
-    - Sign in
-    - Extensions
-      - JSONView
-      - Grammarly
-      - React Developer Tools
-  - VS Code
-    - Turn on sync (using GitHub)
-    - Word wrap
-      - Files => Preferences => Settings
-      - Search for “word wrap”
-      - Select “on” from the dropdown
-  - Root
-    - `sudo mkdir -p /root/.ssh`
-    - `sudo ln -f -s ~/.ssh/id_ed25519 /root/.ssh/id_ed25519`
-    - `sudo ln -f -s ~/.ssh/id_ed25519.pub /root/.ssh/id_ed25519.pub`
-    - `sudo ln -f -s ~/.ssh/known_hosts /root/.ssh/known_hosts`
+- Git 
+  - Restore `.ssh` directory, or
+  - Generate keys and add your public key to GitHub 
+    - Open terminal 
+    - ssh-keygen -t ed25519 -C "your-email" 
+    - Enter 3 times 
+      - Accept default filename 
+      - Empty password 
+      - Empty password, again 
+    - GitHub 
+      - Settings 
+      - SSH and GPG keys 
+      - New SSH Key 
+      - Copy/paste your public key there 
+        - Using Files 
+        - Go to the home folder 
+        - Show hidden files 
+        - .ssh folder 
+        - id_ed25519.pub 
+        - Right-click, open with the Text Editor, then copy 
+  - Introduce yourself to git 
+    - `git config --global user.email "your-email-of-github-here"` 
+    - `git config --global user.name "your name here"`
+  - Login into GitHub Container Registry
+    - `docker login ghcr.io`
+    - username
+    - package reading personal access token
+- Configuration
+  - Add these to favorites, in order
+    - Files
+    - Chrome
+    - VS Code
+    - Terminal
+    - Editor
+- Chrome
+  - Make default
+    - On the first run, it asks for it
+  - Do not send crash reports
+  - Sign in
+  - Extensions
+    - JSONView
+    - Grammarly
+    - React Developer Tools
+- VS Code
+  - Turn on sync (using GitHub)
+  - Word wrap
+    - Files => Preferences => Settings
+    - Search for “word wrap”
+    - Select “on” from the dropdown
+- Root
+  - `sudo mkdir -p /root/.ssh`
+  - `sudo ln -f -s ~/.ssh/id_ed25519 /root/.ssh/id_ed25519`
+  - `sudo ln -f -s ~/.ssh/id_ed25519.pub /root/.ssh/id_ed25519.pub`
+  - `sudo ln -f -s ~/.ssh/known_hosts /root/.ssh/known_hosts`
 
 * Development
   - For each company (top-level URL path segment in GitHub for example), create a directory in / (root). For example,  
