@@ -10,6 +10,7 @@ if [ ! -f "$PWD/Dependencies" ]; then
     exit;
 fi
 
+cp /HolismHolding/Infra/DotNet/Dev/GitIgnore /HolismDotNet/Generation/.git/info/exclude
 dotnet build /HolismDotNet/Generation
 chmod -R 777 /HolismDotNet/Generation
 export IsBuilt=1;

@@ -20,6 +20,7 @@ if [ ! -f "/$Organization/$Repository/Dependencies" ]; then
     exit;
 fi
 
+cp /HolismHolding/Infra/DotNet/Dev/GitIgnore /HolismDotNet/Migration/.git/info/exclude
 dotnet build /HolismDotNet/Migration
 chmod -R 777 /HolismDotNet/Migration
 
