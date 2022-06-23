@@ -124,3 +124,10 @@ Run a command, then
 
 # Get docker image manifest
 `docker manifest inspect -v image_full_name`
+
+# Get DNS records
+`cat /etc/resolv.conf`
+`resolvectl stats`
+
+# Open terminal (shortcut)
+`Ctrl+Alt+T`
