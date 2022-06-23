@@ -9,7 +9,8 @@
     - Only 22.04 LTS
     - Only from ubunto.com
     - Bootable image
-      - using [Startup Disk Creator](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu)
+      - using [Startup Disk Creator](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#3-launch-startup-disk-creator)
+      - or using [Etcher](https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick)
     - Boot
     - Choose **Install Ubuntu**
       - Select English (US)
