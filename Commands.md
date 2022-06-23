@@ -127,7 +127,10 @@ Run a command, then
 
 # Get DNS records
 `cat /etc/resolv.conf`
-`resolvectl stats`
+`resolvectl status`
 
 # Open terminal (shortcut)
 `Ctrl+Alt+T`
+
+# ns lookup
+`dig example.com`

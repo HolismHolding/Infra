@@ -22,6 +22,10 @@ function LinkGitIgnore() {
     if [ -z ${GitIgnoreSource+x} ]; then
         return;
     fi
+    if [ -f $1/.gitignore ]; then
+        sudo rm -rf $1/.gitignore
+    fi
     # echo "Creating .gitignore link to $GitIgnoreSource for $1 ...";
-    sudo ln -f -s $GitIgnoreSource "$1/.gitignore"
+    #sudo ln -f -s $GitIgnoreSource "$1/.gitignore"
+    cp $GitIgnoreSource "$1/.gitignore"
 }
