@@ -1,67 +1,83 @@
 # This is an example of the development environment setup. This document is valid only for a company or a holding. **This document is not for EVERYONE**.
 
-- BEFORE INSTALLATION
+---
+
+### BEFORE INSTALLATION
   - If this is not your first installation, make sure to backup ~/.ssh folder to be restored later. You can zip it and upload it to your google drive storage.
 
-* OS
+---
 
-  - Ubuntu
-    - Only 22.04 LTS
-    - Only from ubunto.com
-    - Bootable image
-      - using [Startup Disk Creator](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#3-launch-startup-disk-creator)
-      - or using [balenaEtcher](https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick)
-    - Boot
-    - Choose **Install Ubuntu**
-      - Select English (US)
-    - Keyboard layout
-      - Enlish (US)
-    - DO NOT Connect to WiFi
-      - Reason: faster installation and async update after installation
-    - Minimal installation
-      - Make sure no box is selected
-    - Erase disk and install Ubuntu
-      - Always be ready to lose your machine
-      - Advanced features
-        - None
-    - Press **Install Now**
-      - Press **Continue**
-    - Where are you?
-      - Choose Tehran
-      - Press **Continue**
-    - Computer name
-      - YourNamePc or YourNameLaptop
-      - Choose a simple password (you will be asked for it frequently)
-      - **DO NOT** choose auto-login
+### Install OS
+
+- Ubuntu
+  - Only 22.04 LTS
+  - Only from ubunto.com
+  - Bootable image
+    - using [Startup Disk Creator](https://ubuntu.com/tutorials/create-a-usb-stick-on-ubuntu#3-launch-startup-disk-creator)
+    - or using [balenaEtcher](https://ubuntu.com/tutorials/install-ubuntu-desktop#3-create-a-bootable-usb-stick)
+  - Boot
+  - Choose **Install Ubuntu**
+    - Select English (US)
+  - Keyboard layout
+    - Enlish (US)
+  - DO NOT Connect to WiFi
+    - Reason: faster installation and async update after installation
+  - Minimal installation
+    - Make sure no box is selected
+  - Erase disk and install Ubuntu
+    - Always be ready to lose your machine
+    - Advanced features
+      - None
+  - Press **Install Now**
+    - Press **Continue**
+  - Where are you?
+    - Choose Tehran
+    - Press **Continue**
+  - Computer name
+    - YourNamePc or YourNameLaptop
+    - Choose a simple password (you will be asked for it frequently)
+      - Preferably choose 100 as your password
+    - **DO NOT** choose auto-login
       - If you choose auto-login, you will encouner *keyring* later. To disable auto-login later:
         - Settings
         - User
         - Unlock
         - disable Automatic Login
-    - **DO NOT** set up **Livepatch**
-      - Hit **Next**
-    - **DO NOT** help Ubuntu
-      - Select **No, don't send system info**
-    - Privacy (Location Services)
-      - Up to you
-    - Remove everything from the left bar
-    - **DO NOT** install any other language
-    - Change culture
-      - Settings
-      - Region & Language
-      - English (United States)
-    - todo: DO NOT THIS [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
+  - **DO NOT** set up **Livepatch**
+    - Hit **Next**
+  - **DO NOT** help Ubuntu
+    - Select **No, don't send system info**
+  - Privacy (Location Services)
+    - Up to you
+  - Remove everything from the left bar
+  - **DO NOT** install any other language
+  - Change culture
+    - Settings
+    - Region & Language
+    - English (United States)
+  - todo: DO NOT THIS [Enable root](https://askubuntu.com/questions/1192471/login-as-root-on-ubuntu-desktop) and login as root always (This decision is explained [here](https://nefcanto.ir/dev-circle/philosophy/why-root))
 
-- First, install VPN and connect to it (in case of doubt, ASK)
+---
+
+ - First configure the keyboard
+    - Settings
+      - Universal access
+      - Typing
+      - Repeat keys
+      - Delay = almost 10%
+      - Speed = almost 60%
+- Then connect to WiFi
+- Then install VPN and connect to it (in case of doubt, ASK)
 - Then update Ubuntu (using VPN)
   - Settings
   - Software Update
-- `sudo mkdir /Temp`
-- `sudo chmod 777 /Temp`
-- `cd /Temp`
-- `wget https://raw.githubusercontent.com/HolismHolding/Infra/main/Setup/DevelopmentEnvironment.sh`
-- `sudo chmod 777 DevelopmentEnvironment.sh`
-- `sudo ./DevelopmentEnvironment.sh`
+- Then install software using script
+  - `sudo mkdir /Temp`
+  - `sudo chmod 777 /Temp`
+  - `cd /Temp`
+  - `wget https://raw.githubusercontent.com/HolismHolding/Infra/main/Setup/DevelopmentEnvironment.sh`
+  - `sudo chmod 777 DevelopmentEnvironment.sh`
+  - `sudo ./DevelopmentEnvironment.sh`
 
 - **DO NOT** install any other extension on VS Code
   - In case you need something, talk to the team
@@ -128,13 +144,6 @@
       - Files => Preferences => Settings
       - Search for “word wrap”
       - Select “on” from the dropdown
-  - Keyboard
-    - Settings
-      - Universal access
-      - Typing
-      - Repeat keys
-      - Delay = almost 10%
-      - Speed = almost 60%
   - Root
     - `sudo mkdir -p /root/.ssh`
     - `sudo ln -f -s ~/.ssh/id_ed25519 /root/.ssh/id_ed25519`
