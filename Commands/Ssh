@@ -24,6 +24,7 @@
 
 function HowTo()
 {
+    cd ~/.ssh # ssh-keygen would create the key pair in the current directory
     ssh-keygen # to create a key pair on your local, named ~/.ssh/key_name
     ssh-copy-id -i ~/.ssh/key_name root@domain # to copy the id to the server
     ssh root@domain # to login without password
