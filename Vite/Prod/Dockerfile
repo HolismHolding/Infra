@@ -20,6 +20,7 @@ Run mkdir -p ${RepositoryPath} \
     && mkdir -p ${RepositoryPath}/public/favicons \
     && mkdir -p ${RepositoryPath}/public/Fonts \
     && mkdir -p ${RepositoryPath}/src/Base \
+    && mkdir -p ${RepositoryPath}/src/Contexts \
     && mkdir -p ${RepositoryPath}/src/Components \
     && mkdir -p ${RepositoryPath}/src/Hooks \
     && mkdir -p ${RepositoryPath}/src/Panel \
@@ -35,6 +36,7 @@ Run mkdir -p ${RepositoryPath} \
     && mv /HolismVite/Infra/src/main.jsx ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Fonts ${RepositoryPath}/public \
     && mv /HolismVite/Infra/src/Base ${RepositoryPath}/src \
+    && mv /HolismVite/Infra/src/Contexts ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Components ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Hooks ${RepositoryPath}/src \
     && mv /HolismVite/Infra/src/Panel ${RepositoryPath}/src \

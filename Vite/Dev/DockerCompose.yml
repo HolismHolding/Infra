@@ -15,6 +15,7 @@ services:
             - /HolismHolding:/HolismHolding
             - /HolismVite/Infra/src/Fonts:${RepositoryPath}/public/Fonts
             - /HolismVite/Infra/src/Base:${RepositoryPath}/src/Base
+            - /HolismVite/Infra/src/Contexts:${RepositoryPath}/src/Contexts
             - /HolismVite/Infra/src/Components:${RepositoryPath}/src/Components
             - /HolismVite/Infra/src/Hooks:${RepositoryPath}/src/Hooks
             - /HolismVite/Infra/src/Panel:${RepositoryPath}/src/Panel
