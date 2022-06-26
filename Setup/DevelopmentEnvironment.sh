@@ -206,6 +206,17 @@ function SetDockerPermissions()
     Write "Set docker permissions"
 }
 
+function DownloadVsCodeExtensions()
+{
+    Write "Downloading VS Code extensions ... "
+
+    sudo mkdir -p /HolismHolding/Extensions
+    wget https://marketplace.visualstudio.com/_apis/public/gallery/publishers/ms-dotnettools/vsextensions/csharp/1.25.0/vspackage?targetPlatform=linux-x64
+    mv 'vspackage?targetPlatform=linux-x64' /HolismHolding/Extensions/CSharp.vsix
+
+    Write "Downloaded VS Code extensions "
+}
+
 Write "Holism Holding Installation"
 
 InstallChrome
@@ -220,6 +231,7 @@ InstallMicro
 InstallTelnet
 InstallBeyondCompare
 InstallJq
+DownloadVsCodeExtensions
 RegisterHolismCommands
 
 sudo apt install rename
