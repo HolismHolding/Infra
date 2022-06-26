@@ -6,7 +6,6 @@
 
 function LinkGitIgnore() {
     if [ -f "$1/.gitignore" ]; then
-        #echo "Removing old .gitignore ...";
         sudo rm -rf "$1/.gitignore"
     fi
     if IsNext $1; then
@@ -23,12 +22,17 @@ function LinkGitIgnore() {
     if [ -z ${GitIgnoreSource+x} ]; then
         return;
     fi
-    if [ ! -d $1/.git ]; then
-        Warning "$1 is not a git repository"
-        return;
+    if [[ $ParentOrganization == "" ]]; then
+        if [ ! -d $1/.git ]; then
+            Warning "$1 is not a git repository"
+            return;
+        fi
+    else
+        if [ ! -d $(dirname $1) ]; then
+            Warning "$(dirname $1) is not a git repository"
+            return
+        fi
+        Info "Copying .gitignore from $GitIgnoreSource to $(dirname $1)/.git/info/exclude"
+        cp $GitIgnoreSource "$(dirname $1)/.git/info/exclude"
     fi
-    # echo "Creating .gitignore link to $GitIgnoreSource for $1 ...";
-    #sudo ln -f -s $GitIgnoreSource "$1/.gitignore"
-    # todo: Instead, copy it to .git/info/exclude
-    cp $GitIgnoreSource "$1/.git/info/exclude"
 }
