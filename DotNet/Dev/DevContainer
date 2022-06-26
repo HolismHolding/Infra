@@ -9,18 +9,9 @@
 			}
 		}
 	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-dotnettools.csharp"
-			]
-		}
-	},
-	"extensions": [
-		"ms-dotnettools.csharp"
-	],
 	"remoteUser": "root",
 	"mounts": [
 		"source=${LowercaseOrg}${LowercaseRepo},target=/root/.vscode-server/extensions,type=volume"
-	]
+	],
+	"postAttachCommand": "code --install-extension /HolismHolding/Extensions/CSharp.vsix"
 }
