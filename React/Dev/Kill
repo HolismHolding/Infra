@@ -1,2 +1,0 @@
-ps -ef | grep 'node' | grep -v grep | awk '{print $1}' | xargs -r kill -9
-ps -ef | grep 'npm' | grep -v grep | awk '{print $1}' | xargs -r kill -9

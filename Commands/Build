@@ -9,9 +9,6 @@
 . /HolismHolding/Infra/Next/IsNext.sh
 . /HolismHolding/Infra/Next/Prod/Build.sh
 
-. /HolismHolding/Infra/React/IsReact.sh
-. /HolismHolding/Infra/React/Prod/Build.sh
-
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/DotNet/Prod/Build.sh
 
@@ -26,7 +23,7 @@ if [ $PWD = '/' ]; then
     Error "You are in the root directory. Run Build from inside a project's directory.";
     exit;
 fi
-if ! (IsReact || IsNext || IsDotNet || IsVite); then
+if ! (IsNext || IsDotNet || IsVite); then
     Error "Project type = Unknown"
     exit 1
 fi
@@ -40,8 +37,6 @@ if IsNext $1; then
     BuildNext
 elif IsVite $1; then
     BuildVite
-elif IsReact $1; then
-    BuildReact;
 elif IsDotNet $1; then
     BuildDotNet
 else

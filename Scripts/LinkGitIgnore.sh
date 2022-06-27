@@ -1,20 +1,18 @@
-. /HolismHolding/Infra/React/IsReact.sh
 . /HolismHolding/Infra/Vite/IsVite.sh
 . /HolismHolding/Infra/Next/IsNext.sh
 . /HolismHolding/Infra/DotNet/IsDotNet.sh
 . /HolismHolding/Infra/Scripts/Message.sh
 
-function LinkGitIgnore() {
-    if [ -f "$1/.gitignore" ]; then
-        sudo rm -rf "$1/.gitignore"
+function LinkGitIgnoreForIndependentOrganization()
+{
+    if [ -f "$Repo/.gitignore" ]; then
+        sudo rm -rf "$Repo/.gitignore"
     fi
-    if IsNext $1; then
+    if IsNext $Repo; then
         export GitIgnoreSource="/HolismHolding/Infra/Next/Dev/GitIgnore";
-    elif IsVite $1; then
+    elif IsVite $Repo || [ $(basename $Repo) = 'Common' ]; then
         export GitIgnoreSource="/HolismHolding/Infra/Vite/Dev/GitIgnore";
-    elif IsReact $1 || [ $(basename $1) = 'Common' ]; then
-        export GitIgnoreSource="/HolismHolding/Infra/React/Dev/GitIgnore";
-    elif IsDotNet $1; then
+    elif IsDotNet $Repo; then
         export GitIgnoreSource="/HolismHolding/Infra/DotNet/Dev/GitIgnore";
     else
         export GitIgnoreSource="";
@@ -22,17 +20,35 @@ function LinkGitIgnore() {
     if [ -z ${GitIgnoreSource+x} ]; then
         return;
     fi
+    if [ ! -d $Repo/.git ]; then
+        Warning "$Repo is not a git repository"
+        return;
+    fi
+    Info "Copying .gitignore from $GitIgnoreSource to $Repo/.git/info/exclude"
+    cp $GitIgnoreSource "$Repo/.git/info/exclude"
+}
+
+function LinkGitIgnoreForChildOrganization()
+{
+    export ParentRepo=$(dirname $Repo)
+    if [ ! -d $ParentRepo/.git ]; then
+        Warning "$ParentRepo is not a git repository"
+        return
+    fi
+    echo "" > "$ParentRepo/.git/info/exclude"
+    Info "Writing all .gitignores from /HolismHolding to $ParentRepo/.git/info/exclude"
+    find /HolismHolding -type f -name GitIgnore | 
+    while read ignore; do
+        cat $ignore >> "$ParentRepo/.git/info/exclude"
+    done
+}
+
+function LinkGitIgnore() 
+{
+    export Repo=$1
     if [[ $ParentOrganization == "" ]]; then
-        if [ ! -d $1/.git ]; then
-            Warning "$1 is not a git repository"
-            return;
-        fi
+        LinkGitIgnoreForIndependentOrganization
     else
-        if [ ! -d $(dirname $1) ]; then
-            Warning "$(dirname $1) is not a git repository"
-            return
-        fi
-        Info "Copying .gitignore from $GitIgnoreSource to $(dirname $1)/.git/info/exclude"
-        cp $GitIgnoreSource "$(dirname $1)/.git/info/exclude"
+        LinkGitIgnoreForChildOrganization
     fi
 }

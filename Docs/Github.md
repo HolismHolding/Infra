@@ -14,7 +14,7 @@
 - HolismPython
 - HolismNode
 - HolismLaravel
-- HolismReact
+- HolismVite
 - HolismAngular
 
 # ProductX
