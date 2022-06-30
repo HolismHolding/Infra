@@ -5,6 +5,7 @@
 function SetJsConfig()
 {
     declare -A Aliases
+    Aliases[Pages]=pages/Exports.js
     while IFS=$'\t' read Alias Path
     do
         ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
@@ -14,7 +15,25 @@ function SetJsConfig()
         echo $ReplacedPath
         Aliases[$ReplacedAlias]=$ReplacedPath
     done <<< "$(find /$Organization/$Repository/components -mindepth 1 -type d -printf '%p\tcomponents/%p/Exports\n')"
-    jo -p compilerOptions[baseUrl]=. compilerOptions[paths]="$(jo -p a ${Aliases[@]})"
+    jq -n --argjson n "${#Aliases[@]}" '
+        { compileroption: {
+                baseurl: ".",
+                paths:
+                (
+                        reduce range($n) as $i ({};
+                                .[$ARGS.positional[$i]] = [$ARGS.positional[$i+$n]]
+                        )
+                )
+        } }' --args "${!Aliases[@]}" "${Aliases[@]}" > /$Organization/$Repository/jsconfig.json
+    # Content="{"
+    # Content+='   "compilerOptions: {'
+    # Content+='       "baseUrl": "."'
+    # Content+='       "paths": {'
+    # Content+='          "Pages": ["pages/Export.js"],'
+
+    # Content+='       }'
+    # Content+='   }'
+    # Content+="}"
 }
 
 function SetExports()
@@ -35,13 +54,13 @@ function SetExports()
         CurrentContent=$(cat $Directory/Exports.js)
         if [[ $(echo $CurrentContent | xargs) != $(echo $Content | xargs) ]]; then
             Info "Updating Exports.js of $Directory"
-            echo -e $Content > $Directory/Exports.js
+            echo -e -n $Content > $Directory/Exports.js
         else
             Success 'equal'
         fi
     else
         Info "Creating Exports.js for the first time in $Directory"
-        echo -e $Content > $Directory/Exports.js
+        echo -e -n $Content > $Directory/Exports.js
     fi
 }
 
@@ -58,6 +77,6 @@ do
     export Directory
     export Event
     export File
-    # SetJsConfig
+    SetJsConfig
     SetExports
 done
