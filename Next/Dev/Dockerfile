@@ -1,4 +1,4 @@
-FROM node:14-buster-slim
+FROM node:lts-bullseye-slim
 
 RUN npx create-next-app --example with-tailwindcss site --use-npm
 

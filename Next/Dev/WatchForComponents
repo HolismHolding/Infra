@@ -2,14 +2,16 @@
 
 function SetJsConfig()
 {
+    declare -A Aliases
     find /$Organization/$Repository/components/* -type d -printf '%p\tcomponents/%p/Exports\n' |
     while IFS=$'\t' read Alias Path
     do
         ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
         ReplacedAlias="${ReplacedAlias/\//}"
         ReplacedPath="${Path/\/$Organization\/$Repository\/components\//}"
-        echo $ReplacedAlias $ReplacedPath
+        Aliases[$ReplacedAlias]=$ReplacedPath
     done
+    echo ${Aliases[@]}
 }
 
 function SetExports()
