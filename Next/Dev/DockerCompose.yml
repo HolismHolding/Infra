@@ -33,9 +33,8 @@ services:
             ln -s /site/node_modules ${RepositoryPath}
             && ln -s /site/package.json ${RepositoryPath}
             && ln -s /site/postcss.config.js ${RepositoryPath}
-            && WatchForComponents
-            && npx next dev -p ${RandomPort} &
-            echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
-            && tail -f /dev/null
+            && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
+            && npx next dev -p ${RandomPort} | tail -f /dev/null &
+            WatchForComponents
             "
         network_mode: "host"

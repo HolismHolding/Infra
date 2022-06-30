@@ -11,13 +11,11 @@ function SetJsConfig()
         ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
         ReplacedAlias="${ReplacedAlias/\//}"
         ReplacedPath="${Path/\/$Organization\/$Repository\/components\//}"
-        echo $ReplacedAlias
-        echo $ReplacedPath
         Aliases[$ReplacedAlias]=$ReplacedPath
-    done <<< "$(find /$Organization/$Repository/components -mindepth 1 -type d -printf '%p\tcomponents/%p/Exports\n')"
+    done <<< "$(find /$Organization/$Repository/components -mindepth 1 -type d -printf '%p\tcomponents/%p/Exports\n' | sort)"
     jq -n --argjson n "${#Aliases[@]}" '
-        { compileroption: {
-                baseurl: ".",
+        { compilerOptions: {
+                baseUrl: ".",
                 paths:
                 (
                         reduce range($n) as $i ({};
@@ -64,7 +62,7 @@ function SetExports()
     fi
 }
 
-SetExports
+SetJsConfig
 
 inotifywait -m /$Organization/$Repository/components -r \
 -e modify \
