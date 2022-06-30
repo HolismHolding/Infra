@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function SetJsConfig()
+{
+    find /$Organization/$Repository/components/* -type d -printf '%p\tcomponents/%p/Exports\n' |
+    while IFS=$'\t' read Alias Path
+    do
+        ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
+        ReplacedAlias="${ReplacedAlias/\//}"
+        ReplacedPath="${Path/\/$Organization\/$Repository\/components\//}"
+        echo $ReplacedAlias $ReplacedPath
+    done
+}
+
+function SetExports()
+{
+    ModifiedFile=$1
+    echo $ModifiedFile
+}
+
+inotifywait -m /$Organization/$Repository/components -r \
+-e modify \
+-e move \
+-e create \
+-e delete |
+while IFS=' ' read Directory Event File
+do
+    export Directory
+    export Event
+    export File
+    SetJsConfig
+    # SetExports $ModifiedFile
+done

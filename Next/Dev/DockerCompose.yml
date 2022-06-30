@@ -5,7 +5,11 @@ services:
         container_name: ${Organization}${Repository}
         working_dir: ${RepositoryPath}
         environment:
-          - NEXT_TELEMETRY_DISABLED=1
+            - NEXT_TELEMETRY_DISABLED=1
+            - Organization=${Organization}
+            - OrganizationPrefix=${OrganizationPrefix}
+            - RepositoryPath=${RepositoryPath}
+            - Repository=${Repository}
         volumes: 
             - /HolismHolding/Infra:/HolismHolding/Infra
             - /HolismNext/Infra:/HolismNext/Infra
