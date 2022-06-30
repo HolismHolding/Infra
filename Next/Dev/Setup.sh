@@ -21,9 +21,9 @@ function CreateBuildDirectory() {
 function SetupNext() {
     Info "Seting up site"
     CreateHolismNextDirectory
-    GetHolismNextInfra &
+    # GetHolismNextInfra &
     LinkGitIgnore $PWD
-    PullNextDevDockerImage &
+    # PullNextDevDockerImage &
     CreateGitHubAction Next
     DetermineTailwindConfigPath
     ComposeFile=/Temp/$Organization/$Repository/DockerCompose.yml
