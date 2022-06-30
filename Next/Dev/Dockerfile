@@ -39,6 +39,7 @@ RUN npm i --save yup --no-optional
 RUN npm i -D @tailwindcss/typography --no-optional
 RUN npm i -D @svgr/webpack
 RUN npm i --save stylis stylis-plugin-rtl --no-optional
+RUN npm i --save @next/swc-linux-x64-gnu --no-optional
 
 RUN apt update
 RUN apt install curl -y
