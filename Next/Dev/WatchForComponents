@@ -1,5 +1,7 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/Message.sh
+
 function SetJsConfig()
 {
     declare -A Aliases
@@ -29,14 +31,28 @@ function SetExports()
         FileNameWithoutExtension="${FileName/.js/}"
         Content="${Content}export { $FileNameWithoutExtension }\n"
     done <<< "$(find $Directory -mindepth 1 -maxdepth 1 -type f -name "*.js" -not -name 'Exports.js' -printf '%f\n' | sort)"
-    echo -e $Content > $Directory/Exports.js
+    if [ -f $Directory/Exports.js ]; then
+        CurrentContent=$(cat $Directory/Exports.js)
+        if [[ $(echo $CurrentContent | xargs) != $(echo $Content | xargs) ]]; then
+            Info "Updating Exports.js of $Directory"
+            echo -e $Content > $Directory/Exports.js
+        else
+            Success 'equal'
+        fi
+    else
+        Info "Creating Exports.js for the first time in $Directory"
+        echo -e $Content > $Directory/Exports.js
+    fi
 }
+
+SetExports
 
 inotifywait -m /$Organization/$Repository/components -r \
 -e modify \
 -e move \
 -e create \
--e delete |
+-e delete \
+--exclude "Exports.js" |
 while IFS=' ' read Directory Event File
 do
     export Directory
@@ -45,5 +61,3 @@ do
     # SetJsConfig
     SetExports
 done
-
-# SetJsConfig
