@@ -3,21 +3,33 @@
 function SetJsConfig()
 {
     declare -A Aliases
-    find /$Organization/$Repository/components/* -type d -printf '%p\tcomponents/%p/Exports\n' |
     while IFS=$'\t' read Alias Path
     do
         ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
         ReplacedAlias="${ReplacedAlias/\//}"
         ReplacedPath="${Path/\/$Organization\/$Repository\/components\//}"
+        echo $ReplacedAlias
+        echo $ReplacedPath
         Aliases[$ReplacedAlias]=$ReplacedPath
-    done
-    echo ${Aliases[@]}
+    done <<< "$(find /$Organization/$Repository/components -mindepth 1 -type d -printf '%p\tcomponents/%p/Exports\n')"
+    jo -p compilerOptions[baseUrl]=. compilerOptions[paths]="$(jo -p a ${Aliases[@]})"
 }
 
 function SetExports()
 {
-    ModifiedFile=$1
-    echo $ModifiedFile
+    Content=""
+    while read FileName
+    do
+        FileNameWithoutExtension="${FileName/.js/}"
+        Content="${Content}import $FileNameWithoutExtension from './$FileNameWithoutExtension'\n"
+    done <<< "$(find $Directory -mindepth 1 -maxdepth 1 -type f -name "*.js" -not -name 'Exports.js' -printf '%f\n' | sort)"
+    Content="${Content}\n"
+    while read FileName
+    do
+        FileNameWithoutExtension="${FileName/.js/}"
+        Content="${Content}export { $FileNameWithoutExtension }\n"
+    done <<< "$(find $Directory -mindepth 1 -maxdepth 1 -type f -name "*.js" -not -name 'Exports.js' -printf '%f\n' | sort)"
+    echo -e $Content > $Directory/Exports.js
 }
 
 inotifywait -m /$Organization/$Repository/components -r \
@@ -30,6 +42,8 @@ do
     export Directory
     export Event
     export File
-    SetJsConfig
-    # SetExports $ModifiedFile
+    # SetJsConfig
+    SetExports
 done
+
+# SetJsConfig

@@ -10,6 +10,7 @@ RUN apt update
 RUN npm install --location=global npm -y
 RUN apt install inotify-tools -y
 RUN apt install jo -y
+RUN apt install jq -y
 
 RUN npm i --no-optional
 RUN npm i --save axios --no-optional
