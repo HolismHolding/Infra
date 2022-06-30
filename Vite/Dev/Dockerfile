@@ -4,7 +4,7 @@ WORKDIR /HolismVite
 ENV PATH="${PATH}:/HolismHolding/Infra/Vite/Dev"  
 
 RUN apt update
-RUN npm install --location=global npm@8.2.0 -y
+RUN npm install --location=global npm -y
 RUN apt install inotify-tools -y
 RUN apt install git -y
 RUN apt install --upgrade unzip -y
