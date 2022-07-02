@@ -15,8 +15,8 @@ fi
 
 export Directory=$PWD
 
+cp /HolismHolding/Infra/DotNet/Dev/GitIgnore /HolismDotNet/Generation/.git/info/exclude
 if [ -z ${IsBuilt+x} ]; then
-    cp /HolismHolding/Infra/DotNet/Dev/GitIgnore /HolismDotNet/Generation/.git/info/exclude
     dotnet build /HolismDotNet/Generation
     chmod -R 777 /HolismDotNet/Generation
 fi
