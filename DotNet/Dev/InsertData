@@ -1,7 +1,10 @@
 #!/bin/bash
 
+. /HolismHolding/Infra/Scripts/Message.sh
 . /HolismHolding/Infra/DotNet/Dev/PrepareQuery
 
 Files=$(find / -name "*.sql" -not -path "*/Migration/*" -not -name "*Migration*.sql" -not -path "*/Maria/*" -printf '%p ' 2>/dev/null)
 
 dotnet run $Files
+
+Warning "If data is not inserted, make sure to run GenerateDependencies first to insert Enum values"

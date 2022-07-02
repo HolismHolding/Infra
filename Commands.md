@@ -134,3 +134,7 @@ Run a command, then
 
 # ns lookup
 `dig example.com`
+
+# Get script execution time
+`time script.sh`
+`time command`
