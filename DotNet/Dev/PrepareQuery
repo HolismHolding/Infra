@@ -1,14 +1,6 @@
 #!/bin/bash
 
-. /HolismHolding/Infra/Scripts/ExtractAndExportData.sh
 . /HolismHolding/Infra/Scripts/Message.sh
-
-export ApiOrganization=$Organization
-export ApiRepository=$Repository
-
-ExtractAndExportData
-
-export Directory=$PWD
 
 cp /HolismHolding/Infra/DotNet/Dev/GitIgnore /HolismDotNet/Query/.git/info/exclude
 if [ -z ${IsBuilt+x} ]; then
@@ -16,6 +8,6 @@ if [ -z ${IsBuilt+x} ]; then
     chmod -R 777 /HolismDotNet/Query
 fi
 
-cp /$ApiOrganization/$ApiRepository/ConnectionStrings.json /HolismDotNet/Query/bin
+cp /$Organization/$Repository/ConnectionStrings.json /HolismDotNet/Query/bin
 
 cd /HolismDotNet/Query

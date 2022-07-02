@@ -1,0 +1,7 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/DotNet/Dev/PrepareQuery
+
+Files=$(find / -name "*.sql" -not -path "*/Migration/*" -not -name "*Migration*.sql" -not -path "*/Maria/*" -printf '%p ' 2>/dev/null)
+
+dotnet run $Files

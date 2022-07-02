@@ -1,3 +1,5 @@
+#!/bin/bash
+
 . /HolismHolding/Infra/DotNet/Dev/PrepareQuery
 
 dotnet run DeleteData
