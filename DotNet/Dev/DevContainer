@@ -13,5 +13,6 @@
 	"mounts": [
 		"source=${LowercaseOrg}${LowercaseRepo},target=/root/.vscode-server/extensions,type=volume"
 	],
-	"postAttachCommand": "code --install-extension /HolismHolding/Extensions/CSharp.vsix"
+	"postAttachCommand": "code --install-extension /HolismHolding/Extensions/CSharp.vsix",
+	"todo": "https://stackoverflow.com/questions/56671520/how-can-i-install-vscode-server-in-linux-offline"
 }
