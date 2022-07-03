@@ -52,7 +52,7 @@ Run mkdir -p ${RepositoryPath} \
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
-FROM node:lts-alpine as runner
+FROM node:lts-bullseye-slim as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
 RUN npm install --location=global serve

@@ -1,9 +1,10 @@
 FROM holism/next-dev:latest as dependencies
 WORKDIR ${RepositoryPath}
 
-FROM node:14-buster-slim as builder
+FROM node:lts-bullseye-slim as builder
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismNext/Infra /HolismNext/Infra
+COPY /${Organization}/Infra /${Organization}/Infra
 COPY ${RepositoryPath} ${RepositoryPath}
 COPY --from=dependencies /site/node_modules ${RepositoryPath}/node_modules
 COPY --from=dependencies /site/package.json ${RepositoryPath}/package.json
@@ -16,7 +17,7 @@ RUN echo dummy > ${RepositoryPath}/public/dummy.md
 WORKDIR ${RepositoryPath}
 RUN npm run build
 
-FROM node:14-buster-slim as runner
+FROM node:lts-bullseye-slim as runner
 WORKDIR ${RepositoryPath}
 ENV NODE_ENV production
 COPY --from=builder ${RepositoryPath}/next.config.js ./
