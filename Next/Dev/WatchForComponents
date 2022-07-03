@@ -7,6 +7,7 @@ function SetJsConfig()
     declare -A Aliases
     Aliases[Pages]=pages/Exports.js
     Aliases[Tailwind]=tailwind.js
+    Aliases[Base]=Base/Exports.js
     while IFS=$'\t' read Alias Path
     do
         ReplacedAlias="${Alias/\/$Organization\/$Repository\/components\//}"
