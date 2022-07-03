@@ -41,6 +41,11 @@ RUN npm i -D @tailwindcss/typography --no-optional
 RUN npm i -D @svgr/webpack
 RUN npm i --save stylis stylis-plugin-rtl --no-optional
 RUN npm i --save @next/swc-linux-x64-gnu --no-optional
+RUN npm i --save @fortawesome/fontawesome-svg-core --no-optional
+RUN npm i --save @fortawesome/free-solid-svg-icons --no-optional
+RUN npm i --save @fortawesome/free-regular-svg-icons --no-optional
+RUN npm i --save @fortawesome/free-brands-svg-icons --no-optional
+RUN npm i --save @fortawesome/react-fontawesome@latest --no-optional
 
 RUN apt update
 RUN apt install curl -y
