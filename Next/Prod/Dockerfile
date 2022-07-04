@@ -24,6 +24,7 @@ ENV NODE_ENV production
 COPY --from=builder ${RepositoryPath}/next.config.js ./
 COPY --from=builder ${RepositoryPath}/public ./public
 COPY --from=builder ${Organization}/Common/Branding ./public/Branding
+COPY --from=builder ${Organization}/Common/Fonts ./public/Fonts
 COPY --from=builder ${RepositoryPath}/.next ./.next
 COPY --from=builder ${RepositoryPath}/contents ./contents
 COPY --from=builder ${RepositoryPath}/node_modules ./node_modules
