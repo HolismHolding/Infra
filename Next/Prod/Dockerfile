@@ -4,8 +4,8 @@ WORKDIR ${RepositoryPath}
 FROM node:lts-bullseye-slim as builder
 COPY /HolismHolding/Infra /HolismHolding/Infra
 COPY /HolismNext/Infra /HolismNext/Infra
-COPY /${Organization}/Infra /${Organization}/Infra
 COPY ${RepositoryPath} ${RepositoryPath}
+COPY /${Organization}/Common /${Organization}/Common
 COPY --from=dependencies /site/node_modules ${RepositoryPath}/node_modules
 COPY --from=dependencies /site/package.json ${RepositoryPath}/package.json
 COPY --from=dependencies /site/postcss.config.js ${RepositoryPath}/postcss.config.js

@@ -2,6 +2,7 @@
 . /HolismHolding/Infra/Next/GetHolismNextInfra.sh
 . /HolismHolding/Infra/Scripts/CopyHolismHoldingInfra.sh
 . /HolismHolding/Infra/Scripts/CopyDependencies.sh
+. /HolismHolding/Infra/Scripts/CopyCommon.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
 . /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
 
@@ -23,6 +24,7 @@ function BuildNext() {
     CopyHolismHoldingInfra
     CopyHolismNextInfra
     CopyDependencies
+    CopyCommon
     CopyRepository
     RemoveGitsDirectory
 
