@@ -4,6 +4,8 @@
 
 . /HolismHolding/Infra/DotNet/Dev/Build
 
+Divide
 Info "Running /$Organization/$Repository/Api/bin/Api.dll ...";
+Divide
 
 dotnet /$Organization/$Repository/Api/bin/Api.dll &

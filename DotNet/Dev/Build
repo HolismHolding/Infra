@@ -1,6 +1,8 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
+Divide
 Info "Building /$Organization/$Repository ...";
+Divide
 
 dotnet build /$Organization/$Repository
 chmod -R 777 /$Organization/$Repository

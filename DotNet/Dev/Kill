@@ -1,5 +1,7 @@
 . /HolismHolding/Infra/Scripts/Message.sh
 
+Divide
 Info "Killing /$Organization/$Repository ..."
+Divide
 
 ps -ef | grep 'dotnet' | grep -v grep | awk '{print $2}' | xargs -r kill -9
