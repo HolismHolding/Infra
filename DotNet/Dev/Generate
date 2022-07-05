@@ -6,7 +6,20 @@
 export ApiOrganization=$Organization
 export ApiRepository=$Repository
 
-ExtractAndExportData
+Name=$1
+
+if [[ $Name == "" ]]; then 
+    ExtractAndExportData
+else
+    find / -type d -name $Name 2>/dev/null |
+    while read dir;
+    do
+        if [ -f $dir/Database.json ]; then
+            cd $dir
+            Generate
+        fi
+    done
+fi
 
 if [ ! -f "$PWD/Database.json" ]; then
     Warning "Did not found Database.json";
