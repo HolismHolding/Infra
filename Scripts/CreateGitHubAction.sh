@@ -57,6 +57,11 @@ function CreateGitHubAction()
         MoveYml=$(cat /HolismHolding/Infra/MoveMainRepository.yml)
         MoveSnippet=$(envsubst <<< "$MoveYml")
         ActionSnippet="$ActionSnippet$MoveSnippet"
+    else
+        MainActionSnippet=$ActionSnippet
+        GetActionSnippet $Org Common
+        CommonActionSnippet="\n\n$ActionSnippet"
+        ActionSnippet="$MainActionSnippet$CommonActionSnippet"
     fi
 
     Temp=$(cat $GitHubActionPath)
