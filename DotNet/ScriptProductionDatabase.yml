@@ -34,6 +34,11 @@ jobs:
           cd /HolismDotNet
           git clone https://github.com/HolismDotNet/Infra
           
+      - name: Get /HolismDotNet/Cloud
+        run: |
+          cd /HolismDotNet
+          git clone https://github.com/HolismDotNet/Cloud
+          
       - name: Get /HolismDotNet/Migration
         run: |
           cd /HolismDotNet
