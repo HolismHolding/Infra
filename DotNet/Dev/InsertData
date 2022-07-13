@@ -8,3 +8,5 @@ Files=$(find / -name "*.sql" -not -path "*/Migration/*" -not -name "*Migration*.
 dotnet run $Files
 
 Warning "If data is not inserted, make sure to run GenerateDependencies first to insert Enum values"
+
+Warning "Also make sure first insert all entity types from administration panel, and then rerun the data insertion."
