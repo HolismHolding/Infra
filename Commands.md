@@ -21,23 +21,9 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 `find / -type d -name "*something*" 2>/dev/null`
 `find / -type f -name "*something*" 2>/dev/null`
 
-# git submodules
-
-`git submodules init`    
-`git submodules update`   
-`git submodules foreach 'git add . || :'`   
-`git submodules foreach 'git commit -m "message" || :'`   
-`git submodules foreach 'git push || :'`   
-
 # kill processes on port
 
 `sudo lsof -t -i:3000 | xargs sudo kill`
-
-# delete git submodule
-`git submodule status` => to show `path/to/submodule`   
-`git submodule deinit -f path/to/submodule`   
-`rm -rf .git/modules/path/to/submodule`   
-`git rm -f path/to/submodule`   
 
 # see the size of a directory
 `du -sh directory_name`
@@ -65,8 +51,6 @@ You can use use `-n` to only see the changes, without applying them, to ensure t
 
 # see linux version
 `cat /etc/os-release`
-`lsb_release -a`
-`hostnamectl`
 
 # docker usage stats
 `docker system df`
@@ -94,10 +78,6 @@ df = disk-free
 # get system info
 `uname`
 `man uname`
-
----
-`2>/dev/null` closes the error stream (bad habit, because some apps crash if they encounter closed stream for erro)
-`2>/dev/null` ignores error, but redirects them to an open stream
 
 # find using negation
 `find / -type f ! -path '*Api/Settings.json' -name "Settings.json" 2>/dev/null`

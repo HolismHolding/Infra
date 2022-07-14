@@ -1,0 +1,27 @@
+. /HolismHolding/Infra/Scripts/Message.sh
+
+From=$1
+To=$2
+
+if [[ $From == "" ]]; then
+    Error "From is not provided."
+    Info "ChangeLinks From To"
+    exit
+fi
+
+if [[ $To == "" ]]; then
+    Error "To is not provided"
+    Info "ChangeLinks From To"
+    exit
+fi
+
+find $PWD -type l 2>/dev/null |
+while read Link;
+do
+    Target=$(readlink $Link)
+    if [[ $Target == *"$From"* ]]; then
+        NewTarget="${Target/From/To}"
+        Info $Link - $Target - $NewTarget
+        # ln -s -f 
+    fi
+done
