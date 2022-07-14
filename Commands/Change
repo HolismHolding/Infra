@@ -1,0 +1,46 @@
+# change the name to Change From To, and include sed and rename too. Report the changes. And exclude .git folder
+
+. /HolismHolding/Infra/Scripts/Message.sh
+
+From=$1
+To=$2
+
+if [[ $From == "" ]]; then
+    Error "From is not provided."
+    Info "ChangeLinks From To"
+    exit
+fi
+
+if [[ $To == "" ]]; then
+    Error "To is not provided"
+    Info "ChangeLinks From To"
+    exit
+fi
+
+Divide
+Info "Changing file contents"
+Divide
+find $PWD -mindepth 1 -not -path "*/.git/*" -not -name ".git" 2>/dev/null | xargs grep -rl $From 2>/dev/null | xargs sed -i "s/$From/$To/g"
+
+Divide
+Info "Changing file and directory paths"
+Divide
+find $PWD -mindepth 1 -name "*$From*" -not -path "*/.git/*" -not -name ".git" 2>/dev/null | xargs rename $"s/$From/$To/g"
+
+Divide
+Info "Changing symbolic links"
+Divide
+find $PWD -type l 2>/dev/null |
+while read Link;
+do
+    Target=$(readlink $Link)
+    if [[ $Target == *"$From"* ]]; then
+        NewTarget="${Target/$From/$To}"
+        Info $Link - $Target - $NewTarget
+        if [ -d $NewTarget ]; then
+            ln -s -f $NewTarget $(dirname $Link)
+        else
+            ln -s -f $NewTarget $Link
+        fi
+    fi
+done

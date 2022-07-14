@@ -118,3 +118,9 @@ Run a command, then
 # Get script execution time
 `time script.sh`
 `time command`
+
+# Get motherboard info
+`sudo dmidecode -t 2`
+
+# Get RAM info
+`sudo dmidecode -t 17`
