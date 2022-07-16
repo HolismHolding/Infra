@@ -46,6 +46,7 @@ RUN npm i --save @fortawesome/free-solid-svg-icons --no-optional
 RUN npm i --save @fortawesome/free-regular-svg-icons --no-optional
 RUN npm i --save @fortawesome/free-brands-svg-icons --no-optional
 RUN npm i --save @fortawesome/react-fontawesome@latest --no-optional
+RUN npm i --save mixitup --no-optional
 
 RUN apt update
 RUN apt install curl -y
