@@ -16,7 +16,7 @@ RUN echo dummy > ${RepositoryPath}/contents/dummy.md
 RUN if [ ! -d "${RepositoryPath}/public" ]; then mkdir ${RepositoryPath}/public; fi
 RUN echo dummy > ${RepositoryPath}/public/dummy.md
 WORKDIR ${RepositoryPath}
-RUN cat tailwind.config.js
+COPY ${TailwindConfigPath}/tailwind.config.json ${RepositoryPath}/tailwind.config.json
 RUN npm run build --debug
 
 FROM node:lts-bullseye-slim as runner
