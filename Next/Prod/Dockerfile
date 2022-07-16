@@ -15,8 +15,8 @@ RUN if [ ! -d "${RepositoryPath}/contents" ]; then mkdir ${RepositoryPath}/conte
 RUN echo dummy > ${RepositoryPath}/contents/dummy.md
 RUN if [ ! -d "${RepositoryPath}/public" ]; then mkdir ${RepositoryPath}/public; fi
 RUN echo dummy > ${RepositoryPath}/public/dummy.md
-RUN cp ${TailwindConfigPath}/tailwind.config.js ${RepositoryPath}/tailwind.config.js
 WORKDIR ${RepositoryPath}
+RUN cat tailwind.config.js
 RUN npm run build --debug
 
 FROM node:lts-bullseye-slim as runner
