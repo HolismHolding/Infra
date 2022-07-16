@@ -5,6 +5,7 @@
 . /HolismHolding/Infra/Scripts/CopyCommon.sh
 . /HolismHolding/Infra/Scripts/CopyRepository.sh
 . /HolismHolding/Infra/Scripts/RemoveGitsDirectory.sh
+. /HolismHolding/Infra/Next/DetermineTailwindConfigPath.sh
 
 function CopyHolismNextInfra() {
     echo "Copying site base ...";
@@ -27,6 +28,7 @@ function BuildNext() {
     CopyCommon
     CopyRepository
     RemoveGitsDirectory
+    DetermineTailwindConfigPath
 
     envsubst < /HolismHolding/Infra/Next/Prod/Dockerfile > $Dockerfile
 }
