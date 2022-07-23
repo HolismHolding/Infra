@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. /HolismHolding/Infra/DotNet/Dev/PrepareQuery
+. /HolismHolding/Infra/Scripts/Message.sh
+
+dotnet run DropDatabases
