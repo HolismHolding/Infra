@@ -35,7 +35,8 @@ services:
             && ln -s /site/package.json ${RepositoryPath}
             && ln -s /site/postcss.config.js ${RepositoryPath}
             && echo -e '\033[0;31m'"http://localhost:$RandomPort" "http://$Host"
-            && npx next dev -p ${RandomPort} &
+            && npm run build
+            && npm run start -p ${RandomPort} &
             WatchForComponents &
             tail -f /dev/null
             "
